@@ -101,3 +101,31 @@ else
 {
     Console.WriteLine("Input suhu tidak valid.");
 }
+
+// harga kendaraan = 350_000_000m;
+// uang muka = 30% dari harga
+// tenor = 36 bulan
+// bunga per bulan = 0.5%
+// cari harga dp, bunga perbulan, cicilan per bulan, pokok
+
+decimal hargaKendaraan = 350_000_000m;
+decimal uangMuka = hargaKendaraan * 0.3m;
+decimal sisaPembayaran = hargaKendaraan - uangMuka;
+decimal bungaPerBulan = sisaPembayaran * 0.005m;
+decimal pokokPerBulan = sisaPembayaran / 36;
+decimal cicilanPerBulan = pokokPerBulan + bungaPerBulan;
+
+string hasil = $@"
+== Simulasi Kredit Kendaraan ==
+
+Harga Kendaraan  : {hargaKendaraan:N0}
+Uang Muka        : {uangMuka:N0}
+Sisa Pembayaran  : {sisaPembayaran:N0}
+Bunga per Bulan  : {bungaPerBulan:N0}
+Pokok per Bulan  : {pokokPerBulan:N0}
+Cicilan per Bulan: {cicilanPerBulan:N0}
+
+Total Pembayaran : {(cicilanPerBulan * 36) + uangMuka:N0}
+";
+
+Console.WriteLine(hasil);
