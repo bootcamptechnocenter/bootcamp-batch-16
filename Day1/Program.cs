@@ -67,12 +67,14 @@ decimal harga = 250_000_000m;
 bool aktif = true;
 DateTime createdAt = DateTime.Parse("2026-03-03");
 
-Console.WriteLine("== Data Kendaraan ==");
-Console.WriteLine($"Merek: {merek}");
-Console.WriteLine($"Tahun: {tahun}");
-Console.WriteLine($"Harga: {harga:C}");
-Console.WriteLine($"Aktif: {aktif}");
-Console.WriteLine($"Dibuat: {createdAt:dd/MM/yy}");
+string info = $@"== Data Kendaraan ==
+Merek   : {merek}
+Tahun   : {tahun}
+Harga   : {harga:C}
+Aktif   : {aktif}
+Dibuat  : {createdAt:dd/MM/yy}";
+
+Console.WriteLine(info);
 
 Console.WriteLine("");
 
