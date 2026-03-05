@@ -18,3 +18,10 @@ Console.WriteLine($"Hasil pengurangan: {a - b}");
 Console.WriteLine($"Hasil perkalian: {a * b}");
 Console.WriteLine($"Hasil pembagian: {b / a}");
 Console.WriteLine($"Hasil modulus: {b % a}");
+
+Console.WriteLine($"Apakah a lebih besar dari b? {a > b}");
+Console.WriteLine($"Apakah a sama dengan b? {a == b}");
+Console.WriteLine($"Apakah a tidak sama dengan b? {a != b}");
+Console.WriteLine($"Apakah a lebih besar atau sama dengan b? {a >= b}");
+Console.WriteLine($"Apakah a lebih kecil dari b? {a < b}");
+Console.WriteLine($"Apakah a lebih kecil atau sama dengan b? {a <= b}");
