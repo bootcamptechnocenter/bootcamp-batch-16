@@ -1,0 +1,16 @@
+{
+  // Disable automatic .NET acquisition by VS Code
+  "dotnet.dotnetPath": "/usr/bin/dotnet",
+  "omnisharp.dotnetPath": "/usr/bin/dotnet",
+  "omnisharp.useModernNet": true,
+  
+  // Alternative: disable acquisition completely
+  "dotnetAcquisitionExtension.enableTelemetry": false,
+  "dotnetAcquisitionExtension.installTimeoutValue": 120,
+  "dotnetAcquisitionExtension.existingDotnetPath": [
+    {
+      "extensionId": "ms-dotnettools.csharp",
+      "path": "/usr/bin/dotnet"
+    }
+  ]
+}
