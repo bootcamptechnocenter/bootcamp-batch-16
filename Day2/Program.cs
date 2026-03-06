@@ -32,3 +32,34 @@ string result = nilai >= 90 ? "A" : nilai >= 80 ? "B" : nilai >= 70 ? "C" : nila
 
 printNilai(result);
 
+// SWITCH CASE
+
+switch (nilai)
+{
+    case >= 90:
+        printNilai("A");
+        break;
+    case >= 80:
+        printNilai("B");
+        break;
+    case >= 70:
+        printNilai("C");
+        break;
+    case >= 60:
+        printNilai("D");
+        break;
+    default:
+        printNilai("E");
+        break;
+}
+
+string resultSwitch = nilai switch
+{
+    >= 90 => "A",
+    >= 80 => "B",
+    >= 70 => "C",
+    >= 60 => "D",
+    _ => "E"
+};
+
+printNilai(resultSwitch);
