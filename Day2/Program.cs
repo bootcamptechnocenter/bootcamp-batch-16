@@ -1,4 +1,5 @@
 ﻿using Day2;
+using Microsoft.VisualBasic;
 
 int nilai = 80;
 
@@ -154,5 +155,24 @@ var email = new Email(
     "john.doe@example.com"
 );
 
+var whatsapp = new WhatsApp(
+    "Jane Doe",
+    "456 Elm St",
+    "08198765432",
+    "08198765432"
+
+);
+
 email.TypeOfIdentity();
 email.PrintEmail();
+
+var identities = new List<Identity>
+{
+    email,
+    whatsapp
+};
+
+foreach (var identity in identities)
+{
+    identity.TypeOfIdentity();
+}
