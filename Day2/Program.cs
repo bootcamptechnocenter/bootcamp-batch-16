@@ -122,13 +122,27 @@ foreach (var item in car)
     Console.WriteLine(item);
 }
 
-Animal cat = new Animal
-{
-    Name = "Kitty",
-    Food = "Fish",
-    Sound = "Meow",
-    IsCarnivore = true
-};
+// OBJECT
+
+Animal cat = new Animal(
+    "Cat",
+    "Fish",
+    "Meow",
+    true
+);
 
 cat.Eat();
 cat.IsCarnivoreOrNot();
+
+var animals = new List<Animal>
+{
+    new Animal("Dog", "Meat", "Woof", true),
+    new Animal("Cow", "Grass", "Moo", false),
+    new Animal("Lion", "Meat", "Roar", true)
+};
+
+foreach (var animal in animals)
+{
+    animal.Eat();
+    animal.IsCarnivoreOrNot();
+}

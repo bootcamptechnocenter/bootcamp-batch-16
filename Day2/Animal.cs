@@ -7,10 +7,24 @@ namespace Day2
 {
     public class Animal
     {
-        public required string Name { get; set; }
-        public string Food { get; set; } = "Unknown";
-        public string Sound { get; set; } = "Unknown";
+        public string Name { get; set; }
+        public string Food { get; set; }
+        public string Sound { get; set; }
         public bool IsCarnivore { get; set; } = false;
+
+        public Animal(
+            string name, 
+            string food,
+            string sound,
+            bool isCarnivore
+        )
+        {
+            Name = name;
+            Food = food;
+            Sound = sound;
+            IsCarnivore = isCarnivore;
+            
+        }
 
         public void Eat()
         {
