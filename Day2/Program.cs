@@ -1,4 +1,6 @@
-﻿int nilai = 80;
+﻿using Day2;
+
+int nilai = 80;
 
 void printNilai(string nilai)
 {
@@ -119,3 +121,14 @@ foreach (var item in car)
 {
     Console.WriteLine(item);
 }
+
+Animal cat = new Animal
+{
+    Name = "Kitty",
+    Food = "Fish",
+    Sound = "Meow",
+    IsCarnivore = true
+};
+
+cat.Eat();
+cat.IsCarnivoreOrNot();
