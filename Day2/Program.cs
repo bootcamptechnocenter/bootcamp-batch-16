@@ -1,4 +1,8 @@
-﻿using Day2;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.WebSockets;
+using System.Reflection.Metadata;
+using System.Runtime.InteropServices.Marshalling;
+using Day2;
 using Microsoft.VisualBasic;
 
 int nilai = 80;
@@ -175,4 +179,32 @@ var identities = new List<Identity>
 foreach (var identity in identities)
 {
     identity.TypeOfIdentity();
+}
+
+var pegawai1 = new Pegawai(
+    1,
+    "Budi",
+    5000000,
+    0.1m
+);
+
+var pegawai2 = new Pegawai(
+    2,
+    "Siti",
+    6000000,
+    0.25m
+);
+
+var pegawai3 = new Pegawai(
+    3,
+    "Andi",
+    7000000,
+    0.15m
+);
+
+var pegawaiList = new List<Pegawai> { pegawai1, pegawai2, pegawai3 };
+
+foreach (var pegawai in pegawaiList)
+{
+    pegawai.PrintSlipGaji();
 }
