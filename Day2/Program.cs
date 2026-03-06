@@ -181,6 +181,8 @@ foreach (var identity in identities)
     identity.TypeOfIdentity();
 }
 
+// EXERCISE 1 DAY 2
+
 var pegawai1 = new Pegawai(
     1,
     "Budi",
@@ -208,3 +210,12 @@ foreach (var pegawai in pegawaiList)
 {
     pegawai.PrintSlipGaji();
 }
+
+// ACCESS MODIFIER
+
+var rekening1 = new Rekening(1000000);
+
+rekening1.TampilkanSaldo();
+rekening1.Setor(500000);
+rekening1.Tarik(200000);
+rekening1.TampilkanSaldo();
