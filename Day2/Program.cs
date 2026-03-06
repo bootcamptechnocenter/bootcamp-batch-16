@@ -146,3 +146,13 @@ foreach (var animal in animals)
     animal.Eat();
     animal.IsCarnivoreOrNot();
 }
+
+var email = new Email(
+    "John Doe",
+    "123 Main St",
+    "08123456789",
+    "john.doe@example.com"
+);
+
+email.TypeOfIdentity();
+email.PrintEmail();
