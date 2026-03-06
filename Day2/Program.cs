@@ -63,3 +63,59 @@ string resultSwitch = nilai switch
 };
 
 printNilai(resultSwitch);
+
+// LOOP
+
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine($"Perulangan ke-{i}");
+}
+
+// LOOP PRIME NUMBER
+
+for (int i = 2; i <= 10; i++)
+{
+    bool isPrime = true;
+
+    for (int j = 2; j <= Math.Sqrt(i); j++)
+    {
+        if (i % j == 0)
+        {
+            isPrime = false;
+            break;
+        }
+    }
+
+    if (isPrime)
+    {
+        Console.WriteLine($"{i} adalah bilangan prima");
+    }
+}
+
+// TANPA SQRT
+for (int i = 2; i <= 10; i++)
+{
+    bool isPrime = true;
+
+    for (int j = 2; j < i; j++)
+    {
+        if (i % j == 0)
+        {
+            isPrime = false;
+            break;
+        }
+    }
+
+    if (isPrime)
+    {
+        Console.WriteLine($"{i} adalah bilangan prima");
+    }
+}
+
+// FOR EACH
+var car = new List<string> { "Toyota", "Honda", "Suzuki" };
+
+foreach (var item in car)
+{
+    Console.WriteLine(item);
+}
