@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "LatihanHari2/1.0.0": {
+        "runtime": {
+          "LatihanHari2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LatihanHari2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
