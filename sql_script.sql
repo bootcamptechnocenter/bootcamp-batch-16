@@ -223,3 +223,56 @@ join training_dotnet.public.mst_types mt on mt.id = mm.type_id
 join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
 where mm.deleted_at is null and mt.deleted_at is null and mb.deleted_at is null
 order by mb.name, mt.name, mm.year desc;
+
+-- create prc to insert type with brand id exist validation and code + brand id duplicate validation
+create or replace procedure insert_type(
+	in p_brand_id integer,
+	in p_code varchar,
+	in p_name varchar,
+	in p_created_by varchar,
+	out out_stat boolean,
+	out out_mess text
+)
+language plpgsql
+as $$
+declare
+	v_exist boolean;
+	v_is_duplicate boolean;
+begin
+	-- check if brand id exists
+	select exists(
+		select 1 from training_dotnet.public.mst_brands mb
+		where mb.id = p_brand_id and mb.deleted_at is null
+	) into v_exist;
+
+	if not v_exist then
+		out_stat := false;
+		out_mess := 'Brand not found with id: ' || p_brand_id;
+		return;
+	end if;
+
+	-- check for duplicate code and brand id
+	select exists(
+		select 1 from training_dotnet.public.mst_types mt
+		where mt.brand_id = p_brand_id and mt.code = p_code and mt.deleted_at is null
+	) into v_is_duplicate;
+
+	if v_is_duplicate then
+		out_stat := false;
+		out_mess := 'Type with code: ' || p_code || ' already exists for brand id: ' || p_brand_id;
+		return;
+	end if;
+
+	-- insert data
+	insert into training_dotnet.public.mst_types(brand_id, code, name, created_by, created_at)
+	values (p_brand_id, p_code, p_name, p_created_by, now());
+
+	out_stat := true;
+	out_mess := 'Type inserted successfully';
+end;
+$$;
+
+-- call prc
+call insert_type(1, 'CRV', 'Honda CRV', 'Admin', null, null);
+call insert_type(1, 'CIVIC', 'Honda Civic', 'Admin', null, null);
+call insert_type(10, 'COROLLA', 'Toyota Corolla', 'Admin', null, null);
