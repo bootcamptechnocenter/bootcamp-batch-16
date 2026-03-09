@@ -133,3 +133,37 @@ $$;
 call insert_brand('MZ', 'Mazda', 'Admin', null, null);
 call insert_brand('HYN', 'Hyundai', 'Admin', null, null);
 
+-- create prc for soft delete with check if id exists
+create or replace procedure delete_brand(
+	in p_id integer,
+	in p_deleted_by varchar,
+	out out_stat boolean,
+	out out_mess text
+)
+language plpgsql
+as $$
+begin
+	-- check if id exists
+	if not exists(
+		select 1 from training_dotnet.public.mst_brands mb
+		where mb.id = p_id and mb.deleted_at is null
+	) then
+		out_stat := false;
+		out_mess := 'Brand not found with id: ' || p_id;
+		return;
+	end if;
+
+	-- soft delete
+	update training_dotnet.public.mst_brands mb
+	set deleted_at = now(),
+		deleted_by = p_deleted_by
+	where mb.id = p_id and mb.deleted_at is null;
+
+	out_stat := true;
+	out_mess := 'Brand deleted successfully';
+end;
+$$;
+
+-- call prc
+call delete_brand(1, 'Admin', null, null);
+call delete_brand(10, 'Admin', null, null);
