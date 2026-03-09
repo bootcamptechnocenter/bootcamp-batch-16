@@ -187,3 +187,39 @@ where mt.deleted_at is null and mb.deleted_at is null;
 -- select view
 select * from v_types_with_brands;
 
+-- exercise
+-- create table mst_models with columns id, type_id (FK to mst_types), code, name, year (integer), created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
+create table training_dotnet.public.mst_models(
+	id serial primary key,
+	type_id integer not null references training_dotnet.public.mst_types(id),
+	code varchar(10) not null,
+	name varchar(100) not null,
+	year integer not null,
+	is_active boolean not null default true,
+	created_at timestamp not null default now(),
+	created_by varchar(100),
+	updated_at timestamp,
+	updated_by varchar(100),
+	deleted_at timestamp,
+	deleted_by varchar(100)
+);
+
+-- create 3 models
+insert into training_dotnet.public.mst_models(type_id, code, name, year, created_by) values
+(1, 'JAZZ2020', 'Honda Jazz 2020', 2020, 'Admin'),
+(2, 'CRV2021', 'Honda CRV 2021', 2021, 'Admin'),
+(3, 'MX2020', 'Toyota Mark X 2020', 2020, 'Admin');
+
+-- select with join to mst_types and mst_brands
+select
+	mm.id as model_id,
+	mm.code as model_code,
+	mm.name as model_name,
+	mm.year as model_year,
+	mt.name as type_name,
+	mb.name as brand_name
+from training_dotnet.public.mst_models mm
+join training_dotnet.public.mst_types mt on mt.id = mm.type_id
+join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
+where mm.deleted_at is null and mt.deleted_at is null and mb.deleted_at is null
+order by mb.name, mt.name, mm.year desc;
