@@ -142,12 +142,16 @@ create or replace procedure delete_brand(
 )
 language plpgsql
 as $$
+declare
+	v_exist boolean;
 begin
 	-- check if id exists
-	if not exists(
+	select exists(
 		select 1 from training_dotnet.public.mst_brands mb
 		where mb.id = p_id and mb.deleted_at is null
-	) then
+	) into v_exist;
+
+	if not v_exist then
 		out_stat := false;
 		out_mess := 'Brand not found with id: ' || p_id;
 		return;
