@@ -171,3 +171,19 @@ $$;
 -- call prc
 call delete_brand(1, 'Admin', null, null);
 call delete_brand(10, 'Admin', null, null);
+
+-- create view with join
+create or replace view v_types_with_brands as
+select
+	mt.id as type_id,
+	mt.name as type_name,
+	mt.code as type_code,
+	mb.id as brand_id,
+	mb.name as brand_name,
+from training_dotnet.public.mst_types mt
+join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
+where mt.deleted_at is null and mb.deleted_at is null;
+
+-- select view
+select * from v_types_with_brands;
+
