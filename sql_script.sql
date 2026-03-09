@@ -98,3 +98,38 @@ from training_dotnet.public.mst_types mt
 join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
 where mt.deleted_at is null and mb.deleted_at is null
 order by mb.name, mt.name;
+
+-- create prc with duplicate id validation
+create or replace procedure insert_brand(
+	in p_code varchar,
+	in p_name varchar,
+	in p_created_by varchar,
+	out out_stat boolean,
+	out out_mess text
+)
+language plpgsql
+as $$
+begin
+	-- check duplicate
+	if exists(
+		select 1 from training_dotnet.public.mst_brands mb
+		where mb.code = p_code and mb.deleted_at is null
+	) then
+		out_stat := false;
+		out_mess := 'Code already used: ' || p_code;
+		return;
+	end if;
+
+	-- insert data
+	insert into training_dotnet.public.mst_brands(code, name, created_by, created_at)
+	values (p_code, p_name, p_created_by, now());
+
+	out_stat := true;
+	out_mess := 'Brand inserted successfully';
+end;
+$$;
+
+-- call prc
+call insert_brand('MZ', 'Mazda', 'Admin', null, null);
+call insert_brand('HYN', 'Hyundai', 'Admin', null, null);
+
