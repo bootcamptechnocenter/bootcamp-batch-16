@@ -1,6 +1,4 @@
 {
-  // Disable automatic .NET acquisition by VS Code
-  "dotnet.dotnetPath": "/usr/bin/dotnet",
   "omnisharp.dotnetPath": "/usr/bin/dotnet",
   "omnisharp.useModernNet": true,
   
