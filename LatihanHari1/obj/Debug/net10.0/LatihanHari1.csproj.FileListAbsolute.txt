@@ -1,0 +1,14 @@
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.exe
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.deps.json
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.runtimeconfig.json
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.GeneratedMSBuildEditorConfig.editorconfig
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.AssemblyInfoInputs.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.AssemblyInfo.cs
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.csproj.CoreCompileInputs.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\refint\LatihanHari1.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.genruntimeconfig.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\LatihanHari1\obj\Debug\net10.0\ref\LatihanHari1.dll
