@@ -1,0 +1,15 @@
+D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.deps.json
+D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.runtimeconfig.json
+D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.AssemblyReference.cache
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfoInputs.cache
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfo.cs
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.sourcelink.json
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
