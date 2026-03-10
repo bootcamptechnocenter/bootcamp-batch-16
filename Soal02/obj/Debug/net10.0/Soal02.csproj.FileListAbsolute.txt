@@ -1,0 +1,14 @@
+D:\Training\Soal02\bin\Debug\net10.0\Soal02.exe
+D:\Training\Soal02\bin\Debug\net10.0\Soal02.deps.json
+D:\Training\Soal02\bin\Debug\net10.0\Soal02.runtimeconfig.json
+D:\Training\Soal02\bin\Debug\net10.0\Soal02.dll
+D:\Training\Soal02\bin\Debug\net10.0\Soal02.pdb
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.AssemblyInfoInputs.cache
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.AssemblyInfo.cs
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.csproj.CoreCompileInputs.cache
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.dll
+D:\Training\Soal02\obj\Debug\net10.0\refint\Soal02.dll
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.pdb
+D:\Training\Soal02\obj\Debug\net10.0\Soal02.genruntimeconfig.cache
+D:\Training\Soal02\obj\Debug\net10.0\ref\Soal02.dll

@@ -1,0 +1,17 @@
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Training\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll

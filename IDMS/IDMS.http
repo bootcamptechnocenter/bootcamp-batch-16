@@ -1,0 +1,6 @@
+@IDMS_HostAddress = http://localhost:5295
+
+GET {{IDMS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

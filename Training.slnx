@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="IDMS.Infrastructure/IDMS.Infrastructure.csproj" />
+  <Project Path="IDMS.Modules.Master/IDMS.Modules.Master.csproj" />
+  <Project Path="IDMS.Shared/IDMS.Shared.csproj" />
+  <Project Path="IDMS/IDMS.csproj" />
+  <Project Path="Latihan01/Latihan01.csproj" />
+  <Project Path="Latihan02/Latihan02.csproj" />
+  <Project Path="Soal02/Soal02.csproj" />
+</Solution>

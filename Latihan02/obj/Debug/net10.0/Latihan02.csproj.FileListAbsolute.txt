@@ -1,0 +1,14 @@
+D:\Training\Latihan02\bin\Debug\net10.0\Latihan02.exe
+D:\Training\Latihan02\bin\Debug\net10.0\Latihan02.deps.json
+D:\Training\Latihan02\bin\Debug\net10.0\Latihan02.runtimeconfig.json
+D:\Training\Latihan02\bin\Debug\net10.0\Latihan02.dll
+D:\Training\Latihan02\bin\Debug\net10.0\Latihan02.pdb
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.AssemblyInfoInputs.cache
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.AssemblyInfo.cs
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.csproj.CoreCompileInputs.cache
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.dll
+D:\Training\Latihan02\obj\Debug\net10.0\refint\Latihan02.dll
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.pdb
+D:\Training\Latihan02\obj\Debug\net10.0\Latihan02.genruntimeconfig.cache
+D:\Training\Latihan02\obj\Debug\net10.0\ref\Latihan02.dll
