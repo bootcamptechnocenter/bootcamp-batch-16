@@ -1,0 +1,13 @@
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\idms.shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache

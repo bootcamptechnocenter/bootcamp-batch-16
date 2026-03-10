@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="day-2/day-2.csproj" />
+  <Project Path="IDMS.Infrastructure/IDMS.Infrastructure.csproj" />
+  <Project Path="IDMS.Modules.Master/IDMS.Modules.Master.csproj" />
+  <Project Path="IDMS.Shared/IDMS.Shared.csproj" />
+  <Project Path="IDMS/IDMS.csproj" />
+</Solution>
