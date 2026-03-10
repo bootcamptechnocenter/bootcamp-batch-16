@@ -399,4 +399,5 @@ FodyWeavers.xsd
 .idea/
 
 # Credentials
+appsettings.json
 appsettings.*.json
