@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+
+# IDE folders
+.vs/
+.vscode/
+
+# ASP.NET local settings
+appsettings.Development.json
+
+# User secrets (if present)
+secrets.json
