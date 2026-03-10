@@ -18,7 +18,8 @@ namespace IDMS.Common
             {
                 Status = true,
                 Message = message,
-                Data = data
+                Data = data,
+                Pagination = pagination
             };
         }
         public static ApiResponse<T> Fail(string message = "Error")
