@@ -1,0 +1,14 @@
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.AssemblyInfoInputs.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.AssemblyInfo.cs
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.csproj.CoreCompileInputs.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\bin\Debug\net10.0\Soal1Hari2.exe
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\bin\Debug\net10.0\Soal1Hari2.deps.json
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\bin\Debug\net10.0\Soal1Hari2.runtimeconfig.json
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\bin\Debug\net10.0\Soal1Hari2.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\bin\Debug\net10.0\Soal1Hari2.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\refint\Soal1Hari2.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\Soal1Hari2.genruntimeconfig.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\Soal1Hari2\obj\Debug\net10.0\ref\Soal1Hari2.dll

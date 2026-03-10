@@ -1,0 +1,14 @@
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\bin\Debug\net10.0\LatihanHari1.exe
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\bin\Debug\net10.0\LatihanHari1.deps.json
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\bin\Debug\net10.0\LatihanHari1.runtimeconfig.json
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\bin\Debug\net10.0\LatihanHari1.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\bin\Debug\net10.0\LatihanHari1.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.AssemblyInfoInputs.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.AssemblyInfo.cs
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.csproj.CoreCompileInputs.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\refint\LatihanHari1.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\LatihanHari1.genruntimeconfig.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\LatihanHari1\obj\Debug\net10.0\ref\LatihanHari1.dll

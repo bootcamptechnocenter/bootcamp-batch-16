@@ -1,0 +1,12 @@
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
