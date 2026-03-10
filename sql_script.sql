@@ -13,33 +13,33 @@ create table mst_brands(
 );
 
 -- insert data
-insert into training_dotnet.public.mst_brands(code, name, created_by) values ("HON", "Honda", "Admin");
+insert into mst_brands(code, name, created_by) values ('HON', 'Honda', 'Admin');
 
 -- insert multiple data
-insert into training_dotnet.public.mst_brands(code, name, created_by)
+insert into mst_brands(code, name, created_by)
 values
-	("TOY", "Toyota", "Admin"),
-	("SUZ", "Suzuki", "Admin"),
-	("DAI", "Daihatsu", "Admin");
+	('TOY', 'Toyota', 'Admin'),
+	('SUZ', 'Suzuki', 'Admin'),
+	('DAI', 'Daihatsu', 'Admin');
 
 -- select table
-select * from training_dotnet.public.mst_brands;
+select * from mst_brands;
 
 -- select deleted_at = null
-select * from training_dotnet.public.mst_brands where deleted_at is null;
+select * from mst_brands where deleted_at is null;
 
 -- select + filter + sort
-select id, name, is_active from training_dotnet.public.mst_brands mb where
+select id, name, is_active from mst_brands mb where
 mb.deleted_at is null and mb.is_active = true order by name asc;
 
 -- select case-insensitive
-select * from training_dotnet.public.mst_brands mb where mb.deleted_at is null and name ilike '%toy%';
+select * from mst_brands mb where mb.deleted_at is null and name ilike '%toy%';
 
 -- count
-select count(*) from training_dotnet.public.mst_brands mb where mb.deleted_at is null;
+select count(*) from mst_brands mb where mb.deleted_at is null;
 
 -- update
-update training_dotnet.public.mst_brands mb
+update mst_brands mb
 set name = 'Honda Motor',
 	updated_at = now(),
 	updated_by = 'Admin'
@@ -47,23 +47,23 @@ where id = 1
 and mb.deleted_at is null;
 
 -- soft delete
-update training_dotnet.public.mst_brands mb
+update mst_brands mb
 set deleted_at = now(),
 	deleted_by = 'Admin'
 where id = 1
 and mb.deleted_at is null;
 
 -- restore deletion
-update training_dotnet.public.mst_brands mb
+update mst_brands mb
 set deleted_at = null,
 	deleted_by = null
 where id = 1
 and mb.deleted_at is not null;
 
 -- create table mst_type
-create table training_dotnet.public.mst_types(
+create table mst_types(
 	id serial primary key,
-	brand_id integer not null references training_dotnet.public.mst_brands(id),
+	brand_id integer not null references mst_brands(id),
 	code varchar(10) not null,
 	name varchar(100) not null,
 	is_active boolean not null default true,
@@ -76,17 +76,17 @@ create table training_dotnet.public.mst_types(
 );
 
 -- insert data
-insert into training_dotnet.public.mst_types(brand_id, code, name, created_by) values (1, 'JAZZ', 'Honda Jazz', 'Admin');
+insert into mst_types(brand_id, code, name, created_by) values (1, 'JAZZ', 'Honda Jazz', 'Admin');
 
 -- insert multiple data
-insert into training_dotnet.public.mst_types(brand_id, code, name, created_by)
+insert into mst_types(brand_id, code, name, created_by)
 values
 	(1, 'CRV', 'Honda CRV', 'Admin'),
 	(2, 'MX', 'Toyota Mark X', 'Admin');
 
 
 -- select table
-select * from training_dotnet.public.mst_types;
+select * from mst_types;
 
 -- select + join
 select
@@ -94,8 +94,8 @@ select
 	mt.code as type_code,
 	mt.name as type_name,
 	mb.name as brand_name
-from training_dotnet.public.mst_types mt
-join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
+from mst_types mt
+join mst_brands mb on mb.id = mt.brand_id
 where mt.deleted_at is null and mb.deleted_at is null
 order by mb.name, mt.name;
 
@@ -112,7 +112,7 @@ as $$
 begin
 	-- check duplicate
 	if exists(
-		select 1 from training_dotnet.public.mst_brands mb
+		select 1 from mst_brands mb
 		where mb.code = p_code and mb.deleted_at is null
 	) then
 		out_stat := false;
@@ -121,7 +121,7 @@ begin
 	end if;
 
 	-- insert data
-	insert into training_dotnet.public.mst_brands(code, name, created_by, created_at)
+	insert into mst_brands(code, name, created_by, created_at)
 	values (p_code, p_name, p_created_by, now());
 
 	out_stat := true;
@@ -147,7 +147,7 @@ declare
 begin
 	-- check if id exists
 	select exists(
-		select 1 from training_dotnet.public.mst_brands mb
+		select 1 from mst_brands mb
 		where mb.id = p_id and mb.deleted_at is null
 	) into v_exist;
 
@@ -158,7 +158,7 @@ begin
 	end if;
 
 	-- soft delete
-	update training_dotnet.public.mst_brands mb
+	update mst_brands mb
 	set deleted_at = now(),
 		deleted_by = p_deleted_by
 	where mb.id = p_id and mb.deleted_at is null;
@@ -180,8 +180,8 @@ select
 	mt.code as type_code,
 	mb.id as brand_id,
 	mb.name as brand_name,
-from training_dotnet.public.mst_types mt
-join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
+from mst_types mt
+join mst_brands mb on mb.id = mt.brand_id
 where mt.deleted_at is null and mb.deleted_at is null;
 
 -- select view
@@ -189,9 +189,9 @@ select * from v_types_with_brands;
 
 -- exercise
 -- create table mst_models with columns id, type_id (FK to mst_types), code, name, year (integer), created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
-create table training_dotnet.public.mst_models(
+create table mst_models(
 	id serial primary key,
-	type_id integer not null references training_dotnet.public.mst_types(id),
+	type_id integer not null references mst_types(id),
 	code varchar(10) not null,
 	name varchar(100) not null,
 	year integer not null,
@@ -205,7 +205,7 @@ create table training_dotnet.public.mst_models(
 );
 
 -- create 3 models
-insert into training_dotnet.public.mst_models(type_id, code, name, year, created_by) values
+insert into mst_models(type_id, code, name, year, created_by) values
 (1, 'JAZZ2020', 'Honda Jazz 2020', 2020, 'Admin'),
 (2, 'CRV2021', 'Honda CRV 2021', 2021, 'Admin'),
 (3, 'MX2020', 'Toyota Mark X 2020', 2020, 'Admin');
@@ -218,9 +218,9 @@ select
 	mm.year as model_year,
 	mt.name as type_name,
 	mb.name as brand_name
-from training_dotnet.public.mst_models mm
-join training_dotnet.public.mst_types mt on mt.id = mm.type_id
-join training_dotnet.public.mst_brands mb on mb.id = mt.brand_id
+from mst_models mm
+join mst_types mt on mt.id = mm.type_id
+join mst_brands mb on mb.id = mt.brand_id
 where mm.deleted_at is null and mt.deleted_at is null and mb.deleted_at is null
 order by mb.name, mt.name, mm.year desc;
 
@@ -241,7 +241,7 @@ declare
 begin
 	-- check if brand id exists
 	select exists(
-		select 1 from training_dotnet.public.mst_brands mb
+		select 1 from mst_brands mb
 		where mb.id = p_brand_id and mb.deleted_at is null
 	) into v_exist;
 
@@ -253,7 +253,7 @@ begin
 
 	-- check for duplicate code and brand id
 	select exists(
-		select 1 from training_dotnet.public.mst_types mt
+		select 1 from mst_types mt
 		where mt.brand_id = p_brand_id and mt.code = p_code and mt.deleted_at is null
 	) into v_is_duplicate;
 
@@ -264,7 +264,7 @@ begin
 	end if;
 
 	-- insert data
-	insert into training_dotnet.public.mst_types(brand_id, code, name, created_by, created_at)
+	insert into mst_types(brand_id, code, name, created_by, created_at)
 	values (p_brand_id, p_code, p_name, p_created_by, now());
 
 	out_stat := true;
