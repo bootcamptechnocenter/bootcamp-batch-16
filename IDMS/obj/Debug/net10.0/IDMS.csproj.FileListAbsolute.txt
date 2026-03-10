@@ -34,3 +34,14 @@ D:\Training .NET\IDMS\obj\Debug\net10.0\refint\IDMS.dll
 D:\Training .NET\IDMS\obj\Debug\net10.0\IDMS.pdb
 D:\Training .NET\IDMS\obj\Debug\net10.0\IDMS.genruntimeconfig.cache
 D:\Training .NET\IDMS\obj\Debug\net10.0\ref\IDMS.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\Npgsql.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.Shared.pdb

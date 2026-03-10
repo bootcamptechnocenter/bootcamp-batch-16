@@ -13,3 +13,6 @@ D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructur
 D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
 D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
 D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Inf.669815FF.Up2Date
