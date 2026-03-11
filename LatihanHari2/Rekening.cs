@@ -9,22 +9,22 @@ namespace LatihanHari2
     {
         private decimal _saldo;
 
-        public decimal Saldo => _saldo;
+        public decimal Saldo => _saldo; //get only
 
         public void Setor(decimal jumlah)
         {
             if (jumlah <= 0)
             {
-                throw new ArgumentException("Jumlah setor harus positif");
+                throw new ArgumentException("Jumlah setor harus positif.");
             }
             _saldo += jumlah;
         }
 
         public bool Tarik(decimal jumlah)
         {
-            if (_saldo < jumlah)
+            if(jumlah > _saldo)
             {
-                throw new ArgumentException("Saldo tidak mencukupi untuk melakukan penarikan");
+                throw new ArgumentException("Saldo tidak cukup untuk melakukan penarikan.");
             }
             _saldo -= jumlah;
             return true;

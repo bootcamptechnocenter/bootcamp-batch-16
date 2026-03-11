@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Nbrk4AzcMmY=",
+  "success": true,
+  "projectFilePath": "D:\\KULIAH BJIR SLUR EA MHANK\\BERIJALAN\\DOTNET\\bootcamp-batch-16\\IDMS.Shared\\IDMS.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

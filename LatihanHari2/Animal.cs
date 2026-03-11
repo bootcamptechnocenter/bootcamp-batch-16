@@ -7,10 +7,9 @@ namespace LatihanHari2
 {
     public class Animal
     {
-        public string? Name { get; set; }
-        public string? Species { get; set; }
-        public string? Sound { get; set; }
-        public string? Food { get; set; }
+        public string Name { get; set; }
+        public string Food { get; set; }
+        public string Sound { get; set; }
         public bool IsCarnivore { get; set; } = false;
 
         public Animal(string name, string food, string sound, bool isCarnivore)
@@ -19,18 +18,20 @@ namespace LatihanHari2
             Food = food;
             Sound = sound;
             IsCarnivore = isCarnivore;
-
         }
+
         public void Eat()
         {
-            Console.WriteLine($"{Name} is eating {Food} and make a sound {Sound}");
+            Console.WriteLine($"{Name} is eating {Food} and makes a sound {Sound}");
         }
+
         public void IsCarnivoreOrNot()
         {
             if (IsCarnivore)
             {
                 Console.WriteLine($"{Name} is a carnivore");
-            } else
+            }
+            else
             {
                 Console.WriteLine($"{Name} is not a carnivore");
             }

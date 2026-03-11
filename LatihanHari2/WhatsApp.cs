@@ -7,7 +7,7 @@ namespace LatihanHari2
 {
     public class WhatsApp: Identity
     {
-        public string? WhatsAppNumber { get; set; }
+        public string WhatsAppNumber { get; set; }
 
         public override string TypeOfIdentity()
         {

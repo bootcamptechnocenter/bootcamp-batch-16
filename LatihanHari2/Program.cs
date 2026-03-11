@@ -1,9 +1,17 @@
-﻿// // IF STATEMENT
-// int nilai = 85;
-// Console.WriteLine(nilai > 100 ? "Nilai melebihi batas maksimal" : "Nilai masih dalam batas normal");
-// Console.WriteLine();
+﻿// //if statement
 
-// // SWITCH CASE
+// int nilai = 80;
+
+// if (nilai > 100)
+// {
+//     Console.WriteLine("Nilai melebihi batas maksimal");
+// }
+// else
+// {
+//     Console.WriteLine("Nilai masih dalam batas normal");
+// }
+
+// //switch statement
 // int score = 85;
 
 // string grade = score switch
@@ -15,102 +23,79 @@
 //     _ => "F"
 // };
 
-// Console.WriteLine($"NILAI: {score}, GRADE: {grade}");
-// Console.WriteLine();
+// Console.WriteLine($"Nilai: {score}, Grade: {grade}");
 
-// // FOR LOOP
-// for (int i = 2; i < 100; i++)
+
+// //looping
+
+// //for loop
+// for (int i = 0; i < 10; i++)
 // {
-//     int jumlah = 0;
-//     for (int j = 1; j <= i; j++)
-//     {
-//         if (i % j == 0)
-//         {
-//             jumlah++;
-//         }
-//     }
-//     if (jumlah == 2)
-//     {
-//         Console.WriteLine($"Bilangan Prima = {i}");
-//     } 
-// }
-// Console.WriteLine();
-
-// //FOREACH LOOP
-// var cars = new List<string> { "Toyota", "Honda","Ford"};
-
-// foreach (var car in cars) {
-//     Console.WriteLine($"Merek Mobil: {car}");
+//     Console.WriteLine($"Perulangan ke-{i}");
 // }
 
 
-// using LatihanHari2;
+// //foreach loop
+// var car = new List<string> { "Toyota", "Honda", "Ford" };
 
-// Animal cat = new Animal("Joni", "Fish", "miaw", true);
+// foreach (var item in car)
+// {
+//     Console.WriteLine($"Merek mobil: {item}");
+// }
+
+using LatihanHari2;
+
+// Animal cat = new Animal("Cat", "Fish", "Meow", false);
 
 // cat.Eat();
 // cat.IsCarnivoreOrNot();
 
+
 // var animals = new List<Animal>
 // {
-//     new Animal("Dog", "Meat", "woof", true),
-//     new Animal("Cow", "Grass", "moo", false),
-//     new Animal("Lion", "Meat", "rawr", true)
+//     new Animal("Dog", "Meat", "Woof", true),
+//     new Animal("Cow", "Grass", "Moo", false),
+//     new Animal("Lion", "Meat", "Roar", true)
 // };
 
 // foreach (var animal in animals)
 // {
 //     animal.Eat();
-//     animal.IsCarnivoreOrNot();
 // }
-
-
-// using LatihanHari2;
 
 // var email1 = new Email
 // {
-//     Name = "jojo",
-//     Address = "jogja",
-//     Phone = "0899923892",
-//     EmailAddress = "jojo@gmail.com",
+//     Name = "John Doe",
+//     Address = "123 Main St",
+//     Phone = "555-1234",
+//     EmailAddress = "johndoe@mail.com"
 // };
 
 // var whatsapp1 = new WhatsApp
 // {
-//     Name = "jojo2",
-//     Address = "jogja2",
-//     Phone = "0899923892",
-//     WhatsAppNumber = "08123343542",
+//     Name = "Jane Smith",
+//     Address = "456 Elm St",
+//     Phone = "555-5678",
+//     WhatsAppNumber = "08123456789"
 // };
 
 // email1.DisplayIdentity();
 // whatsapp1.DisplayIdentity();
 
-// var identities = new List<Identity> {email1, whatsapp1};
+// var identities = new List<Identity> { email1, whatsapp1 };
 // foreach (var identity in identities)
 // {
-//     Console.WriteLine($"Type of identity: {identity.TypeOfIdentity()}");
+//     Console.WriteLine($"Type of Identity: {identity.TypeOfIdentity()}");
 // }
-
-// using LatihanHari2;
-// var Pegawai1 = new Pegawai
-// {
-//     Id = "A12839",
-//     Nama = "Budi",
-//     GajiPokok = 5_000_000m,
-//     TunjanganPersen = 0.1m
-// };
-
-// Pegawai1.PrintSlipGaji();
-
-using LatihanHari2;
 
 var rekening = new Rekening();
 rekening.Setor(1_000_000);
-Console.WriteLine($"Saldo Setelah setor: {rekening.Saldo}");
+Console.WriteLine($"Saldo setelah setor: {rekening.Saldo}");
 rekening.Tarik(250_000);
-Console.WriteLine($"Saldo Setelah tarik: {rekening.Saldo}");
-rekening.Tarik(800_000);
+Console.WriteLine($"Saldo setelah tarik: {rekening.Saldo}");
+rekening.Tarik(800_000); 
 
-Console.ReadLine();
-Console.Clear();
+
+
+
+

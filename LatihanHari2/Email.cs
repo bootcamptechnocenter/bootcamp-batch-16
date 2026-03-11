@@ -7,11 +7,11 @@ namespace LatihanHari2
 {
     public class Email: Identity
     {
-        public string? EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
 
         public override string TypeOfIdentity()
         {
-            return "email";
+            return "Email";
         }
     }
 }

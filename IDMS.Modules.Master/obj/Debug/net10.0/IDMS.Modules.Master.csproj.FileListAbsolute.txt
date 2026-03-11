@@ -1,0 +1,53 @@
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET PULL\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
