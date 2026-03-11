@@ -72,9 +72,15 @@ namespace WebApi.Modules.Master.Services.Impl
 
             return brand;
         }
-        
+
         public async Task<ResMstBrandDto> CreateMstBrand(ReqMstBrandDto dto)
         {
+            var existingBrand = await _context.MstBrands
+                .Where(x => x.Code == dto.Code && x.DeletedAt == null)
+                .FirstOrDefaultAsync();
+
+            if (existingBrand != null) throw new Exception("Brand code already exists");
+
             var brand = new MstBrands
             {
                 Code = dto.Code,
