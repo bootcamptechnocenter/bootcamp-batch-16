@@ -1,18 +1,36 @@
-D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.deps.json
-D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.runtimeconfig.json
-D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.dll
-D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.pdb
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.AssemblyReference.cache
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfoInputs.cache
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfo.cs
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.CoreCompileInputs.cache
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.sourcelink.json
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.dll
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructure.dll
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
-D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.dll
-D:\Training .NET\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.pdb
-D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Inf.669815FF.Up2Date
+D:/Training .NET/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.deps.json
+D:/Training .NET/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.runtimeconfig.json
+D:/Training .NET/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.dll
+D:/Training .NET/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.pdb
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.csproj.AssemblyReference.cache
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.AssemblyInfoInputs.cache
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.AssemblyInfo.cs
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.csproj.CoreCompileInputs.cache
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.sourcelink.json
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.dll
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/refint/IDMS.Infrastructure.dll
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.pdb
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.genruntimeconfig.cache
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/ref/IDMS.Infrastructure.dll
+D:/Training .NET/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Shared.dll
+D:/Training .NET/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Shared.pdb
+D:/Training .NET/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Inf.669815FF.Up2Date
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.deps.json
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.runtimeconfig.json
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Infrastructure.pdb
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Shared.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/bin/Debug/net10.0/IDMS.Shared.pdb
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.csproj.AssemblyReference.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.AssemblyInfoInputs.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.AssemblyInfo.cs
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.sourcelink.json
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Inf.669815FF.Up2Date
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/refint/IDMS.Infrastructure.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.pdb
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/IDMS.Infrastructure.genruntimeconfig.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/obj/Debug/net10.0/ref/IDMS.Infrastructure.dll

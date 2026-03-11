@@ -1,13 +1,26 @@
-D:\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
-D:\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
-D:\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
-D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:/Training .NET/IDMS.Shared/bin/Debug/net10.0/IDMS.Shared.deps.json
+D:/Training .NET/IDMS.Shared/bin/Debug/net10.0/IDMS.Shared.dll
+D:/Training .NET/IDMS.Shared/bin/Debug/net10.0/IDMS.Shared.pdb
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.csproj.AssemblyReference.cache
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.AssemblyInfoInputs.cache
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.AssemblyInfo.cs
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.csproj.CoreCompileInputs.cache
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.sourcelink.json
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.dll
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/refint/IDMS.Shared.dll
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.pdb
+D:/Training .NET/IDMS.Shared/obj/Debug/net10.0/ref/IDMS.Shared.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/bin/Debug/net10.0/IDMS.Shared.deps.json
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/bin/Debug/net10.0/IDMS.Shared.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/bin/Debug/net10.0/IDMS.Shared.pdb
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.csproj.AssemblyReference.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.AssemblyInfoInputs.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.AssemblyInfo.cs
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.csproj.CoreCompileInputs.cache
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.sourcelink.json
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/refint/IDMS.Shared.dll
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/IDMS.Shared.pdb
+/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Shared/obj/Debug/net10.0/ref/IDMS.Shared.dll
