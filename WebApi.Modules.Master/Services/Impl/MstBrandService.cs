@@ -9,7 +9,7 @@ namespace WebApi.Modules.Master.Services.Impl
     {
         private readonly AppDbContext _context = context;
 
-        public async Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto)
+        public async Task<PagedResult<ResMstBrandDto>> GetMstBrands(ReqBaseParamDto dto)
         {
             var query = _context.MstBrands.AsQueryable();
 
