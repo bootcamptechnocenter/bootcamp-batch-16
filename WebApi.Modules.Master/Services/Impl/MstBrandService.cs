@@ -16,7 +16,7 @@ namespace WebApi.Modules.Master.Services.Impl
             if (!string.IsNullOrEmpty(dto.Search))
             {
                 var search = dto.Search.ToLower();
-                query = query.Where( x =>
+                query = query.Where(x =>
                     (x.Code != null && x.Code.ToLower().Contains(search)) ||
                     (x.Name != null && x.Name.ToLower().Contains(search))
                 );
