@@ -179,7 +179,7 @@ select
 	mt.name as type_name,
 	mt.code as type_code,
 	mb.id as brand_id,
-	mb.name as brand_name,
+	mb.name as brand_name
 from mst_types mt
 join mst_brands mb on mb.id = mt.brand_id
 where mt.deleted_at is null and mb.deleted_at is null;
