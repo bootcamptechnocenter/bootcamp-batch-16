@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseRequestMiddleware();
 
 app.UseSwagger();
 app.UseSwaggerUI();
