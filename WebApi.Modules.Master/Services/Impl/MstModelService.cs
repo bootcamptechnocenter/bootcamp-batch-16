@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi.Infrastructure.Data;
+using WebApi.Modules.Master.Dto.Request;
 using WebApi.Modules.Master.Dto.Response;
+using WebApi.Shared.Domain.Entities;
 using WebApi.Shared.Entities;
 
 namespace WebApi.Modules.Master.Services.Impl
@@ -75,6 +77,82 @@ namespace WebApi.Modules.Master.Services.Impl
                 .FirstOrDefaultAsync() ?? throw new Exception("Model not found");
 
             return model;
+        }
+
+        public async Task<ResMstModelDto> CreateMstModel(ReqMstModelDto dto)
+        {
+            var existingModel = await _context.MstModels
+                .Where(x => x.Code == dto.Code && x.DeletedAt == null)
+                .FirstOrDefaultAsync();
+
+            if (existingModel != null) throw new Exception("Model code already exists");
+
+            var model = new MstModels
+            {
+                TypeId = dto.TypeId,
+                Code = dto.Code,
+                Name = dto.Name,
+                Year = dto.Year
+            };
+
+            _context.MstModels.Add(model);
+            await _context.SaveChangesAsync();
+
+            return new ResMstModelDto
+            {
+                Id = model.Id,
+                TypeId = model.TypeId,
+                Code = model.Code,
+                Name = model.Name,
+                Year = model.Year
+            };
+        }
+
+        public async Task<ResMstModelDto> UpdateMstModel(int id, ReqMstModelUpdateDto dto)
+        {
+            var model = await _context.MstModels
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .FirstOrDefaultAsync() ?? throw new Exception("Model not found");
+
+            if (!string.IsNullOrEmpty(dto.Code) && dto.Code != model.Code)
+            {
+                var existingModel = await _context.MstModels
+                    .Where(x => x.Code == dto.Code && x.DeletedAt == null)
+                    .FirstOrDefaultAsync();
+
+                if (existingModel != null) throw new Exception("Model code already exists");
+            }
+
+            model.TypeId = dto.TypeId ?? model.TypeId;
+            model.Code = dto.Code ?? model.Code;
+            model.Name = dto.Name ?? model.Name;
+            model.Year = dto.Year ?? model.Year;
+            model.IsActive = dto.IsActive ?? model.IsActive;
+            model.UpdatedAt = DateTime.Now;
+            model.UpdatedBy = "System";
+
+            await _context.SaveChangesAsync();
+
+            return new ResMstModelDto
+            {
+                Id = model.Id,
+                TypeId = model.TypeId,
+                Code = model.Code,
+                Name = model.Name,
+                Year = model.Year
+            };
+        }
+
+        public async Task DeleteMstModel(int id)
+        {
+            var model = await _context.MstModels
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .FirstOrDefaultAsync() ?? throw new Exception("Model not found");
+
+            model.DeletedAt = DateTime.Now;
+            model.DeletedBy = "System";
+
+            await _context.SaveChangesAsync();
         }
     }
 }

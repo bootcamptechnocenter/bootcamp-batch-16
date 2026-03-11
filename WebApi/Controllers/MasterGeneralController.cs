@@ -133,5 +133,32 @@ namespace WebApi.Controllers
                 result != null ? "Success" : "Data not found"
             ));
         }
+        [HttpPost("models")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateModel([FromBody] ReqMstModelDto dto)
+        {
+            var result = await _modelService.CreateMstModel(dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Model created successfully"
+            ));
+        }
+        [HttpPut("models/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateModel(int id, [FromBody] ReqMstModelUpdateDto dto)
+        {
+            var result = await _modelService.UpdateMstModel(id, dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Model updated successfully"
+            ));
+        }
+        [HttpDelete("models/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteModel(int id)
+        {
+            await _modelService.DeleteMstModel(id);
+            return Ok(ApiResponse<object>.Success(
+                null,
+                "Model deleted successfully"
+            ));
+        }
     }
 }
