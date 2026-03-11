@@ -25,6 +25,15 @@ namespace WebApi.Controllers
                 result.Pagination
             ));
         }
+        [HttpGet("brands/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetBrandById(int id)
+        {
+            var result = await _brandService.GetMstBrandById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "Success" : "Data not found"
+            ));
+        }
 
         [HttpGet("types")]
         public async Task<ActionResult<ApiResponse<object>>> GetTypes([FromQuery] ReqBaseParamDto dto)

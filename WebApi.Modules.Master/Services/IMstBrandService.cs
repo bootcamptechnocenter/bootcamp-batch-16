@@ -6,5 +6,6 @@ namespace WebApi.Modules.Master.Services
     public interface IMstBrandService
     {
         Task<PagedResult<ResMstBrandDto>> GetMstBrands(ReqBaseParamDto dto);
+        Task<ResMstBrandDto> GetMstBrandById(int id);
     }
 }

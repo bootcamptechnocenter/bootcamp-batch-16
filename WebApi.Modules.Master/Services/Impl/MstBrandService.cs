@@ -55,5 +55,20 @@ namespace WebApi.Modules.Master.Services.Impl
                 }
             };
         }
+        
+        public async Task<ResMstBrandDto> GetMstBrandById(int id)
+        {
+            var brand = await _context.MstBrands
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .Select(x => new ResMstBrandDto
+                {
+                    Id = x.Id,
+                    Code = x.Code,
+                    Name = x.Name,
+                })
+                .FirstOrDefaultAsync() ?? throw new Exception("Brand not found");
+
+            return brand;
+        }
     }
 }
