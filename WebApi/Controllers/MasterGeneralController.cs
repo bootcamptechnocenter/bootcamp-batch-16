@@ -53,6 +53,15 @@ namespace WebApi.Controllers
                 "Brand updated successfully"
             ));
         }
+        [HttpDelete("brands/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteBrand(int id)
+        {
+            await _brandService.DeleteMstBrand(id);
+            return Ok(ApiResponse<object>.Success(
+                null,
+                "Brand deleted successfully"
+            ));
+        }
 
         [HttpGet("types")]
         public async Task<ActionResult<ApiResponse<object>>> GetTypes([FromQuery] ReqBaseParamDto dto)

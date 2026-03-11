@@ -131,5 +131,17 @@ namespace WebApi.Modules.Master.Services.Impl
                 Name = brand.Name,
             };
         }
+
+        public async Task DeleteMstBrand(int id)
+        {
+            var brand = await _context.MstBrands
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .FirstOrDefaultAsync() ?? throw new Exception("Brand not found");
+
+            brand.DeletedAt = DateTime.Now;
+            brand.DeletedBy = "System";
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

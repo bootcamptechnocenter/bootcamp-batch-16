@@ -10,5 +10,6 @@ namespace WebApi.Modules.Master.Services
         Task<ResMstBrandDto> GetMstBrandById(int id);
         Task<ResMstBrandDto> CreateMstBrand(ReqMstBrandDto dto);
         Task<ResMstBrandDto> UpdateMstBrand(int id, ReqMstBrandUpdateDto dto);
+        Task DeleteMstBrand(int id);
     }
 }

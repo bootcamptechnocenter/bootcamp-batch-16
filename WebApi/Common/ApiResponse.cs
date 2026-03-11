@@ -8,7 +8,7 @@ namespace WebApi.Common
         public string Message { get; set; } = string.Empty;
         public T? Data { get; set; }
         public Pagination? Pagination { get; set; }
-        public static ApiResponse<T> Success(T data, string message = "Success", Pagination? pagination = null)
+        public static ApiResponse<T> Success(T? data, string message = "Success", Pagination? pagination = null)
         {
             return new ApiResponse<T>
             {
