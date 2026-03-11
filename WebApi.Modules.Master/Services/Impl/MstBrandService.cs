@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi.Infrastructure.Data;
+using WebApi.Modules.Master.Dto.Request;
 using WebApi.Modules.Master.Dto.Response;
+using WebApi.Shared.Domain.Entities;
 using WebApi.Shared.Entities;
 
 namespace WebApi.Modules.Master.Services.Impl
@@ -55,7 +57,7 @@ namespace WebApi.Modules.Master.Services.Impl
                 }
             };
         }
-        
+
         public async Task<ResMstBrandDto> GetMstBrandById(int id)
         {
             var brand = await _context.MstBrands
@@ -69,6 +71,28 @@ namespace WebApi.Modules.Master.Services.Impl
                 .FirstOrDefaultAsync() ?? throw new Exception("Brand not found");
 
             return brand;
+        }
+        
+        public async Task<ResMstBrandDto> CreateMstBrand(ReqMstBrandDto dto)
+        {
+            var brand = new MstBrands
+            {
+                Code = dto.Code,
+                Name = dto.Name,
+                IsActive = dto.IsActive,
+                CreatedAt = DateTime.Now,
+                CreatedBy = "System"
+            };
+
+            _context.MstBrands.Add(brand);
+            await _context.SaveChangesAsync();
+
+            return new ResMstBrandDto
+            {
+                Id = brand.Id,
+                Code = brand.Code,
+                Name = brand.Name,
+            };
         }
     }
 }

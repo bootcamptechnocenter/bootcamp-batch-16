@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
+using WebApi.Modules.Master.Dto.Request;
 using WebApi.Modules.Master.Services;
 using WebApi.Shared.Entities;
 
@@ -32,6 +33,15 @@ namespace WebApi.Controllers
             return Ok(ApiResponse<object>.Success(
                 result,
                 result != null ? "Success" : "Data not found"
+            ));
+        }
+        [HttpPost("brands")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateBrand([FromBody] ReqMstBrandDto dto)
+        {
+            var result = await _brandService.CreateMstBrand(dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Brand created successfully"
             ));
         }
 

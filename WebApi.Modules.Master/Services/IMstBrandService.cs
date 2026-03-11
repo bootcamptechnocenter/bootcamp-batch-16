@@ -1,3 +1,4 @@
+using WebApi.Modules.Master.Dto.Request;
 using WebApi.Modules.Master.Dto.Response;
 using WebApi.Shared.Entities;
 
@@ -7,5 +8,6 @@ namespace WebApi.Modules.Master.Services
     {
         Task<PagedResult<ResMstBrandDto>> GetMstBrands(ReqBaseParamDto dto);
         Task<ResMstBrandDto> GetMstBrandById(int id);
+        Task<ResMstBrandDto> CreateMstBrand(ReqMstBrandDto dto);
     }
 }
