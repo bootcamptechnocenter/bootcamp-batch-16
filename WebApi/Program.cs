@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IMstBrandService, MstBrandService>();
 builder.Services.AddScoped<IMstTypeService, MstTypeService>();
+builder.Services.AddScoped<IMstModelService, MstModelService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
