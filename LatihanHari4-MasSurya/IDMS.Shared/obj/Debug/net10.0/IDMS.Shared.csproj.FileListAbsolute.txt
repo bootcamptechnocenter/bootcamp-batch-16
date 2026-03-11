@@ -1,0 +1,39 @@
+D:\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:\Materi & Latihan Dotnet\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\Materi & Latihan Dotnet\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Materi & Latihan Dotnet\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\Materi & Latihan Dotnet\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll

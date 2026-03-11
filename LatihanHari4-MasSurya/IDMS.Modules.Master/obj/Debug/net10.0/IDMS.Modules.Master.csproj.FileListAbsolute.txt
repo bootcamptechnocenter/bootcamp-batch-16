@@ -1,0 +1,54 @@
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Materi & Latihan Dotnet\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Dotnet_Bootcamp\LatihanHari4-MasSurya\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll

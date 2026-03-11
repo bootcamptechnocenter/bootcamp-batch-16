@@ -1,0 +1,15 @@
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.deps.json
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.runtimeconfig.json
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.AssemblyReference.cache
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfoInputs.cache
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfo.cs
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.sourcelink.json
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructure.dll
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
+D:\Dotnet_Bootcamp\LatihanHari4\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
