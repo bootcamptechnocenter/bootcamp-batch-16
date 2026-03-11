@@ -57,5 +57,21 @@ namespace WebApi.Modules.Master.Services.Impl
                 }
             };
         }
+
+        public async Task<ResMstTypeDto> GetMstTypeById(int id)
+        {
+            var type = await _context.MstTypes
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .Select(x => new ResMstTypeDto
+                {
+                    Id = x.Id,
+                    BrandId = x.BrandId,
+                    Code = x.Code,
+                    Name = x.Name
+                })
+                .FirstOrDefaultAsync() ?? throw new Exception("Type not found");
+
+            return type;
+        }
     }
 }

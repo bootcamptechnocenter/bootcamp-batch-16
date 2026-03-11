@@ -6,5 +6,6 @@ namespace WebApi.Modules.Master.Services
     public interface IMstModelService
     {
         Task<PagedResult<ResMstModelDto>> GetMstModels(ReqBaseParamDto dto);
+        Task<ResMstModelDto> GetMstModelById(int id);
     }
 }

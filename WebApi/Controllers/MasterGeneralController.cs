@@ -45,6 +45,15 @@ namespace WebApi.Controllers
                 result.Pagination
             ));
         }
+        [HttpGet("types/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetTypeById(int id)
+        {
+            var result = await _typeService.GetMstTypeById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "Success" : "Data not found"
+            ));
+        }
 
         [HttpGet("models")]
         public async Task<ActionResult<ApiResponse<object>>> GetModels([FromQuery] ReqBaseParamDto dto)
@@ -54,6 +63,15 @@ namespace WebApi.Controllers
                 result.Items,
                 result.Items != null ? "Success" : "Data not found",
                 result.Pagination
+            ));
+        }
+        [HttpGet("models/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetModelById(int id)
+        {
+            var result = await _modelService.GetMstModelById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "Success" : "Data not found"
             ));
         }
     }

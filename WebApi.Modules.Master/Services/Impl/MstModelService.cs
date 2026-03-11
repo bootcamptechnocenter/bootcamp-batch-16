@@ -59,5 +59,22 @@ namespace WebApi.Modules.Master.Services.Impl
                 }
             };
         }
+
+        public async Task<ResMstModelDto> GetMstModelById(int id)
+        {
+            var model = await _context.MstModels
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .Select(x => new ResMstModelDto
+                {
+                    Id = x.Id,
+                    TypeId = x.TypeId,
+                    Code = x.Code,
+                    Name = x.Name,
+                    Year = x.Year
+                })
+                .FirstOrDefaultAsync() ?? throw new Exception("Model not found");
+
+            return model;
+        }
     }
 }
