@@ -86,6 +86,33 @@ namespace WebApi.Controllers
                 result != null ? "Success" : "Data not found"
             ));
         }
+        [HttpPost("types")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateType([FromBody] ReqMstTypeDto dto)
+        {
+            var result = await _typeService.CreateMstType(dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Type created successfully"
+            ));
+        }
+        [HttpPut("types/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateType(int id, [FromBody] ReqMstTypeUpdateDto dto)
+        {
+            var result = await _typeService.UpdateMstType(id, dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Type updated successfully"
+            ));
+        }
+        [HttpDelete("types/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteType(int id)
+        {
+            await _typeService.DeleteMstType(id);
+            return Ok(ApiResponse<object>.Success(
+                null,
+                "Type deleted successfully"
+            ));
+        }
 
         [HttpGet("models")]
         public async Task<ActionResult<ApiResponse<object>>> GetModels([FromQuery] ReqBaseParamDto dto)
