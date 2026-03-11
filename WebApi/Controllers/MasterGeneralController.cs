@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 using WebApi.Modules.Master.Dto.Request;
@@ -6,6 +7,9 @@ using WebApi.Shared.Entities;
 
 namespace WebApi.Controllers
 {
+    [ApiController]
+    [Route("master/general")]
+    [Authorize]
     public class MasterGeneralController(
         IMstBrandService brandService,
         IMstTypeService typeService,
