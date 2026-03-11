@@ -100,5 +100,36 @@ namespace WebApi.Modules.Master.Services.Impl
                 Name = brand.Name,
             };
         }
+
+        public async Task<ResMstBrandDto> UpdateMstBrand(int id, ReqMstBrandUpdateDto dto)
+        {
+            var brand = await _context.MstBrands
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .FirstOrDefaultAsync() ?? throw new Exception("Brand not found");
+
+            if (!string.IsNullOrEmpty(dto.Code) && brand.Code != dto.Code)
+            {
+                var existingBrand = await _context.MstBrands
+                    .Where(x => x.Code == dto.Code && x.DeletedAt == null)
+                    .FirstOrDefaultAsync();
+
+                if (existingBrand != null) throw new Exception("Brand code already exists");
+            }
+
+            brand.Code = dto.Code ?? brand.Code;
+            brand.Name = dto.Name ?? brand.Name;
+            if (dto.IsActive.HasValue) brand.IsActive = dto.IsActive.Value;
+            brand.UpdatedAt = DateTime.Now;
+            brand.UpdatedBy = "System";
+
+            await _context.SaveChangesAsync();
+
+            return new ResMstBrandDto
+            {
+                Id = brand.Id,
+                Code = brand.Code,
+                Name = brand.Name,
+            };
+        }
     }
 }

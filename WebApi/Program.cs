@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Infrastructure.Data;
 using WebApi.Modules.Master.Services;
 using WebApi.Modules.Master.Services.Impl;
+using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();

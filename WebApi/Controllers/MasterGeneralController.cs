@@ -44,6 +44,15 @@ namespace WebApi.Controllers
                 "Brand created successfully"
             ));
         }
+        [HttpPut("brands/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateBrand(int id, [FromBody] ReqMstBrandUpdateDto dto)
+        {
+            var result = await _brandService.UpdateMstBrand(id, dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Brand updated successfully"
+            ));
+        }
 
         [HttpGet("types")]
         public async Task<ActionResult<ApiResponse<object>>> GetTypes([FromQuery] ReqBaseParamDto dto)
