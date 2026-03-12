@@ -72,14 +72,14 @@
             <tbody>
                 @if (Model.Items.Any())
                 {
-                    @foreach (var brand in Model.Items)
+                    @foreach (var item in Model.Items)
                     {
                         <tr>
-                            <td>@brand.Id</td>
-                            <td>@brand.Code</td>
-                            <td>@brand.Name</td>
+                            <td>@item.Id</td>
+                            <td>@item.Code</td>
+                            <td>@item.Name</td>
                             <td class="text-center">
-                                @if (brand.IsActive)
+                                @if (item.IsActive)
                                 {
                                     <span class="badge bg-success">Yes</span>
                                 }
@@ -90,8 +90,8 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <a asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-sm btn-warning">Edit</a>
-                                    <form asp-action="Delete" asp-route-id="@brand.Id" method="post" class="d-inline delete-form">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline delete-form">
                                         @Html.AntiForgeryToken()
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
