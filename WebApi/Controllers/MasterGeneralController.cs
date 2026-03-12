@@ -9,7 +9,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("master/general")]
-    [Authorize]
+    // [Authorize]
     public class MasterGeneralController(
         IMstBrandService brandService,
         IMstTypeService typeService,

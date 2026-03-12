@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Infrastructure", "We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Modules.Master", "WebApi.Modules.Master\WebApi.Modules.Master.csproj", "{40A27442-AC69-4270-A06E-CA4FE3F6F65C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView", "WebView\WebView.csproj", "{F7C5C154-C8F6-489E-9C61-5750E57290DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{40A27442-AC69-4270-A06E-CA4FE3F6F65C}.Release|x64.Build.0 = Release|Any CPU
 		{40A27442-AC69-4270-A06E-CA4FE3F6F65C}.Release|x86.ActiveCfg = Release|Any CPU
 		{40A27442-AC69-4270-A06E-CA4FE3F6F65C}.Release|x86.Build.0 = Release|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Debug|x64.Build.0 = Debug|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Debug|x86.Build.0 = Debug|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Release|x64.ActiveCfg = Release|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Release|x64.Build.0 = Release|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7C5C154-C8F6-489E-9C61-5750E57290DD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

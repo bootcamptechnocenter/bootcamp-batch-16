@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowMissingPrunePackageData>true</AllowMissingPrunePackageData>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../WebApi.Infrastructure/WebApi.Infrastructure.csproj" />
+    <ProjectReference Include="../WebApi.Modules.Master/WebApi.Modules.Master.csproj" />
+    <ProjectReference Include="../WebApi.Shared/WebApi.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

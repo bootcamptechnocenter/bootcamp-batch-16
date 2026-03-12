@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h2 class="mb-4">Master Data</h2>
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Master Brand</h5>
+                        <p class="card-text">Manage brand data including code and name information.</p>
+                        <a href="@Url.Action("Index", "MasterBrand")" class="btn btn-primary">Go to Master Brand</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Master Type</h5>
+                        <p class="card-text">Manage type data including brand association and details.</p>
+                        <a href="@Url.Action("Index", "MasterType")" class="btn btn-primary">Go to Master Type</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Master Model</h5>
+                        <p class="card-text">Manage model data including type association and specifications.</p>
+                        <a href="@Url.Action("Index", "MasterModel")" class="btn btn-primary">Go to Master Model</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
