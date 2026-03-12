@@ -1,0 +1,27 @@
+
+@model IDMS.Modules.Master.Dto.Request.ReqUpdateMstBrandDto
+
+@{
+    ViewData["Title"] = "Edit Master Brand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="Edit" asp-route-id="@ViewBag.BrandId" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label asp-for="Code" class="control-label"></label>
+        <input asp-for="Code" class="form-control" />
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+        <button type="submit" class="btn btn-primary" >Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

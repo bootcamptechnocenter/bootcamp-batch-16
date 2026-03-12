@@ -72,7 +72,7 @@ namespace IDMS.Middleware
                     _ => null
                 };
 
-                if (message == null)
+                if (message != null)
                 {
                     context.Response.ContentType = "application/json";
                     var response = ApiResponse<string>.Fail(message);

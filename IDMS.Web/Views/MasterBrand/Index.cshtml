@@ -1,0 +1,50 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Modules.Master.Services;
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstBrandDto>
+
+@{
+    ViewData["Title"] = "Master Brand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Master Brand</h2>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Brand Code</th>
+            <th>Brand Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items !=null && Model.Items.Any())
+        {
+            int no = ((Model.Pagination.CurrentPage - 1) * Model.Pagination.Limit) + 1;
+            foreach (var brand in Model.Items)
+            {
+                <tr>
+                    <td>@no</td>
+                    <td>@brand.Code</td>
+                    <td>@brand.Name</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@brand.Id" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this brand?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                no++;
+            }
+        }
+    </tbody>
+
+</table>
+

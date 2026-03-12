@@ -1000,35 +1000,43 @@
     ]
   },
   "packageFolders": {
-    "/Users/mutiadeaharuya/.nuget/packages/": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS/IDMS.csproj",
+      "projectUniqueName": "D:\\Training .NET\\IDMS\\IDMS.csproj",
       "projectName": "IDMS",
-      "projectPath": "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS/IDMS.csproj",
-      "packagesPath": "/Users/mutiadeaharuya/.nuget/packages/",
-      "outputPath": "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS/obj/",
+      "projectPath": "D:\\Training .NET\\IDMS\\IDMS.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Training .NET\\IDMS\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/mutiadeaharuya/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/IDMS.Infrastructure.csproj": {
-              "projectPath": "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Infrastructure/IDMS.Infrastructure.csproj"
+            "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+              "projectPath": "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
             },
-            "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Modules.Master/IDMS.Modules.Master.csproj": {
-              "projectPath": "/Users/mutiadeaharuya/Documents/GitHub/bootcamp-batch-16/IDMS.Modules.Master/IDMS.Modules.Master.csproj"
+            "D:\\Training .NET\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {
+              "projectPath": "D:\\Training .NET\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj"
             }
           }
         }
@@ -1077,7 +1085,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
