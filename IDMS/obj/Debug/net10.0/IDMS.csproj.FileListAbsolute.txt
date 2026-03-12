@@ -138,3 +138,11 @@ D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\obj\Debug\n
 D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\obj\Debug\net10.0\IDMS.pdb
 D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\obj\Debug\net10.0\IDMS.genruntimeconfig.cache
 D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\obj\Debug\net10.0\ref\IDMS.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\KULIAH BJIR SLUR EA MHANK\BERIJALAN\DOTNET\bootcamp-batch-16\IDMS\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using IDMS.Infrastructure.Data;
+using IDMS.Modules.Master.Dto.Request;
 using IDMS.Modules.Master.Dto.Response;
+using IDMS.Shared.Domain.Entities;
 using IDMS.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,5 +66,66 @@ namespace IDMS.Modules.Master.Services.Impl
             };
 
         }
-    }
+
+        public async Task<ResMstBrandDto?> GetMstBrandById(int id)
+        {
+            var brand = await _context.MstBrands
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .Select(x => new ResMstBrandDto
+                {
+                    Id = x.Id,
+                    Code = x.Code,
+                    Name = x.Name
+                })
+                .FirstOrDefaultAsync();
+
+            return brand;
+        }
+        public async Task CreateMstBrand(ReqCreateMstBrandDto dto)
+        {
+            var newBrand = new MstBrands
+            {
+                Code = dto.Code,
+                Name = dto.Name,
+                IsActive = dto.IsActive,
+                CreatedAt = DateTime.Now,
+                CreatedBy = dto.CreatedBy
+            };
+
+            _context.MstBrands.Add(newBrand);
+            await _context.SaveChangesAsync();
+        }
+
+
+        public async Task UpdateMstBrand(int id, ReqUpdateMstBrandDto dto)
+        {
+            var brand = await _context.MstBrands.FindAsync(id);
+            if (brand == null || brand.DeletedAt != null)
+            {
+                throw new InvalidOperationException("Brand not found");
+            }
+
+            brand.Code = dto.Code;
+            brand.Name = dto.Name;
+            brand.IsActive = dto.IsActive;
+            brand.UpdatedAt = DateTime.Now;
+            brand.UpdatedBy = dto.UpdatedBy;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteMstBrand(int id)
+        {
+            var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+            if (brand == null || brand.DeletedAt != null)
+            {
+                throw new InvalidOperationException("Brand not found");
+            }
+            brand.IsActive = false;
+            brand.DeletedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+    }   
 }
