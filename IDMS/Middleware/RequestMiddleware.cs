@@ -54,7 +54,7 @@ namespace IDMS.Middleware
             context.Response.Body = originalBodyStream;
             responseBody.Seek(0, SeekOrigin.Begin);
 
-            if (context.Response.StatusCode == 400 && responseBody.Length == 0)
+            if (context.Response.StatusCode >= 400 && responseBody.Length == 0)
             {
                 string? message = context.Response.StatusCode switch
                 {

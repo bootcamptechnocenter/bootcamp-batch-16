@@ -14,6 +14,7 @@ namespace IDMS.Infrastructure.Data
             
         }
         public DbSet<MstBrands> MstBrands => Set<MstBrands>();
+        public DbSet<MstTypes> MstTypes => Set<MstTypes>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

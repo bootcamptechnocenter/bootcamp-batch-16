@@ -1,0 +1,52 @@
+@using IDMS.Modules.Master.Services;
+@using IDMS.Modules.Master.Dto.Response;
+@using IDMS.Shared.Entities;
+@model PagedResult<ResMstTypeDto>
+
+@{
+    ViewData["Title"] = "Master Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Master Type</h2>
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Brand</th>
+            <th>Type Code</th>
+            <th>Type Name</th>
+            <th>Is Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            int no = (Model.Pagination.CurrentPage - 1) * Model.Pagination.Limit + 1;
+
+            foreach (ResMstTypeDto item in Model.Items)
+            {
+                <tr>
+                    <td>@no</td>
+                    <td>@item.BrandName</td>
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td>@(item.IsActive ? "Yes" : "No")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"
+                           class="btn btn-sm btn-warning">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                no++;
+            }
+        }
+    </tbody>
+</table>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {}
+    "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+    "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
+        "projectUniqueName": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
         "projectName": "IDMS.Infrastructure",
-        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
+        "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\obj\\",
+        "outputPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -397,8 +397,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
+              "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+                "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
               },
               "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj": {
                 "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj"
@@ -1054,14 +1054,14 @@
         }
       }
     },
-    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {
+    "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
+        "projectUniqueName": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
         "projectName": "IDMS",
-        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
+        "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
         "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\obj\\",
+        "outputPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1076,8 +1076,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
+              "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+                "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
               },
               "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {
                 "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj"

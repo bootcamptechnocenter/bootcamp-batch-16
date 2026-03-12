@@ -12,3 +12,4 @@ C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\LatihanHari2
 C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\LatihanHari2\obj\Debug\net10.0\LatihanHari2.pdb
 C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\LatihanHari2\obj\Debug\net10.0\LatihanHari2.genruntimeconfig.cache
 C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\LatihanHari2\obj\Debug\net10.0\ref\LatihanHari2.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\LatihanHari2\obj\Debug\net10.0\LatihanHari2.sourcelink.json
