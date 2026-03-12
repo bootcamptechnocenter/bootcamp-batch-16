@@ -65,6 +65,7 @@
                     <th>ID</th>
                     <th>Code</th>
                     <th>Name</th>
+                    <th class="text-center">Active</th>
                     <th style="width: 150px;">Actions</th>
                 </tr>
             </thead>
@@ -77,6 +78,16 @@
                             <td>@brand.Id</td>
                             <td>@brand.Code</td>
                             <td>@brand.Name</td>
+                            <td class="text-center">
+                                @if (brand.IsActive)
+                                {
+                                    <span class="badge bg-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">No</span>
+                                }
+                            </td>
                             <td>
                                 <div class="d-flex gap-2">
                                     <a asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-sm btn-warning">Edit</a>
@@ -92,7 +103,7 @@
                 else
                 {
                     <tr>
-                        <td colspan="4" class="text-center text-muted">No data found</td>
+                        <td colspan="5" class="text-center text-muted">No data found</td>
                     </tr>
                 }
             </tbody>

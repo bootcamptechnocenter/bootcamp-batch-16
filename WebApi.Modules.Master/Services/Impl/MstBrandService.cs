@@ -42,6 +42,7 @@ namespace WebApi.Modules.Master.Services.Impl
                     Id = x.Id,
                     Code = x.Code,
                     Name = x.Name,
+                    IsActive = x.IsActive,
                 })
                 .ToListAsync();
 
