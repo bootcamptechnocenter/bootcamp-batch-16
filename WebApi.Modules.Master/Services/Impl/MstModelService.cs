@@ -45,7 +45,8 @@ namespace WebApi.Modules.Master.Services.Impl
                     TypeId = x.TypeId,
                     Code = x.Code,
                     Name = x.Name,
-                    Year = x.Year
+                    Year = x.Year,
+                    IsActive = x.IsActive,
                 })
                 .ToListAsync();
 
@@ -72,7 +73,8 @@ namespace WebApi.Modules.Master.Services.Impl
                     TypeId = x.TypeId,
                     Code = x.Code,
                     Name = x.Name,
-                    Year = x.Year
+                    Year = x.Year,
+                    IsActive = x.IsActive,
                 })
                 .FirstOrDefaultAsync() ?? throw new Exception("Model not found");
 

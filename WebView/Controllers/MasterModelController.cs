@@ -40,6 +40,76 @@ namespace WebView.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            try
+            {
+                var model = await _modelService.GetMstModelById(id);
+                var updateDto = new ReqMstModelUpdateDto
+                {
+                    TypeId = model.TypeId,
+                    Code = model.Code,
+                    Name = model.Name,
+                    Year = model.Year,
+                    IsActive = model.IsActive
+                };
+                var types = _typeService.GetMstTypes(new ReqBaseParamDto { Limit = int.MaxValue }).Result.Items;
+                ViewBag.Types = types;
+                ViewBag.ModelId = id;
+                return View(updateDto);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Model not found: {ex.Message}";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, ReqMstModelUpdateDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                var types = _typeService.GetMstTypes(new ReqBaseParamDto { Limit = int.MaxValue }).Result.Items;
+                ViewBag.Types = types;
+                ViewBag.ModelId = id;
+                return View(dto);
+            }
+
+            try
+            {
+                await _modelService.UpdateMstModel(id, dto);
+                TempData["SuccessMessage"] = "Model updated successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Error updating model: {ex.Message}");
+                var types = _typeService.GetMstTypes(new ReqBaseParamDto { Limit = int.MaxValue }).Result.Items;
+                ViewBag.Types = types;
+                ViewBag.ModelId = id;
+                return View(dto);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _modelService.DeleteMstModel(id);
+                TempData["SuccessMessage"] = "Model deleted successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error deleting model: {ex.Message}";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ReqMstModelDto dto)

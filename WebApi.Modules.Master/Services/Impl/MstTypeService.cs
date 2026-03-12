@@ -43,7 +43,8 @@ namespace WebApi.Modules.Master.Services.Impl
                     Id = x.Id,
                     BrandId = x.BrandId,
                     Code = x.Code,
-                    Name = x.Name
+                    Name = x.Name,
+                    IsActive = x.IsActive,
                 })
                 .ToListAsync();
 
@@ -69,7 +70,8 @@ namespace WebApi.Modules.Master.Services.Impl
                     Id = x.Id,
                     BrandId = x.BrandId,
                     Code = x.Code,
-                    Name = x.Name
+                    Name = x.Name,
+                    IsActive = x.IsActive,
                 })
                 .FirstOrDefaultAsync() ?? throw new Exception("Type not found");
 

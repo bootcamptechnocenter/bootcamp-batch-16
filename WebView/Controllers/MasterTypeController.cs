@@ -39,6 +39,75 @@ namespace WebView.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            try
+            {
+                var type = await _typeService.GetMstTypeById(id);
+                var updateDto = new ReqMstTypeUpdateDto
+                {
+                    BrandId = type.BrandId,
+                    Code = type.Code,
+                    Name = type.Name,
+                    IsActive = type.IsActive
+                };
+                var brands = _brandService.GetMstBrands(new ReqBaseParamDto { Limit = int.MaxValue }).Result.Items;
+                ViewBag.Brands = brands;
+                ViewBag.TypeId = id;
+                return View(updateDto);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Type not found: {ex.Message}";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, ReqMstTypeUpdateDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                var brands = _brandService.GetMstBrands(new ReqBaseParamDto { Limit = int.MaxValue }).Result.Items;
+                ViewBag.Brands = brands;
+                ViewBag.TypeId = id;
+                return View(dto);
+            }
+
+            try
+            {
+                await _typeService.UpdateMstType(id, dto);
+                TempData["SuccessMessage"] = "Type updated successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Error updating type: {ex.Message}");
+                var brands = _brandService.GetMstBrands(new ReqBaseParamDto { Limit = int.MaxValue }).Result.Items;
+                ViewBag.Brands = brands;
+                ViewBag.TypeId = id;
+                return View(dto);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _typeService.DeleteMstType(id);
+                TempData["SuccessMessage"] = "Type deleted successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error deleting type: {ex.Message}";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ReqMstTypeDto dto)
