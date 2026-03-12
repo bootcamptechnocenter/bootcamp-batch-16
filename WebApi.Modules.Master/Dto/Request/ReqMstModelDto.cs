@@ -11,6 +11,7 @@ namespace WebApi.Modules.Master.Dto.Request
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; } = string.Empty;
         [Required(ErrorMessage = "Year is required")]
+        [Range(1900, 2100, ErrorMessage = "Enter a valid year")]
         public int Year { get; set; }
         public bool IsActive { get; set; } = true;
     }
