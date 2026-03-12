@@ -1,0 +1,55 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Modules.Master.Services
+@using IDMS.Shared.Entities
+
+@model PagedResult<ResMstTypeDto>
+
+@{
+    ViewData["Title"] = "Master Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Master Type</h2>
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-primary mar">Create New</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Brand</th>
+            <th>Type Code</th>
+            <th>Type Name</th>
+            <th>Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <body>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            int index = 1;
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@item.BrandName</td>
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td>@(item.IsActive ? "Active" : "Inactive")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No data available.</td>
+            </tr>
+        }
+    </body>
+</table>

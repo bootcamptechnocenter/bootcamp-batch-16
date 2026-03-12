@@ -1,0 +1,27 @@
+@using IDMS.Modules.Master.Dto.Request
+@model ReqCreateMstBrancDto
+
+@{
+    ViewData["Title"] = "Create Master Brand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Master Brand</h2>
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Code" class="form-label"></label>
+        <input asp-for="Code" class="form-control" />
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

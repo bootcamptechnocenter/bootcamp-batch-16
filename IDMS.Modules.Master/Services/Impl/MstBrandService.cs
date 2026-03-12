@@ -44,7 +44,8 @@ namespace IDMS.Modules.Master.Services.Impl
                 {
                     Id = x.Id,
                     Code = x.Code,
-                    Name = x.Name
+                    Name = x.Name,
+                    IsActive = x.IsActive
                 })
                 .ToListAsync();
 
@@ -69,7 +70,8 @@ namespace IDMS.Modules.Master.Services.Impl
                 {
                     Id = x.Id,
                     Code = x.Code,
-                    Name = x.Name
+                    Name = x.Name,
+                    IsActive = x.IsActive
                 })
                 .FirstOrDefaultAsync();
             return brand;
@@ -91,7 +93,7 @@ namespace IDMS.Modules.Master.Services.Impl
 
         public async Task<bool> UpdateMstBrand(int id, ReqUpdateMstBrancDto dto)
         {
-            var brand = _context.MstBrands.FirstOrDefault(x => x.Id == id && x.DeletedAt == null);
+            var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (brand == null) return false;
 
             brand.Code = dto.Code;

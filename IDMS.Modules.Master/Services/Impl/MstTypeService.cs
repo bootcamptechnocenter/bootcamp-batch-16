@@ -41,8 +41,10 @@ namespace IDMS.Modules.Master.Services.Impl
                 {
                     Id = x.Id,
                     BrandId = x.BrandId,
+                    BrandName = x.Brand != null ? x.Brand.Name : string.Empty,
                     Code = x.Code,
-                    Name = x.Name
+                    Name = x.Name,
+                    IsActive = x.IsActive
                 })
                 .ToListAsync();
 
@@ -67,8 +69,10 @@ namespace IDMS.Modules.Master.Services.Impl
                 {
                     Id = x.Id,
                     BrandId = x.BrandId,
+                    BrandName = x.Brand != null ? x.Brand.Name : string.Empty,
                     Code = x.Code,
-                    Name = x.Name
+                    Name = x.Name,
+                    IsActive = x.IsActive
                 })
                 .FirstOrDefaultAsync();
 

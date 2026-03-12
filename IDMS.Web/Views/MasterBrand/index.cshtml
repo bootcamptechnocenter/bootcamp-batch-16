@@ -1,0 +1,79 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Modules.Master.Services
+@using IDMS.Shared.Entities
+
+@model PagedResult<ResMstBrandDto>
+
+@{
+    ViewData["Title"] = "Master Brand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Master Brand</h2>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+<tr>
+    <th>No</th>
+    <th>Brand Id</th>
+    <th>Brand Code</th>
+    <th>Brand Name</th>
+    <th>Active</th>
+    <th>Actions</th>
+</tr>
+    </thead>
+    <body>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            int index = 1;
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Id</td>
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td>@(item.IsActive ? "Active" : "Inactive")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>   
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No data available.</td>
+            </tr>
+        }
+
+    </body>
+</table>
+
+@* 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Code  </td>
+            </tr>
+        }
+    </tbody>
+</table> *@
