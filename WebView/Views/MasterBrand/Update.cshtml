@@ -1,0 +1,48 @@
+@using WebApi.Modules.Master.Dto.Request;
+@model ReqMstBrandUpdateDto
+
+@{
+    ViewData["Title"] = "Update Brand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var brandId = ViewBag.BrandId;
+}
+
+<h1>Update Brand</h1>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Update" asp-route-id="@brandId" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Code" class="form-label">Brand Code</label>
+                        <input asp-for="Code" class="form-control" placeholder="Enter brand code" />
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Brand Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter brand name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" name="IsActive" class="form-check-input" id="IsActive" 
+                               checked="@(Model.IsActive ?? true)" value="true" />
+                        <input type="hidden" name="IsActive" value="false" />
+                        <label for="IsActive" class="form-check-label">Active</label>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

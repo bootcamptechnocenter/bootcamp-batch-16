@@ -21,6 +21,14 @@
     </div>
 }
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="row mb-3">
     <div class="col-md-8">
         <form method="get" class="d-flex gap-2">
@@ -57,6 +65,7 @@
                     <th>ID</th>
                     <th>Code</th>
                     <th>Name</th>
+                    <th style="width: 150px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,13 +77,22 @@
                             <td>@brand.Id</td>
                             <td>@brand.Code</td>
                             <td>@brand.Name</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a asp-action="Update" asp-route-id="@brand.Id" class="btn btn-sm btn-warning">Edit</a>
+                                    <form asp-action="Delete" asp-route-id="@brand.Id" method="post" class="d-inline delete-form">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     }
                 }
                 else
                 {
                     <tr>
-                        <td colspan="3" class="text-center text-muted">No data found</td>
+                        <td colspan="4" class="text-center text-muted">No data found</td>
                     </tr>
                 }
             </tbody>
@@ -158,3 +176,16 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Delete confirmation
+        document.querySelectorAll('.delete-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                if (!confirm('Are you sure you want to delete this brand?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

@@ -67,6 +67,7 @@ namespace WebApi.Modules.Master.Services.Impl
                     Id = x.Id,
                     Code = x.Code,
                     Name = x.Name,
+                    IsActive = x.IsActive,
                 })
                 .FirstOrDefaultAsync() ?? throw new Exception("Brand not found");
 
