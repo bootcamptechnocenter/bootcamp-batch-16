@@ -1,0 +1,35 @@
+@using IDMS.Modules.Master.Dto.Request
+@model ReqUpdateTypeDto;
+
+@{
+    ViewData["Title"] = "Edit Master Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Master Type</h2>
+<form asp-action="Edit" asp-route-id="@ViewContext.RouteData.Values["id"]" method="post">
+    <div class="form-group">
+        <label asp-for="BrandId" class="control-label"></label>
+        <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
+            <option value="">-- Select Brand --</option>
+        </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+    <br/>   
+    <div class="form-group">
+        <label asp-for="Code" class="control-label"></label>
+        <input asp-for="Code" class="form-control" />
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <br/>   
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br/>
+    <div class="form-group">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

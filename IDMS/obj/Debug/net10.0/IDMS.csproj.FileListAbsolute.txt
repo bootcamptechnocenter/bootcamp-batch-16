@@ -45,3 +45,11 @@ D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10
 D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\IDMS.Shared.pdb
 D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\IDMS.Modules.Master.dll
 D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\Berijalan Technocenter\bootcamp-batch-16-training-dotnet\IDMS\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

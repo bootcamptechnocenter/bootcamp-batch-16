@@ -3,5 +3,6 @@
   <Project Path="IDMS.Infrastructure/IDMS.Infrastructure.csproj" />
   <Project Path="IDMS.Modules.Master/IDMS.Modules.Master.csproj" />
   <Project Path="IDMS.Shared/IDMS.Shared.csproj" />
+  <Project Path="IDMS.Web/IDMS.Web.csproj" />
   <Project Path="IDMS/IDMS.csproj" />
 </Solution>
