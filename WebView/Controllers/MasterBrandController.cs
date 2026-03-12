@@ -50,7 +50,7 @@ namespace WebView.Controllers
             }
         }
 
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             try
             {
@@ -62,7 +62,6 @@ namespace WebView.Controllers
                     IsActive = brand.IsActive
                 };
                 ViewBag.BrandId = id;
-                Console.WriteLine($"Update DTO: Id={id}, Code={updateDto.Code}, Name={updateDto.Name}, IsActive={updateDto.IsActive}");
                 return View(updateDto);
             }
             catch (Exception ex)
@@ -74,7 +73,7 @@ namespace WebView.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, ReqMstBrandUpdateDto dto)
+        public async Task<IActionResult> Edit(int id, ReqMstBrandUpdateDto dto)
         {
             if (!ModelState.IsValid)
             {

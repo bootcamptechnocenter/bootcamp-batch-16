@@ -2,18 +2,18 @@
 @model ReqMstBrandUpdateDto
 
 @{
-    ViewData["Title"] = "Update Brand";
+    ViewData["Title"] = "Edit Brand";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var brandId = ViewBag.BrandId;
 }
 
-<h1>Update Brand</h1>
+<h1>Edit Brand</h1>
 
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <form asp-action="Update" asp-route-id="@brandId" method="post">
+                <form asp-action="Edit" asp-route-id="@brandId" method="post">
                     <div class="mb-3">
                         <label asp-for="Code" class="form-label">Brand Code</label>
                         <input asp-for="Code" class="form-control" placeholder="Enter brand code" />

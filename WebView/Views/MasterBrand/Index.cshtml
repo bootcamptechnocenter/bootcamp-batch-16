@@ -79,7 +79,7 @@
                             <td>@brand.Name</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <a asp-action="Update" asp-route-id="@brand.Id" class="btn btn-sm btn-warning">Edit</a>
+                                    <a asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-sm btn-warning">Edit</a>
                                     <form asp-action="Delete" asp-route-id="@brand.Id" method="post" class="d-inline delete-form">
                                         @Html.AntiForgeryToken()
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
