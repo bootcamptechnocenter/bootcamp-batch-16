@@ -45,3 +45,11 @@ C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\IDMS.S
 C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\IDMS.Infrastructure.pdb
 C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\IDMS.Modules.Master.pdb
 C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\IDMS.Shared.pdb
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
