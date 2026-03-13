@@ -13,12 +13,33 @@ namespace WebApi.Controllers
     public class MasterGeneralController(
         IMstBrandService brandService,
         IMstTypeService typeService,
-        IMstModelService modelService
+        IMstModelService modelService,
+        IAuthService authService
     ) : Controller
     {
         private readonly IMstBrandService _brandService = brandService;
         private readonly IMstTypeService _typeService = typeService;
         private readonly IMstModelService _modelService = modelService;
+        private readonly IAuthService _authService = authService;
+
+        [HttpPost("register")]
+        public async Task<ActionResult<ApiResponse<object>>> Register([FromBody] ReqAuthRegisterDto dto)
+        {
+            var result = await _authService.Register(dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "User registered successfully"
+            ));
+        }
+        [HttpPost("login")]
+        public async Task<ActionResult<ApiResponse<object>>> Login([FromBody] ReqAuthLoginDto dto)
+        {
+            var result = await _authService.Login(dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "User logged in successfully"
+            ));
+        }
 
         [HttpGet("brands")]
         public async Task<ActionResult<ApiResponse<object>>> GetBrands([FromQuery] ReqBaseParamDto dto)

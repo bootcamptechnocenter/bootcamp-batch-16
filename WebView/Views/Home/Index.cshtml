@@ -1,6 +1,41 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@functions {
+    public Microsoft.AspNetCore.Html.IHtmlContent MasterCard(string title, string text, string controller, string
+action = "Index")
+    {
+        var url = Url.Action(action, controller) ?? "#";
+        var safeTitle = System.Net.WebUtility.HtmlEncode(title);
+        var safeText = System.Net.WebUtility.HtmlEncode(text);
+        var html = $@"<div class='col-md-6 col-lg-4'>
+    <div class='card h-100'>
+        <div class='card-body'>
+            <h5 class='card-title'>{safeTitle}</h5>
+            <p class='card-text'>{safeText}</p>
+            <a href='{url}' class='btn btn-primary'>Go to {safeTitle}</a>
+        </div>
+    </div>
+</div>";
+        return new Microsoft.AspNetCore.Html.HtmlString(html);
+    }
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -11,33 +46,10 @@
     <div class="col-md-12">
         <h2 class="mb-4">Master Data</h2>
         <div class="row g-3">
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Master Brand</h5>
-                        <p class="card-text">Manage brand data including code and name information.</p>
-                        <a href="@Url.Action("Index", "MasterBrand")" class="btn btn-primary">Go to Master Brand</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Master Type</h5>
-                        <p class="card-text">Manage type data including brand association and details.</p>
-                        <a href="@Url.Action("Index", "MasterType")" class="btn btn-primary">Go to Master Type</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Master Model</h5>
-                        <p class="card-text">Manage model data including type association and specifications.</p>
-                        <a href="@Url.Action("Index", "MasterModel")" class="btn btn-primary">Go to Master Model</a>
-                    </div>
-                </div>
-            </div>
+            @MasterCard("Master Brand", "Manage brand data including code and name information.", "MasterBrand")
+            @MasterCard("Master Type", "Manage type data including brand association and details.", "MasterType")
+            @MasterCard("Master Model", "Manage model data including type association and specifications.",
+            "MasterModel")
         </div>
     </div>
 </div>
