@@ -22,7 +22,7 @@ namespace WebApi.Modules.Master.Services.Impl
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiredMinutesStr = _configuration["Jwt:ExpiredInMinutes"];
+            var expiredMinutesStr = _configuration["Jwt:ExpireInMinutes"];
             var expiredMinutes = string.IsNullOrEmpty(expiredMinutesStr) ? 60 : int.Parse(expiredMinutesStr);
 
             var token = new JwtSecurityToken(

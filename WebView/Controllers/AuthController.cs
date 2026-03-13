@@ -53,7 +53,21 @@ namespace WebView.Controllers
 
             try
             {
-                await _service.Login(dto);
+                var response = await _service.Login(dto);
+
+                if (string.IsNullOrWhiteSpace(response.Token))
+                {
+                    throw new Exception("Login succeeded but token is empty.");
+                }
+
+                Response.Cookies.Append("auth_token", response.Token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = Request.IsHttps,
+                    SameSite = SameSiteMode.Lax,
+                    Expires = DateTimeOffset.UtcNow.AddHours(1)
+                });
+
                 TempData["SuccessMessage"] = "Login successful!";
                 return RedirectToAction("Index", "Home");
             }
