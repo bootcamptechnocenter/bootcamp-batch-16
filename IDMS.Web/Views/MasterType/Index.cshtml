@@ -1,0 +1,46 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstTypeDto>
+
+@{
+    ViewData["Title"] = "Master Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Master Type</h2>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+<table class="table table-bordered table-stripped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Brand Name</th>
+            <th>Type Code</th>
+            <th>Type Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            int no = ((Model.Pagination.CurrentPage - 1) * Model.Pagination.Limit) + 1;
+            foreach (var type in Model.Items)
+            {
+                <tr>
+                    <td>@no</td>
+                    <td>@type.BrandName</td>
+                    <td>@type.Code</td>
+                    <td>@type.Name</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@type.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@type.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+                no++;
+            }
+        }
+    </tbody>
+</table>
