@@ -94,10 +94,22 @@ builder.Services.AddSwaggerGen(options =>
         BearerFormat = "JWT",
     });
 
+    options.AddSecurityDefinition("X-Api-Key", new OpenApiSecurityScheme
+    {
+        Description = "API Key Authorization header. Example: \"X-Api-Key: {your_api_key}\"",
+        Type = SecuritySchemeType.ApiKey,
+        In = ParameterLocation.Header,
+        Name = "X-Api-Key"
+    });
+
     options.AddSecurityRequirement(swaggerDoc => new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecuritySchemeReference("Bearer", swaggerDoc, null),
+            new List<string>()
+        },
+        {
+            new OpenApiSecuritySchemeReference("X-Api-Key", swaggerDoc, null),
             new List<string>()
         }
     });
