@@ -1,14 +1,16 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Modules.Master.Dto.Request;
-using WebApi.Modules.Master.Services;
 using WebApi.Shared.Entities;
+using WebView.Services;
 
 namespace WebView.Controllers
 {
 
-    public class MasterBrandController(IMstBrandService service) : Controller
+    [Authorize]
+    public class MasterBrandController(IMstBrandClientService service) : Controller
     {
-        private readonly IMstBrandService _service = service;
+        private readonly IMstBrandClientService _service = service;
 
         public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
         {
