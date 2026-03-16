@@ -61,7 +61,7 @@ namespace WebView.Services.Impl
             };
         }
 
-        public async Task<ApiClientResponse<ResAuthDto>> RegisterAsync(ReqAuthRegisterDto dto)
+        public async Task<ApiClientResponse<object>> RegisterAsync(ReqAuthRegisterDto dto)
         {
             var client = _httpClientFactory.CreateClient("WebApi");
 
@@ -74,7 +74,7 @@ namespace WebView.Services.Impl
             if (!response.IsSuccessStatusCode)
             {
                 var fail = JsonSerializer.Deserialize<ApiClientResponse<object>>(responseBody, _jsonOptions);
-                return new ApiClientResponse<ResAuthDto>
+                return new ApiClientResponse<object>
                 {
                     Success = false,
                     Data = null,
@@ -83,7 +83,7 @@ namespace WebView.Services.Impl
             }
 
             var result = JsonSerializer.Deserialize<ApiClientResponse<ResAuthDto>>(responseBody, _jsonOptions);
-            return new ApiClientResponse<ResAuthDto>
+            return new ApiClientResponse<object>
             {
                 Success = true,
                 Data = result?.Data,
