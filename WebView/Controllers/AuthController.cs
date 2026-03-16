@@ -42,8 +42,8 @@ namespace WebView.Controllers
         //     }
         // }
 
-        [HttpGet("/Login")]
-        public IActionResult Login(string? returnUrl)
+        [HttpGet("Login")]
+        public IActionResult Login()
         {
             if (User.Identity?.IsAuthenticated == true)
             {
@@ -54,7 +54,7 @@ namespace WebView.Controllers
 
         }
 
-        [HttpPost("/Login")]
+        [HttpPost("Login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(ReqAuthClientLoginDto dto, string? returnUrl)
         {
@@ -96,7 +96,7 @@ namespace WebView.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost("/Logout")]
+        [HttpPost("Logout")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
