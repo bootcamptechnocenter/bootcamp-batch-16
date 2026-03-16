@@ -406,3 +406,4 @@ FodyWeavers.xsd
 # Credentials
 appsettings.json
 appsettings.*.json
+!appsettings.example.json
