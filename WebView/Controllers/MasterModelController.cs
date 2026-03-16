@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Modules.Master.Dto.Request;
 using WebApi.Shared.Entities;
@@ -6,6 +7,7 @@ using WebView.Services;
 namespace WebView.Controllers
 {
 
+    [Authorize]
     public class MasterModelController(IMstModelClientService modelService, IMstTypeClientService typeService) : Controller
     {
         private readonly IMstModelClientService _modelService = modelService;

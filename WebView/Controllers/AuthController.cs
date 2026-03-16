@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -32,22 +33,23 @@ namespace WebView.Controllers
             }
 
             TempData["SuccessMessage"] = result.Message;
-            return RedirectToAction("Login");
+            return RedirectToAction(nameof(Login));
         }
 
-        [HttpGet("Login")]
-        public IActionResult Login()
+        [HttpGet("/Login")]
+        public IActionResult Login(string? returnUrl)
         {
             if (User.Identity?.IsAuthenticated == true)
             {
                 return RedirectToAction("Index", "Home");
             }
 
+            ViewBag.ReturnUrl = returnUrl;
             return View("~/Views/Auth/Login.cshtml");
 
         }
 
-        [HttpPost("Login")]
+        [HttpPost("/Login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(ReqAuthLoginDto dto, string? returnUrl)
         {
@@ -90,7 +92,7 @@ namespace WebView.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("/Logout")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
