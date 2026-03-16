@@ -1,18 +1,42 @@
-using Microsoft.EntityFrameworkCore;
-using WebApi.Infrastructure.Data;
-using WebApi.Modules.Master.Services;
-using WebApi.Modules.Master.Services.Impl;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using WebView.Services;
+using WebView.Services.Impl;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? throw new InvalidOperationException("API base URL is not configured.");
+var apiKey = builder.Configuration["ApiSettings:ApiKey"] ?? throw new InvalidOperationException("API key is not configured.");
 
-builder.Services.AddScoped<IMstBrandService, MstBrandService>();
-builder.Services.AddScoped<IMstTypeService, MstTypeService>();
-builder.Services.AddScoped<IMstModelService, MstModelService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IJwtService, JwtService>();
+// Http pointing to Web API
+builder.Services.AddHttpClient("WebApi", client =>
+{
+    client.BaseAddress = new Uri(apiBaseUrl);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+    client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
+});
+
+// Session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Cookie authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Auth/Login";
+        options.LogoutPath = "/Auth/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.Cookie.HttpOnly = true;
+    });
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IAuthClientService, AuthClientService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -30,6 +54,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

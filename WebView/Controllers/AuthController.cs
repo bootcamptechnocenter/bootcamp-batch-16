@@ -1,81 +1,108 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Modules.Master.Dto.Request;
+using WebApi.Modules.Master.Dto.Response;
 using WebApi.Modules.Master.Services;
+using WebView.Services;
 
 namespace WebView.Controllers
 {
-    public class AuthController(IAuthService service) : Controller
+    [Route("[controller]")]
+    public class AuthController(IAuthClientService service) : Controller
     {
-        private readonly IAuthService _service = service;
+        private readonly IAuthClientService _service = service;
 
-        [HttpGet("/Register")]
-        public IActionResult Register()
-        {
-            return View("~/Views/Auth/Register.cshtml", new ReqAuthRegisterDto());
-        }
+        // [HttpGet("/Register")]
+        // public IActionResult Register()
+        // {
+        //     return View("~/Views/Auth/Register.cshtml", new ReqAuthRegisterDto());
+        // }
 
-        [HttpPost("/Register")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(ReqAuthRegisterDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("~/Views/Auth/Register.cshtml", dto);
-            }
+        // [HttpPost("/Register")]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Register(ReqAuthRegisterDto dto)
+        // {
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return View("~/Views/Auth/Register.cshtml", dto);
+        //     }
 
-            try
-            {
-                await _service.Register(dto);
-                TempData["SuccessMessage"] = "User created successfully!";
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", $"Error creating user: {ex.Message}");
-                return View("~/Views/Auth/Register.cshtml", dto);
-            }
-        }
+        //     try
+        //     {
+        //         await _service.Register(dto);
+        //         TempData["SuccessMessage"] = "User created successfully!";
+        //         return RedirectToAction("Index", "Home");
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         ModelState.AddModelError("", $"Error creating user: {ex.Message}");
+        //         return View("~/Views/Auth/Register.cshtml", dto);
+        //     }
+        // }
 
         [HttpGet("/Login")]
-        public IActionResult Login()
+        public IActionResult Login(string? returnUrl)
         {
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View("~/Views/Auth/Login.cshtml");
+
         }
 
         [HttpPost("/Login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(ReqAuthLoginDto dto)
+        public async Task<IActionResult> Login(ReqAuthClientLoginDto dto, string? returnUrl)
         {
-            if (!ModelState.IsValid)
+            ResAuthClientDto result = await _service.LoginAsync(dto);
+
+            if (!result.Success)
             {
-                return View("~/Views/Auth/Login.cshtml", dto);
+                TempData["ErrorMessage"] = result.Message;
+                ViewBag.ReturnUrl = returnUrl;
+                return View();
+            } else
+            {
+                TempData["SuccessMessage"] = result.Message;
             }
 
-            try
+            HttpContext.Session.SetString("Token", result.Token);
+
+            var claims = new List<Claim>
             {
-                var response = await _service.Login(dto);
+                new(ClaimTypes.Email, dto.Email),
+                new("Role", "User")
+            };
 
-                if (string.IsNullOrWhiteSpace(response.Token))
-                {
-                    throw new Exception("Login succeeded but token is empty.");
-                }
-
-                Response.Cookies.Append("auth_token", response.Token, new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = Request.IsHttps,
-                    SameSite = SameSiteMode.Lax,
-                    Expires = DateTimeOffset.UtcNow.AddHours(1)
-                });
-
-                TempData["SuccessMessage"] = "Login successful!";
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
+            var identity = new ClaimsIdentity(claims, "CookieAuth");
+            var principal = new ClaimsPrincipal(identity);
+            var authProps = new AuthenticationProperties
             {
-                ModelState.AddModelError("", $"Login failed: {ex.Message}");
-                return View("~/Views/Auth/Login.cshtml", dto);
+                IsPersistent = true,
+                ExpiresUtc = result.ExpiresAt
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProps);
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
             }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost("/Logout")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Remove("Token");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
