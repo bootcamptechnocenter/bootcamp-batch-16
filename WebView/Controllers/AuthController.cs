@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Modules.Master.Dto.Request;
 using WebApi.Modules.Master.Dto.Response;
-using WebApi.Modules.Master.Services;
 using WebView.Services;
 
 namespace WebView.Controllers
@@ -14,33 +13,27 @@ namespace WebView.Controllers
     {
         private readonly IAuthClientService _service = service;
 
-        // [HttpGet("/Register")]
-        // public IActionResult Register()
-        // {
-        //     return View("~/Views/Auth/Register.cshtml", new ReqAuthRegisterDto());
-        // }
+        [HttpGet("/Register")]
+        public IActionResult Register()
+        {
+            return View("~/Views/Auth/Register.cshtml", new ReqAuthRegisterDto());
+        }
 
-        // [HttpPost("/Register")]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Register(ReqAuthRegisterDto dto)
-        // {
-        //     if (!ModelState.IsValid)
-        //     {
-        //         return View("~/Views/Auth/Register.cshtml", dto);
-        //     }
+        [HttpPost("/Register")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(ReqAuthRegisterDto dto)
+        {
+            var result = await _service.RegisterAsync(dto);
 
-        //     try
-        //     {
-        //         await _service.Register(dto);
-        //         TempData["SuccessMessage"] = "User created successfully!";
-        //         return RedirectToAction("Index", "Home");
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         ModelState.AddModelError("", $"Error creating user: {ex.Message}");
-        //         return View("~/Views/Auth/Register.cshtml", dto);
-        //     }
-        // }
+            if (!result.Success)
+            {
+                TempData["ErrorMessage"] = result.Message;
+                return View(dto);
+            }
+
+            TempData["SuccessMessage"] = result.Message;
+            return RedirectToAction("Login");
+        }
 
         [HttpGet("Login")]
         public IActionResult Login()
@@ -65,7 +58,8 @@ namespace WebView.Controllers
                 TempData["ErrorMessage"] = result.Message;
                 ViewBag.ReturnUrl = returnUrl;
                 return View();
-            } else
+            }
+            else
             {
                 TempData["SuccessMessage"] = result.Message;
             }

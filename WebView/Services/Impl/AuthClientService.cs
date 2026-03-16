@@ -60,5 +60,35 @@ namespace WebView.Services.Impl
                 Message = "Login successful"
             };
         }
+
+        public async Task<ApiClientResponse<ResAuthDto>> RegisterAsync(ReqAuthRegisterDto dto)
+        {
+            var client = _httpClientFactory.CreateClient("WebApi");
+
+            var payload = JsonSerializer.Serialize(new { email = dto.Email, password = dto.Password, confirmPassword = dto.ConfirmPassword, fullName = dto.FullName });
+            var content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("/auth/register", content);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var fail = JsonSerializer.Deserialize<ApiClientResponse<object>>(responseBody, _jsonOptions);
+                return new ApiClientResponse<ResAuthDto>
+                {
+                    Success = false,
+                    Data = null,
+                    Message = $"Registration failed: {fail?.Message ?? "Unknown error"}"
+                };
+            }
+
+            var result = JsonSerializer.Deserialize<ApiClientResponse<ResAuthDto>>(responseBody, _jsonOptions);
+            return new ApiClientResponse<ResAuthDto>
+            {
+                Success = true,
+                Data = result?.Data,
+                Message = result?.Message ?? "Registration successful"
+            };
+        }
     }
 }
