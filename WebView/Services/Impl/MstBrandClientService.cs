@@ -60,11 +60,11 @@ namespace WebView.Services.Impl
         public Task<ResMstBrandDto> CreateMstBrand(ReqMstBrandDto dto)
         {
             var client = CreateClient();
-            
+
             var payload = JsonSerializer.Serialize(dto);
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
             var response = client.PostAsync("master/general/brands", content).Result;
-            
+
             response.EnsureSuccessStatusCode();
 
             var responseBody = response.Content.ReadAsStringAsync().Result;
