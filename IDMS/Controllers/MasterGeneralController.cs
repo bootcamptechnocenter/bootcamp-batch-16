@@ -13,12 +13,14 @@ namespace IDMS.Controllers
 {
     [ApiController]
     [Route("master/general")]
-    // [Authorize]
+    [Authorize]
     public class MasterGeneralController : ControllerBase
     {
         private readonly IMstBrandService _service;
         private readonly IMstTypeService _typeService;
-        public MasterGeneralController(IMstBrandService service, IMstTypeService typeService)
+        public MasterGeneralController(
+            IMstBrandService service,
+            IMstTypeService typeService)
         {
             _service = service;
             _typeService = typeService;
@@ -105,5 +107,6 @@ namespace IDMS.Controllers
                 result ? "type deleted successfully" : "type not found"
             ));
         }
+
     }
 }

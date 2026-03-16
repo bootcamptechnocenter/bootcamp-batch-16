@@ -1,9 +1,11 @@
 using IDMS.Infrastructure.Data;
+using IDMS.Middleware;
 using IDMS.Modules.Master.Services;
 using IDMS.Modules.Master.Services.Impl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,10 +35,41 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<IMstBrandService, MstBrandService>();
 builder.Services.AddScoped<IMstTypeService, MstTypeService>();
+builder.Services.AddScoped<IMstUserService, MstUserService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(option =>
+{
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Jwt Authorization header using the Bearer scheme.",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    });
+
+    option.AddSecurityDefinition("X-Api-Key", new OpenApiSecurityScheme
+    {
+        Description = "API Key Authorization header. Example: \"X-Api-Key: {your api key}\"",
+        Type = SecuritySchemeType.ApiKey,
+        In = ParameterLocation.Header,
+        Name = "X-Api-Key",
+    });
+
+    option.AddSecurityRequirement(swaggerDoc => new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecuritySchemeReference("Bearer", swaggerDoc, null),
+            new List<string>()
+        },
+        {
+            new OpenApiSecuritySchemeReference("X-Api-Key", swaggerDoc, null),
+            new List<string>()
+        }
+    });
+});
 
 var app = builder.Build();
 
@@ -51,7 +84,7 @@ app.UseHttpsRedirection();
 app.UseRequestMiddleware();
 
 app.UseAuthentication();
-
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
