@@ -56,7 +56,7 @@ namespace WebView.Controllers
 
         [HttpPost("Login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(ReqAuthClientLoginDto dto, string? returnUrl)
+        public async Task<IActionResult> Login(ReqAuthLoginDto dto, string? returnUrl)
         {
             ResAuthClientDto result = await _service.LoginAsync(dto);
 

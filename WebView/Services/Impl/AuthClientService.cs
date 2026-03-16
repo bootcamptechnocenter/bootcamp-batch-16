@@ -14,7 +14,7 @@ namespace WebView.Services.Impl
             PropertyNameCaseInsensitive = true
         };
 
-        public async Task<ResAuthClientDto> LoginAsync(ReqAuthClientLoginDto dto)
+        public async Task<ResAuthClientDto> LoginAsync(ReqAuthLoginDto dto)
         {
             var client = _httpClientFactory.CreateClient("WebApi");
 

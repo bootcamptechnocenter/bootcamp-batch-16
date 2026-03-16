@@ -5,6 +5,6 @@ namespace WebView.Services
 {
     public interface IAuthClientService
     {
-        Task<ResAuthClientDto> LoginAsync(ReqAuthClientLoginDto dto);
+        Task<ResAuthClientDto> LoginAsync(ReqAuthLoginDto dto);
     }
 }
