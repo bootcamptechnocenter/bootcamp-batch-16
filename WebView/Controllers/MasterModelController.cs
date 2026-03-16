@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Modules.Master.Dto.Request;
-using WebApi.Modules.Master.Services;
 using WebApi.Shared.Entities;
+using WebView.Services;
 
 namespace WebView.Controllers
 {
 
-    public class MasterModelController(IMstModelService modelService, IMstTypeService typeService) : Controller
+    public class MasterModelController(IMstModelClientService modelService, IMstTypeClientService typeService) : Controller
     {
-        private readonly IMstModelService _modelService = modelService;
-        private readonly IMstTypeService _typeService = typeService;
+        private readonly IMstModelClientService _modelService = modelService;
+        private readonly IMstTypeClientService _typeService = typeService;
 
         public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
         {

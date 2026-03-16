@@ -39,6 +39,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IAuthClientService, AuthClientService>();
 builder.Services.AddScoped<IMstBrandClientService, MstBrandClientService>();
 builder.Services.AddScoped<IMstTypeClientService, MstTypeClientService>();
+builder.Services.AddScoped<IMstModelClientService, MstModelClientService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
