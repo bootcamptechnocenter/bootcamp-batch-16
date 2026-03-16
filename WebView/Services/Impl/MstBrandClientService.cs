@@ -91,7 +91,12 @@ namespace WebView.Services.Impl
 
         public Task DeleteMstBrand(int id)
         {
-            throw new NotImplementedException();
+            var client = CreateClient();
+            var response = client.DeleteAsync($"master/general/brands/{id}").Result;
+
+            response.EnsureSuccessStatusCode();
+
+            return Task.CompletedTask;
         }
     }
 }
