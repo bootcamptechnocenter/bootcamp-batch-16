@@ -46,7 +46,15 @@ namespace WebView.Services.Impl
 
         public Task<ResMstBrandDto> GetMstBrandById(int id)
         {
-            throw new NotImplementedException();
+            var client = CreateClient();
+            var response = client.GetAsync($"master/general/brands/{id}").Result;
+
+            response.EnsureSuccessStatusCode();
+
+            var content = response.Content.ReadAsStringAsync().Result;
+            var result = JsonSerializer.Deserialize<ApiClientResponse<ResMstBrandDto>>(content, _jsonOptions);
+
+            return Task.FromResult(result?.Data ?? new ResMstBrandDto());
         }
 
         public Task<ResMstBrandDto> CreateMstBrand(ReqMstBrandDto dto)
@@ -67,7 +75,18 @@ namespace WebView.Services.Impl
 
         public Task<ResMstBrandDto> UpdateMstBrand(int id, ReqMstBrandUpdateDto dto)
         {
-            throw new NotImplementedException();
+            var client = CreateClient();
+
+            var payload = JsonSerializer.Serialize(dto);
+            var content = new StringContent(payload, Encoding.UTF8, "application/json");
+            var response = client.PutAsync($"master/general/brands/{id}", content).Result;
+
+            response.EnsureSuccessStatusCode();
+
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+            var result = JsonSerializer.Deserialize<ApiClientResponse<ResMstBrandDto>>(responseBody, _jsonOptions);
+
+            return Task.FromResult(result?.Data ?? new ResMstBrandDto());
         }
 
         public Task DeleteMstBrand(int id)
