@@ -29,6 +29,7 @@ namespace IDMS.Web.Services.Impl
             var responseBody = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
+
             {
                 var fail = JsonSerializer.Deserialize<ApiClientResponse<object>>(responseBody, _jsonOptions);
                 return (false, string.Empty, DateTime.MinValue, $"Login failed: {fail?.Message ?? "Login failed"}");
