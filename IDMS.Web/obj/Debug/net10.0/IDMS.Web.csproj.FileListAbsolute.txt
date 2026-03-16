@@ -109,3 +109,9 @@ D:\Training .NET\IDMS.Web\obj\Debug\net10.0\refint\IDMS.Web.dll
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\IDMS.Web.pdb
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\IDMS.Web.genruntimeconfig.cache
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\ref\IDMS.Web.dll
+D:\Training .NET\IDMS.Web\bin\Debug\net10.0\BCrypt.Net-Next.dll
+D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\Training .NET\IDMS.Web\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

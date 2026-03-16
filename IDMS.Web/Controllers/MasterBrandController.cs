@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
 using IDMS.Modules.Master.Services;
 using IDMS.Shared.Entities;
+using IDMS.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace IDMS.Web.Controllers
 {
+    [Authorize]
     public class MasterBrandController : Controller
     {
-        private readonly IMstBrandService _service;
+        private readonly IMasterBrandService _service;
 
-        public MasterBrandController(IMstBrandService service)
+        public MasterBrandController(IMasterBrandService service)
         {
             _service = service;
         }

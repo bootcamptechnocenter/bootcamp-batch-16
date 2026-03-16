@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Training .NET\\idms\\IDMS.csproj": {}
+    "D:\\Training .NET\\IDMS\\IDMS.csproj": {}
   },
   "projects": {
     "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
@@ -1085,14 +1085,14 @@
         }
       }
     },
-    "D:\\Training .NET\\idms\\IDMS.csproj": {
+    "D:\\Training .NET\\IDMS\\IDMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training .NET\\idms\\IDMS.csproj",
+        "projectUniqueName": "D:\\Training .NET\\IDMS\\IDMS.csproj",
         "projectName": "IDMS",
-        "projectPath": "D:\\Training .NET\\idms\\IDMS.csproj",
+        "projectPath": "D:\\Training .NET\\IDMS\\IDMS.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Training .NET\\idms\\obj\\",
+        "outputPath": "D:\\Training .NET\\IDMS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

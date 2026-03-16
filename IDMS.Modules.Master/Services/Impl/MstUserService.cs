@@ -43,7 +43,7 @@ namespace IDMS.Modules.Master.Services.Impl
             var user = await _context.MstUsers.FirstOrDefaultAsync(u => u.Email == req.Email);
             if (user == null || !BCrypt.Net.BCrypt.Verify(req.Password, user.Password))
             {
-                throw new ArgumentException("Invalid email or password.");
+                throw new UnauthorizedAccessException("Invalid email or password.");
             }
 
             var token = _jwtService.GenerateToken(user.Id.ToString(), user.Email, user.FullName);

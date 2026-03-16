@@ -40,6 +40,32 @@ namespace IDMS.Middleware
             {
                 await _next(context);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                _logger.LogWarning("Unauthorized request on {ReqId}: {Message}", reqId, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Response.ContentType = "application/json";
+
+                var response = ApiResponse<string>.Fail(ex.Message);
+                var json = JsonSerializer.Serialize(response, jsonOptions);
+
+                responseBody.SetLength(0);
+                await responseBody.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning("Bad request on {ReqId}: {Message}", reqId, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+
+                var response = ApiResponse<string>.Fail(ex.Message);
+                var json = JsonSerializer.Serialize(response, jsonOptions);
+
+                responseBody.SetLength(0);
+                await responseBody.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unhandled error on {ReqId}", reqId);
@@ -59,7 +85,11 @@ namespace IDMS.Middleware
 
             if (context.Response.StatusCode >= 400 && responseBody.Length == 0)
             {
-                string? message = context.Response.StatusCode switch
+                var customMessage = context.Items.TryGetValue("ErrorMessage", out var errorMessage)
+                    ? errorMessage?.ToString()
+                    : null;
+
+                string? message = customMessage ?? context.Response.StatusCode switch
                 {
                     StatusCodes.Status401Unauthorized => "Unauthorized",
                     StatusCodes.Status403Forbidden => "Forbidden",
