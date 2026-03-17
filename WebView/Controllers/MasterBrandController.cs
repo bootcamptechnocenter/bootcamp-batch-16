@@ -12,7 +12,7 @@ namespace WebView.Controllers
     {
         private readonly IMstBrandClientService _service = service;
 
-        public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
+        public async Task<IActionResult> Index(string search, int page = 1, int limit = 5)
         {
             var param = new ReqBaseParamDto
             {

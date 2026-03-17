@@ -13,7 +13,7 @@ namespace WebView.Controllers
         private readonly IMstModelClientService _modelService = modelService;
         private readonly IMstTypeClientService _typeService = typeService;
 
-        public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
+        public async Task<IActionResult> Index(string search, int page = 1, int limit = 5)
         {
             var param = new ReqBaseParamDto
             {
