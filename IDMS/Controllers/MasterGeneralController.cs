@@ -19,13 +19,24 @@ namespace IDMS.Controllers
         private readonly IMstBrandService _service;
         private readonly IMstTypeService _typeService;
         private readonly IMstModelService _modelService;
+        private readonly IMstStockService _stockService;
+        private readonly IDashboardService _dashboardService;
 
-        public MasterGeneralController(IMstBrandService service, IMstTypeService typeService, IMstModelService modelService)
+        public MasterGeneralController(
+            IMstBrandService service,
+            IMstTypeService typeService,
+            IMstModelService modelService,
+            IMstStockService stockService,
+            IDashboardService dashboardService)
         {
             _service = service;
             _typeService = typeService;
             _modelService = modelService;
+            _stockService = stockService;
+            _dashboardService = dashboardService;
         }
+
+        // --- Brand endpoints ---
 
         [HttpGet("brand")]
         public async Task<ActionResult<ApiResponse<object>>> GetBrand([FromQuery] ReqBaseParamDto dto)
@@ -52,30 +63,21 @@ namespace IDMS.Controllers
         public async Task<ActionResult<ApiResponse<object>>> CreateBrand([FromBody] ReqCreateMstBrandDto dto)
         {
             await _service.CreateMstBrand(dto);
-            return Ok(ApiResponse<object>.Success(
-                null,
-                "brand created successfully"
-            ));
+            return Ok(ApiResponse<object>.Success(null, "brand created successfully"));
         }
 
         [HttpPut("brand/{id}")]
         public async Task<ActionResult<ApiResponse<object>>> UpdateBrand([FromBody] ReqUpdateMstBrandDto dto, int id)
         {
             var result = await _service.UpdateMstBrand(dto, id);
-            return Ok(ApiResponse<object>.Success(
-                null,
-                result ? "brand updated successfully" : "brand not found"
-            ));
+            return Ok(ApiResponse<object>.Success(null, result ? "brand updated successfully" : "brand not found"));
         }
 
         [HttpDelete("brand/{id}")]
         public async Task<ActionResult<ApiResponse<object>>> DeleteBrand(int id)
         {
             var result = await _service.DeleteMstBrand(id);
-            return Ok(ApiResponse<object>.Success(
-                null,
-                result ? "brand deleted successfully" : "brand not found"
-            ));
+            return Ok(ApiResponse<object>.Success(null, result ? "brand deleted successfully" : "brand not found"));
         }
 
         // --- Type endpoints ---
@@ -164,6 +166,58 @@ namespace IDMS.Controllers
         {
             var result = await _modelService.DeleteMstModel(id);
             return Ok(ApiResponse<object>.Success(null, result ? "model deleted successfully" : "model not found"));
+        }
+
+        // --- Stock endpoints ---
+
+        [HttpGet("stock")]
+        public async Task<ActionResult<ApiResponse<object>>> GetStock([FromQuery] ReqGetMstStockDto dto)
+        {
+            var result = await _stockService.GetMstStock(dto);
+            return Ok(ApiResponse<object>.Success(
+                result.Items,
+                result.Items != null ? "success" : "data not found",
+                result.Pagination
+            ));
+        }
+
+        [HttpGet("stock/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetStockById(int id)
+        {
+            var result = await _stockService.GetMstStockById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "success" : "data not found"
+            ));
+        }
+
+        [HttpPost("stock")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateStock([FromBody] ReqCreateMstStockDto dto)
+        {
+            await _stockService.CreateMstStock(dto);
+            return Ok(ApiResponse<object>.Success(null, "stock created successfully"));
+        }
+
+        [HttpPut("stock/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateStock([FromBody] ReqUpdateMstStockDto dto, int id)
+        {
+            var result = await _stockService.UpdateMstStock(dto, id);
+            return Ok(ApiResponse<object>.Success(null, result ? "stock updated successfully" : "stock not found"));
+        }
+
+        [HttpDelete("stock/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteStock(int id)
+        {
+            var result = await _stockService.DeleteMstStock(id);
+            return Ok(ApiResponse<object>.Success(null, result ? "stock deleted successfully" : "stock not found"));
+        }
+
+        // --- Dashboard ---
+        [HttpGet("dashboard")]
+        public async Task<ActionResult<ApiResponse<object>>> GetDashboard()
+        {
+            var result = await _dashboardService.GetDashboardData();
+            return Ok(ApiResponse<object>.Success(result, "success"));
         }
     }
 }

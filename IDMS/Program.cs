@@ -56,6 +56,8 @@ builder.Services.AddScoped<IMstBrandService, MstBrandService>();
 builder.Services.AddScoped<IMstTypeService, MstTypeService>();
 builder.Services.AddScoped<IMstUserService, MstUserService>();
 builder.Services.AddScoped<IMstModelService, MstModelService>();
+builder.Services.AddScoped<IMstStockService, MstStockService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IJwtService, JwtServices>();
 
 builder.Services.AddControllers()
