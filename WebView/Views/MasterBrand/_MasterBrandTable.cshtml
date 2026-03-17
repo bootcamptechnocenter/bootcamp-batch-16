@@ -14,7 +14,7 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>ID</th>
+    <th>No</th>
             <th>Code</th>
             <th>Name</th>
             <th class="text-center">Active</th>
@@ -24,10 +24,13 @@
     <tbody>
         @if (Model.Items.Any())
         {
-            @foreach (var item in Model.Items)
+            var page = Model.Pagination?.CurrentPage > 0 ? Model.Pagination.CurrentPage : 1;
+            var limit = Model.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
+            var no = ((page - 1) * limit) + 1;
+            foreach (var item in Model.Items)
             {
                 <tr>
-                    <td>@item.Id</td>
+                    <td>@no</td>
                     <td>@item.Code</td>
                     <td>@item.Name</td>
                     <td class="text-center">
@@ -50,6 +53,7 @@
                         </div>
                     </td>
                 </tr>
+                no++;
             }
         }
         else
