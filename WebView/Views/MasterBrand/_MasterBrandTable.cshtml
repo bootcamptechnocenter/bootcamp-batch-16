@@ -5,7 +5,7 @@
 @{
     var currentSearch = Context.Request.Query["search"].ToString();
     var currentLimit = Context.Request.Query["limit"].ToString();
-    if (string.IsNullOrEmpty(currentLimit)) currentLimit = "10";
+    if (string.IsNullOrEmpty(currentLimit)) currentLimit = "5";
 
     ViewData["Search"] = currentSearch;
     ViewData["Limit"] = currentLimit;
