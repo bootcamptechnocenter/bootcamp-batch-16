@@ -1,8 +1,448 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IDMS.Web.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var idrFmt = new System.Globalization.CultureInfo("id-ID");
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@* ── Page header ── *@
+<div class="page-header">
+    <div>
+        <h4><i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard</h4>
+        <p class="page-subtitle">Overview of your inventory &amp; master data</p>
+    </div>
+    <span class="text-muted small"><i class="bi bi-clock me-1"></i>@DateTime.Now.ToString("dddd, dd MMM yyyy")</span>
+</div>
+
+@* ── KPI cards – row 1 ── *@
+<div class="row g-3 mb-3">
+    @* Brands *@
+    <div class="col-6 col-lg-4 col-xl-2">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Brands</span>
+                    <div class="rounded-2 p-2 bg-primary bg-opacity-10 text-primary lh-1">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+                </div>
+                <div class="fw-bold" style="font-size:1.75rem;line-height:1">@Model.TotalBrands</div>
+                <a asp-controller="MasterBrands" asp-action="Index" class="small text-decoration-none text-primary">View &rarr;</a>
+            </div>
+        </div>
+    </div>
+    @* Types *@
+    <div class="col-6 col-lg-4 col-xl-2">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Types</span>
+                    <div class="rounded-2 p-2 bg-info bg-opacity-10 text-info lh-1">
+                        <i class="bi bi-tags"></i>
+                    </div>
+                </div>
+                <div class="fw-bold" style="font-size:1.75rem;line-height:1">@Model.TotalTypes</div>
+                <span class="small text-muted">
+                    <span class="text-success fw-semibold">@Model.ActiveTypes</span> active &middot;
+                    <span class="text-secondary">@Model.InactiveTypes</span> inactive
+                </span>
+            </div>
+        </div>
+    </div>
+    @* Models *@
+    <div class="col-6 col-lg-4 col-xl-2">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Models</span>
+                    <div class="rounded-2 p-2" style="background:rgba(99,102,241,.1);color:#6366f1;line-height:1">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                </div>
+                <div class="fw-bold" style="font-size:1.75rem;line-height:1">@Model.TotalModels</div>
+                <a asp-controller="MasterModels" asp-action="Index" class="small text-decoration-none" style="color:#6366f1">View &rarr;</a>
+            </div>
+        </div>
+    </div>
+    @* Stock items *@
+    <div class="col-6 col-lg-4 col-xl-2">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Stock Items</span>
+                    <div class="rounded-2 p-2 bg-warning bg-opacity-10 text-warning lh-1">
+                        <i class="bi bi-boxes"></i>
+                    </div>
+                </div>
+                <div class="fw-bold" style="font-size:1.75rem;line-height:1">@Model.TotalStockItems</div>
+                <a asp-controller="MasterStocks" asp-action="Index" class="small text-decoration-none text-warning">View &rarr;</a>
+            </div>
+        </div>
+    </div>
+    @* Total units *@
+    <div class="col-6 col-lg-4 col-xl-2">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Total Units</span>
+                    <div class="rounded-2 p-2 bg-success bg-opacity-10 text-success lh-1">
+                        <i class="bi bi-stack"></i>
+                    </div>
+                </div>
+                <div class="fw-bold" style="font-size:1.75rem;line-height:1">@Model.TotalQuantity.ToString("N0")</div>
+                <span class="small text-muted">across all stock items</span>
+            </div>
+        </div>
+    </div>
+    @* Low stock *@
+    <div class="col-6 col-lg-4 col-xl-2">
+        <div class="card border-0 shadow-sm h-100 @(Model.LowStockCount > 0 ? "border-danger border-opacity-25" : "")">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Low Stock</span>
+                    <div class="rounded-2 p-2 bg-danger bg-opacity-10 text-danger lh-1">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div class="fw-bold text-danger" style="font-size:1.75rem;line-height:1">@Model.LowStockCount</div>
+                <span class="small text-muted">items with qty &le; 5</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ── Inventory value card ── *@
+<div class="row g-3 mb-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="background:linear-gradient(135deg,#1e3a5f 0%,#0f172a 100%)">
+            <div class="card-body p-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+                <div>
+                    <div class="text-white-50 small fw-semibold mb-1">Total Inventory Value</div>
+                    <div class="text-white fw-bold" style="font-size:2rem;line-height:1">
+                        @Model.TotalInventoryValue.ToString("C0", idrFmt)
+                    </div>
+                    <div class="text-white-50 small mt-1">Based on @Model.TotalStockItems stock line(s) &middot; @Model.TotalQuantity total units</div>
+                </div>
+                <div class="text-white-50" style="font-size:4rem;line-height:1;opacity:.15">
+                    <i class="bi bi-currency-dollar"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ── Charts ── *@
+<div class="row g-3 mb-3">
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-semibold mb-0">Stock Quantity by Brand</h6>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Units</span>
+                </div>
+                <canvas id="barChart" height="130"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-semibold mb-0">Type Status</h6>
+                    <span class="badge bg-info-subtle text-info border border-info-subtle">Distribution</span>
+                </div>
+                <canvas id="doughnutChart" height="155"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ── Tables ── *@
+<div class="row g-3 mb-3">
+    @* Top 5 by value *@
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body pb-0">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-semibold mb-0"><i class="bi bi-trophy me-1 text-warning"></i>Top 5 Stocks by Value</h6>
+                </div>
+            </div>
+            <div class="idms-table-card border-0 rounded-0">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">#</th>
+                            <th>Model</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th class="pe-4">Total Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.TopStocks.Any())
+                    {
+                        <tr><td colspan="6" class="text-center text-muted py-4">No stock data</td></tr>
+                    }
+                    @for (int i = 0; i < Model.TopStocks.Count; i++)
+                    {
+                        var s = Model.TopStocks[i];
+                        <tr>
+                            <td class="ps-4">
+                                <span class="badge @(i == 0 ? "bg-warning text-dark" : i == 1 ? "bg-secondary-subtle text-secondary border" : "bg-light text-muted border")">@(i+1)</span>
+                            </td>
+                            <td class="fw-medium">@s.ModelName</td>
+                            <td><span class="badge bg-primary-subtle text-primary border border-primary-subtle">@s.BrandName</span></td>
+                            <td class="text-success fw-semibold">@s.Price.ToString("C0", idrFmt)</td>
+                            <td>@s.Quantity</td>
+                            <td class="pe-4 fw-bold">@s.TotalValue.ToString("C0", idrFmt)</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @* Low stock alerts *@
+    <div class="col-lg-5">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body pb-0">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-semibold mb-0">
+                        <i class="bi bi-exclamation-triangle me-1 text-danger"></i>Low Stock Alerts
+                        @if (Model.LowStockCount > 0)
+                        {
+                            <span class="badge bg-danger ms-1">@Model.LowStockCount</span>
+                        }
+                    </h6>
+                </div>
+            </div>
+            <div class="idms-table-card border-0 rounded-0">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Model</th>
+                            <th>Brand</th>
+                            <th class="pe-4">Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.LowStockItems.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">
+                                <i class="bi bi-check-circle text-success fs-4 d-block mb-1"></i>
+                                All stock levels are healthy
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var s in Model.LowStockItems)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-medium">@s.ModelName<br><small class="text-muted">@s.TypeName</small></td>
+                            <td><span class="badge bg-primary-subtle text-primary border border-primary-subtle">@s.BrandName</span></td>
+                            <td class="pe-4">
+                                <span class="badge @(s.Quantity == 0 ? "bg-danger" : "bg-warning text-dark")">@s.Quantity</span>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ── Quick actions ── *@
+<div class="row g-3">
+    <div class="col-12">
+        <h6 class="fw-semibold text-muted mb-0">Quick Actions</h6>
+    </div>
+    @foreach (var qa in new[] {
+        new { Title="Brands",  Sub="Manage brand records",   Ctrl="MasterBrands",  Icon="bi-patch-check", Color="primary" },
+        new { Title="Types",   Sub="Manage type records",    Ctrl="MasterTypes",   Icon="bi-tags",        Color="info"    },
+        new { Title="Models",  Sub="Manage vehicle models",  Ctrl="MasterModels",  Icon="bi-truck",       Color="purple"  },
+        new { Title="Stocks",  Sub="Manage stock inventory", Ctrl="MasterStocks",  Icon="bi-boxes",       Color="warning" },
+    })
+    {
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="bi @qa.Icon text-@qa.Color"></i>
+                        <span class="fw-semibold">Master @qa.Title</span>
+                    </div>
+                    <p class="text-muted small mb-3">@qa.Sub</p>
+                    <div class="d-flex gap-2">
+                        <a asp-controller="@qa.Ctrl" asp-action="Index" class="btn btn-sm btn-outline-secondary">View List</a>
+                        <a asp-controller="@qa.Ctrl" asp-action="Create" class="btn btn-sm btn-primary">+ Create</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>
+    // Bar: stock quantity per brand
+    new Chart(document.getElementById('barChart'), {
+        type: 'bar',
+        data: {
+            labels: [@Html.Raw(string.Join(",", Model.BrandLabels.Select(l => $"'{l}'")))],
+            datasets: [{
+                label: 'Units',
+                data: [@string.Join(",", Model.BrandQuantities)],
+                backgroundColor: 'rgba(59,130,246,0.7)',
+                borderColor: 'rgba(59,130,246,1)',
+                borderWidth: 1,
+                borderRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: 'rgba(0,0,0,.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    // Doughnut: active vs inactive types
+    new Chart(document.getElementById('doughnutChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Active', 'Inactive'],
+            datasets: [{
+                data: [@Model.ActiveTypes, @Model.InactiveTypes],
+                backgroundColor: ['rgba(34,197,94,0.8)', 'rgba(148,163,184,0.5)'],
+                borderColor: ['#22c55e', '#94a3b8'],
+                borderWidth: 1,
+                hoverOffset: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '68%',
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16 } }
+            }
+        }
+    });
+</script>
+}
+
+
+@* Stat cards *@
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3 bg-primary bg-opacity-10 text-primary fs-4">&#128230;</div>
+                <div>
+                    <div class="text-muted small">Total Brands</div>
+                    <div class="fs-3 fw-bold lh-1">@Model.TotalBrands</div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
+                <a asp-controller="MasterBrands" asp-action="Index" class="small text-decoration-none">View all &rarr;</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3 bg-info bg-opacity-10 text-info fs-4">&#128196;</div>
+                <div>
+                    <div class="text-muted small">Total Types</div>
+                    <div class="fs-3 fw-bold lh-1">@Model.TotalTypes</div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
+                <a asp-controller="MasterTypes" asp-action="Index" class="small text-decoration-none">View all &rarr;</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3 bg-success bg-opacity-10 text-success fs-4">&#9989;</div>
+                <div>
+                    <div class="text-muted small">Active Types</div>
+                    <div class="fs-3 fw-bold lh-1">@Model.ActiveTypes</div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
+                <span class="small text-muted">of @Model.TotalTypes total</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3 bg-secondary bg-opacity-10 text-secondary fs-4">&#10060;</div>
+                <div>
+                    <div class="text-muted small">Inactive Types</div>
+                    <div class="fs-3 fw-bold lh-1">@Model.InactiveTypes</div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
+                <span class="small text-muted">of @Model.TotalTypes total</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Charts *@
+<div class="row g-3 mb-4">
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h6 class="fw-semibold mb-3">Data Count by Module</h6>
+                <canvas id="barChart" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h6 class="fw-semibold mb-3">Types — Active vs Inactive</h6>
+                <canvas id="doughnutChart" height="140"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Quick Actions *@
+<div class="row g-3">
+    <div class="col-12">
+        <h6 class="fw-semibold text-muted mb-2">Quick Actions</h6>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <div class="fw-semibold mb-1">Master Brands</div>
+                <p class="text-muted small mb-3">Manage brand records</p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a asp-controller="MasterBrands" asp-action="Index" class="btn btn-sm btn-outline-secondary">View List</a>
+                    <a asp-controller="MasterBrands" asp-action="Create" class="btn btn-sm btn-primary">+ Create</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <div class="fw-semibold mb-1">Master Types</div>
+                <p class="text-muted small mb-3">Manage type records</p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a asp-controller="MasterTypes" asp-action="Index" class="btn btn-sm btn-outline-secondary">View List</a>
+                    <a asp-controller="MasterTypes" asp-action="Create" class="btn btn-sm btn-primary">+ Create</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

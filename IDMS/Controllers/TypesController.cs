@@ -6,12 +6,14 @@ using IDMS.Common;
 using IDMS.Modules.Master.Dto.Request;
 using IDMS.Modules.Master.Services;
 using IDMS.Shared.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IDMS.Controllers
 {
     [ApiController]
     [Route("api/types")]
+    [Authorize]
     public class TypeController : ControllerBase
     {
         private readonly IMstTypesService _mstTypesService;

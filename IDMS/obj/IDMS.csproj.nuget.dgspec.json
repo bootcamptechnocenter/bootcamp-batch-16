@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\IDMS\\IDMS.csproj": {}
+    "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\idms\\IDMS.csproj": {}
   },
   "projects": {
     "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
@@ -418,9 +418,17 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[10.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.16.0, )"
             }
           },
           "imports": [
@@ -1056,14 +1064,14 @@
         }
       }
     },
-    "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\IDMS\\IDMS.csproj": {
+    "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\idms\\IDMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\IDMS\\IDMS.csproj",
+        "projectUniqueName": "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\idms\\IDMS.csproj",
         "projectName": "IDMS",
-        "projectPath": "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\IDMS\\IDMS.csproj",
+        "projectPath": "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\idms\\IDMS.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\IDMS\\obj\\",
+        "outputPath": "D:\\Berijalan Technocenter\\bootcamp-batch-16-training-dotnet\\idms\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1106,6 +1114,12 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[10.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

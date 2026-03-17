@@ -1,0 +1,116 @@
+@using IDMS.Modules.Master.Dto.Request
+@model ReqUpdateStockDto;
+
+@{
+    ViewData["Title"] = "Edit Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h4 class="fw-bold mb-0">Edit Stock</h4>
+        <p class="text-muted small mb-0">Update vehicle stock information</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Back to List</a>
+</div>
+
+<div class="card shadow-sm border-0" style="max-width: 540px;">
+    <div class="card-body p-4">
+        <form asp-action="Edit" asp-route-id="@ViewContext.RouteData.Values["id"]" method="post">
+            <div class="mb-3">
+                <label asp-for="BrandId" class="form-label"></label>
+                <select id="BrandId" name="BrandId" asp-items="ViewBag.BrandList" class="form-select">
+                    <option value="">-- Select Brand --</option>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="TypeId" class="form-label"></label>
+                <select id="TypeId" name="TypeId" class="form-select" disabled>
+                    <option value="">-- Select Brand first --</option>
+                </select>
+                <span asp-validation-for="TypeId" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ModelId" class="form-label"></label>
+                <select id="ModelId" name="ModelId" class="form-select" disabled>
+                    <option value="">-- Select Type first --</option>
+                </select>
+                <span asp-validation-for="ModelId" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control" type="number" min="0" />
+                <span asp-validation-for="Price" class="text-danger small"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Quantity" class="form-label"></label>
+                <input asp-for="Quantity" class="form-control" type="number" min="0" />
+                <span asp-validation-for="Quantity" class="text-danger small"></span>
+            </div>
+            <div class="d-flex gap-2">
+                <input type="submit" value="Save Changes" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        const brandSelect  = document.getElementById('BrandId');
+        const typeSelect   = document.getElementById('TypeId');
+        const modelSelect  = document.getElementById('ModelId');
+        const initBrandId  = @Model.BrandId;
+        const initTypeId   = @Model.TypeId;
+        const initModelId  = @Model.ModelId;
+
+        async function loadTypes(brandId, selectedTypeId) {
+            typeSelect.innerHTML  = '<option value="">-- Select Type --</option>';
+            modelSelect.innerHTML = '<option value="">-- Select Type first --</option>';
+            typeSelect.disabled  = true;
+            modelSelect.disabled = true;
+            if (!brandId) return;
+            const res   = await fetch(`/MasterStocks/GetTypesByBrand?brandId=${brandId}`);
+            const types = await res.json();
+            types.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                opt.textContent = t.name;
+                if (t.id == selectedTypeId) opt.selected = true;
+                typeSelect.appendChild(opt);
+            });
+            typeSelect.disabled = types.length === 0;
+        }
+
+        async function loadModels(typeId, selectedModelId) {
+            modelSelect.innerHTML = '<option value="">-- Select Model --</option>';
+            modelSelect.disabled  = true;
+            if (!typeId) return;
+            const res    = await fetch(`/MasterStocks/GetModelsByType?typeId=${typeId}`);
+            const models = await res.json();
+            models.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m.id;
+                opt.textContent = m.name;
+                if (m.id == selectedModelId) opt.selected = true;
+                modelSelect.appendChild(opt);
+            });
+            modelSelect.disabled = models.length === 0;
+        }
+
+        brandSelect.addEventListener('change', () => loadTypes(brandSelect.value, null));
+        typeSelect.addEventListener('change',  () => loadModels(typeSelect.value, null));
+
+        // Pre-populate on page load
+        (async () => {
+            if (initBrandId) {
+                await loadTypes(initBrandId, initTypeId);
+                if (initTypeId) {
+                    await loadModels(initTypeId, initModelId);
+                }
+            }
+        })();
+    </script>
+}

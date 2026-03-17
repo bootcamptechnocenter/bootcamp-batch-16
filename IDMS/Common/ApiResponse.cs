@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using IDMS.Shared.Entities;
 
@@ -9,9 +10,15 @@ namespace IDMS.Common
     public class ApiResponse<T>
     {
         public bool Status { get; set; } = true;
+
         public string Message { get; set; } = string.Empty;
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public T? Data { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Pagination? Pagination { get; set; }
+
         public static ApiResponse<T> Success(T data, string message = "Ok", Pagination? pagination = null)
         {
             return new ApiResponse<T>
@@ -22,6 +29,7 @@ namespace IDMS.Common
                 Pagination = pagination
             };
         }
+
         public static ApiResponse<T> Failure(string message)
         {
             return new ApiResponse<T>

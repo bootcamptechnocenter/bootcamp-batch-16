@@ -13,7 +13,7 @@ namespace IDMS.Controllers
 {
     [ApiController]
     [Route("api/master-general")]
-    // [Authorize]
+    [Authorize]
     public class MasterGeneralController : ControllerBase
     {
         private readonly IMstBrandsService _mstBrandsService;

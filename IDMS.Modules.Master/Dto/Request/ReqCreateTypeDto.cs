@@ -12,10 +12,10 @@ namespace IDMS.Modules.Master.Dto.Request
         public int BrandId { get; set; } = 0;
 
         [Required(ErrorMessage = "Code Wajib Diisi!")]
-        public string Code { get; set; } = string.Empty;
+        public required string Code { get; set; }
 
         [Required(ErrorMessage = "Name Wajib Diisi!")]
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; }
 
         public bool IsActive { get; set; } = true;
     }

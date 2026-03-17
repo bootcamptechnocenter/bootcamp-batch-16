@@ -3,51 +3,448 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - IDMS.Web</title>
+    <title>@ViewData["Title"] - IDMS</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/IDMS.Web.styles.css" asp-append-version="true" />
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --sidebar-bg: #0f172a;
+            --sidebar-border: #1e293b;
+            --sidebar-accent: #3b82f6;
+            --sidebar-text: #94a3b8;
+            --sidebar-text-active: #f1f5f9;
+            --topbar-height: 60px;
+        }
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        /* ── Sidebar ── */
+        #sidebar {
+            width: var(--sidebar-width);
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            box-shadow: 2px 0 12px rgba(0,0,0,.25);
+        }
+        #sidebar .sidebar-brand {
+            padding: 1.35rem 1.5rem;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            border-bottom: 1px solid var(--sidebar-border);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+        #sidebar .sidebar-brand .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--sidebar-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        #sidebar .user-profile {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--sidebar-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        #sidebar .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(59,130,246,.4);
+        }
+        #sidebar .user-info .user-name {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 160px;
+        }
+        #sidebar .user-info .user-role {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        #sidebar .nav-section-label {
+            padding: 1.1rem 1.5rem 0.3rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #475569;
+            font-weight: 700;
+        }
+        #sidebar .nav-link {
+            padding: 0.6rem 1.5rem;
+            color: var(--sidebar-text);
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 0.875rem;
+            border-left: 3px solid transparent;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+            border-radius: 0;
+            margin: 1px 0;
+        }
+        #sidebar .nav-link i {
+            font-size: 1.05rem;
+            opacity: 0.7;
+            transition: opacity 0.18s;
+        }
+        #sidebar .nav-link:hover {
+            background-color: rgba(255,255,255,.05);
+            color: #f1f5f9;
+            border-left-color: #475569;
+        }
+        #sidebar .nav-link:hover i { opacity: 1; }
+        #sidebar .nav-link.active {
+            background: linear-gradient(90deg, rgba(59,130,246,.18) 0%, transparent 100%);
+            color: #f1f5f9;
+            border-left-color: var(--sidebar-accent);
+            font-weight: 600;
+        }
+        #sidebar .nav-link.active i { opacity: 1; color: var(--sidebar-accent); }
+        #sidebar .sidebar-footer {
+            margin-top: auto;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--sidebar-border);
+        }
+        #sidebar .sidebar-footer a {
+            color: var(--sidebar-text);
+            font-size: 0.875rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.15s;
+        }
+        #sidebar .sidebar-footer a:hover {
+            color: #f87171;
+        }
+        #sidebar .sidebar-footer a:hover i { color: #f87171; }
+        /* ── Main content ── */
+        #main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f1f5f9;
+        }
+        #main-content .topbar {
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 1.75rem;
+            height: var(--topbar-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        }
+        #main-content .topbar .page-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        #main-content .topbar .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        #main-content .content-area {
+            padding: 1.75rem;
+            flex: 1;
+        }
+        .sidebar-footer-bar {
+            background: #fff;
+            border-top: 1px solid #e2e8f0;
+            padding: 0.65rem 1.75rem;
+            font-size: 0.775rem;
+            color: #94a3b8;
+        }
+        /* ── Loading overlay for AJAX ── */
+        #ajax-loader {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,.18);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        #ajax-loader.show { display: flex; }
+        #ajax-loader .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+        }
+        @@keyframes spin { to { transform: rotate(360deg); } }
+        /* ── Table improvements ── */
+        .idms-table-card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 6px rgba(0,0,0,.06);
+        }
+        .idms-table-card .table thead th {
+            background: #f8fafc;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #64748b;
+            font-weight: 700;
+            border-bottom: 1px solid #e2e8f0;
+            padding-top: 0.85rem;
+            padding-bottom: 0.85rem;
+        }
+        .idms-table-card .table tbody tr {
+            transition: background 0.12s;
+        }
+        .idms-table-card .table tbody tr:hover {
+            background: #f8fafc;
+        }
+        .idms-table-card .table tbody td {
+            vertical-align: middle;
+            color: #334155;
+            font-size: 0.875rem;
+            border-color: #f1f5f9;
+        }
+        /* ── Page header ── */
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .page-header h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+        }
+        .page-header .page-subtitle {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+        /* ── Toast ── */
+        #toast-container {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            z-index: 11000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            pointer-events: none;
+        }
+        #toast-container .idms-toast {
+            pointer-events: auto;
+            min-width: 280px;
+            max-width: 360px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.14), 0 2px 8px rgba(0,0,0,.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            opacity: 0;
+            transform: translateY(-12px);
+            transition: opacity .28s ease, transform .28s ease;
+            border-left: 4px solid #3b82f6;
+        }
+        #toast-container .idms-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #toast-container .idms-toast.toast-success { border-left-color: #22c55e; }
+        #toast-container .idms-toast.toast-danger  { border-left-color: #ef4444; }
+        #toast-container .idms-toast.toast-warning { border-left-color: #f59e0b; }
+        #toast-container .idms-toast.toast-info    { border-left-color: #3b82f6; }
+        #toast-container .idms-toast .toast-icon {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        #toast-container .idms-toast.toast-success .toast-icon { color: #22c55e; }
+        #toast-container .idms-toast.toast-danger  .toast-icon { color: #ef4444; }
+        #toast-container .idms-toast.toast-warning .toast-icon { color: #f59e0b; }
+        #toast-container .idms-toast.toast-info    .toast-icon { color: #3b82f6; }
+        #toast-container .idms-toast .toast-body {
+            flex: 1;
+        }
+        #toast-container .idms-toast .toast-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.1rem;
+        }
+        #toast-container .idms-toast .toast-msg {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        #toast-container .idms-toast .toast-close {
+            background: none;
+            border: none;
+            padding: 0;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1;
+            transition: color .15s;
+        }
+        #toast-container .idms-toast .toast-close:hover { color: #334155; }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IDMS.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MasterBrands" asp-action="Index">Master Brands</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MasterTypes" asp-action="Index">Master Types</a>
-                        </li>
-                    </ul>
+
+    <div id="ajax-loader"><div class="spinner"></div></div>
+
+    @* Toast container *@
+    <div id="toast-container">
+        @{
+            var toastMsg  = TempData["Toast"]?.ToString();
+            var toastType = TempData["ToastType"]?.ToString() ?? "success";
+            var toastIcon = toastType switch {
+                "success" => "bi-check-circle-fill",
+                "danger"  => "bi-x-circle-fill",
+                "warning" => "bi-exclamation-triangle-fill",
+                _         => "bi-info-circle-fill"
+            };
+            var toastTitle = toastType switch {
+                "success" => "Success",
+                "danger"  => "Error",
+                "warning" => "Warning",
+                _         => "Info"
+            };
+        }
+        @if (!string.IsNullOrEmpty(toastMsg))
+        {
+            <div class="idms-toast toast-@toastType" data-autohide="true">
+                <i class="bi @toastIcon toast-icon"></i>
+                <div class="toast-body">
+                    <div class="toast-title">@toastTitle</div>
+                    <div class="toast-msg">@toastMsg</div>
                 </div>
+                <button class="toast-close" onclick="idmsHideToast(this)"><i class="bi bi-x"></i></button>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        }
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - IDMS.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div id="sidebar">
+        <a class="sidebar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <div class="brand-icon"><i class="bi bi-car-front-fill text-white"></i></div>
+            IDMS
+        </a>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            var userEmail = User.Identity.Name ?? "User";
+            var initials = userEmail.Length > 0 ? userEmail[0].ToString().ToUpper() : "U";
+            <div class="user-profile">
+                <div class="user-avatar">@initials</div>
+                <div class="user-info">
+                    <div class="user-name" title="@userEmail">@userEmail</div>
+                    <div class="user-role">@(User.IsInRole("Admin") ? "Administrator" : "User")</div>
+                </div>
+            </div>
+        }
+
+        <div class="nav-section-label">Main</div>
+        <nav class="nav flex-column">
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")"
+               asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+        </nav>
+
+        <div class="nav-section-label">Master Data</div>
+        <nav class="nav flex-column">
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "MasterBrands" ? "active" : "")"
+               asp-area="" asp-controller="MasterBrands" asp-action="Index">
+                <i class="bi bi-patch-check"></i> Brands
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "MasterTypes" ? "active" : "")"
+               asp-area="" asp-controller="MasterTypes" asp-action="Index">
+                <i class="bi bi-tags"></i> Types
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "MasterModels" ? "active" : "")"
+               asp-area="" asp-controller="MasterModels" asp-action="Index">
+                <i class="bi bi-truck"></i> Models
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "MasterStocks" ? "active" : "")"
+               asp-area="" asp-controller="MasterStocks" asp-action="Index">
+                <i class="bi bi-boxes"></i> Stocks
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a asp-area="" asp-controller="Auth" asp-action="Logout">
+                <i class="bi bi-box-arrow-left"></i> Logout
+            </a>
         </div>
-    </footer>
+    </div>
+
+    <div id="main-content">
+        <div class="topbar">
+            <span class="page-title">
+                <i class="bi bi-chevron-right text-muted" style="font-size:.75rem"></i>
+                @(ViewData["Title"] ?? "Dashboard")
+            </span>
+        </div>
+
+        <div class="content-area">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="sidebar-footer-bar">
+            &copy; 2026 IDMS &mdash; <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-muted text-decoration-none">Privacy</a>
+        </footer>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

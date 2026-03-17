@@ -18,6 +18,6 @@ namespace IDMS.Modules.Master.Dto.Request
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Updated By Cannot be Empty!")]
-        public string UpdatedBy { get; set; } = string.Empty;
+        public required string UpdatedBy { get; set; }
     }
 }

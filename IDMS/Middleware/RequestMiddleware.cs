@@ -58,7 +58,7 @@ namespace IDMS.Middleware
 
             if (context.Response.StatusCode >= 400 && responseBody.Length == 0)
             {
-                string? message = context.Response.StatusCode switch
+                string? message = context.Items["ErrorMessage"] as string ?? context.Response.StatusCode switch
                 {
                     StatusCodes.Status400BadRequest => "Bad Request",
                     StatusCodes.Status401Unauthorized => "Unauthorized",

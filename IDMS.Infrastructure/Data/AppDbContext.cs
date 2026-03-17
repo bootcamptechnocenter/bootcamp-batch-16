@@ -15,6 +15,9 @@ namespace IDMS.Infrastructure.Data
 
         public DbSet<MstBrands> MstBrands => Set<MstBrands>();
         public DbSet<MstTypes> MstTypes => Set<MstTypes>();
+        public DbSet<MstUsers> MstUsers => Set<MstUsers>();
+        public DbSet<MstModels> MstModels => Set<MstModels>();
+        public DbSet<MstStocks> MstStocks => Set<MstStocks>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

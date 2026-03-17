@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
-using IDMS.Modules.Master.Services;
+using IDMS.Web.Services;
 using IDMS.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,7 +22,7 @@ namespace IDMS.Web.Controllers
             _mstTypesService = mstTypesService;
             _mstBrandsService = mstBrandsService;
         }
-        public async Task<IActionResult> Index(string search, int page = 1, int limit = 3)
+        public async Task<IActionResult> Index(string search, int page = 1, int limit = 5)
         {
             var dto = new ReqBaseParamDto
             {
@@ -32,6 +32,8 @@ namespace IDMS.Web.Controllers
             };
 
             var result = await _mstTypesService.GetAllTypes(dto);
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("_IndexTable", result);
             return View(result);
         }
 
@@ -55,6 +57,8 @@ namespace IDMS.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _mstTypesService.CreateType(dto);
+                TempData["Toast"] = "Type created successfully.";
+                TempData["ToastType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
             await PopulateBrandsDropdown();
@@ -75,7 +79,8 @@ namespace IDMS.Web.Controllers
                 BrandId = result.BrandId,
                 Code = result.Code,
                 Name = result.Name,
-                IsActive = result.IsActive
+                IsActive = result.IsActive,
+                UpdatedBy = "SYSTEM"
             };
             await PopulateBrandsDropdown();
             return View(dto);
@@ -91,6 +96,8 @@ namespace IDMS.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _mstTypesService.UpdateType(id, dto);
+                TempData["Toast"] = "Type updated successfully.";
+                TempData["ToastType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
             await PopulateBrandsDropdown();
@@ -102,6 +109,8 @@ namespace IDMS.Web.Controllers
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _mstTypesService.DeleteType(id);
+            TempData["Toast"] = "Type deleted successfully.";
+            TempData["ToastType"] = "success";
             return RedirectToAction(nameof(Index));
         }
 

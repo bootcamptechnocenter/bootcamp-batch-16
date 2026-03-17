@@ -4,13 +4,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
-using IDMS.Modules.Master.Services;
 using IDMS.Shared.Entities;
+using IDMS.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace IDMS.Web.Controllers
 {
+    [Authorize]
     public class MasterBrandsController : Controller
     {
         private readonly IMstBrandsService _mstBrandsService;
@@ -20,7 +22,7 @@ namespace IDMS.Web.Controllers
             _mstBrandsService = mstBrandsService;
         }
 
-        public async Task<IActionResult> Index(string search, int page = 1, int limit = 3)
+        public async Task<IActionResult> Index(string search, int page = 1, int limit = 5)
         {
             var param = new ReqBaseParamDto
             {
@@ -29,6 +31,8 @@ namespace IDMS.Web.Controllers
                 Limit = limit
             };
             var result = await _mstBrandsService.GetMstBrands(param);
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("_IndexTable", result);
             return View(result);
         }
 
@@ -48,6 +52,8 @@ namespace IDMS.Web.Controllers
 
             await _mstBrandsService.CreateMstBrand(dto);
 
+            TempData["Toast"] = "Brand created successfully.";
+            TempData["ToastType"] = "success";
             return RedirectToAction(nameof(Index));
         }
 
@@ -63,7 +69,8 @@ namespace IDMS.Web.Controllers
             var dto = new ReqUpdateMstBrandDto
             {
                 Code = result.Code,
-                Name = result.Name
+                Name = result.Name,
+                UpdatedBy = "SYSTEM"
             };
 
             return View(dto);
@@ -80,12 +87,9 @@ namespace IDMS.Web.Controllers
                 return View(dto);
             }
 
-            var updated = await _mstBrandsService.UpdateMstBrand(id, dto);
-            if (!updated)
-            {
-                return NotFound();
-            }
-
+            await _mstBrandsService.UpdateMstBrand(id, dto);
+            TempData["Toast"] = "Brand updated successfully.";
+            TempData["ToastType"] = "success";
             return RedirectToAction(nameof(Index));
         }
 
