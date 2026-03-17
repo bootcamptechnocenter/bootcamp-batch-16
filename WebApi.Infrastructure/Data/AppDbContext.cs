@@ -8,6 +8,7 @@ namespace WebApi.Infrastructure.Data
         public DbSet<MstBrands> MstBrands => Set<MstBrands>();
         public DbSet<MstTypes> MstTypes => Set<MstTypes>();
         public DbSet<MstModels> MstModels => Set<MstModels>();
+        public DbSet<MstStocks> MstStocks => Set<MstStocks>();
         public DbSet<MstUsers> MstUsers => Set<MstUsers>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
