@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 // http pointing idms web api
+//  ini punyaku
 builder.Services.AddHttpClient("IDMSApi", client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
