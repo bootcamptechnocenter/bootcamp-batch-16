@@ -8,7 +8,7 @@ action = "Index")
         var url = Url.Action(action, controller) ?? "#";
         var safeTitle = System.Net.WebUtility.HtmlEncode(title);
         var safeText = System.Net.WebUtility.HtmlEncode(text);
-        var html = $@"<div class='col-md-6 col-lg-4'>
+        var html = $@"<div class='col-md-6 col-lg-6'>
     <div class='card h-100'>
         <div class='card-body'>
             <h5 class='card-title'>{safeTitle}</h5>
@@ -29,7 +29,7 @@ action = "Index")
 <div class="row mt-5">
     <div class="col-md-12">
         <h2 class="mb-4">Master Data</h2>
-        <div class="row g-3">
+        <div class="row g-2">
             @MasterCard("Master Brand", "Manage brand data including code and name information.", "MasterBrand")
             @MasterCard("Master Type", "Manage type data including brand association and details.", "MasterType")
             @MasterCard("Master Model", "Manage model data including type association and specifications.",
