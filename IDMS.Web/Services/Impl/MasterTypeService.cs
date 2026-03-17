@@ -39,10 +39,15 @@ namespace IDMS.Web.Services.Impl
             return client;
         }
 
-        public async Task<PagedResult<ResMstTypeDto>> GetMstType(ReqBaseParamDto dto)
+        public async Task<PagedResult<ResMstTypeDto>> GetMstType(ReqGetTypeDto dto)
         {
             var client = CreateClient();
             var url = $"master/general/type?page={dto.Page}&limit={dto.Limit}&search={Uri.EscapeDataString(dto.Search ?? string.Empty)}";
+            if (dto.BrandId.HasValue)
+            {
+                url += $"&brandId={dto.BrandId.Value}";
+            }
+
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 

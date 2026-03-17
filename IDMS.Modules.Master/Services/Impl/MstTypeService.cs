@@ -20,7 +20,7 @@ namespace IDMS.Modules.Master.Services.Impl
             _context = context;
         }
 
-        public async Task<PagedResult<ResMstTypeDto>> GetMstType(ReqBaseParamDto dto)
+        public async Task<PagedResult<ResMstTypeDto>> GetMstType(ReqGetTypeDto dto)
         {
             var query = _context.MstTypes
                 .Include(x => x.Brand)
@@ -35,6 +35,11 @@ namespace IDMS.Modules.Master.Services.Impl
                     (x.Brand != null && x.Brand.Code.ToLower().Contains(search)) ||
                     (x.Brand != null && x.Brand.Name.ToLower().Contains(search))
                 );
+            }
+
+            if (dto.BrandId.HasValue)
+            {
+                query = query.Where(x => x.BrandId == dto.BrandId.Value);
             }
 
             query = query.Where(x => x.DeletedAt == null);

@@ -15,7 +15,7 @@ namespace IDMS.Infrastructure.Configurations
             builder.ToTable("mst_user");
 
             builder.HasKey(e => e.Id)
-                .HasName("pk_mst_user");
+                .HasName("PK_mst_user");
 
             builder.Property(e => e.Id)
                 .HasColumnName("id")

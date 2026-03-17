@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IDMS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260313021441_AdjustBaseEntity")]
-    partial class AdjustBaseEntity
+    [Migration("20260317024807_AddMstStocks")]
+    partial class AddMstStocks
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace IDMS.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstUser", b =>
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstStock", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,26 +48,21 @@ namespace IDMS.Infrastructure.Migrations
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
                         .HasColumnType("varchar(100)")
                         .HasColumnName("deleted_by");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("email");
+                    b.Property<int>("Harga")
+                        .HasColumnType("integer")
+                        .HasColumnName("harga");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("full_name");
+                    b.Property<int>("JumlahStock")
+                        .HasColumnType("integer")
+                        .HasColumnName("jumlah_stock");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("password");
+                    b.Property<int>("ModelId")
+                        .HasColumnType("integer")
+                        .HasColumnName("model_id");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp")
@@ -79,10 +74,25 @@ namespace IDMS.Infrastructure.Migrations
                         .HasColumnName("updated_by");
 
                     b.HasKey("Id")
-                        .HasName("pk_mst_user");
+                        .HasName("mst_stocks_pkey");
 
-                    b.ToTable("mst_user", (string)null);
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("mst_stocks", (string)null);
                 });
+
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstStock", b =>
+                {
+                    b.HasOne("IDMS.Shared.Domain.Entities.MstModel", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_mst_stocks_mst_models");
+
+                    b.Navigation("Model");
+                });
+
 #pragma warning restore 612, 618
         }
     }

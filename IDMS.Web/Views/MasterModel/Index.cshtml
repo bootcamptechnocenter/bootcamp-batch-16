@@ -1,0 +1,155 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstModelDto>
+
+@{
+	ViewData["Title"] = "Master Model";
+	var search = Context.Request.Query["search"].ToString();
+	var items = Model?.Items ?? Enumerable.Empty<ResMstModelDto>();
+	var currentPage = Model?.Pagination?.CurrentPage > 0 ? Model.Pagination.CurrentPage : 1;
+	var limit = Model?.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
+	var totalPages = Model?.Pagination?.TotalPages > 0 ? Model.Pagination.TotalPages : 1;
+	var totalItems = Model?.Pagination?.TotalItems ?? 0;
+}
+
+<div class="master-model-page">
+	<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+		<div>
+			<h2 class="mb-1">Master Model</h2>
+			<p class="text-muted mb-0">Manage and organize model data per type.</p>
+		</div>
+		<a asp-action="Create" class="btn btn-primary">Create New</a>
+	</div>
+
+	<div class="card master-brand-card border-0">
+		<div class="card-body">
+			<div class="row g-2 align-items-end mb-3" id="masterModelFilters">
+				<div class="col-12 col-md-8 col-lg-8">
+					<label for="masterModelSearch" class="form-label">Search</label>
+					<input id="masterModelSearch" value="@search" class="form-control" placeholder="Search by brand, type, code or model name" />
+				</div>
+				<div class="col-6 col-md-2 col-lg-2">
+					<label for="masterModelLimit" class="form-label">Show</label>
+					<select id="masterModelLimit" class="form-select">
+						@foreach (var pageSize in new[] { 5, 10, 20, 50 })
+						{
+							if (limit == pageSize)
+							{
+								<option value="@pageSize" selected>@pageSize</option>
+							}
+							else
+							{
+								<option value="@pageSize">@pageSize</option>
+							}
+						}
+					</select>
+				</div>
+				<div class="col-6 col-md-1 col-lg-2 d-flex gap-2">
+					<button type="button" class="btn btn-outline-secondary" id="masterModelReset">Reset</button>
+				</div>
+			</div>
+
+			<div id="masterModelGrid"
+				 data-url="@Url.Action("Table", "MasterModel")"
+				 data-index-url="@Url.Action("Index", "MasterModel")">
+				<partial name="_MasterModelTable" model="Model" />
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Styles {
+}
+
+@section Scripts {
+	<script>
+		(() => {
+			const grid = document.getElementById('masterModelGrid');
+			const searchInput = document.getElementById('masterModelSearch');
+			const limitSelect = document.getElementById('masterModelLimit');
+			const resetButton = document.getElementById('masterModelReset');
+
+			if (!grid || !searchInput || !limitSelect) return;
+
+			const tableUrl = grid.dataset.url;
+			const indexUrl = grid.dataset.indexUrl || window.location.pathname;
+			let debounceTimer;
+			let requestCounter = 0;
+
+			const updateUrl = (page) => {
+				const params = new URLSearchParams();
+				const searchValue = searchInput.value.trim();
+				const limitValue = limitSelect.value;
+
+				if (searchValue) params.set('search', searchValue);
+				if (limitValue && limitValue !== '10') params.set('limit', limitValue);
+				if (page > 1) params.set('page', page.toString());
+
+				const queryString = params.toString();
+				history.replaceState({}, '', queryString ? `${indexUrl}?${queryString}` : indexUrl);
+			};
+
+			const bindPager = () => {
+				grid.querySelectorAll('[data-page]').forEach((link) => {
+					link.addEventListener('click', (event) => {
+						event.preventDefault();
+						if (link.closest('.disabled')) return;
+						loadGrid(parseInt(link.dataset.page || '1', 10));
+					});
+				});
+			};
+
+			const loadGrid = (page = 1) => {
+				const currentRequest = ++requestCounter;
+				const url = `${tableUrl}?search=${encodeURIComponent(searchInput.value.trim())}&limit=${encodeURIComponent(limitSelect.value)}&page=${page}`;
+
+				grid.classList.add('master-brand-loading');
+
+				fetch(url, { method: 'GET', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+					.then(r => r.text())
+					.then(html => {
+						if (currentRequest !== requestCounter) return;
+						grid.innerHTML = html;
+						bindPager();
+						updateUrl(page);
+					})
+					.finally(() => {
+						if (currentRequest === requestCounter) grid.classList.remove('master-brand-loading');
+					});
+			};
+
+			searchInput.addEventListener('input', () => {
+				clearTimeout(debounceTimer);
+				debounceTimer = setTimeout(() => loadGrid(1), 350);
+			});
+
+			limitSelect.addEventListener('change', () => loadGrid(1));
+
+			if (resetButton) {
+				resetButton.addEventListener('click', () => {
+					searchInput.value = '';
+					limitSelect.value = '10';
+					loadGrid(1);
+				});
+			}
+
+			bindPager();
+		})();
+
+		document.getElementById('masterModelGrid').addEventListener('click', (e) => {
+			const btn = e.target.closest('.model-delete-btn');
+			if (!btn) return;
+
+			const modal = document.getElementById('modelDeleteModal');
+			if (!modal) return;
+
+			document.getElementById('modelDeleteCode').textContent = btn.dataset.code ?? '—';
+			document.getElementById('modelDeleteName').textContent = btn.dataset.name ?? '—';
+			document.getElementById('modelDeleteType').textContent = btn.dataset.type ?? '—';
+			document.getElementById('modelDeleteBrand').textContent = btn.dataset.brand ?? '—';
+			document.getElementById('modelDeleteForm').action = `/MasterModel/Delete/${btn.dataset.id}`;
+
+			bootstrap.Modal.getOrCreateInstance(modal).show();
+		});
+	</script>
+}

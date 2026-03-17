@@ -38,9 +38,9 @@ namespace IDMS.Web.Controllers
             return PartialView("_MasterTypeTable", result);
         }
 
-        private static ReqBaseParamDto BuildParam(string search, int page, int limit)
+        private static ReqGetTypeDto BuildParam(string search, int page, int limit)
         {
-            return new ReqBaseParamDto
+            return new ReqGetTypeDto
             {
                 Search = search,
                 Page = page,
