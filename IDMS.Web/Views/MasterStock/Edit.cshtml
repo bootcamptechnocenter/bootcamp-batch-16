@@ -1,0 +1,81 @@
+@model IDMS.Modules.Master.Dto.Request.ReqUpdateMstStockDto
+
+@{
+    ViewData["Title"] = "Edit Stock";
+    var selectedModelText = ViewBag.SelectedModelText as string;
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Edit Stock</h2>
+        <p class="text-muted mb-0">Update stock details below.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0" style="border-radius:1rem; box-shadow:0 8px 24px rgba(16,24,40,.06);">
+            <div class="card-body p-4">
+
+                <form asp-action="Edit" asp-route-id="@ViewBag.StockId" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label asp-for="ModelId" class="form-label fw-semibold">Model</label>
+                        <select asp-for="ModelId"
+                                class="form-select"
+                                data-select2-model="true"
+                                data-ajax-url="@Url.Action("ModelOptions", "MasterStock")">
+
+                            <option value="0">-- Select Model --</option>
+
+                            @if (Model?.ModelId > 0 && !string.IsNullOrWhiteSpace(selectedModelText))
+                            {
+                                <option value="@Model.ModelId" selected>
+                                    @selectedModelText
+                                </option>
+                            }
+                        </select>
+                        <span asp-validation-for="ModelId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="StockAmount" class="form-label fw-semibold">Stock</label>
+                        <input asp-for="StockAmount"
+                               type="number"
+                               class="form-control"
+                               placeholder="e.g. 10" />
+                        <span asp-validation-for="StockAmount" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Price" class="form-label fw-semibold">Price</label>
+                        <input asp-for="Price"
+                               type="number"
+                               class="form-control"
+                               placeholder="e.g. 200000000" />
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/js/master-stock-form.js" asp-append-version="true"></script>
+}

@@ -52,3 +52,38 @@ D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
 D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
 D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
 D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll

@@ -37,3 +37,28 @@ D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
 D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
 D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
 D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll

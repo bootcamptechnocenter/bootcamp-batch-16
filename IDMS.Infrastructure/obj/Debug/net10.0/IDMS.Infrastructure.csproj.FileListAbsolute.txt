@@ -52,3 +52,38 @@ D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructur
 D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
 D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
 D:\Training .NET\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.deps.json
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.runtimeconfig.json
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.AssemblyReference.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfoInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfo.cs
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Inf.669815FF.Up2Date
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.deps.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.runtimeconfig.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.AssemblyReference.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfoInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.AssemblyInfo.cs
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.sourcelink.json
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Inf.669815FF.Up2Date
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\refint\IDMS.Infrastructure.dll
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\IDMS.Infrastructure.genruntimeconfig.cache
+D:\Rifqy - PSA\Training .NET\FinalProject\bootcamp-batch-16\IDMS.Infrastructure\obj\Debug\net10.0\ref\IDMS.Infrastructure.dll
