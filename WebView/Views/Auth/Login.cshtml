@@ -6,36 +6,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Login</h1>
+<div class="auth-page">
+    <div class="auth-card card shadow-sm">
+        <div class="card-body">
+            <form asp-action="Login" method="post">
+                <h1 class="h4 text-center mb-4">Login</h1>
+                <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
 
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                <form asp-action="Login" method="post">
-                    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
-                    <div class="mb-3">
-                        <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" class="form-control" placeholder="Enter email" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" class="form-control" placeholder="Enter password" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
 
-                    <div class="mb-3">
-                        <label asp-for="Password" class="form-label">Password</label>
-                        <input asp-for="Password" class="form-control" placeholder="Enter password" type="password" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </div>
 
-                    <div class="d-flex gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-
-                    <div class="mt-3">
-                        <span>Don't have an account? </span>
-                        <a asp-action="Register" asp-controller="Auth">Register here</a>
-                    </div>
-                </form>
-            </div>
+                <div class="mt-3 text-center">
+                    <span>Don't have an account? </span>
+                    <a asp-action="Register" asp-controller="Auth">Register here</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
