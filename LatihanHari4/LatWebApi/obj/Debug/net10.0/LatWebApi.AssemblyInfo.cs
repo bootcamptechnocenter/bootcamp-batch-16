@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LatWebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92b894d919aa4e39e7bd8c8be9fb48efe93ae074")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+490dfdfe6f99cb3051cb90693cc487aae0da18f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("LatWebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LatWebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

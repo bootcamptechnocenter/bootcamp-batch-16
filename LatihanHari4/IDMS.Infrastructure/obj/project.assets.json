@@ -821,6 +821,16 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
+      },
+      "IDMS.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/IDMS.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IDMS.Shared.dll": {}
+        }
       }
     }
   },
@@ -2640,10 +2650,16 @@
         "system.composition.typedparts.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "IDMS.Shared/1.0.0": {
+      "type": "project",
+      "path": "../IDMS.Shared/IDMS.Shared.csproj",
+      "msbuildProject": "../IDMS.Shared/IDMS.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "IDMS.Shared >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 10.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.3",
       "Microsoft.EntityFrameworkCore.Relational >= 10.0.3",
@@ -2675,7 +2691,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Dotnet_Bootcamp\\LatihanHari4\\IDMS.Shared\\IDMS.Shared.csproj": {
+              "projectPath": "D:\\Dotnet_Bootcamp\\LatihanHari4\\IDMS.Shared\\IDMS.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "zq0bu7f0j68=",
+  "success": true,
+  "projectFilePath": "d:\\Dotnet_Bootcamp\\Final_Project\\IDMS.Shared\\IDMS.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

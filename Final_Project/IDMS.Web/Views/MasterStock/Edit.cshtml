@@ -1,0 +1,56 @@
+@model IDMS.Modules.Master.Dto.Request.ReqUpdateMstStockDto
+
+@{
+    ViewData["Title"] = "Edit Master Stock";
+    var selectedModelText = ViewBag.SelectedModelText as string;
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Edit Stock</h2>
+        <p class="text-muted mb-0">Update stock details below.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0" style="border-radius:1rem; box-shadow:0 8px 24px rgba(16,24,40,.06);">
+            <div class="card-body p-4">
+                <form asp-action="Edit" asp-route-id="@ViewBag.StockId" method="post">
+                    @Html.AntiForgeryToken()
+    
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Model</label>
+                        <input class="form-control" value="@selectedModelText" disabled/>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="JumlahStock" class="form-label fw-semibold"></label>
+                        <input asp-for="JumlahStock" class="form-control" type="number" min="1" placeholder="1" />
+                        <span asp-validation-for="JumlahStock" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Price" class="form-label fw-semibold"></label>
+                        <input asp-for="Price" class="form-control" type="number" min="1" placeholder="1" />
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/js/master-type-form.js" asp-append-version="true"></script>
+}
