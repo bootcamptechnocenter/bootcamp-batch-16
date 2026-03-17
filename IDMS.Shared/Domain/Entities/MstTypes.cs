@@ -10,5 +10,6 @@ namespace IDMS.Shared.Domain.Entities
         public bool IsActive { get; set; } = true;
 
         public MstBrands? Brand { get; set; }
+        public ICollection<MstModels> Models { get; set; } = new List<MstModels>();
     }
 }
