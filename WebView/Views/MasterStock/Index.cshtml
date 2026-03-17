@@ -1,0 +1,169 @@
+@using WebApi.Modules.Master.Dto.Response;
+@using WebApi.Modules.Master.Services;
+@using WebApi.Shared.Entities;
+@model PagedResult<ResMstStockDto>
+
+@{
+    ViewData["Title"] = "Master Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentSearch = Context.Request.Query["search"].ToString();
+    var currentLimit = Context.Request.Query["limit"].ToString();
+    if (string.IsNullOrEmpty(currentLimit)) currentLimit = "5";
+}
+
+<h1>Master Stock</h1>
+
+<div class="row mb-3">
+    <div class="col-md-8">
+        <form id="masterStockSearchForm" method="get" class="d-flex gap-2">
+            <a href="@Url.Action("Create")" class="btn btn-success">Add</a>
+            <input id="masterStockSearch" type="text" name="search" class="form-control" placeholder="Search by name..."
+                   value="@currentSearch" />
+            <input type="hidden" name="limit" value="@currentLimit" />
+            <button type="button" id="masterStockResetBtn" class="btn btn-primary">Reset</button>
+        </form>
+    </div>
+    <div class="col-md-4 text-end">
+        <form id="masterStockLimitForm" method="get" class="d-inline-flex gap-2 align-items-center">
+            <label class="mb-0">Items per page:</label>
+            <select id="masterStockLimit" name="limit" class="form-select" style="width: auto;" onchange="this.form.submit()">
+                <option value="5" selected="@(currentLimit == "5")">5</option>
+                <option value="10" selected="@(currentLimit == "10")">10</option>
+                <option value="25" selected="@(currentLimit == "25")">25</option>
+                <option value="50" selected="@(currentLimit == "50")">50</option>
+            </select>
+            <input type="hidden" name="search" value="@currentSearch" />
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div id="masterStockGrid"
+             data-url="@Url.Action("Table", "MasterStock")"
+             data-index-url="@Url.Action("Index", "MasterStock")">
+            <partial name="_MasterStockTable" model="Model" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (() => {
+            const grid = document.getElementById('masterStockGrid');
+            const searchForm = document.getElementById('masterStockSearchForm');
+            const limitForm = document.getElementById('masterStockLimitForm');
+            const searchInput = document.getElementById('masterStockSearch');
+            const limitSelect = document.getElementById('masterStockLimit');
+            const resetButton = document.getElementById('masterStockResetBtn');
+
+            if (!grid || !searchInput || !limitSelect) {
+                return;
+            }
+
+            const tableUrl = grid.dataset.url;
+            const indexUrl = grid.dataset.indexUrl || window.location.pathname;
+            let debounceTimer;
+            let requestCounter = 0;
+
+            const updateUrl = (page, searchValue, limitValue) => {
+                const params = new URLSearchParams();
+
+                if (searchValue) {
+                    params.set('search', searchValue);
+                }
+
+                if (limitValue && limitValue !== '5') {
+                    params.set('limit', limitValue);
+                }
+
+                if (page > 1) {
+                    params.set('page', page.toString());
+                }
+
+                const queryString = params.toString();
+                const url = queryString ? `${indexUrl}?${queryString}` : indexUrl;
+                history.replaceState({}, '', url);
+            };
+
+            const loadGrid = (page = 1, searchValue = searchInput.value.trim(), limitValue = limitSelect.value) => {
+                const currentRequest = ++requestCounter;
+                const url = `${tableUrl}?search=${encodeURIComponent(searchValue)}&limit=${encodeURIComponent(limitValue)}&page=${page}`;
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.text())
+                    .then(html => {
+                        if (currentRequest !== requestCounter) {
+                            return;
+                        }
+
+                        grid.innerHTML = html;
+                        updateUrl(page, searchValue, limitValue);
+                    });
+            };
+
+            if (searchForm) {
+                searchForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    loadGrid(1);
+                });
+            }
+
+            if (limitForm) {
+                limitForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    loadGrid(1);
+                });
+            }
+
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => loadGrid(1), 350);
+            });
+
+            limitSelect.addEventListener('change', () => loadGrid(1));
+
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
+                    searchInput.value = '';
+                    loadGrid(1, '', limitSelect.value);
+                });
+            }
+
+            grid.addEventListener('click', (e) => {
+                const link = e.target.closest('.pagination a');
+                if (!link) return;
+
+                if (link.closest('.disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const url = new URL(link.href, window.location.origin);
+                const page = parseInt(url.searchParams.get('page') || '1', 10);
+                const searchValue = url.searchParams.get('search') || '';
+                const limitValue = url.searchParams.get('limit') || limitSelect.value || '5';
+
+                searchInput.value = searchValue;
+                limitSelect.value = limitValue;
+
+                e.preventDefault();
+                loadGrid(page, searchValue, limitValue);
+            });
+
+            grid.addEventListener('submit', (e) => {
+                const form = e.target.closest('.delete-form');
+                if (!form) return;
+
+                if (!confirm('Are you sure you want to delete this item?')) {
+                    e.preventDefault();
+                }
+            });
+        })();
+    </script>
+}
