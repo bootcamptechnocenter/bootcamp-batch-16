@@ -25,6 +25,20 @@ namespace WebView.Controllers
             return View(brands);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Table(string search, int page = 1, int limit = 5)
+        {
+            var param = new ReqBaseParamDto
+            {
+                Search = search,
+                Page = page,
+                Limit = limit
+            };
+
+            var brands = await _service.GetMstBrands(param);
+            return PartialView("_MasterBrandTable", brands);
+        }
+
         public IActionResult Create()
         {
             return View();

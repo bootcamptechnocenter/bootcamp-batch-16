@@ -8,29 +8,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var currentSearch = Context.Request.Query["search"].ToString();
     var currentLimit = Context.Request.Query["limit"].ToString();
-    if (string.IsNullOrEmpty(currentLimit)) currentLimit = "10";
+    if (string.IsNullOrEmpty(currentLimit)) currentLimit = "5";
 }
 
 <h1>Master Brand</h1>
 
 <div class="row mb-3">
     <div class="col-md-8">
-        <form method="get" class="d-flex gap-2">
+        <form id="masterBrandSearchForm" method="get" class="d-flex gap-2">
             <a href="@Url.Action("Create")" class="btn btn-success">Add</a>
-            <input type="text" name="search" class="form-control" placeholder="Search by code or name..."
+            <input id="masterBrandSearch" type="text" name="search" class="form-control" placeholder="Search by code or name..."
                    value="@currentSearch" />
             <input type="hidden" name="limit" value="@currentLimit" />
             <button type="submit" class="btn btn-primary">Search</button>
             @if (!string.IsNullOrEmpty(currentSearch))
             {
-                <a href="@Url.Action("Index", new { limit = currentLimit })" class="btn btn-secondary">Clear</a>
+                <a id="masterBrandClear" href="@Url.Action("Index", new { limit = currentLimit })" class="btn btn-secondary">Clear</a>
             }
         </form>
     </div>
     <div class="col-md-4 text-end">
-        <form method="get" class="d-inline-flex gap-2 align-items-center">
+        <form id="masterBrandLimitForm" method="get" class="d-inline-flex gap-2 align-items-center">
             <label class="mb-0">Items per page:</label>
-            <select name="limit" class="form-select" style="width: auto;" onchange="this.form.submit()">
+            <select id="masterBrandLimit" name="limit" class="form-select" style="width: auto;" onchange="this.form.submit()">
                 <option value="5" selected="@(currentLimit == "5")">5</option>
                 <option value="10" selected="@(currentLimit == "10")">10</option>
                 <option value="25" selected="@(currentLimit == "25")">25</option>
@@ -43,74 +43,132 @@
 
 <div class="card">
     <div class="card-body">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th class="text-center">Active</th>
-                    <th style="width: 150px;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Items.Any())
-                {
-                    @foreach (var item in Model.Items)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Code</td>
-                            <td>@item.Name</td>
-                            <td class="text-center">
-                                @if (item.IsActive)
-                                {
-                                    <span class="badge bg-success">Yes</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-danger">No</span>
-                                }
-                            </td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
-                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline delete-form">
-                                        @Html.AntiForgeryToken()
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="5" class="text-center text-muted">No data found</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div id="masterBrandGrid"
+             data-url="@Url.Action("Table", "MasterBrand")"
+             data-index-url="@Url.Action("Index", "MasterBrand")">
+            <partial name="_MasterBrandTable" model="Model" />
+        </div>
     </div>
 </div>
 
-<!-- Pagination -->
-@{
-    ViewData["Search"] = currentSearch;
-    ViewData["Limit"] = currentLimit;
-}
-<partial name="_Pagination" model="Model.Pagination" />
-
 @section Scripts {
     <script>
-        // Delete confirmation
-        document.querySelectorAll('.delete-form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                if (!confirm('Are you sure you want to delete this brand?')) {
+        (() => {
+            const grid = document.getElementById('masterBrandGrid');
+            const searchForm = document.getElementById('masterBrandSearchForm');
+            const limitForm = document.getElementById('masterBrandLimitForm');
+            const searchInput = document.getElementById('masterBrandSearch');
+            const limitSelect = document.getElementById('masterBrandLimit');
+            const clearLink = document.getElementById('masterBrandClear');
+
+            if (!grid || !searchInput || !limitSelect) {
+                return;
+            }
+
+            const tableUrl = grid.dataset.url;
+            const indexUrl = grid.dataset.indexUrl || window.location.pathname;
+            let debounceTimer;
+            let requestCounter = 0;
+
+            const updateUrl = (page, searchValue, limitValue) => {
+                const params = new URLSearchParams();
+
+                if (searchValue) {
+                    params.set('search', searchValue);
+                }
+
+                if (limitValue && limitValue !== '10') {
+                    params.set('limit', limitValue);
+                }
+
+                if (page > 1) {
+                    params.set('page', page.toString());
+                }
+
+                const queryString = params.toString();
+                const url = queryString ? `${indexUrl}?${queryString}` : indexUrl;
+                history.replaceState({}, '', url);
+            };
+
+            const loadGrid = (page = 1, searchValue = searchInput.value.trim(), limitValue = limitSelect.value) => {
+                const currentRequest = ++requestCounter;
+                const url = `${tableUrl}?search=${encodeURIComponent(searchValue)}&limit=${encodeURIComponent(limitValue)}&page=${page}`;
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.text())
+                    .then(html => {
+                        if (currentRequest !== requestCounter) {
+                            return;
+                        }
+
+                        grid.innerHTML = html;
+                        updateUrl(page, searchValue, limitValue);
+                    });
+            };
+
+            if (searchForm) {
+                searchForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    loadGrid(1);
+                });
+            }
+
+            if (limitForm) {
+                limitForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    loadGrid(1);
+                });
+            }
+
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => loadGrid(1), 350);
+            });
+
+            limitSelect.addEventListener('change', () => loadGrid(1));
+
+            if (clearLink) {
+                clearLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    searchInput.value = '';
+                    loadGrid(1, '', limitSelect.value);
+                });
+            }
+
+            grid.addEventListener('click', (e) => {
+                const link = e.target.closest('.pagination a');
+                if (!link) return;
+
+                if (link.closest('.disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const url = new URL(link.href, window.location.origin);
+                const page = parseInt(url.searchParams.get('page') || '1', 10);
+                const searchValue = url.searchParams.get('search') || '';
+                const limitValue = url.searchParams.get('limit') || limitSelect.value || '10';
+
+                searchInput.value = searchValue;
+                limitSelect.value = limitValue;
+
+                e.preventDefault();
+                loadGrid(page, searchValue, limitValue);
+            });
+
+            grid.addEventListener('submit', (e) => {
+                const form = e.target.closest('.delete-form');
+                if (!form) return;
+
+                if (!confirm('Are you sure you want to delete this item?')) {
                     e.preventDefault();
                 }
             });
-        });
+        })();
     </script>
 }
