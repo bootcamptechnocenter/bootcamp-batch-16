@@ -32,7 +32,7 @@ namespace WebView.Services.Impl
                     Success = false,
                     Token = string.Empty,
                     ExpiresAt = DateTime.MinValue,
-                    Message = $"Login failed: {fail?.Message ?? "Unknown error"}"
+                    Message = fail?.Message ?? "Unknown error"
                 };
             }
 
@@ -44,7 +44,7 @@ namespace WebView.Services.Impl
                     Success = false,
                     Token = string.Empty,
                     ExpiresAt = DateTime.MinValue,
-                    Message = "Login failed: Invalid response from server"
+                    Message = "Invalid response from server"
                 };
             }
 
@@ -78,7 +78,7 @@ namespace WebView.Services.Impl
                 {
                     Success = false,
                     Data = null,
-                    Message = $"Registration failed: {fail?.Message ?? "Unknown error"}"
+                    Message = fail?.Message ?? "Unknown error"
                 };
             }
 
