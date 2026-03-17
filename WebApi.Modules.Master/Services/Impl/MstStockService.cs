@@ -96,6 +96,11 @@ namespace WebApi.Modules.Master.Services.Impl
                 .Where(x => x.Id == dto.ModelId && x.DeletedAt == null)
                 .FirstOrDefaultAsync() ?? throw new Exception("Model not found");
 
+            var existingStock = await _context.MstStocks
+                .AnyAsync(x => x.ModelId == dto.ModelId && x.DeletedAt == null);
+
+            if (existingStock) throw new Exception("Stock for this model already exists");
+
             var stock = new MstStocks
             {
                 ModelId = dto.ModelId,
@@ -123,6 +128,11 @@ namespace WebApi.Modules.Master.Services.Impl
                     .AnyAsync(x => x.Id == dto.ModelId.Value && x.DeletedAt == null);
 
                 if (!modelExists) throw new Exception("Model not found");
+
+                var existingStock = await _context.MstStocks
+                    .AnyAsync(x => x.ModelId == dto.ModelId.Value && x.DeletedAt == null && x.Id != id);
+
+                if (existingStock) throw new Exception("Stock for this model already exists");
 
                 stock.ModelId = dto.ModelId.Value;
             }
