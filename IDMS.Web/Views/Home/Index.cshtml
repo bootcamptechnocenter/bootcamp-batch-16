@@ -1,8 +1,86 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "IDMS - Landing Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary" style="font-family: 'Segoe UI', sans-serif;">Welcome to IDMS</h1>
+        <p class="lead text-secondary">Integrated Data Management System</p>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <!-- Master Brand -->
+        <div class="col">
+            <div class="card h-100 text-center card-feature text-white" style="background: linear-gradient(135deg, #1e3c72, #2a5298); border-radius:1rem;">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="mb-3">
+                            <i class="bi bi-award" style="font-size:2.5rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-uppercase">Master Brand</h5>
+                    </div>
+                    <a asp-controller="MasterBrand" asp-action="Index" class="btn btn-light fw-bold mt-3">Go to Master Brand</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Type -->
+        <div class="col">
+            <div class="card h-100 text-center card-feature text-white" style="background: linear-gradient(135deg, #00b09b, #96c93d); border-radius:1rem;">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="mb-3">
+                            <i class="bi bi-gear" style="font-size:2.5rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-uppercase">Master Type</h5>
+                    </div>
+                    <a asp-controller="MasterType" asp-action="Index" class="btn btn-light fw-bold mt-3">Go to Master Type</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Model -->
+        <div class="col">
+            <div class="card h-100 text-center card-feature text-white" style="background: linear-gradient(135deg, #f7971e, #ffd200); border-radius:1rem;">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="mb-3">
+                            <i class="bi bi-car-front" style="font-size:2.5rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-uppercase">Master Model</h5>
+                    </div>
+                    <a asp-controller="MasterModel" asp-action="Index" class="btn btn-light fw-bold mt-3">Go to Master Model</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Stock -->
+        <div class="col">
+            <div class="card h-100 text-center card-feature text-white" style="background: linear-gradient(135deg, #9b1e1e, #6a0d0d); border-radius:1rem;">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="mb-3">
+                            <i class="bi bi-box" style="font-size:2.5rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-uppercase">Master Stock</h5>
+                    </div>
+                    <a asp-controller="MasterStock" asp-action="Index" class="btn btn-light fw-bold mt-3">Go to Master Stock</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-5 text-muted">
+        <p>&copy; @DateTime.Now.Year IDMS. Created by Rifqy</p>
+    </div>
 </div>
+
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+}
