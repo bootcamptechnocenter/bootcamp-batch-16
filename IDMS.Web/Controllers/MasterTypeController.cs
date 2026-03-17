@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
-using IDMS.Modules.Master.Services;
+using IDMS.Modules.Master.Dto.Response;
 using IDMS.Shared.Entities;
+using IDMS.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,11 +14,11 @@ namespace IDMS.Web.Controllers
 {
     public class MasterTypeController : Controller
     {
-        private readonly IMstTypeService _service;
-        private readonly IMstBrandService _brandService;
+        private readonly IMasterTypeClientService _service;
+        private readonly IMasterBrandClientService _brandService;
 
 
-        public MasterTypeController(IMstTypeService service, IMstBrandService brandService)
+        public MasterTypeController(IMasterTypeClientService service, IMasterBrandClientService brandService)
         {
             _service = service;
             _brandService = brandService;
@@ -25,15 +26,30 @@ namespace IDMS.Web.Controllers
 
         public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
         {
-            var param = new ReqBaseParamDto
+            try
             {
-                Search = search,
-                Page = page,
-                Limit = limit
-            };
+                var param = new ReqBaseParamDto
+                {
+                    Search = search,
+                    Page = page,
+                    Limit = limit
+                };
 
-            var result = await _service.GetMstTypes(param);
-            return View(result);
+                var result = await _service.GetMstType(param);
+                return View(result ?? new PagedResult<ResMstTypeDto>
+                {
+                    Items = new List<ResMstTypeDto>(),
+                    Pagination = new Pagination { CurrentPage = page, Limit = limit }
+                });
+            }
+            catch (Exception ex)
+            {
+                return View(new PagedResult<ResMstTypeDto>
+                {
+                    Items = new List<ResMstTypeDto>(),
+                    Pagination = new Pagination { CurrentPage = page, Limit = limit }
+                });
+            }
         }
 
         [HttpGet]
@@ -83,14 +99,14 @@ namespace IDMS.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ReqUpdateMstTypeDto dto)
+        public async Task<IActionResult> Edit(ReqUpdateMstTypeDto dto, int id)
         {
             if (!ModelState.IsValid)
             {
                 return View(dto);
                 
             }
-            await _service.UpdateMstType(dto.Id, dto);
+            await _service.UpdateMstType(dto, id);
             return RedirectToAction(nameof(Index));
         }
 

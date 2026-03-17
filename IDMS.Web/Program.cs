@@ -1,19 +1,53 @@
+using System.Net;
 using IDMS.Infrastructure.Data;
 using IDMS.Modules.Master.Services;
 using IDMS.Modules.Master.Services.Impl;
+using IDMS.Web.Services;
+using IDMS.Web.Services.Impl;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddHttpClient("IDMSApi", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
+    client.DefaultRequestHeaders.Add("X-Api-Key", builder.Configuration["ApiSettings:ApiKey"]);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 
-builder.Services.AddScoped<IMstBrandService, MstBrandService>();
-builder.Services.AddScoped<IMstTypeService, MstTypeService>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+    });
+
+builder.Services.AddHttpContextAccessor();
+
+// builder.Services.AddDbContext<AppDbContext>(options =>
+//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllersWithViews();
+
+// builder.Services.AddScoped<IMstBrandService, MstBrandService>();
+// builder.Services.AddScoped<IMstTypeService, MstTypeService>();
+builder.Services.AddScoped<IAuthClientService, AuthClientService>();
+builder.Services.AddScoped<IMasterBrandClientService, MstBrandClientService>();
+builder.Services.AddScoped<IMasterTypeClientService, MstTypeClientService>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -28,6 +62,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

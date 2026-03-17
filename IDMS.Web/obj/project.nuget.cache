@@ -1,15 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "mpftHEqLcY8=",
+  "dgSpecHash": "hu6QAdJDqjg=",
   "success": true,
   "projectFilePath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Web\\IDMS.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
     "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",
     "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.3\\microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512",
     "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.3\\microsoft.entityframeworkcore.analyzers.10.0.3.nupkg.sha512",
     "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.3\\microsoft.entityframeworkcore.relational.10.0.3.nupkg.sha512",
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.16.0\\microsoft.identitymodel.abstractions.8.16.0.nupkg.sha512",
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.16.0\\microsoft.identitymodel.jsonwebtokens.8.16.0.nupkg.sha512",
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.identitymodel.logging\\8.16.0\\microsoft.identitymodel.logging.8.16.0.nupkg.sha512",
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.16.0\\microsoft.identitymodel.tokens.8.16.0.nupkg.sha512",
     "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\npgsql\\10.0.1\\npgsql.10.0.1.nupkg.sha512",
-    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\10.0.0\\npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512"
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\10.0.0\\npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
+    "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.16.0\\system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512"
   ],
   "logs": []
 }

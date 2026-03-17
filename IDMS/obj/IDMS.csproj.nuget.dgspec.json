@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {}
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {}
   },
   "projects": {
-    "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
         "projectName": "IDMS.Infrastructure",
-        "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -397,8 +397,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
-                "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
+              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
               },
               "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj": {
                 "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj"
@@ -421,6 +421,20 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.16.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.16.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -1054,14 +1068,14 @@
         }
       }
     },
-    "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
+        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
         "projectName": "IDMS",
-        "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
+        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\IDMS.csproj",
         "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\obj\\",
+        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1076,8 +1090,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
-                "projectPath": "c:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
+              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
               },
               "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {
                 "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj"
@@ -1107,6 +1121,12 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[10.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -101,7 +101,7 @@ namespace IDMS.Modules.Master.Services.Impl
 
         }
 
-        public async Task UpdateMstBrand(int id, ReqUpdateMstBrandDto dto)
+        public async Task UpdateMstBrand(ReqUpdateMstBrandDto dto, int id)
         {
             var brand = await _context.MstBrands.FindAsync(id);
             if(brand == null || brand.DeletedAt != null)

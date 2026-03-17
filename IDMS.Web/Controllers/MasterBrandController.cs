@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
 using IDMS.Modules.Master.Services;
 using IDMS.Shared.Entities;
+using IDMS.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,9 +14,9 @@ namespace IDMS.Web.Controllers
 {
     public class MasterBrandController : Controller
     {
-        private readonly IMstBrandService _service;
+        private readonly IMasterBrandClientService _service;
 
-        public MasterBrandController(IMstBrandService service)
+        public MasterBrandController(IMasterBrandClientService service)
         {
             _service = service;
         }
@@ -61,6 +62,7 @@ namespace IDMS.Web.Controllers
             }
             var editDto = new ReqUpdateMstBrandDto
             {
+                Id = brand.Id,
                 Code = brand.Code,
                 Name = brand.Name,
                 IsActive = brand.IsActive
@@ -69,14 +71,14 @@ namespace IDMS.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ReqUpdateMstBrandDto dto)
+        public async Task<IActionResult> Edit(int id, ReqUpdateMstBrandDto dto)
         {
             if (!ModelState.IsValid)
             {
                 return View(dto);
                 
             }
-            await _service.UpdateMstBrand(dto.Id, dto);
+            await _service.UpdateMstBrand(dto, id);
             return RedirectToAction(nameof(Index));
         }
 

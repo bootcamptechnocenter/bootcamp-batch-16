@@ -110,3 +110,9 @@ C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\obj
 C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\obj\Debug\net10.0\IDMS.Web.pdb
 C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\obj\Debug\net10.0\IDMS.Web.genruntimeconfig.cache
 C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\obj\Debug\net10.0\ref\IDMS.Web.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\bin\Debug\net10.0\BCrypt.Net-Next.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS.Web\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

@@ -8,8 +8,8 @@ namespace IDMS.Modules.Master.Dto.Request
 {
     public class ReqUpdateMstBrandDto
     {
-        [Required(ErrorMessage = "Id wajib diisi")]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Code wajib diisi")]
         public string Code { get; set; } = string.Empty;
 

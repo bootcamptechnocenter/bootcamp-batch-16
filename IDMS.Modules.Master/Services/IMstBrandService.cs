@@ -13,7 +13,8 @@ namespace IDMS.Modules.Master.Services
         Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto);
         Task<ResMstBrandDto> GetMstBrandById(int id);
         Task CreateMstBrand(ReqCreateMstBrandDto dto);
-        Task UpdateMstBrand(int id,ReqUpdateMstBrandDto dto);
+        Task UpdateMstBrand(ReqUpdateMstBrandDto dto, int id);
+
         Task<bool> DeleteMstBrand(int id);
     }
 }

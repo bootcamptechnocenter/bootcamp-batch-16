@@ -18,12 +18,14 @@ namespace IDMS.Middleware
             _next = next;
             _logger = logger;
         }
+
         public async Task InvokeAsync(HttpContext context)
         {
             var reqId = context.TraceIdentifier;
-            context.Items["RequestId"] = reqId;
-            _logger.LogInformation("Request {RequestId} started at {Time}", reqId,
-            context.Request.Method, context.Request.Path);
+            context.Items["ReqId"] = reqId;
+
+            _logger.LogInformation("Request {ReqId} {Method} {Path}",
+                reqId, context.Request.Method, context.Request.Path);
 
             var jsonOptions = new JsonSerializerOptions
             {
@@ -38,9 +40,36 @@ namespace IDMS.Middleware
             {
                 await _next(context);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                _logger.LogWarning("Unauthorized request on {ReqId}: {Message}", reqId, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Response.ContentType = "application/json";
+
+                var response = ApiResponse<string>.Fail(ex.Message);
+                var json = JsonSerializer.Serialize(response, jsonOptions);
+
+                responseBody.SetLength(0);
+                await responseBody.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning("Bad request on {ReqId}: {Message}", reqId, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+
+                var response = ApiResponse<string>.Fail(ex.Message);
+                var json = JsonSerializer.Serialize(response, jsonOptions);
+
+                responseBody.SetLength(0);
+                await responseBody.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Unhandled exception for request {RequestId}", reqId);
+                _logger.LogError(ex, "Unhandled error on {ReqId}", reqId);
+
                 context.Response.StatusCode = 500;
                 context.Response.ContentType = "application/json";
 
@@ -56,7 +85,11 @@ namespace IDMS.Middleware
 
             if (context.Response.StatusCode >= 400 && responseBody.Length == 0)
             {
-                string? message = context.Response.StatusCode switch
+                var customMessage = context.Items.TryGetValue("ErrorMessage", out var errorMessage)
+                    ? errorMessage?.ToString()
+                    : null;
+
+                string? message = customMessage ?? context.Response.StatusCode switch
                 {
                     StatusCodes.Status401Unauthorized => "Unauthorized",
                     StatusCodes.Status403Forbidden => "Forbidden",
@@ -68,16 +101,17 @@ namespace IDMS.Middleware
                     StatusCodes.Status500InternalServerError => "Internal Server Error",
                     _ => null
                 };
-                
+
                 if (message != null)
                 {
                     context.Response.ContentType = "application/json";
                     var response = ApiResponse<string>.Fail(message);
-                    var json = JsonSerializer.Serialize(response,jsonOptions);
+                    var json = JsonSerializer.Serialize(response, jsonOptions);
                     await context.Response.WriteAsync(json);
                     return;
                 }
             }
+
             await responseBody.CopyToAsync(originalBodyStream);
         }
     }
