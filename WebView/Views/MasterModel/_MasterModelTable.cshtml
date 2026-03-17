@@ -1,0 +1,68 @@
+@using WebApi.Modules.Master.Dto.Response;
+@using WebApi.Shared.Entities;
+@model PagedResult<ResMstModelDto>
+
+@{
+    var currentSearch = Context.Request.Query["search"].ToString();
+    var currentLimit = Context.Request.Query["limit"].ToString();
+    if (string.IsNullOrEmpty(currentLimit)) currentLimit = "5";
+
+    ViewData["Search"] = currentSearch;
+    ViewData["Limit"] = currentLimit;
+}
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Type Id</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th class="text-center">Active</th>
+            <th style="width:150px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items.Any())
+        {
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.TypeId</td>
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td class="text-center">
+                        @if (item.IsActive)
+                        {
+                            <span class="badge bg-success">Yes</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">No</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post"
+                                  class="d-inline delete-form">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No data found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<partial name="_Pagination" model="Model.Pagination" />

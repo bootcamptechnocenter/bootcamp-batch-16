@@ -26,6 +26,20 @@ namespace WebView.Controllers
             return View(Models);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Table(string search, int page = 1, int limit = 5)
+        {
+            var param = new ReqBaseParamDto
+            {
+                Search = search,
+                Page = page,
+                Limit = limit
+            };
+
+            var models = await _modelService.GetMstModels(param);
+            return PartialView("_MasterModelTable", models);
+        }
+
         public IActionResult Create()
         {
             try

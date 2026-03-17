@@ -26,6 +26,20 @@ namespace WebView.Controllers
             return View(Types);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Table(string search, int page = 1, int limit = 5)
+        {
+            var param = new ReqBaseParamDto
+            {
+                Search = search,
+                Page = page,
+                Limit = limit
+            };
+
+            var types = await _typeService.GetMstTypes(param);
+            return PartialView("_MasterTypeTable", types);
+        }
+
         public IActionResult Create()
         {
             try
