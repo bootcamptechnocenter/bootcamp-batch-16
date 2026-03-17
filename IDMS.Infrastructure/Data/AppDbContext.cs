@@ -16,10 +16,17 @@ namespace IDMS.Infrastructure.Data
         public DbSet<MstBrands> MstBrands => Set<MstBrands>();
         public DbSet<MstUser> MstUsers => Set<MstUser>();
         public DbSet<MstTypes> MstTypes => Set<MstTypes>();
+        public DbSet<MstModels> MstModels => Set<MstModels>();
+        public DbSet<MstStocks> MstStocks => Set<MstStocks>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<MstStocks>()
+                .HasOne(x => x.Models)
+                .WithMany()
+                .HasForeignKey(x => x.Model_Id);
         }
     }
 }

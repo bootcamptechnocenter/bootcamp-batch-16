@@ -37,3 +37,16 @@ D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
 D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
 D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
 D:\Training .NET\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.deps.json
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.AssemblyReference.cache
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfoInputs.cache
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.AssemblyInfo.cs
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.csproj.CoreCompileInputs.cache
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.sourcelink.json
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\refint\IDMS.Shared.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\IDMS.Shared.pdb
+D:\CRA\.NET Project\Training .NET\IDMS.Shared\obj\Debug\net10.0\ref\IDMS.Shared.dll

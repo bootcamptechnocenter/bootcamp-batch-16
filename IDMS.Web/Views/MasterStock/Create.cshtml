@@ -1,0 +1,37 @@
+@using IDMS.Modules.Master.Dto.Request
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model ReqCreateMstStockDto
+
+@{
+    ViewData["Title"] = "Create Master Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Master Stock</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label asp-for="ModelId" class="form-label"></label>
+        <select asp-for="ModelId" class="form-select" asp-items="(IEnumerable<SelectListItem>)ViewBag.ModelOptions">
+            <option value="">Select Model</option>
+        </select>
+        <span asp-validation-for="ModelId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="JumlahStock" class="form-label"></label>
+        <input asp-for="JumlahStock" class="form-control" />
+        <span asp-validation-for="JumlahStock" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Harga" class="form-label"></label>
+        <input asp-for="Harga" class="form-control" />
+        <span asp-validation-for="Harga" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

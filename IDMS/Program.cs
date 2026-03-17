@@ -56,6 +56,9 @@ builder.Services.AddScoped<IMstBrandService, MstBrandService>();
 builder.Services.AddScoped<IMstTypeService, MstTypeService>();
 builder.Services.AddScoped<IMstUserService, MstUserService>();
 builder.Services.AddScoped<IJwtService, JwtServices>();
+builder.Services.AddScoped<IMstModelService, MstModelService>();
+builder.Services.AddScoped<IMstStockService, MstStockService>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>

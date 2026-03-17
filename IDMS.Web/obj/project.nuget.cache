@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "43feCDp9O9Y=",
+  "dgSpecHash": "ByeWVV6j3tA=",
   "success": true,
-  "projectFilePath": "D:\\Training .NET\\IDMS.Web\\IDMS.Web.csproj",
+  "projectFilePath": "D:\\CRA\\.NET Project\\Training .NET\\IDMS.Web\\IDMS.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",

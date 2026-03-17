@@ -52,3 +52,21 @@ D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
 D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
 D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
 D:\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+D:\CRA\.NET Project\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
