@@ -8,44 +8,43 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/IDMS.Web.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IDMS.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    @if (User.Identity?.IsAuthenticated == true)
-                    {
-                    <a class="btn btn-outline-danger btn-sm ms-auto" asp-controller="Auth" asp-action="Logout">Logout</a>
-                    }
-                </div>
+<body class="app-shell-body">
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var isHomeActive = string.Equals(currentController, "Home", StringComparison.OrdinalIgnoreCase) && string.Equals(currentAction, "Index", StringComparison.OrdinalIgnoreCase);
+        var isMasterBrandActive = string.Equals(currentController, "MasterBrand", StringComparison.OrdinalIgnoreCase);
+        var isMasterTypeActive = string.Equals(currentController, "MasterType", StringComparison.OrdinalIgnoreCase);
+    }
+
+    <div class="app-shell">
+        <aside class="app-sidebar">
+            <div class="app-sidebar-header">
+                <a class="app-brand" asp-area="" asp-controller="Home" asp-action="Index">IDMS</a>
+                <p class="app-sidebar-subtitle mb-0">Dashboard</p>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+
+            <nav class="nav flex-column app-nav">
+                <a class="nav-link @(isHomeActive ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link @(isMasterBrandActive ? "active" : "")" asp-controller="MasterBrand" asp-action="Index">Master Brand</a>
+                <a class="nav-link @(isMasterTypeActive ? "active" : "")" asp-controller="MasterType" asp-action="Index">Master Type</a>
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a class="nav-link app-nav-logout" asp-controller="Auth" asp-action="Logout">Logout</a>
+                }
+            </nav>
+        </aside>
+
+        <main role="main" class="app-main">
+            <div class="app-main-content">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - IDMS.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

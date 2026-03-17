@@ -34,7 +34,6 @@ D:\Training .NET\IDMS.Web\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\scopedcss\bundle\IDMS.Web.styles.css
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\scopedcss\projectbundle\IDMS.Web.bundle.scp.css
-D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\6a9ylnpv7e-{0}-b9sayid5wm-b9sayid5wm.gz
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\77mpybpuu2-{0}-61n19gt1b8-61n19gt1b8.gz
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\vwja7fh35v-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\fchx5f5vgt-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -115,3 +114,7 @@ D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebToken
 D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
 D:\Training .NET\IDMS.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
 D:\Training .NET\IDMS.Web\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\ae16hkzqbb-{0}-g64cseypms-g64cseypms.gz
+D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\1jgst0nf9e-{0}-17p9pdjmb1-17p9pdjmb1.gz
+D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\s81ct5xqkz-{0}-z1f3u68ax1-z1f3u68ax1.gz
+D:\Training .NET\IDMS.Web\obj\Debug\net10.0\compressed\6a9ylnpv7e-{0}-s1da3r4g0u-s1da3r4g0u.gz

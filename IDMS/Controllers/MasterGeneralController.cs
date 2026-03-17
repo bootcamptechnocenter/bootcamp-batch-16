@@ -17,9 +17,12 @@ namespace IDMS.Controllers
     public class MasterGeneralController : Controller
     {
         private readonly IMstBrandService _service;
-        public MasterGeneralController(IMstBrandService service)
+        private readonly IMstTypeService _typeService;
+
+        public MasterGeneralController(IMstBrandService service, IMstTypeService typeService)
         {
             _service = service;
+            _typeService = typeService;
         }
 
         [HttpGet("brand")]
@@ -71,6 +74,50 @@ namespace IDMS.Controllers
                 null,
                 result ? "brand deleted successfully" : "brand not found"
             ));
+        }
+
+        // --- Type endpoints ---
+
+        [HttpGet("type")]
+        public async Task<ActionResult<ApiResponse<object>>> GetType([FromQuery] ReqBaseParamDto dto)
+        {
+            var result = await _typeService.GetMstType(dto);
+            return Ok(ApiResponse<object>.Success(
+                result.Items,
+                result.Items != null ? "success" : "data not found",
+                result.Pagination
+            ));
+        }
+
+        [HttpGet("type/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetTypeById(int id)
+        {
+            var result = await _typeService.GetMstTypeById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "success" : "data not found"
+            ));
+        }
+
+        [HttpPost("type")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateType([FromBody] ReqCreateMstTypeDto dto)
+        {
+            await _typeService.CreateMstType(dto);
+            return Ok(ApiResponse<object>.Success(null, "type created successfully"));
+        }
+
+        [HttpPut("type/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateType([FromBody] ReqUpdateMstTypeDto dto, int id)
+        {
+            var result = await _typeService.UpdateMstType(dto, id);
+            return Ok(ApiResponse<object>.Success(null, result ? "type updated successfully" : "type not found"));
+        }
+
+        [HttpDelete("type/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteType(int id)
+        {
+            var result = await _typeService.DeleteMstType(id);
+            return Ok(ApiResponse<object>.Success(null, result ? "type deleted successfully" : "type not found"));
         }
     }
 }

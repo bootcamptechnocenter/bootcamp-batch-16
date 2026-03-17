@@ -40,6 +40,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IMasterBrandService, MasterBrandService>();
+builder.Services.AddScoped<IMasterTypeService, MasterTypeService>();
 builder.Services.AddScoped<IAuthClientService, AuthClientService>();
 
 // builder.Services.AddDbContext<AppDbContext>(options =>

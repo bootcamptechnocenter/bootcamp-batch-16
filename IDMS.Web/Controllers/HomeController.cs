@@ -1,11 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using IDMS.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IDMS.Web.Controllers;
 
 public class HomeController : Controller
 {
+    [Authorize]
     public IActionResult Index()
     {
         return View();

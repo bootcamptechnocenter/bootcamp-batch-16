@@ -25,14 +25,27 @@ namespace IDMS.Web.Controllers
 
         public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
         {
-            var param = new ReqBaseParamDto
+            var param = BuildParam(search, page, limit);
+            var result = await _service.GetMstBrand(param);
+            return View(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Table(string search, int page = 1, int limit = 10)
+        {
+            var param = BuildParam(search, page, limit);
+            var result = await _service.GetMstBrand(param);
+            return PartialView("_MasterBrandTable", result);
+        }
+
+        private static ReqBaseParamDto BuildParam(string search, int page, int limit)
+        {
+            return new ReqBaseParamDto
             {
                 Search = search,
                 Page = page,
                 Limit = limit
             };
-            var result = await _service.GetMstBrand(param);
-            return View(result);
         }
 
         [HttpGet]
