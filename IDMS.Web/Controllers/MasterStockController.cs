@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
 using IDMS.Shared.Entities;
 using IDMS.Web.Services;
@@ -12,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace IDMS.Web.Controllers
 {
     [Authorize]
-    public class MasterTypeController : Controller
+    public class MasterStockController : Controller
     {
-        private readonly IMasterTypeService _service;
+        private readonly IMasterStockService _service;
 
-        public MasterTypeController(IMasterTypeService service)
+        public MasterStockController(IMasterStockService service)
         {
             _service = service;
         }
@@ -29,7 +24,8 @@ namespace IDMS.Web.Controllers
                 Page = page,
                 Limit = limit
             };
-            var result = await _service.GetMstType(param);
+
+            var result = await _service.GetMstStock(param);
             return View(result);
         }
 
@@ -41,48 +37,49 @@ namespace IDMS.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ReqCreateMstTypeDto model)
+        public async Task<IActionResult> Create(ReqCreateMstStockDto model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _service.CreateMstType(model);
-                return RedirectToAction(nameof(Index));
+                return View(model);
             }
-            return View(model);
+
+            await _service.CreateMstStock(model);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var mstType = await _service.GetMstTypeById(id);
-            if (mstType == null)
+            var mstStock = await _service.GetMstStockById(id);
+            if (mstStock == null)
             {
                 return NotFound();
             }
 
-            ViewBag.TypeId = id;
-            var model = new ReqUpdateMstTypeDto
+            ViewBag.StockId = id;
+            var model = new ReqUpdateMstStockDto
             {
-                BrandId = mstType.BrandId,
-                Code = mstType.Code,
-                Name = mstType.Name,
-                IsActive = mstType.IsActive
+                ModelId = mstStock.ModelId,
+                JumlahStock = mstStock.JumlahStock,
+                Harga = mstStock.Harga
             };
+
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ReqUpdateMstTypeDto model)
+        public async Task<IActionResult> Edit(int id, ReqUpdateMstStockDto model)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.TypeId = id;
+                ViewBag.StockId = id;
                 return View(model);
             }
 
             model.UpdatedBy = User.Identity?.Name ?? "system";
-            var updated = await _service.UpdateMstType(id, model);
+            var updated = await _service.UpdateMstStock(id, model);
             if (!updated)
             {
                 return NotFound();
@@ -96,14 +93,8 @@ namespace IDMS.Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var deletedBy = User.Identity?.Name ?? "system";
-            await _service.DeleteMstType(id, deletedBy);
+            await _service.DeleteMstStock(id, deletedBy);
             return RedirectToAction(nameof(Index));
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
         }
     }
 }

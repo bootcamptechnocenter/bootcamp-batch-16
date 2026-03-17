@@ -10,10 +10,12 @@ namespace IDMS.Modules.Master.Services.Impl
     public class MstStockService : IMstStockService
     {
         private readonly AppDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public MstStockService(AppDbContext context)
+        public MstStockService(AppDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<PagedResult<ResMstStockDto>> GetMstStock(ReqBaseParamDto dto)
@@ -79,13 +81,14 @@ namespace IDMS.Modules.Master.Services.Impl
 
         public async Task CreateMstStock(ReqCreateMstStockDto dto)
         {
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
             var stock = new MstStock
             {
                 ModelId = dto.ModelId,
                 JumlahStock = dto.JumlahStock,
                 Harga = dto.Harga,
                 CreatedAt = DateTime.Now,
-                CreatedBy = "Admin"
+                CreatedBy = string.IsNullOrWhiteSpace(actor) ? "Admin" : actor
             };
 
             _context.MstStocks.Add(stock);
@@ -96,12 +99,14 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var stock = await _context.MstStocks.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (stock == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             stock.ModelId = dto.ModelId;
             stock.JumlahStock = dto.JumlahStock;
             stock.Harga = dto.Harga;
             stock.UpdatedAt = DateTime.Now;
-            stock.UpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            var fallbackUpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            stock.UpdatedBy = string.IsNullOrWhiteSpace(actor) ? fallbackUpdatedBy : actor;
 
             _context.MstStocks.Update(stock);
             await _context.SaveChangesAsync();
@@ -112,9 +117,11 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var stock = await _context.MstStocks.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (stock == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             stock.DeletedAt = DateTime.Now;
-            stock.DeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            var fallbackDeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            stock.DeletedBy = string.IsNullOrWhiteSpace(actor) ? fallbackDeletedBy : actor;
 
             _context.MstStocks.Update(stock);
             await _context.SaveChangesAsync();

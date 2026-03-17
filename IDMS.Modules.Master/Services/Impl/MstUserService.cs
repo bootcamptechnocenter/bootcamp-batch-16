@@ -12,16 +12,19 @@ namespace IDMS.Modules.Master.Services.Impl
     {
         private readonly AppDbContext _context;
         private readonly IJwtService _jwtService;
+        private readonly ICurrentUserService _currentUserService;
 
-        public MstUserService(AppDbContext context, IJwtService jwtService)
+        public MstUserService(AppDbContext context, IJwtService jwtService, ICurrentUserService currentUserService)
         {
             _context = context;
             _jwtService = jwtService;
+            _currentUserService = currentUserService;
         }
 
         public async Task<ResMstUserDto?> CreateMstUser(ReqCreateMstUserDto dto)
         {
             var email = dto.Email.Trim();
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             var isEmailExists = await _context.MstUsers.AnyAsync(x => x.Email == email);
             if (isEmailExists)
@@ -34,7 +37,7 @@ namespace IDMS.Modules.Master.Services.Impl
                 Email = email,
                 Password = HashPassword(dto.Password),
                 FullName = dto.FullName,
-                CreatedBy = "Admin",
+                CreatedBy = string.IsNullOrWhiteSpace(actor) ? "Admin" : actor,
                 CreatedAt = DateTime.Now
             };
 

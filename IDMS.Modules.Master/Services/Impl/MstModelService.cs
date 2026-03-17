@@ -10,10 +10,12 @@ namespace IDMS.Modules.Master.Services.Impl
     public class MstModelService : IMstModelService
     {
         private readonly AppDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public MstModelService(AppDbContext context)
+        public MstModelService(AppDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<PagedResult<ResMstModelDto>> GetMstModel(ReqBaseParamDto dto)
@@ -83,6 +85,7 @@ namespace IDMS.Modules.Master.Services.Impl
 
         public async Task CreateMstModel(ReqCreateMstModelDto dto)
         {
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
             var model = new MstModels
             {
                 TypeId = dto.TypeId,
@@ -91,7 +94,7 @@ namespace IDMS.Modules.Master.Services.Impl
                 Year = dto.Year,
                 IsActive = dto.IsActive,
                 CreatedAt = DateTime.Now,
-                CreatedBy = "Admin"
+                CreatedBy = string.IsNullOrWhiteSpace(actor) ? "Admin" : actor
             };
 
             _context.MstModels.Add(model);
@@ -102,6 +105,7 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var model = await _context.MstModels.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (model == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             model.TypeId = dto.TypeId;
             model.Code = dto.Code;
@@ -109,7 +113,8 @@ namespace IDMS.Modules.Master.Services.Impl
             model.Year = dto.Year;
             model.IsActive = dto.IsActive;
             model.UpdatedAt = DateTime.Now;
-            model.UpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            var fallbackUpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            model.UpdatedBy = string.IsNullOrWhiteSpace(actor) ? fallbackUpdatedBy : actor;
 
             _context.MstModels.Update(model);
             await _context.SaveChangesAsync();
@@ -120,9 +125,11 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var model = await _context.MstModels.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (model == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             model.DeletedAt = DateTime.Now;
-            model.DeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            var fallbackDeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            model.DeletedBy = string.IsNullOrWhiteSpace(actor) ? fallbackDeletedBy : actor;
 
             _context.MstModels.Update(model);
             await _context.SaveChangesAsync();

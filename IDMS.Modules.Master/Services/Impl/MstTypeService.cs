@@ -10,10 +10,12 @@ namespace IDMS.Modules.Master.Services.Impl
     public class MstTypeService : IMstTypeService
     {
         private readonly AppDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public MstTypeService(AppDbContext context)
+        public MstTypeService(AppDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<PagedResult<ResMstTypeDto>> GetMstType(ReqBaseParamDto dto)
@@ -81,6 +83,7 @@ namespace IDMS.Modules.Master.Services.Impl
 
         public async Task CreateMstType(ReqCreateMstTypeDto dto)
         {
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
             var type = new MstTypes
             {
                 BrandId = dto.BrandId,
@@ -88,7 +91,7 @@ namespace IDMS.Modules.Master.Services.Impl
                 Name = dto.Name,
                 IsActive = dto.IsActive,
                 CreatedAt = DateTime.Now,
-                CreatedBy = "Admin"
+                CreatedBy = string.IsNullOrWhiteSpace(actor) ? "Admin" : actor
             };
 
             _context.MstTypes.Add(type);
@@ -99,13 +102,15 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var type = await _context.MstTypes.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (type == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             type.BrandId = dto.BrandId;
             type.Code = dto.Code;
             type.Name = dto.Name;
             type.IsActive = dto.IsActive;
             type.UpdatedAt = DateTime.Now;
-            type.UpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            var fallbackUpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            type.UpdatedBy = string.IsNullOrWhiteSpace(actor) ? fallbackUpdatedBy : actor;
 
             _context.MstTypes.Update(type);
             await _context.SaveChangesAsync();
@@ -116,9 +121,11 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var type = await _context.MstTypes.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (type == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             type.DeletedAt = DateTime.Now;
-            type.DeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            var fallbackDeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            type.DeletedBy = string.IsNullOrWhiteSpace(actor) ? fallbackDeletedBy : actor;
 
             _context.MstTypes.Update(type);
             await _context.SaveChangesAsync();

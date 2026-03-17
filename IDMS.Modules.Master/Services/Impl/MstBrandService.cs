@@ -15,9 +15,12 @@ namespace IDMS.Modules.Master.Services.Impl
     public class MstBrandService : IMstBrandService
     {
         private readonly AppDbContext _context;
-        public MstBrandService(AppDbContext context)
+        private readonly ICurrentUserService _currentUserService;
+
+        public MstBrandService(AppDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
         public async Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto)
         {
@@ -79,13 +82,14 @@ namespace IDMS.Modules.Master.Services.Impl
 
         public async Task CreateMstBrand(ReqCreateMstBrancDto dto)
         {
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
             var brand = new MstBrands
             {
                 Code = dto.Code,
                 Name = dto.Name,
                 IsActive = dto.IsActive,
                 CreatedAt = DateTime.Now,
-                CreatedBy = "Admin"
+                CreatedBy = string.IsNullOrWhiteSpace(actor) ? "Admin" : actor
             };
             _context.MstBrands.Add(brand);
             await _context.SaveChangesAsync();
@@ -95,12 +99,14 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (brand == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             brand.Code = dto.Code;
             brand.Name = dto.Name;
             brand.IsActive = dto.IsActive;
             brand.UpdatedAt = DateTime.Now;
-            brand.UpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            var fallbackUpdatedBy = string.IsNullOrWhiteSpace(dto.UpdatedBy) ? "Admin" : dto.UpdatedBy;
+            brand.UpdatedBy = string.IsNullOrWhiteSpace(actor) ? fallbackUpdatedBy : actor;
 
             _context.MstBrands.Update(brand);
             await _context.SaveChangesAsync();
@@ -111,9 +117,11 @@ namespace IDMS.Modules.Master.Services.Impl
         {
             var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             if (brand == null) return false;
+            var actor = await _currentUserService.GetCurrentUserFullNameAsync();
 
             brand.DeletedAt = DateTime.Now;
-            brand.DeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            var fallbackDeletedBy = string.IsNullOrWhiteSpace(deletedBy) ? "Admin" : deletedBy;
+            brand.DeletedBy = string.IsNullOrWhiteSpace(actor) ? fallbackDeletedBy : actor;
 
             _context.MstBrands.Update(brand);
             await _context.SaveChangesAsync();

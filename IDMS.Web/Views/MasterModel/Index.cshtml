@@ -1,11 +1,9 @@
 @using IDMS.Modules.Master.Dto.Response
-@using IDMS.Modules.Master.Services
 @using IDMS.Shared.Entities
-
-@model PagedResult<ResMstTypeDto>
+@model PagedResult<ResMstModelDto>
 
 @{
-    ViewData["Title"] = "Master Type";
+    ViewData["Title"] = "Master Model";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var currentPage = Model.Pagination?.CurrentPage ?? 1;
@@ -16,10 +14,11 @@
     var currentSearch = Context.Request.Query["search"].ToString();
 }
 
-<h2>Master Type</h2>
+<h2>Master Model</h2>
+
 <div class="d-flex justify-content-between align-items-end mb-3 gap-2 flex-wrap">
     <form method="get" asp-action="Index" class="d-flex gap-2">
-        <input type="text" name="search" class="form-control" placeholder="Search type..." value="@currentSearch" />
+        <input type="text" name="search" class="form-control" placeholder="Search model..." value="@currentSearch" />
         <input type="hidden" name="limit" value="@limit" />
         <button type="submit" class="btn btn-outline-primary">Search</button>
         <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
@@ -32,9 +31,10 @@
     <thead>
         <tr>
             <th>No</th>
-            <th>Brand</th>
-            <th>Type Code</th>
-            <th>Type Name</th>
+            <th>Type</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Year</th>
             <th>Active</th>
             <th>Actions</th>
         </tr>
@@ -46,15 +46,16 @@
             {
                 <tr>
                     <td>@rowNo</td>
-                    <td>@item.BrandName</td>
+                    <td>@item.TypeName</td>
                     <td>@item.Code</td>
                     <td>@item.Name</td>
+                    <td>@item.Year</td>
                     <td>@(item.IsActive ? "Active" : "Inactive")</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
                         <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
                             @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this type?')">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this model?')">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -64,7 +65,7 @@
         else
         {
             <tr>
-                <td colspan="6" class="text-center">No data available.</td>
+                <td colspan="7" class="text-center">No data available.</td>
             </tr>
         }
     </tbody>

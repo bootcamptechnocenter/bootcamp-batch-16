@@ -4,14 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using IDMS.Modules.Master.Dto.Request;
-using IDMS.Modules.Master.Services;
 using IDMS.Shared.Entities;
 using IDMS.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace IDMS.Web.Controllers
 {
+    [Authorize]
         public class MasterBrandController : Controller
     {
         private readonly IMasterBrandService _service;
@@ -39,6 +39,7 @@ namespace IDMS.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ReqCreateMstBrancDto model)
         {
             if (ModelState.IsValid)
@@ -69,6 +70,7 @@ namespace IDMS.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ReqUpdateMstBrancDto model)
         {
             if (!ModelState.IsValid)
@@ -77,12 +79,22 @@ namespace IDMS.Web.Controllers
                 return View(model);
             }
 
+            model.UpdatedBy = User.Identity?.Name ?? "system";
             var updated = await _service.UpdateMstBrand(id, model);
             if (!updated)
             {
                 return NotFound();
             }
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedBy = User.Identity?.Name ?? "system";
+            await _service.DeleteMstBrand(id, deletedBy);
             return RedirectToAction(nameof(Index));
         }
 
