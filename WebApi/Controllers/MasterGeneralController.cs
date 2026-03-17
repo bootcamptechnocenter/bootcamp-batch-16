@@ -106,6 +106,16 @@ namespace WebApi.Controllers
                 "Type updated successfully"
             ));
         }
+        [HttpPatch("types/{id}/toggle-active")]
+        public async Task<ActionResult<ApiResponse<object>>> ToggleActiveType(int id)
+        {
+            await _typeService.ToggleActiveMstType(id);
+            return Ok(ApiResponse<object>.Success(
+                null,
+                "Type active status updated successfully"
+            ));
+        }
+
         [HttpDelete("types/{id}")]
         public async Task<ActionResult<ApiResponse<object>>> DeleteType(int id)
         {

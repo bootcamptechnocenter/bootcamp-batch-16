@@ -98,5 +98,22 @@ namespace WebView.Services.Impl
 
             return Task.FromResult(result?.Data ?? new ResMstTypeDto());
         }
+
+        public async Task ToggleActiveMstType(int id)
+        {
+            var client = CreateClient();
+
+            var response = await client.PatchAsync($"master/general/types/{id}/toggle-active", null);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var fail = JsonSerializer.Deserialize<ApiClientResponse<object>>(result, _jsonOptions);
+                throw new Exception(fail?.Message ?? "Unknown error");
+            }
+
+            return;
+        }
     }
 }

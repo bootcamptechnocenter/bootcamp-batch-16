@@ -65,6 +65,7 @@
             const indexUrl = grid.dataset.indexUrl || window.location.pathname;
             let debounceTimer;
             let requestCounter = 0;
+            let currentPage = parseInt(new URLSearchParams(window.location.search).get('page') || '1', 10) || 1;
 
             const updateUrl = (page, searchValue, limitValue) => {
                 const params = new URLSearchParams();
@@ -104,6 +105,7 @@
 
                         grid.innerHTML = html;
                         updateUrl(page, searchValue, limitValue);
+                        currentPage = page;
                     });
             };
 
@@ -157,6 +159,35 @@
             });
 
             grid.addEventListener('submit', (e) => {
+                const toggleForm = e.target.closest('.toggle-active-form');
+                if (toggleForm) {
+                    e.preventDefault();
+                    const isActive = toggleForm.dataset.isActive === 'true';
+                    const action = isActive ? 'deactivate' : 'activate';
+                    if (!confirm(`Are you sure you want to ${action} this type?`)) {
+                        return;
+                    }
+
+                    fetch(toggleForm.action, {
+                        method: 'POST',
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                        body: new FormData(toggleForm)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (!data.success) {
+                                throw new Error(data.message || 'Unable to update status.');
+                            }
+
+                            loadGrid(currentPage, searchInput.value.trim(), limitSelect.value);
+                        })
+                        .catch(error => {
+                            alert(error.message);
+                        });
+
+                    return;
+                }
+
                 const form = e.target.closest('.delete-form');
                 if (!form) return;
 

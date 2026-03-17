@@ -33,14 +33,20 @@
                     <td>@item.Code</td>
                     <td>@item.Name</td>
                     <td class="text-center">
-                        @if (item.IsActive)
-                        {
-                            <span class="badge bg-success">Yes</span>
-                        }
-                        else
-                        {
-                            <span class="badge bg-danger">No</span>
-                        }
+                        <form asp-action="ToggleActive" asp-route-id="@item.Id" method="post" class="toggle-active-form"
+                              data-is-active="@(item.IsActive ? "true" : "false")">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-link p-0 toggle-active-btn" style="border:none;background:none;">
+                                @if (item.IsActive)
+                                {
+                                    <span class="badge bg-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">No</span>
+                                }
+                            </button>
+                        </form>
                     </td>
                     <td>
                         <div class="d-flex gap-2">

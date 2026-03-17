@@ -139,6 +139,19 @@ namespace WebApi.Modules.Master.Services.Impl
             };
         }
 
+        public async Task ToggleActiveMstType(int id)
+        {
+            var type = await _context.MstTypes
+                .Where(x => x.Id == id && x.DeletedAt == null)
+                .FirstOrDefaultAsync() ?? throw new Exception("Type not found");
+
+            type.IsActive = !type.IsActive;
+            type.UpdatedAt = DateTime.Now;
+            type.UpdatedBy = "System";
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteMstType(int id)
         {
             var type = await _context.MstTypes

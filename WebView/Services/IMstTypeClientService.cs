@@ -10,6 +10,7 @@ namespace WebView.Services
         Task<ResMstTypeDto> GetMstTypeById(int id);
         Task<ResMstTypeDto> CreateMstType(ReqMstTypeDto dto);
         Task<ResMstTypeDto> UpdateMstType(int id, ReqMstTypeUpdateDto dto);
+        Task ToggleActiveMstType(int id);
         Task DeleteMstType(int id);
     }
 }

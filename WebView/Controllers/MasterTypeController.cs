@@ -151,5 +151,26 @@ namespace WebView.Controllers
         {
             return View("Error!");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ToggleActive(int id)
+        {
+            try
+            {
+                var type = await _typeService.GetMstTypeById(id);
+                var updateDto = new ReqMstTypeUpdateDto
+                {
+                    IsActive = !type.IsActive
+                };
+                await _typeService.UpdateMstType(id, updateDto);
+                return Json(new { success = true, isActive = updateDto.IsActive });
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
     }
 }
