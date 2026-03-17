@@ -8,6 +8,7 @@ using IDMS.Shared.Entities;
 using IDMS.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IDMS.Web.Controllers
 {
@@ -15,10 +16,12 @@ namespace IDMS.Web.Controllers
     public class MasterTypeController : Controller
     {
         private readonly IMasterTypeService _service;
+        private readonly IMasterBrandService _brandService;
 
-        public MasterTypeController(IMasterTypeService service)
+        public MasterTypeController(IMasterTypeService service, IMasterBrandService brandService)
         {
             _service = service;
+            _brandService = brandService;
         }
 
         public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
@@ -34,8 +37,9 @@ namespace IDMS.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await LoadBrandOptions();
             return View();
         }
 
@@ -48,7 +52,26 @@ namespace IDMS.Web.Controllers
                 await _service.CreateMstType(model);
                 return RedirectToAction(nameof(Index));
             }
+
+            await LoadBrandOptions(model.BrandId);
             return View(model);
+        }
+
+        private async Task LoadBrandOptions(int? selectedBrandId = null)
+        {
+            var brands = await _brandService.GetMstBrand(new ReqBaseParamDto
+            {
+                Page = 1,
+                Limit = 1000,
+                Search = string.Empty
+            });
+
+            ViewBag.BrandOptions = brands.Items.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.Name} ({x.Code})",
+                Selected = selectedBrandId.HasValue && x.Id == selectedBrandId.Value
+            }).ToList();
         }
 
         [HttpGet]

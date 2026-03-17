@@ -3,6 +3,7 @@ using IDMS.Shared.Entities;
 using IDMS.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IDMS.Web.Controllers
 {
@@ -10,10 +11,12 @@ namespace IDMS.Web.Controllers
     public class MasterStockController : Controller
     {
         private readonly IMasterStockService _service;
+        private readonly IMasterModelService _modelService;
 
-        public MasterStockController(IMasterStockService service)
+        public MasterStockController(IMasterStockService service, IMasterModelService modelService)
         {
             _service = service;
+            _modelService = modelService;
         }
 
         public async Task<IActionResult> Index(string search, int page = 1, int limit = 10)
@@ -30,8 +33,9 @@ namespace IDMS.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await LoadModelOptions();
             return View();
         }
 
@@ -41,11 +45,29 @@ namespace IDMS.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                await LoadModelOptions(model.ModelId);
                 return View(model);
             }
 
             await _service.CreateMstStock(model);
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task LoadModelOptions(int? selectedModelId = null)
+        {
+            var models = await _modelService.GetMstModel(new ReqBaseParamDto
+            {
+                Page = 1,
+                Limit = 1000,
+                Search = string.Empty
+            });
+
+            ViewBag.ModelOptions = models.Items.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.Name} ({x.Code})",
+                Selected = selectedModelId.HasValue && x.Id == selectedModelId.Value
+            }).ToList();
         }
 
         [HttpGet]

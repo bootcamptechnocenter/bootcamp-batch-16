@@ -2,6 +2,7 @@
 using System.Net;
 using IDMS.Web.Services;
 using IDMS.Web.Services.Impl;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 // using Microsoft.EntityFrameworkCore;
 
@@ -69,6 +70,26 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+    {
+        context.Session.Remove("Token");
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        context.Response.Redirect("/Auth/Login");
+    }
+    catch (UnauthorizedAccessException)
+    {
+        context.Session.Remove("Token");
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        context.Response.Redirect("/Auth/Login");
+    }
+});
 
 app.MapStaticAssets();
 
