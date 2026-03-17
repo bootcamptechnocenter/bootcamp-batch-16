@@ -44,59 +44,67 @@ namespace WebView.Services.Impl
             };
         }
 
-        public Task<ResMstStockDto> GetMstStockById(int id)
+        public async Task<ResMstStockDto> GetMstStockById(int id)
         {
             var client = CreateClient();
-            var response = client.GetAsync($"master/general/stocks/{id}").Result;
+            var response = await client.GetAsync($"master/general/stocks/{id}");
 
             response.EnsureSuccessStatusCode();
 
-            var content = response.Content.ReadAsStringAsync().Result;
+            var content = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<ApiClientResponse<ResMstStockDto>>(content, _jsonOptions);
 
-            return Task.FromResult(result?.Data ?? new ResMstStockDto());
+            return result?.Data ?? new ResMstStockDto();
         }
 
-        public Task<ResMstStockDto> CreateMstStock(ReqMstStockDto dto)
+        public async Task<ResMstStockDto> CreateMstStock(ReqMstStockDto dto)
         {
             var client = CreateClient();
 
             var payload = JsonSerializer.Serialize(dto);
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
-            var response = client.PostAsync("master/general/stocks", content).Result;
+            var response = await client.PostAsync("master/general/stocks", content);
 
-            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
 
-            var responseBody = response.Content.ReadAsStringAsync().Result;
-            var result = JsonSerializer.Deserialize<ApiClientResponse<ResMstStockDto>>(responseBody, _jsonOptions);
+            if (!response.IsSuccessStatusCode)
+            {
+                var fail = JsonSerializer.Deserialize<ApiClientResponse<object>>(result, _jsonOptions);
+                throw new Exception(fail?.Message ?? "Unknown error");
+            }
 
-            return Task.FromResult(result?.Data ?? new ResMstStockDto());
+            var success = JsonSerializer.Deserialize<ApiClientResponse<ResMstStockDto>>(result, _jsonOptions);
+            return success?.Data ?? new ResMstStockDto();
         }
 
-        public Task<ResMstStockDto> UpdateMstStock(int id, ReqMstStockUpdateDto dto)
+        public async Task<ResMstStockDto> UpdateMstStock(int id, ReqMstStockUpdateDto dto)
         {
             var client = CreateClient();
 
             var payload = JsonSerializer.Serialize(dto);
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
-            var response = client.PutAsync($"master/general/stocks/{id}", content).Result;
+            var response = await client.PutAsync($"master/general/stocks/{id}", content);
 
-            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
 
-            var responseBody = response.Content.ReadAsStringAsync().Result;
-            var result = JsonSerializer.Deserialize<ApiClientResponse<ResMstStockDto>>(responseBody, _jsonOptions);
+            if (!response.IsSuccessStatusCode)
+            {
+                var fail = JsonSerializer.Deserialize<ApiClientResponse<object>>(result, _jsonOptions);
+                throw new Exception(fail?.Message ?? "Unknown error");
+            }
 
-            return Task.FromResult(result?.Data ?? new ResMstStockDto());
+            var success = JsonSerializer.Deserialize<ApiClientResponse<ResMstStockDto>>(result, _jsonOptions);
+            return success?.Data ?? new ResMstStockDto();
         }
 
-        public Task DeleteMstStock(int id)
+        public async Task DeleteMstStock(int id)
         {
             var client = CreateClient();
-            var response = client.DeleteAsync($"master/general/stocks/{id}").Result;
+            var response = await client.DeleteAsync($"master/general/stocks/{id}");
 
             response.EnsureSuccessStatusCode();
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
 }

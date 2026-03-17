@@ -57,7 +57,7 @@ namespace WebView.Controllers
             catch (Exception ex)
             {
                 ViewBag.Models = new List<SelectListItem>();
-                ModelState.AddModelError("", $"Error fetching models: {ex.Message}");
+                TempData["ErrorMessage"] = ex.Message;
             }
 
             return View();
@@ -81,7 +81,7 @@ namespace WebView.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", $"Error creating stock: {ex.Message}");
+                TempData["ErrorMessage"] = ex.Message;
                 ViewBag.Models = await BuildModelOptions();
                 return View(dto);
             }
@@ -104,7 +104,7 @@ namespace WebView.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Stock not found: {ex.Message}";
+                TempData["ErrorMessage"] = ex.Message;
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -128,7 +128,7 @@ namespace WebView.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", $"Error updating stock: {ex.Message}");
+                TempData["ErrorMessage"] = ex.Message;
                 ViewBag.StockId = id;
                 ViewBag.Models = await BuildModelOptions();
                 return View(dto);
@@ -146,7 +146,7 @@ namespace WebView.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error deleting stock: {ex.Message}";
+                TempData["ErrorMessage"] = ex.Message;
             }
 
             return RedirectToAction(nameof(Index));
