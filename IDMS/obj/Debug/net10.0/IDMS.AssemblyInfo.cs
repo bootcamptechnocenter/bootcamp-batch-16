@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IDMS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+842466fc37726601cd78cb6762656484581e8671")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63a90ee19491f09a694f0f5c7f0bc6b2c8f4ef14")]
 [assembly: System.Reflection.AssemblyProductAttribute("IDMS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IDMS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

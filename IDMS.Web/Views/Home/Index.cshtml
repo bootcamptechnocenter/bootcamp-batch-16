@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card shadow text-center p-3">
+            <div class="card-body">
+                <h5 class="card-title">Master Brand</h5>
+                <p class="card-text">Manage your master brand data.</p>
+                <a asp-controller="MasterBrand" asp-action="Index" class="btn btn-primary">Go to Master Brand</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow text-center p-3">
+            <div class="card-body">
+                <h5 class="card-title">Master Stock</h5>
+                <p class="card-text">Manage your master stock data.</p>
+                <a asp-controller="MasterStock" asp-action="Index" class="btn btn-primary">Go to Master Stock</a>
+            </div>
+        </div>
+    </div>
+</div>

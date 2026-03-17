@@ -40,6 +40,7 @@ namespace IDMS.Infrastructure.Configurations
 
             builder.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")
+                .HasColumnType("timestamp")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
             builder.Property(e => e.CreatedBy)
@@ -48,7 +49,8 @@ namespace IDMS.Infrastructure.Configurations
                .HasMaxLength(100);
 
             builder.Property(e => e.UpdatedAt)
-               .HasColumnName("updated_at");
+               .HasColumnName("updated_at")
+               .HasColumnType("timestamp");
 
             builder.Property(e => e.UpdatedBy)
                .HasColumnName("updated_by")
@@ -56,7 +58,8 @@ namespace IDMS.Infrastructure.Configurations
                .HasMaxLength(100);
 
             builder.Property(e => e.DeletedAt)
-               .HasColumnName("deleted_at");
+               .HasColumnName("deleted_at")
+               .HasColumnType("timestamp");
 
             builder.Property(e => e.DeletedBy)
                .HasColumnName("deleted_by")
