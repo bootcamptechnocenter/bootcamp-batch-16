@@ -239,3 +239,12 @@ D:\Training .NET\idms\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspace
 D:\Training .NET\idms\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Training .NET\idms\bin\Debug\net10.0\BCrypt.Net-Next.dll
 D:\Training .NET\IDMS\bin\Debug\net10.0\IDMS.exe
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.csproj.AssemblyReference.cache
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.AssemblyInfoInputs.cache
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.AssemblyInfo.cs
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.csproj.CoreCompileInputs.cache
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User.DESKTOP-M317VJV\Documents\TechnoCenter\TrainingDotnet\IDMS\obj\Debug\net10.0\IDMS.sourcelink.json

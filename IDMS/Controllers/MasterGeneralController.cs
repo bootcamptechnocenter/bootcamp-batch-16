@@ -18,11 +18,13 @@ namespace IDMS.Controllers
     {
         private readonly IMstBrandService _service;
         private readonly IMstTypeService _typeService;
+        private readonly IMstModelService _modelService;
 
-        public MasterGeneralController(IMstBrandService service, IMstTypeService typeService)
+        public MasterGeneralController(IMstBrandService service, IMstTypeService typeService, IMstModelService modelService)
         {
             _service = service;
             _typeService = typeService;
+            _modelService = modelService;
         }
 
         [HttpGet("brand")]
@@ -118,6 +120,50 @@ namespace IDMS.Controllers
         {
             var result = await _typeService.DeleteMstType(id);
             return Ok(ApiResponse<object>.Success(null, result ? "type deleted successfully" : "type not found"));
+        }
+
+        // --- Model endpoints ---
+
+        [HttpGet("model")]
+        public async Task<ActionResult<ApiResponse<object>>> GetModel([FromQuery] ReqBaseParamDto dto)
+        {
+            var result = await _modelService.GetMstModel(dto);
+            return Ok(ApiResponse<object>.Success(
+                result.Items,
+                result.Items != null ? "success" : "data not found",
+                result.Pagination
+            ));
+        }
+
+        [HttpGet("model/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetModelById(int id)
+        {
+            var result = await _modelService.GetMstModelById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "success" : "data not found"
+            ));
+        }
+
+        [HttpPost("model")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateModel([FromBody] ReqCreateMstModelDto dto)
+        {
+            await _modelService.CreateMstModel(dto);
+            return Ok(ApiResponse<object>.Success(null, "model created successfully"));
+        }
+
+        [HttpPut("model/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateModel([FromBody] ReqUpdateMstModelDto dto, int id)
+        {
+            var result = await _modelService.UpdateMstModel(dto, id);
+            return Ok(ApiResponse<object>.Success(null, result ? "model updated successfully" : "model not found"));
+        }
+
+        [HttpDelete("model/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteModel(int id)
+        {
+            var result = await _modelService.DeleteMstModel(id);
+            return Ok(ApiResponse<object>.Success(null, result ? "model deleted successfully" : "model not found"));
         }
     }
 }
