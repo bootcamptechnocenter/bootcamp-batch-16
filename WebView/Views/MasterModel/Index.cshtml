@@ -20,11 +20,7 @@
             <input id="masterModelSearch" type="text" name="search" class="form-control" placeholder="Search by code or name..."
                    value="@currentSearch" />
             <input type="hidden" name="limit" value="@currentLimit" />
-            <button type="submit" class="btn btn-primary">Search</button>
-            @if (!string.IsNullOrEmpty(currentSearch))
-            {
-                <a id="masterModelClear" href="@Url.Action("Index", new { limit = currentLimit })" class="btn btn-secondary">Clear</a>
-            }
+            <button type="button" id="masterModelResetBtn" class="btn btn-primary">Reset</button>
         </form>
     </div>
     <div class="col-md-4 text-end">
@@ -59,7 +55,7 @@
             const limitForm = document.getElementById('masterModelLimitForm');
             const searchInput = document.getElementById('masterModelSearch');
             const limitSelect = document.getElementById('masterModelLimit');
-            const clearLink = document.getElementById('masterModelClear');
+            const resetButton = document.getElementById('masterModelResetBtn');
 
             if (!grid || !searchInput || !limitSelect) {
                 return;
@@ -132,9 +128,8 @@
 
             limitSelect.addEventListener('change', () => loadGrid(1));
 
-            if (clearLink) {
-                clearLink.addEventListener('click', (e) => {
-                    e.preventDefault();
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
                     searchInput.value = '';
                     loadGrid(1, '', limitSelect.value);
                 });
