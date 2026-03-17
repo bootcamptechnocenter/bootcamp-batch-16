@@ -147,7 +147,7 @@
                 const url = new URL(link.href, window.location.origin);
                 const page = parseInt(url.searchParams.get('page') || '1', 10);
                 const searchValue = url.searchParams.get('search') || '';
-                const limitValue = url.searchParams.get('limit') || limitSelect.value || '10';
+                const limitValue = url.searchParams.get('limit') || limitSelect.value || '5';
 
                 searchInput.value = searchValue;
                 limitSelect.value = limitValue;
