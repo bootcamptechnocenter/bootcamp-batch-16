@@ -83,10 +83,10 @@ namespace IDMS.Web.Services.Impl
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteMstBrand(int id)
+        public async Task<bool> DeleteMstBrand(int id, string deletedBy)
         {
             var client = CreateClient();
-            var response = await client.DeleteAsync($"master/general/brand/{id}");
+            var response = await client.DeleteAsync($"master/general/brand/{id}?deletedBy={Uri.EscapeDataString(deletedBy)}");
             return response.IsSuccessStatusCode;
         }
     }

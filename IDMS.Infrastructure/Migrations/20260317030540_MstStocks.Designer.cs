@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IDMS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260313022751_UpdateMstUserConfiguration")]
-    partial class UpdateMstUserConfiguration
+    [Migration("20260317030540_MstStocks")]
+    partial class MstStocks
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,6 +83,140 @@ namespace IDMS.Infrastructure.Migrations
                         .HasName("mst_brands_pkey");
 
                     b.ToTable("mst_brands", (string)null);
+                });
+
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstModels", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("code");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("deleted_by");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("name");
+
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int4")
+                        .HasColumnName("type_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("updated_at");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("updated_by");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int4")
+                        .HasColumnName("year");
+
+                    b.HasKey("Id")
+                        .HasName("mst_models_pkey");
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("mst_models", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
+                });
+
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstStocks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("deleted_by");
+
+                    b.Property<decimal>("Harga")
+                        .HasColumnType("numeric(18,2)")
+                        .HasColumnName("harga");
+
+                    b.Property<int>("JumlahStock")
+                        .HasColumnType("int4")
+                        .HasColumnName("jumlah_stock");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int4")
+                        .HasColumnName("model_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("updated_at");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id")
+                        .HasName("mst_stock_pkey");
+
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("mst_stock", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_mst_stock_harga_non_negative", "harga >= 0");
+
+                            t.HasCheckConstraint("ck_mst_stock_jumlah_stock_non_negative", "jumlah_stock >= 0");
+                        });
                 });
 
             modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstTypes", b =>
@@ -178,21 +312,22 @@ namespace IDMS.Infrastructure.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("deleted_by");
 
-                    b.Property<int>("Email")
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("integer")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("email");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("full_name");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("password");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -210,6 +345,30 @@ namespace IDMS.Infrastructure.Migrations
                     b.ToTable("mst_user", (string)null);
                 });
 
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstModels", b =>
+                {
+                    b.HasOne("IDMS.Shared.Domain.Entities.MstTypes", "Type")
+                        .WithMany("Models")
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("mst_models_type_id_fkey");
+
+                    b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstStocks", b =>
+                {
+                    b.HasOne("IDMS.Shared.Domain.Entities.MstModels", "Model")
+                        .WithMany("Stocks")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("mst_stock_model_id_fkey");
+
+                    b.Navigation("Model");
+                });
+
             modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstTypes", b =>
                 {
                     b.HasOne("IDMS.Shared.Domain.Entities.MstBrands", "Brand")
@@ -225,6 +384,16 @@ namespace IDMS.Infrastructure.Migrations
             modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstBrands", b =>
                 {
                     b.Navigation("Types");
+                });
+
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstModels", b =>
+                {
+                    b.Navigation("Stocks");
+                });
+
+            modelBuilder.Entity("IDMS.Shared.Domain.Entities.MstTypes", b =>
+                {
+                    b.Navigation("Models");
                 });
 #pragma warning restore 612, 618
         }

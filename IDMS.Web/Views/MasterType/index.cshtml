@@ -7,11 +7,25 @@
 @{
     ViewData["Title"] = "Master Type";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var currentPage = Model.Pagination?.CurrentPage ?? 1;
+    var limit = Model.Pagination?.Limit ?? 10;
+    var totalPages = Model.Pagination?.TotalPages ?? 1;
+    var totalItems = Model.Pagination?.TotalItems ?? 0;
+    var rowNo = ((currentPage - 1) * limit) + 1;
+    var currentSearch = Context.Request.Query["search"].ToString();
 }
 
 <h2>Master Type</h2>
-<div class="mb-3">
-    <a asp-action="Create" class="btn btn-primary mar">Create New</a>
+<div class="d-flex justify-content-between align-items-end mb-3 gap-2 flex-wrap">
+    <form method="get" asp-action="Index" class="d-flex gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Search type..." value="@currentSearch" />
+        <input type="hidden" name="limit" value="@limit" />
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+    </form>
+
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -25,24 +39,26 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <body>
+    <tbody>
         @if (Model.Items != null && Model.Items.Any())
         {
-            int index = 1;
             foreach (var item in Model.Items)
             {
                 <tr>
-                    <td>@index</td>
+                    <td>@rowNo</td>
                     <td>@item.BrandName</td>
                     <td>@item.Code</td>
                     <td>@item.Name</td>
                     <td>@(item.IsActive ? "Active" : "Inactive")</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this type?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
-                index++;
+                rowNo++;
             }
         }
         else
@@ -51,5 +67,26 @@
                 <td colspan="6" class="text-center">No data available.</td>
             </tr>
         }
-    </body>
+    </tbody>
 </table>
+
+<div class="d-flex justify-content-between align-items-center">
+    <small class="text-muted">Total items: @totalItems</small>
+
+    <nav>
+        <ul class="pagination mb-0">
+            <li class="page-item @(currentPage <= 1 ? "disabled" : string.Empty)">
+                <a class="page-link" asp-action="Index" asp-route-search="@currentSearch" asp-route-page="@(currentPage - 1)" asp-route-limit="@limit">Previous</a>
+            </li>
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : string.Empty)">
+                    <a class="page-link" asp-action="Index" asp-route-search="@currentSearch" asp-route-page="@i" asp-route-limit="@limit">@i</a>
+                </li>
+            }
+            <li class="page-item @(currentPage >= totalPages ? "disabled" : string.Empty)">
+                <a class="page-link" asp-action="Index" asp-route-search="@currentSearch" asp-route-page="@(currentPage + 1)" asp-route-limit="@limit">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>

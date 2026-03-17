@@ -6,7 +6,7 @@ using IDMS.Shared.Entities;
 
 namespace IDMS.Shared.Domain.Entities
 {
-    public class MstUser : BaseEntity
+    public class MstUsers : BaseEntity
     {
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;

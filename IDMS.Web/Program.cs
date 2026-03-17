@@ -1,19 +1,22 @@
 // using IDMS.Infrastructure.Data;
 using System.Net;
-using IDMS.Modules.Master.Services;
-using IDMS.Modules.Master.Services.Impl;
 using IDMS.Web.Services;
 using IDMS.Web.Services.Impl;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 // using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+if (string.IsNullOrWhiteSpace(apiBaseUrl))
+{
+    throw new InvalidOperationException("ApiSettings:BaseUrl is not configured.");
+}
 
 // http pointing idms web api
-//  ini punyaku
 builder.Services.AddHttpClient("IDMSApi", client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
+    client.BaseAddress = new Uri(apiBaseUrl);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
     client.DefaultRequestHeaders.Add("X-Api-Key", builder.Configuration["ApiSettings:ApiKey"]);
 });
@@ -43,6 +46,9 @@ builder.Services.AddHttpContextAccessor();
 //     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IMasterBrandService, MstBrandClientService>();
+builder.Services.AddScoped<IMasterTypeService, MasterTypeClientService>();
+builder.Services.AddScoped<IMasterModelService, MasterModelClientService>();
+builder.Services.AddScoped<IMasterStockService, MasterStockClientService>();
 builder.Services.AddScoped<IAuthClientService, AuthClientService>();
 
 // Add services to the container.
@@ -64,6 +70,26 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+    {
+        context.Session.Remove("Token");
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        context.Response.Redirect("/Auth/Login");
+    }
+    catch (UnauthorizedAccessException)
+    {
+        context.Session.Remove("Token");
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        context.Response.Redirect("/Auth/Login");
+    }
+});
 
 app.MapStaticAssets();
 

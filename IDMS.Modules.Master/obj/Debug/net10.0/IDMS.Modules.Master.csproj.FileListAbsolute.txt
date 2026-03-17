@@ -16,3 +16,21 @@ C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Modules.Master\obj\Debug
 C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
 C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
 C:\Users\erlan\Bootcamp Technocenter\training .net\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.deps.json
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.dll
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Modules.Master.pdb
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.dll
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.dll
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Infrastructure.pdb
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\bin\Debug\net10.0\IDMS.Shared.pdb
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.AssemblyReference.cache
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfoInputs.cache
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.AssemblyInfo.cs
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.sourcelink.json
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Mod.8CDB73F7.Up2Date
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.dll
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\refint\IDMS.Modules.Master.dll
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\IDMS.Modules.Master.pdb
+C:\Users\User\Documents\learning\.NET\Training .NET\IDMS.Modules.Master\obj\Debug\net10.0\ref\IDMS.Modules.Master.dll

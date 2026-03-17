@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace IDMS.Infrastructure.Configurations
 {
-    public class MstUserConfiguration : IEntityTypeConfiguration<MstUser>
+    public class MstUserConfiguration : IEntityTypeConfiguration<MstUsers>
     {
-        public void Configure(EntityTypeBuilder<MstUser> builder)
+        public void Configure(EntityTypeBuilder<MstUsers> builder)
         {
-            builder.ToTable("mst_user");
+            builder.ToTable("mst_users");
             builder.HasKey(e => e.Id).HasName("pk_mst_user");
             builder.Property(e => e.Id).HasColumnName("id").UseSerialColumn();
             builder.Property(e => e.Email).HasColumnName("email").HasColumnType("varchar(50)").IsRequired().HasMaxLength(50);

@@ -2,6 +2,7 @@ using IDMS.Infrastructure.Data;
 using IDMS.Middleware;
 using IDMS.Modules.Master.Services;
 using IDMS.Modules.Master.Services.Impl;
+using IDMS.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -33,9 +34,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<IMstBrandService, MstBrandService>();
 builder.Services.AddScoped<IMstTypeService, MstTypeService>();
 builder.Services.AddScoped<IMstUserService, MstUserService>();
+builder.Services.AddScoped<IMstModelService, MstModelService>();
+builder.Services.AddScoped<IMstStockService, MstStockService>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddControllers();

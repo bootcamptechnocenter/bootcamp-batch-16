@@ -14,6 +14,6 @@ namespace IDMS.Web.Services
         Task<ResMstBrandDto> GetMstBrandById(int id);
         Task CreateMstBrand(ReqCreateMstBrancDto dto);
         Task<bool> UpdateMstBrand(int id, ReqUpdateMstBrancDto dto);
-        Task<bool> DeleteMstBrand(int id);
+        Task<bool> DeleteMstBrand(int id, string deletedBy);
     }
 }
