@@ -6,13 +6,13 @@ using IDMS.Shared.Entities;
 
 namespace IDMS.Shared.Domain.Entities
 {
-    public class MstTypes: BaseEntity
+    public class MstTypes : BaseEntity
     {
-        public int MstBrandId { get; set; }
-        public string? Code { get; set; } = string.Empty;
-        public string? Name { get; set; } = string.Empty;
+        public int BrandId { get; set; }
+        public string Code { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public bool IsActive { get; set; } = true;
 
-        public MstBrands Brands { get; set; }
+        public MstBrands? Brand { get; set; }
     }
 }

@@ -1,35 +1,62 @@
-@model IDMS.Modules.Master.Dto.Request.ReqCreateMstType
+@model IDMS.Modules.Master.Dto.Request.ReqCreateMstTypeDto
+
 @{
-    ViewData["Title"] = "Master Type";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create Master Type";
+    var selectedBrandText = ViewBag.SelectedBrandText as string;
 }
 
-<h2>Create Master Type</h2>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Create Type</h2>
+        <p class="text-muted mb-0">Add a new type to the system.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="MstBrandId" class="control-label">Brand Id</label>
-        <input asp-for="MstBrandId" class="form-control" />
-        <span asp-validation-for="Code" class="text-danger"></span>
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0" style="border-radius:1rem; box-shadow:0 8px 24px rgba(16,24,40,.06);">
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger pb-0" role="alert"></div>
+                    <div class="mb-3">
+                        <label asp-for="BrandId" class="form-label fw-semibold">Brand</label>
+                        <select asp-for="BrandId" class="form-select" data-select2-brand="true" data-ajax-url="@Url.Action("BrandOptions", "MasterType")">
+                            <option value="0">-- Select Brand --</option>
+                            @if (Model?.BrandId > 0 && !string.IsNullOrWhiteSpace(selectedBrandText))
+                            {
+                                <option value="@Model.BrandId" selected>@selectedBrandText</option>
+                            }
+                        </select>
+                        <span asp-validation-for="BrandId" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Code" class="form-label fw-semibold"></label>
+                        <input asp-for="Code" class="form-control" placeholder="e.g. TYPE-001" />
+                        <span asp-validation-for="Code" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Name" class="form-label fw-semibold"></label>
+                        <input asp-for="Name" class="form-control" placeholder="e.g. Type Name" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Type</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Code" class="control-label"></label>
-        <input asp-for="Code" class="form-control" />
-        <span asp-validation-for="Code" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-    </div>
-</form>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+}
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/js/master-type-form.js" asp-append-version="true"></script>
 }

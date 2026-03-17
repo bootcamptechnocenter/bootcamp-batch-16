@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IDMS.Shared.Entities;
 
-namespace IDMS.Modules.Master.Dto.Request
+namespace IDMS.Shared.Domain.Entities
 {
-    public class ReqCreateMstType
+    public class MstModels : BaseEntity
     {
-        public int MstBrandId { get; set; }
+        public int TypeId { get; set; }
         public string Code { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
+        public int Year { get; set; }
         public bool IsActive { get; set; } = true;
-        public string CreatedBy { get; set; } = string.Empty;
+
+        public MstTypes? Type { get; set; }
     }
 }

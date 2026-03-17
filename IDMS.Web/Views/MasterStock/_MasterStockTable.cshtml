@@ -1,0 +1,87 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstStockDto>
+
+@{
+    var search = Context.Request.Query["search"].ToString();
+    var items = Model?.Items ?? Enumerable.Empty<ResMstStockDto>();
+    var currentPage = Model?.Pagination?.CurrentPage > 0 ? Model.Pagination.CurrentPage : 1;
+    var limit = Model?.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
+    var totalPages = Model?.Pagination?.TotalPages > 0 ? Model.Pagination.TotalPages : 1;
+    var totalItems = Model?.Pagination?.TotalItems ?? 0;
+    var startPage = Math.Max(1, currentPage - 2);
+    var endPage = Math.Min(totalPages, currentPage + 2);
+}
+
+<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+    <p class="text-muted mb-0">Total data: <strong>@totalItems</strong></p>
+    <p class="text-muted mb-0">Page <strong>@currentPage</strong> of <strong>@totalPages</strong></p>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+            <tr>
+                <th style="width: 60px;">No</th>
+                <th>Car Model</th>
+                <th>Jumlah Stock</th>
+                <th>Harga (Rp)</th>
+                <th style="width: 170px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (items.Any())
+            {
+                int no = ((currentPage - 1) * limit) + 1;
+                foreach (var stock in items)
+                {
+                    <tr>
+                        <td>@no</td>
+                        <td><span class="fw-semibold text-primary">@stock.NamaMobil</span></td>
+                        <td>
+                            <span class="badge @(stock.JumlahStock > 0 ? "bg-success" : "bg-danger")">
+                                @stock.JumlahStock Unit
+                            </span>
+                        </td>
+                        <td>@stock.Harga.ToString("N2")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@stock.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-danger stock-delete-btn"
+                                    data-id="@stock.Id"
+                                    data-nama="@Html.Encode(stock.NamaMobil)"
+                                    data-jumlah="@stock.JumlahStock">Delete</button>
+                        </td>
+                    </tr>
+                    no++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted py-4">No stock data found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (totalPages > 1)
+{
+    <nav class="mt-3" aria-label="Master Stock pagination">
+        <ul class="pagination justify-content-end mb-0">
+            <li class="page-item @(currentPage <= 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Index" asp-route-page="@(currentPage - 1)" asp-route-limit="@limit" asp-route-search="@search" data-page="@(currentPage - 1)">Previous</a>
+            </li>
+            @for (var p = startPage; p <= endPage; p++)
+            {
+                <li class="page-item @(p == currentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-limit="@limit" asp-route-search="@search" data-page="@p">@p</a>
+                </li>
+            }
+            <li class="page-item @(currentPage >= totalPages ? "disabled" : "")">
+                <a class="page-link" asp-action="Index" asp-route-page="@(currentPage + 1)" asp-route-limit="@limit" asp-route-search="@search" data-page="@(currentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+}

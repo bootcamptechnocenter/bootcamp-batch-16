@@ -8,14 +8,11 @@ namespace IDMS.Modules.Master.Dto.Request
 {
     public class ReqCreateMstBrandDto
     {
-        [Required(ErrorMessage = "Kode wajib diisi")]
+        [Required(ErrorMessage = "Code must be filled")]
         public string Code { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Nama wajib diisi")]
+        [Required(ErrorMessage = "Name must be filled")]
         public string Name { get; set; } = string.Empty;
-
         public bool IsActive { get; set; } = true;
-
         public string CreatedBy { get; set; } = string.Empty;
     }
 }

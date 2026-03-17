@@ -12,6 +12,7 @@ namespace IDMS.Middleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<RequestMiddleware> _logger;
+
         public RequestMiddleware(RequestDelegate next, ILogger<RequestMiddleware> logger)
         {
             _next = next;
@@ -39,9 +40,35 @@ namespace IDMS.Middleware
             {
                 await _next(context);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                _logger.LogWarning("Unauthorized request on {ReqId}: {Message}", reqId, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Response.ContentType = "application/json";
+
+                var response = ApiResponse<string>.Fail(ex.Message);
+                var json = JsonSerializer.Serialize(response, jsonOptions);
+
+                responseBody.SetLength(0);
+                await responseBody.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning("Bad request on {ReqId}: {Message}", reqId, ex.Message);
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+
+                var response = ApiResponse<string>.Fail(ex.Message);
+                var json = JsonSerializer.Serialize(response, jsonOptions);
+
+                responseBody.SetLength(0);
+                await responseBody.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while processing request {ReqId}", reqId);
+                _logger.LogError(ex, "Unhandled error on {ReqId}", reqId);
 
                 context.Response.StatusCode = 500;
                 context.Response.ContentType = "application/json";
@@ -58,16 +85,20 @@ namespace IDMS.Middleware
 
             if (context.Response.StatusCode >= 400 && responseBody.Length == 0)
             {
-                string? message = context.Response.StatusCode switch
+                var customMessage = context.Items.TryGetValue("ErrorMessage", out var errorMessage)
+                    ? errorMessage?.ToString()
+                    : null;
+
+                string? message = customMessage ?? context.Response.StatusCode switch
                 {
-                    StatusCodes.Status401Unauthorized => "Unauthorized Loh Ya",
+                    StatusCodes.Status401Unauthorized => "Unauthorized",
                     StatusCodes.Status403Forbidden => "Forbidden",
-                    StatusCodes.Status404NotFound => "Resource not found",
-                    StatusCodes.Status405MethodNotAllowed => "Method not allowed",
-                    StatusCodes.Status400BadRequest => "Bad request",
-                    StatusCodes.Status429TooManyRequests => "Too many requests",
-                    StatusCodes.Status408RequestTimeout => "Request timeout",
-                    StatusCodes.Status500InternalServerError => "Internal server error",
+                    StatusCodes.Status404NotFound => "Not Found",
+                    StatusCodes.Status405MethodNotAllowed => "Method Not Allowed",
+                    StatusCodes.Status400BadRequest => "Bad Request",
+                    StatusCodes.Status429TooManyRequests => "Too Many Requests",
+                    StatusCodes.Status408RequestTimeout => "Request Timeout",
+                    StatusCodes.Status500InternalServerError => "Internal Server Error",
                     _ => null
                 };
 
@@ -80,9 +111,11 @@ namespace IDMS.Middleware
                     return;
                 }
             }
+
             await responseBody.CopyToAsync(originalBodyStream);
         }
     }
+
     public static class RequestMiddlewareExtensions
     {
         public static IApplicationBuilder UseRequestMiddleware(this IApplicationBuilder builder)

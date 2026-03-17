@@ -11,123 +11,147 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IDMS.Modules.Master.Services.Impl
 {
-    public class MstTypeService(AppDbContext context) : IMstTypeService
+    public class MstTypeService : IMstTypeService
     {
-        private readonly AppDbContext _context = context;
-        public async Task<PagedResult<ResMstTypeDto>> GetMstTypes(ReqBaseParamDto dto)
-        {
+        private readonly AppDbContext _context;
 
+        public MstTypeService(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<PagedResult<ResMstTypeDto>> GetMstType(ReqBaseParamDto dto)
+        {
             var query = _context.MstTypes
-                .Include(x => x.Brands)
+                .Include(x => x.Brand)
                 .AsQueryable();
 
-            if (!string.IsNullOrEmpty(dto.Search))
+            if (!string.IsNullOrWhiteSpace(dto.Search))
             {
                 var search = dto.Search.ToLower();
                 query = query.Where(x =>
                     (x.Code != null && x.Code.ToLower().Contains(search)) ||
-                    (x.Name != null && x.Name.ToLower().Contains(search))
+                    (x.Name != null && x.Name.ToLower().Contains(search)) ||
+                    (x.Brand != null && x.Brand.Code.ToLower().Contains(search)) ||
+                    (x.Brand != null && x.Brand.Name.ToLower().Contains(search))
                 );
             }
 
             query = query.Where(x => x.DeletedAt == null);
 
-            var totalItems = await query.CountAsync();
+            var totalCount = await query.CountAsync();
 
-            
-            var page = dto.Page <= 0 ? 1 : dto.Page;
-            var limit = dto.Limit <= 0 ? 10 : dto.Limit; 
-            var totalPages = (int)Math.Ceiling(totalItems / (double)limit);
+            var page = dto.Page > 0 ? dto.Page : 1;
+            var pageSize = dto.Limit > 0 ? dto.Limit : 10;
+            var skip = (page - 1) * pageSize;
+            var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
-           
             var items = await query
-                .OrderBy(x => x.Id)
-                .Skip((page - 1) * limit)
-                .Take(limit)
+                .OrderBy(x => x.BrandId)
+                .ThenBy(x => x.Id)
+                .Skip(skip)
+                .Take(pageSize)
                 .Select(x => new ResMstTypeDto
                 {
                     Id = x.Id,
-                    MstBrandId = x.MstBrandId,
-                    BrandName = x.Brands.Name, 
+                    BrandId = x.BrandId,
+                    BrandCode = x.Brand != null ? x.Brand.Code : string.Empty,
+                    BrandName = x.Brand != null ? x.Brand.Name : string.Empty,
                     Code = x.Code,
                     Name = x.Name
                 })
                 .ToListAsync();
 
-            
             return new PagedResult<ResMstTypeDto>
             {
                 Items = items,
                 Pagination = new Pagination
                 {
+                    TotalItems = totalCount,
                     CurrentPage = page,
-                    Limit = limit,
-                    TotalItems = totalItems,
+                    Limit = pageSize,
                     TotalPages = totalPages
                 }
             };
         }
+
         public async Task<ResMstTypeDto?> GetMstTypeById(int id)
         {
-            return await _context.MstTypes
-                .Include(x => x.Brands)
+            var type = await _context.MstTypes
+                .Include(x => x.Brand)
                 .Where(x => x.Id == id && x.DeletedAt == null)
                 .Select(x => new ResMstTypeDto
                 {
                     Id = x.Id,
-                    MstBrandId = x.MstBrandId,
-                    BrandName = x.Brands.Name,
+                    BrandId = x.BrandId,
+                    BrandCode = x.Brand != null ? x.Brand.Code : string.Empty,
+                    BrandName = x.Brand != null ? x.Brand.Name : string.Empty,
                     Code = x.Code,
                     Name = x.Name
                 })
-                .FirstOrDefaultAsync(); 
+                .FirstOrDefaultAsync();
+
+            return type;
         }
 
-        public async Task CreateMstType(ReqCreateMstType dto)
+        public async Task CreateMstType(ReqCreateMstTypeDto dto)
         {
+            var isExist = await _context.MstTypes.AnyAsync(x => 
+                x.BrandId == dto.BrandId && 
+                (x.Code.ToLower() == dto.Code.ToLower() || x.Name.ToLower() == dto.Name.ToLower()) && 
+                x.DeletedAt == null);
+
+            if (isExist) throw new ArgumentException("Type Code or Name already exists for this Brand.");
+
             var type = new MstTypes
             {
-                MstBrandId = dto.MstBrandId,
+                BrandId = dto.BrandId,
                 Code = dto.Code,
                 Name = dto.Name,
                 IsActive = dto.IsActive,
-                CreatedBy = dto.CreatedBy,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                CreatedBy = dto.CreatedBy
             };
+
             _context.MstTypes.Add(type);
             await _context.SaveChangesAsync();
         }
-        public async Task UpdateMstType(int id, ReqUpdateMstTypeDto dto)
+
+        public async Task<bool> UpdateMstType(ReqUpdateMstTypeDto dto, int id)
         {
-            var type = await _context.MstTypes.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
-            if (type == null)
-            {
-                throw new Exception("Type not found");
-            }
-            type.MstBrandId = dto.MstBrandId;
+            var type = await _context.MstTypes
+                .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+            if (type == null) return false;
+
+            var isExist = await _context.MstTypes.AnyAsync(x => 
+                x.BrandId == dto.BrandId && 
+                (x.Code.ToLower() == dto.Code.ToLower() || x.Name.ToLower() == dto.Name.ToLower()) && 
+                x.Id != id && x.DeletedAt == null);
+
+            if (isExist) throw new ArgumentException("Type Code or Name already exists in another record for this Brand.");
+
+            type.BrandId = dto.BrandId;
             type.Code = dto.Code;
             type.Name = dto.Name;
             type.IsActive = dto.IsActive;
-            type.UpdatedBy = dto.UpdatedBy;
             type.UpdatedAt = DateTime.Now;
-            await _context.SaveChangesAsync();
-        }
-        public async Task DeleteMstType(int id, string deletedBy)
-        {
-            var type = await _context.MstTypes.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+            type.UpdatedBy = dto.UpdatedBy;
 
-            if (type == null)
-            {
-                throw new Exception("Type not found");
-            }
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DeleteMstType(int id)
+        {
+            var type = await _context.MstTypes
+                .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+            if (type == null) return false;
 
             type.DeletedAt = DateTime.Now;
-            type.DeletedBy = deletedBy;
+            type.DeletedBy = "system";
 
-            type.IsActive = false;
-
-            _context.MstTypes.Update(type);
             await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -1,28 +1,3 @@
 {
-  "omnisharp.dotnetPath": "/usr/bin/dotnet",
-  "omnisharp.useModernNet": true,
-  
-  // Alternative: disable acquisition completely
-  "dotnetAcquisitionExtension.enableTelemetry": false,
-  "dotnetAcquisitionExtension.installTimeoutValue": 120,
-  "dotnetAcquisitionExtension.existingDotnetPath": [
-    {
-      "extensionId": "ms-dotnettools.csharp",
-      "path": "/usr/bin/dotnet"
-    }
-  ],
-
-  // C# Formatting
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnType": true,
-  "[csharp]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp",
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
-    }
-  },
-  "omnisharp.enableEditorConfigSupport": true,
-  "omnisharp.enableRoslynAnalyzers": true
+    "dotnet.defaultSolution": "LatihanHari4.sln"
 }
