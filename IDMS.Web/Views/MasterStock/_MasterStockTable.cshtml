@@ -1,0 +1,163 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstStockDto>
+
+@{
+    var items       = Model?.Items ?? Enumerable.Empty<ResMstStockDto>();
+    var currentPage = Model?.Pagination?.CurrentPage > 0 ? Model.Pagination.CurrentPage : 1;
+    var limit       = Model?.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
+    var totalPages  = Model?.Pagination?.TotalPages > 0 ? Model.Pagination.TotalPages : 1;
+    var totalItems  = Model?.Pagination?.TotalItems ?? 0;
+    var startPage   = Math.Max(1, currentPage - 2);
+    var endPage     = Math.Min(totalPages, currentPage + 2);
+}
+
+<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+    <p class="text-muted mb-0">Total data: <strong>@totalItems</strong></p>
+    <p class="text-muted mb-0">Page <strong>@currentPage</strong> of <strong>@totalPages</strong></p>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+            <tr>
+                <th style="width:60px;">No</th>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Police No.</th>
+                <th>Condition</th>
+                <th>Price</th>
+                <th>Ready</th>
+                <th style="width:170px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (items.Any())
+            {
+                int no = ((currentPage - 1) * limit) + 1;
+                foreach (var stock in items)
+                {
+                    <tr>
+                        <td>@no</td>
+                        <td>
+                            <span class="text-muted ms-1">@stock.BrandName</span>
+                        </td>
+                        <td>
+                            <span class="text-muted ms-1">@stock.TypeName</span>
+                        </td>
+                        <td>
+                            <span class="text-muted ms-1">@stock.ModelName</span>
+                        </td>
+                        <td>@stock.Color</td>
+                        <td>@stock.PoliceNumber</td>
+                        <td>
+                            @if (stock.NewUsed == "new")
+                            {
+                                <span class="badge bg-success">New</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Used</span>
+                            }
+                        </td>
+                        <td>@stock.Price.ToString("N0")</td>
+                        <td>
+                            @if (stock.IsReady)
+                            {
+                                <span class="badge bg-success">Ready</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Sold</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@stock.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-danger stock-delete-btn"
+                                    data-id="@stock.Id"
+                                    data-model="@Html.Encode(stock.ModelName)"
+                                    data-color="@Html.Encode(stock.Color)"
+                                    data-police="@Html.Encode(stock.PoliceNumber)">Delete</button>
+                        </td>
+                    </tr>
+                    no++;
+                }
+            }
+            else
+            {
+                <tr><td colspan="10" class="text-center text-muted py-4">No stock data found.</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (totalPages > 1)
+{
+    <nav class="mt-3" aria-label="Master Stock pagination">
+        <ul class="pagination justify-content-end mb-0">
+            <li class="page-item @(currentPage <= 1 ? "disabled" : "")">
+                <a class="page-link" data-page="@(currentPage - 1)">Previous</a>
+            </li>
+            @for (var p = startPage; p <= endPage; p++)
+            {
+                <li class="page-item @(p == currentPage ? "active" : "")">
+                    <a class="page-link" data-page="@p">@p</a>
+                </li>
+            }
+            <li class="page-item @(currentPage >= totalPages ? "disabled" : "")">
+                <a class="page-link" data-page="@(currentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+}
+
+<div class="modal fade" id="stockDeleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius:1rem;border:none;box-shadow:0 16px 40px rgba(16,24,40,.14);">
+            <div class="modal-header border-0 pb-0 px-4 pt-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="flex-shrink-0 d-flex align-items-center justify-content-center rounded-circle bg-danger bg-opacity-10"
+                         style="width:48px;height:48px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#dc3545" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h5 class="modal-title mb-0 fw-semibold">Delete Stock</h5>
+                        <p class="text-muted mb-0" style="font-size:.875rem;">This action cannot be undone.</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-4 pt-3 pb-2">
+                <p class="mb-2">You are about to delete the following stock:</p>
+                <div class="rounded p-3 mb-1" style="background:#f8f9fa;border:1px solid #e9ecf3;">
+                    <div class="d-flex gap-4">
+                        <div>
+                            <p class="text-muted mb-0" style="font-size:.75rem;">Model</p>
+                            <p class="fw-semibold mb-0" id="stockDeleteModel">—</p>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0" style="font-size:.75rem;">Color</p>
+                            <p class="fw-semibold mb-0" id="stockDeleteColor">—</p>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0" style="font-size:.75rem;">Police No.</p>
+                            <p class="fw-semibold mb-0" id="stockDeletePolice">—</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 px-4 pb-4 pt-2 gap-2">
+                <form id="stockDeleteForm" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger px-4">Yes, Delete</button>
+                </form>
+                <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

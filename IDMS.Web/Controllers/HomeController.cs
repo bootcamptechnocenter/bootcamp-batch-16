@@ -1,26 +1,26 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using IDMS.Web.Models;
+using IDMS.Web.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace IDMS.Web.Controllers;
-
-public class HomeController : Controller
+namespace IDMS.Web.Controllers
 {
     [Authorize]
-    public IActionResult Index()
+    public class HomeController : Controller
     {
-        return View();
-    }
+        private readonly IHomeService _homeService;
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public HomeController(IHomeService homeService)
+        {
+            _homeService = homeService;
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public async Task<IActionResult> Index()
+        {
+            var data = await _homeService.GetDashboardData();
+            return View(data);
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error() => View("Error!");
     }
 }

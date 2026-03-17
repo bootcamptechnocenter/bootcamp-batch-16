@@ -1,0 +1,140 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstStockDto>
+
+@{
+    ViewData["Title"] = "Master Stock";
+    var filterModelId   = ViewBag.FilterModelId as int?;
+    var filterModelName = ViewBag.FilterModelName as string;
+    var search = Context.Request.Query["search"].ToString();
+    var limit  = Model?.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Master Stock</h2>
+        @if (!string.IsNullOrWhiteSpace(filterModelName))
+        {
+            <p class="text-muted mb-0">
+                Filtered by model: <strong>@filterModelName</strong>
+                <a asp-action="Index" class="ms-2 small">Clear filter</a>
+            </p>
+        }
+        else
+        {
+            <p class="text-muted mb-0">Manage vehicle stock data per model.</p>
+        }
+    </div>
+    <a asp-action="Create"
+        asp-route-modelId="@filterModelId"
+        class="btn btn-primary">Create New</a>
+</div>
+
+<div class="card border-0">
+    <div class="card-body">
+        <div class="row g-2 align-items-end mb-3">
+            <div class="col-12 col-md-6 col-lg-7">
+                <label for="masterStockSearch" class="form-label">Search</label>
+                <input id="masterStockSearch" value="@search" class="form-control" placeholder="Search by brand, type, model, color or police number" />
+            </div>
+            <div class="col-6 col-md-3 col-lg-2">
+                <label for="masterStockLimit" class="form-label">Show</label>
+                <select id="masterStockLimit" class="form-select">
+                    @foreach (var pageSize in new[] { 5, 10, 20, 50 })
+                    {
+                        if (limit == pageSize)
+                        {
+                            <option value="@pageSize" selected>@pageSize</option>
+                        }
+                        else
+                        {
+                            <option value="@pageSize">@pageSize</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-6 col-md-3 col-lg-3">
+                <button type="button" class="btn btn-outline-secondary" id="masterStockReset">Reset</button>
+            </div>
+        </div>
+
+        <div id="masterStockGrid"
+             data-url="@Url.Action("Table", "MasterStock")"
+             data-index-url="@Url.Action("Index", "MasterStock")"
+             data-model-id="@(filterModelId?.ToString() ?? "")">
+            <partial name="_MasterStockTable" model="Model" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (() => {
+            const grid        = document.getElementById('masterStockGrid');
+            const searchInput = document.getElementById('masterStockSearch');
+            const limitSelect = document.getElementById('masterStockLimit');
+            const resetButton = document.getElementById('masterStockReset');
+            if (!grid || !searchInput || !limitSelect) return;
+
+            const tableUrl = grid.dataset.url;
+            const indexUrl = grid.dataset.indexUrl || window.location.pathname;
+            const modelId  = grid.dataset.modelId || '';   // ambil modelId dari data attribute
+            let debounceTimer, requestCounter = 0;
+
+            const updateUrl = (page) => {
+                const params = new URLSearchParams();
+                const s = searchInput.value.trim();
+                if (s) params.set('search', s);
+                if (limitSelect.value !== '10') params.set('limit', limitSelect.value);
+                if (page > 1) params.set('page', page.toString());
+                if (modelId) params.set('modelId', modelId);  // pertahankan modelId di URL
+                const qs = params.toString();
+                history.replaceState({}, '', qs ? `${indexUrl}?${qs}` : indexUrl);
+            };
+
+            const bindPager = () => {
+                grid.querySelectorAll('[data-page]').forEach(link => {
+                    link.addEventListener('click', e => {
+                        e.preventDefault();
+                        if (link.closest('.disabled')) return;
+                        loadGrid(parseInt(link.dataset.page || '1', 10));
+                    });
+                });
+            };
+
+            const loadGrid = (page = 1) => {
+                const req = ++requestCounter;
+                // selalu sertakan modelId jika ada
+                let url = `${tableUrl}?search=${encodeURIComponent(searchInput.value.trim())}&limit=${limitSelect.value}&page=${page}`;
+                if (modelId) url += `&modelId=${modelId}`;
+                grid.classList.add('master-brand-loading');
+                fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then(r => r.text())
+                    .then(html => { if (req !== requestCounter) return; grid.innerHTML = html; bindPager(); updateUrl(page); })
+                    .finally(() => { if (req === requestCounter) grid.classList.remove('master-brand-loading'); });
+            };
+
+            searchInput.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(() => loadGrid(1), 350); });
+            limitSelect.addEventListener('change', () => loadGrid(1));
+            resetButton?.addEventListener('click', () => {
+                searchInput.value  = '';
+                limitSelect.value  = '10';
+                loadGrid(1);
+            });
+
+            bindPager();
+        })();
+
+        document.getElementById('masterStockGrid').addEventListener('click', e => {
+            const btn = e.target.closest('.stock-delete-btn');
+            if (!btn) return;
+            const modal = document.getElementById('stockDeleteModal');
+            if (!modal) return;
+            document.getElementById('stockDeleteModel').textContent  = btn.dataset.model  ?? '—';
+            document.getElementById('stockDeleteColor').textContent  = btn.dataset.color  ?? '—';
+            document.getElementById('stockDeletePolice').textContent = btn.dataset.police ?? '—';
+            document.getElementById('stockDeleteForm').action = `/MasterStock/Delete/${btn.dataset.id}`;
+            bootstrap.Modal.getOrCreateInstance(modal).show();
+        });
+    </script>
+}

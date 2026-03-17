@@ -41,6 +41,9 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IMasterBrandService, MasterBrandService>();
 builder.Services.AddScoped<IMasterTypeService, MasterTypeService>();
+builder.Services.AddScoped<IMasterModelService, MasterModelService>();
+builder.Services.AddScoped<IMasterStockService, MasterStockService>();
+builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IAuthClientService, AuthClientService>();
 
 // builder.Services.AddDbContext<AppDbContext>(options =>

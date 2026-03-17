@@ -1,0 +1,143 @@
+@model IDMS.Modules.Master.Dto.Request.ReqCreateMstStockDto
+
+@{
+    ViewData["Title"] = "Create Master Stock";
+    var selectedBrandText = ViewBag.SelectedBrandText as string;
+    var selectedTypeText  = ViewBag.SelectedTypeText  as string;
+    var selectedModelText = ViewBag.SelectedModelText as string;
+    var modelLocked       = ViewBag.ModelLocked is true;
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Create Stock</h2>
+        <p class="text-muted mb-0">Add a new vehicle stock entry.</p>
+    </div>
+    <a asp-action="Index"
+       asp-route-modelId="@(modelLocked ? ViewBag.SelectedModelId : null)"
+       class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0" style="border-radius:1rem;box-shadow:0 8px 24px rgba(16,24,40,.06);">
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    @* Brand *@
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Brand</label>
+                        @if (modelLocked)
+                        {
+                            <input type="text" class="form-control" value="@selectedBrandText" disabled />
+                        }
+                        else
+                        {
+                            <select id="brandSelect" class="form-select"
+                                    data-ajax-url="@Url.Action("BrandOptions", "MasterStock")">
+                                <option value="0">-- Select Brand --</option>
+                                @if (ViewBag.SelectedBrandId is int bid && bid > 0 && !string.IsNullOrWhiteSpace(selectedBrandText))
+                                {
+                                    <option value="@bid" selected>@selectedBrandText</option>
+                                }
+                            </select>
+                        }
+                    </div>
+
+                    @* Type *@
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Type</label>
+                        @if (modelLocked)
+                        {
+                            <input type="text" class="form-control" value="@selectedTypeText" disabled />
+                        }
+                        else
+                        {
+                            <select id="typeSelect" class="form-select"
+                                    data-ajax-url="@Url.Action("TypeOptions", "MasterStock")">
+                                <option value="0">-- Select Type --</option>
+                                @if (ViewBag.SelectedTypeId is int tid && tid > 0 && !string.IsNullOrWhiteSpace(selectedTypeText))
+                                {
+                                    <option value="@tid" selected>@selectedTypeText</option>
+                                }
+                            </select>
+                        }
+                    </div>
+
+                    @* Model *@
+                    <div class="mb-3">
+                        <label asp-for="ModelId" class="form-label fw-semibold">Model</label>
+                        @if (modelLocked)
+                        {
+                            <input type="text" class="form-control" value="@selectedModelText" disabled />
+                            <input type="hidden" asp-for="ModelId" />
+                        }
+                        else
+                        {
+                            <select asp-for="ModelId" id="modelSelect" class="form-select"
+                                    data-ajax-url="@Url.Action("ModelOptions", "MasterStock")">
+                                <option value="0">-- Select Model --</option>
+                                @if (Model?.ModelId > 0 && !string.IsNullOrWhiteSpace(selectedModelText))
+                                {
+                                    <option value="@Model.ModelId" selected>@selectedModelText</option>
+                                }
+                            </select>
+                        }
+                        <span asp-validation-for="ModelId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Color" class="form-label fw-semibold"></label>
+                        <input asp-for="Color" class="form-control" placeholder="e.g. Midnight Black" />
+                        <span asp-validation-for="Color" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PoliceNumber" class="form-label fw-semibold"></label>
+                        <input asp-for="PoliceNumber" class="form-control" placeholder="e.g. B 1234 ABC" />
+                        <span asp-validation-for="PoliceNumber" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="NewUsed" class="form-label fw-semibold">Condition</label>
+                        <select asp-for="NewUsed" class="form-select">
+                            <option value="">-- Select Condition --</option>
+                            <option value="new">New</option>
+                            <option value="used">Used</option>
+                        </select>
+                        <span asp-validation-for="NewUsed" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label fw-semibold"></label>
+                        <input asp-for="Price" type="number" class="form-control" placeholder="e.g. 250000000" />
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input asp-for="IsReady" class="form-check-input" type="checkbox" />
+                            <label asp-for="IsReady" class="form-check-label">Is Ready</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Stock</button>
+                        <a asp-action="Index"
+                           asp-route-modelId="@(modelLocked ? ViewBag.SelectedModelId : null)"
+                           class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+}
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @if (!modelLocked)
+    {
+        <script src="~/lib/select2/js/select2.min.js"></script>
+        <script src="~/js/master-stock-form.js" asp-append-version="true"></script>
+    }
+}

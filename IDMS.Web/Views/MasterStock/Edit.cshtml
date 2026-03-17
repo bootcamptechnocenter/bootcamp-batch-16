@@ -1,0 +1,123 @@
+@model IDMS.Modules.Master.Dto.Request.ReqUpdateMstStockDto
+
+@{
+    ViewData["Title"] = "Edit Master Stock";
+    var selectedBrandText = ViewBag.SelectedBrandText as string;
+    var selectedTypeText  = ViewBag.SelectedTypeText  as string;
+    var selectedModelText = ViewBag.SelectedModelText as string;
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Edit Stock</h2>
+        <p class="text-muted mb-0">Update stock details below.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0" style="border-radius:1rem;box-shadow:0 8px 24px rgba(16,24,40,.06);">
+            <div class="card-body p-4">
+                <form asp-action="Edit" asp-route-id="@ViewBag.StockId" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Brand</label>
+                        <select id="brandSelect" class="form-select"
+                                data-ajax-url="@Url.Action("BrandOptions", "MasterStock")">
+                            <option value="0">-- Select Brand --</option>
+                            @if (ViewBag.SelectedBrandId is int bid && bid > 0 && !string.IsNullOrWhiteSpace(selectedBrandText))
+                            {
+                                <option value="@bid" selected>@selectedBrandText</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Type</label>
+                        <select id="typeSelect" class="form-select"
+                                data-ajax-url="@Url.Action("TypeOptions", "MasterStock")">
+                            <option value="0">-- Select Type --</option>
+                            @if (ViewBag.SelectedTypeId is int tid && tid > 0 && !string.IsNullOrWhiteSpace(selectedTypeText))
+                            {
+                                <option value="@tid" selected>@selectedTypeText</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ModelId" class="form-label fw-semibold">Model</label>
+                        <select asp-for="ModelId" id="modelSelect" class="form-select"
+                                data-ajax-url="@Url.Action("ModelOptions", "MasterStock")">
+                            <option value="0">-- Select Model --</option>
+                            @if (Model?.ModelId > 0 && !string.IsNullOrWhiteSpace(selectedModelText))
+                            {
+                                <option value="@Model.ModelId" selected>@selectedModelText</option>
+                            }
+                        </select>
+                        <span asp-validation-for="ModelId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Color" class="form-label fw-semibold"></label>
+                        <input asp-for="Color" class="form-control" />
+                        <span asp-validation-for="Color" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PoliceNumber" class="form-label fw-semibold"></label>
+                        <input asp-for="PoliceNumber" class="form-control" />
+                        <span asp-validation-for="PoliceNumber" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="NewUsed" class="form-label fw-semibold">Condition</label>
+                        <select asp-for="NewUsed" class="form-select">
+                            <option value="">-- Select Condition --</option>
+                            @if (Model?.NewUsed == "new")
+                            {
+                                <option value="new" selected>New</option>
+                                <option value="used">Used</option>
+                            }
+                            else if (Model?.NewUsed == "used")
+                            {
+                                <option value="new">New</option>
+                                <option value="used" selected>Used</option>
+                            }
+                            else
+                            {
+                                <option value="new">New</option>
+                                <option value="used">Used</option>
+                            }
+                        </select>
+                        <span asp-validation-for="NewUsed" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label fw-semibold"></label>
+                        <input asp-for="Price" type="number" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input asp-for="IsReady" class="form-check-input" type="checkbox" />
+                            <label asp-for="IsReady" class="form-check-label">Is Ready</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+}
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/js/master-stock-form.js" asp-append-version="true"></script>
+}

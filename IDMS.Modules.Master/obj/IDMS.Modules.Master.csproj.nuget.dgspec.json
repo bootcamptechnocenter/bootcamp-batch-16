@@ -1,40 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Training .NET\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {}
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {}
   },
   "projects": {
-    "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
         "projectName": "IDMS.Infrastructure",
-        "projectPath": "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Training .NET\\IDMS.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj": {
-                "projectPath": "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj"
+              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj": {
+                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj"
               }
             }
           }
@@ -378,40 +371,33 @@
         }
       }
     },
-    "D:\\Training .NET\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training .NET\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj",
+        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj",
         "projectName": "IDMS.Modules.Master",
-        "projectPath": "D:\\Training .NET\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Training .NET\\IDMS.Modules.Master\\obj\\",
+        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\IDMS.Modules.Master.csproj",
+        "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Modules.Master\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
-                "projectPath": "D:\\Training .NET\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
+              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Infrastructure\\IDMS.Infrastructure.csproj"
               },
-              "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj": {
-                "projectPath": "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj"
+              "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj": {
+                "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj"
               }
             }
           }
@@ -739,29 +725,22 @@
         }
       }
     },
-    "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj": {
+    "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj",
         "projectName": "IDMS.Shared",
-        "projectPath": "D:\\Training .NET\\IDMS.Shared\\IDMS.Shared.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Training .NET\\IDMS.Shared\\obj\\",
+        "projectPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\IDMS.Shared.csproj",
+        "packagesPath": "C:\\Users\\User.DESKTOP-M317VJV\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User.DESKTOP-M317VJV\\Documents\\TechnoCenter\\TrainingDotnet\\IDMS.Shared\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User.DESKTOP-M317VJV\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

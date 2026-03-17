@@ -17,6 +17,7 @@
         var isHomeActive = string.Equals(currentController, "Home", StringComparison.OrdinalIgnoreCase) && string.Equals(currentAction, "Index", StringComparison.OrdinalIgnoreCase);
         var isMasterBrandActive = string.Equals(currentController, "MasterBrand", StringComparison.OrdinalIgnoreCase);
         var isMasterTypeActive = string.Equals(currentController, "MasterType", StringComparison.OrdinalIgnoreCase);
+        var isMasterModelActive = string.Equals(currentController, "MasterModel", StringComparison.OrdinalIgnoreCase);
     }
 
     <div class="app-shell">
@@ -30,6 +31,7 @@
                 <a class="nav-link @(isHomeActive ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 <a class="nav-link @(isMasterBrandActive ? "active" : "")" asp-controller="MasterBrand" asp-action="Index">Master Brand</a>
                 <a class="nav-link @(isMasterTypeActive ? "active" : "")" asp-controller="MasterType" asp-action="Index">Master Type</a>
+                <a class="nav-link @(isMasterModelActive ? "active" : "")" asp-controller="MasterModel" asp-action="Index">Master Model</a>
 
                 @if (User.Identity?.IsAuthenticated == true)
                 {

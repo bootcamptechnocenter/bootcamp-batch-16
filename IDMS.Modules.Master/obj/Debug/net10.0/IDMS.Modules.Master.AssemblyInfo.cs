@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IDMS.Modules.Master")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68d80f929fbd86ce30b588c987090e88af53c9c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db2946c418cd8f968f4133fe57259a7608bd69b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("IDMS.Modules.Master")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IDMS.Modules.Master")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
