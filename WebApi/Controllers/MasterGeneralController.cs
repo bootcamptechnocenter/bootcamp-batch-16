@@ -13,12 +13,14 @@ namespace WebApi.Controllers
     public class MasterGeneralController(
         IMstBrandService brandService,
         IMstTypeService typeService,
-        IMstModelService modelService
+        IMstModelService modelService,
+        IMstStockService stockService
     ) : Controller
     {
         private readonly IMstBrandService _brandService = brandService;
         private readonly IMstTypeService _typeService = typeService;
         private readonly IMstModelService _modelService = modelService;
+        private readonly IMstStockService _stockService = stockService;
 
         [HttpGet("brands")]
         public async Task<ActionResult<ApiResponse<object>>> GetBrands([FromQuery] ReqBaseParamDto dto)
@@ -158,6 +160,57 @@ namespace WebApi.Controllers
             return Ok(ApiResponse<object>.Success(
                 null,
                 "Model deleted successfully"
+            ));
+        }
+
+        [HttpGet("stocks")]
+        public async Task<ActionResult<ApiResponse<object>>> GetStocks([FromQuery] ReqBaseParamDto dto)
+        {
+            var result = await _stockService.GetMstStocks(dto);
+            return Ok(ApiResponse<object>.Success(
+                result.Items,
+                result.Items != null ? "Success" : "Data not found",
+                result.Pagination
+            ));
+        }
+
+        [HttpGet("stocks/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> GetStockById(int id)
+        {
+            var result = await _stockService.GetMstStockById(id);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                result != null ? "Success" : "Data not found"
+            ));
+        }
+
+        [HttpPost("stocks")]
+        public async Task<ActionResult<ApiResponse<object>>> CreateStock([FromBody] ReqMstStockDto dto)
+        {
+            var result = await _stockService.CreateMstStock(dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Stock created successfully"
+            ));
+        }
+
+        [HttpPut("stocks/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> UpdateStock(int id, [FromBody] ReqMstStockUpdateDto dto)
+        {
+            var result = await _stockService.UpdateMstStock(id, dto);
+            return Ok(ApiResponse<object>.Success(
+                result,
+                "Stock updated successfully"
+            ));
+        }
+
+        [HttpDelete("stocks/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteStock(int id)
+        {
+            await _stockService.DeleteMstStock(id);
+            return Ok(ApiResponse<object>.Success(
+                null,
+                "Stock deleted successfully"
             ));
         }
     }
