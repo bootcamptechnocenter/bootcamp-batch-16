@@ -22,14 +22,26 @@ namespace IDMS.Controllers
         public async Task<ActionResult<ApiResponse<object>>> CreateMstUser([FromBody] ReqCreateMstUserDto dto)
         {
             var result = await _userService.CreateMstUser(dto);
-            return Ok(ApiResponse<object>.Success(result, result != null ? "user created successfully" : "user creation failed"));
+            if (result == null)
+            {
+                return Conflict(ApiResponse<object>.Fail("user creation failed"));
+            }
+
+            return Ok(ApiResponse<object>.Success(result, "user created successfully"));
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<ApiResponse<object>>> Login([FromBody] ReqLoginDto dto)
         {
-            var result = await _userService.Login(dto);
-            return Ok(ApiResponse<object>.Success(result, "login successful"));
+            try
+            {
+                var result = await _userService.Login(dto);
+                return Ok(ApiResponse<object>.Success(result, "login successful"));
+            }
+            catch (ArgumentException)
+            {
+                return Unauthorized(ApiResponse<object>.Fail("Invalid email or password"));
+            }
         }
     }
 }

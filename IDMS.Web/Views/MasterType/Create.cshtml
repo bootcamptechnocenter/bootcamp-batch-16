@@ -11,7 +11,7 @@
 <form asp-action="Create" method="post">
     @Html.AntiForgeryToken()
     <div class="mb-3">
-        <label asp-for="BrandId" class="form-label"></label>
+        <label asp-for="BrandId" class="form-label">Brand</label>
         <select asp-for="BrandId" class="form-select" asp-items="(IEnumerable<SelectListItem>)ViewBag.BrandOptions">
             <option value="">Select Brand</option>
         </select>
