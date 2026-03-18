@@ -19,5 +19,7 @@ namespace IDMS.Module.Master.Dto.Request
         [Required(ErrorMessage = "Price wajib diisi")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price harus berupa angka positif")]
         public decimal Price { get; set; }
+
+        public bool isAccumulate { get; set; } = false;
     }
 }

@@ -41,5 +41,13 @@ namespace IDMS.Web.Services.impl
             await HandleResponse<ApiClientResponse<object>>(response);
         }
 
+        public async Task<bool> DeleteMstStock(int id)
+        {
+            var client = CreateClient();
+            var response = await client.DeleteAsync($"master/stock/{id}");
+            await HandleResponse<ApiClientResponse<object>>(response);
+            return response.IsSuccessStatusCode;
+        }
+
     }
 }

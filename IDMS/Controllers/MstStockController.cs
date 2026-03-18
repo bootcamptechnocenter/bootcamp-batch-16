@@ -44,5 +44,12 @@ namespace IDMS.Controllers
                "success"
            ));
         }
+
+        [HttpDelete("stock/{id}")]
+        public async Task<ActionResult<ApiResponse<object>>> DeleteStock(int id)
+        {
+            var result = await _service.DeleteMstStock(id);
+            return Ok(ApiResponse<object>.Success(null, result ? "stock deleted successfully" : "stock not found"));
+        }
     }
 }

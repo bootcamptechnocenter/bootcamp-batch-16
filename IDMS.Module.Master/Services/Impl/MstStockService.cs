@@ -85,10 +85,12 @@ namespace IDMS.Module.Master.Services.Impl
             if (existingStock != null)
             {
                 // Update existing stock
-                existingStock.TotalStock = dto.TotalStock;
+                existingStock.TotalStock = dto.isAccumulate ? dto.TotalStock + existingStock.TotalStock : dto.TotalStock; // Add to existing stock if isAccumulate is true
                 existingStock.Price = dto.Price;
                 existingStock.UpdatedAt = DateTime.Now;
                 existingStock.UpdatedBy = currentUser;
+                existingStock.DeletedAt = null; // In case it was previously deleted
+                existingStock.DeletedBy = null;
             }
             else
             {
@@ -105,6 +107,21 @@ namespace IDMS.Module.Master.Services.Impl
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteMstStock(int id)
+        {
+            var currentUser = GetCurrentUser();
+            var stock = await _context.MstStocks
+            .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+            if (stock == null) return false;
+
+
+            stock.DeletedAt = DateTime.Now;
+            stock.DeletedBy = currentUser;
+
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

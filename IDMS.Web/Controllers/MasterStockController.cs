@@ -56,5 +56,16 @@ namespace IDMS.Web.Controllers
             await _service.UpsertMstStock(dto);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var success = await _service.DeleteMstStock(id);
+            if (!success)
+            {
+                return BadRequest("Failed to delete stock.");
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

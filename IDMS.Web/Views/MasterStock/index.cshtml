@@ -213,6 +213,7 @@
             formData.append('modelId', modelId);
             formData.append('totalStock', totalStock);
             formData.append('price', price);
+            formData.append('isAccumulate', true)
             formData.append('__RequestVerificationToken', token);
 
             const response = await fetch('/MasterStock/Index', {

@@ -17,7 +17,7 @@ namespace IDMS.Web.Services.impl
         public async Task<PageResult<RestMstModelDto>> GetAvailableMstModel(ReqBaseParamDto dto)
         {
             var client = CreateClient();
-            var url = $"master/model/available?page={dto.Page}&limit={dto.Limit}&search={Uri.EscapeDataString(dto.Search ?? string.Empty)}";
+            var url = $"master/model?page={dto.Page}&limit={dto.Limit}&search={Uri.EscapeDataString(dto.Search ?? string.Empty)}";
             var response = await client.GetAsync(url);
             var result = await HandleResponse<ApiClientResponse<List<RestMstModelDto>>>(response);
 

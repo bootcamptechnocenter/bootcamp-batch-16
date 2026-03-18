@@ -12,5 +12,6 @@ namespace IDMS.Module.Master.Services
     {
         Task<PageResult<RestMstStockDto>> GetMstStock(ReqBaseParamDto param);
         Task UpsertMstStock(ReqUpsertMstStockDto dto);
+        Task<bool> DeleteMstStock(int id);
     }
 }
