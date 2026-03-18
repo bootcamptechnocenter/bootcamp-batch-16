@@ -1,0 +1,87 @@
+@model IDMS.Modules.Master.Dto.Request.ReqCreateMstStockDto
+
+@{
+    ViewData["Title"] = "Create Master Stock";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Create Stock</h2>
+        <p class="text-muted mb-0">Add new vehicle stock and pricing.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0" style="border-radius:1rem; box-shadow:0 8px 24px rgba(16,24,40,.06);">
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="ModelId" class="form-label fw-semibold">Vehicle Model</label>
+                        <select asp-for="ModelId" class="form-select" data-select2-model="true"
+                                data-ajax-url="@Url.Action("ModelOptions", "MasterStock")">
+                            <option value="0">-- Select Vehicle Model --</option>
+                        </select>
+                        <span asp-validation-for="ModelId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label fw-semibold">Price (Rp)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Rp</span>
+                            <input asp-for="Price" class="form-control" type="number" step="0.01"
+                                   placeholder="25000000" />
+                        </div>
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Qty" class="form-label fw-semibold">Quantity</label>
+                        <input asp-for="Qty" class="form-control" type="number" placeholder="10" />
+                        <span asp-validation-for="Qty" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save Stock</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        $('[data-select2-model="true"]').select2({
+        theme: 'bootstrap-5',
+        ajax: {
+        url: function () { return $(this).data('ajax-url'); },
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+        return { search: params.term, page: params.page || 1 };
+        },
+        processResults: function (data, params) {
+        params.page = params.page || 1;
+        return {
+        results: data.items,
+        pagination: { more: data.hasMore }
+        };
+        },
+        cache: true
+        }
+        });
+        });
+    </script>
+}

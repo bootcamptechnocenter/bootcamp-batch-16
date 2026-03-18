@@ -11,77 +11,105 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = IDMS.Web
 build_property.RootNamespace = IDMS.Web
-build_property.ProjectDir = D:\Training .NET\IDMS.Web\
+build_property.ProjectDir = /Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Training .NET\IDMS.Web
+build_property.MSBuildProjectDirectory = /Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Training .NET/IDMS.Web/Views/Auth/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterBrand/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyQnJhbmRcQ3JlYXRlLmNzaHRtbA==
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterBrand/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyQnJhbmQvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterBrand/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyQnJhbmRcRWRpdC5jc2h0bWw=
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterBrand/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyQnJhbmQvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterBrand/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyQnJhbmRcSW5kZXguY3NodG1s
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterBrand/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyQnJhbmQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterBrand/_MasterBrandTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyQnJhbmRcX01hc3RlckJyYW5kVGFibGUuY3NodG1s
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterBrand/_MasterBrandTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyQnJhbmQvX01hc3RlckJyYW5kVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterType/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyVHlwZVxDcmVhdGUuY3NodG1s
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterModel/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyTW9kZWwvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterType/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyVHlwZVxFZGl0LmNzaHRtbA==
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterModel/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyTW9kZWwvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterType/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyVHlwZVxJbmRleC5jc2h0bWw=
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterModel/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyTW9kZWwvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/MasterType/_MasterTypeTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyVHlwZVxfTWFzdGVyVHlwZVRhYmxlLmNzaHRtbA==
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterModel/_MasterModelTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyTW9kZWwvX01hc3Rlck1vZGVsVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterStock/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyU3RvY2svQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterStock/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyU3RvY2svSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterStock/_MasterStockTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyU3RvY2svX01hc3RlclN0b2NrVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyVHlwZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Training .NET/IDMS.Web/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-b9t295c1eo
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyVHlwZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyVHlwZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/MasterType/_MasterTypeTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFzdGVyVHlwZS9fTWFzdGVyVHlwZVRhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/user/Developer/learning/dotnet_api/bootcamp-batch-16/IDMS.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-pcm98r15yw

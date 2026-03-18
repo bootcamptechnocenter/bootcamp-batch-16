@@ -2,49 +2,37 @@
 @using IDMS.Shared.Entities
 @model PagedResult<ResMstBrandDto>
 
-@{
-    var search = Context.Request.Query["search"].ToString();
-    var items = Model?.Items ?? Enumerable.Empty<ResMstBrandDto>();
-    var currentPage = Model?.Pagination?.CurrentPage > 0 ? Model.Pagination.CurrentPage : 1;
-    var limit = Model?.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
-    var totalPages = Model?.Pagination?.TotalPages > 0 ? Model.Pagination.TotalPages : 1;
-    var totalItems = Model?.Pagination?.TotalItems ?? 0;
-    var startPage = Math.Max(1, currentPage - 2);
-    var endPage = Math.Min(totalPages, currentPage + 2);
-}
-
-<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
-    <p class="text-muted mb-0">Total data: <strong>@totalItems</strong></p>
-    <p class="text-muted mb-0">Page <strong>@currentPage</strong> of <strong>@totalPages</strong></p>
-</div>
-
-<div class="table-responsive">
-    <table class="table table-hover align-middle mb-0">
-        <thead class="table-light">
+<div class="table-responsive rounded-4 mb-3" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05);">
+    <table class="table align-middle mb-0 text-white" style="--bs-table-bg: transparent; --bs-table-color: #fff;">
+        <thead style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1);">
             <tr>
-                <th style="width: 80px;">No</th>
-                <th>Brand Code</th>
-                <th>Brand Name</th>
-                <th style="width: 170px;">Actions</th>
+                <th class="py-3 px-4" style="color: rgba(255,255,255,0.6);">No</th>
+                <th class="py-3" style="color: rgba(255,255,255,0.6);">Brand Code</th>
+                <th class="py-3" style="color: rgba(255,255,255,0.6);">Brand Name</th>
+                <th class="py-3 text-center" style="color: rgba(255,255,255,0.6);">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @if (items.Any())
+            @if (Model?.Items?.Any() == true)
             {
-                int no = ((currentPage - 1) * limit) + 1;
-                foreach (var brand in items)
+                int no = ((Model.Pagination.CurrentPage - 1) * Model.Pagination.Limit) + 1;
+                foreach (var brand in Model.Items)
                 {
-                    <tr>
-                        <td>@no</td>
-                        <td><span class="fw-semibold">@brand.Code</span></td>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td class="px-4 py-3">@no</td>
+                        <td class="fw-bold" style="color: #66b2ff;">@brand.Code</td>
                         <td>@brand.Name</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-sm btn-outline-warning">Edit</a>
-                            <button type="button"
-                                    class="btn btn-sm btn-outline-danger brand-delete-btn"
-                                    data-id="@brand.Id"
-                                    data-code="@Html.Encode(brand.Code)"
-                                    data-name="@Html.Encode(brand.Name)">Delete</button>
+                        <td class="text-center">
+                            <button class="btn btn-sm px-3 fw-semibold me-1"
+                                    style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px;"
+                                    onclick="showFormModal('@Url.Action("Edit", new { id = brand.Id })')">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm px-3 fw-semibold brand-delete-btn"
+                                    style="background: rgba(255,69,58,0.15); color: #ffcccc; border: 1px solid rgba(255,69,58,0.3); border-radius: 12px;"
+                                    data-id="@brand.Id" data-code="@brand.Code" data-name="@brand.Name">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                     no++;
@@ -53,90 +41,50 @@
             else
             {
                 <tr>
-                    <td colspan="4" class="text-center text-muted py-4">No brand data found.</td>
+                    <td colspan="4" class="text-center py-5" style="color: rgba(255,255,255,0.5);">
+                        No data available
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
-@if (totalPages > 1)
+@if (Model?.Pagination != null && Model.Pagination.TotalPages > 1)
 {
-    <nav class="mt-3" aria-label="Master Brand pagination">
-        <ul class="pagination justify-content-end mb-0">
-            <li class="page-item @(currentPage <= 1 ? "disabled" : "")">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-page="@(currentPage - 1)"
-                   asp-route-limit="@limit"
-                   asp-route-search="@search"
-                   data-page="@(currentPage - 1)">Previous</a>
-            </li>
-
-            @for (var p = startPage; p <= endPage; p++)
-            {
-                <li class="page-item @(p == currentPage ? "active" : "")">
-                    <a class="page-link"
-                       asp-action="Index"
-                       asp-route-page="@p"
-                       asp-route-limit="@limit"
-                       asp-route-search="@search"
-                       data-page="@p">@p</a>
-                </li>
-            }
-
-            <li class="page-item @(currentPage >= totalPages ? "disabled" : "")">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-page="@(currentPage + 1)"
-                   asp-route-limit="@limit"
-                   asp-route-search="@search"
-                   data-page="@(currentPage + 1)">Next</a>
-            </li>
-        </ul>
-    </nav>
-}
-
-<div class="modal fade" id="brandDeleteModal" tabindex="-1" aria-labelledby="brandDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="border-radius:1rem; border:none; box-shadow:0 16px 40px rgba(16,24,40,.14);">
-            <div class="modal-header border-0 pb-0 px-4 pt-4">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="flex-shrink-0 d-flex align-items-center justify-content-center rounded-circle bg-danger bg-opacity-10"
-                         style="width:48px;height:48px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#dc3545" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h5 class="modal-title mb-0 fw-semibold" id="brandDeleteModalLabel">Delete Brand</h5>
-                        <p class="text-muted mb-0" style="font-size:.875rem;">This action cannot be undone.</p>
-                    </div>
-                </div>
-                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body px-4 pt-3 pb-2">
-                <p class="mb-2">You are about to delete the following brand:</p>
-                <div class="rounded p-3 mb-1" style="background:#f8f9fa; border:1px solid #e9ecf3;">
-                    <div class="d-flex gap-3">
-                        <div>
-                            <p class="text-muted mb-0" style="font-size:.75rem;">Brand Code</p>
-                            <p class="fw-semibold mb-0" id="brandDeleteCode">—</p>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0" style="font-size:.75rem;">Brand Name</p>
-                            <p class="fw-semibold mb-0" id="brandDeleteName">—</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer border-0 px-4 pb-4 pt-2 gap-2">
-                <form id="brandDeleteForm" method="post" class="d-inline">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-danger px-4">Yes, Delete</button>
-                </form>
-                <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-            </div>
+    <div class="d-flex flex-wrap justify-content-between align-items-center px-2">
+        <div class="small fw-medium mb-2 mb-md-0" style="color: rgba(255,255,255,0.6);">
+            Showing <strong class="text-white">@(((Model.Pagination.CurrentPage - 1) * Model.Pagination.Limit) + 1)</strong> to 
+            <strong class="text-white">@(Math.Min(Model.Pagination.CurrentPage * Model.Pagination.Limit, Model.Pagination.TotalItems))</strong> of 
+            <strong class="text-white">@Model.Pagination.TotalItems</strong> entries
         </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm mb-0 gap-1">
+                <li class="page-item @(Model.Pagination.CurrentPage <= 1 ? "disabled" : "")">
+                    <a class="page-link shadow-none" href="#" data-page="@(Model.Pagination.CurrentPage - 1)"
+                       style="background: @(Model.Pagination.CurrentPage <= 1 ? "transparent" : "rgba(255,255,255,0.05)"); border: 1px solid rgba(255,255,255,0.1); color: @(Model.Pagination.CurrentPage <= 1 ? "rgba(255,255,255,0.3)" : "#fff"); border-radius: 8px;">
+                        &laquo; Prev
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.Pagination.CurrentPage ? "active" : "")">
+                        <a class="page-link shadow-none fw-semibold" href="#" data-page="@i"
+                           style="background: @(i == Model.Pagination.CurrentPage ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.05)"); border: 1px solid @(i == Model.Pagination.CurrentPage ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.1)"); color: #fff; border-radius: 8px;">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <li class="page-item @(Model.Pagination.CurrentPage >= Model.Pagination.TotalPages ? "disabled" : "")">
+                    <a class="page-link shadow-none" href="#" data-page="@(Model.Pagination.CurrentPage + 1)"
+                       style="background: @(Model.Pagination.CurrentPage >= Model.Pagination.TotalPages ? "transparent" : "rgba(255,255,255,0.05)"); border: 1px solid rgba(255,255,255,0.1); color: @(Model.Pagination.CurrentPage >= Model.Pagination.TotalPages ? "rgba(255,255,255,0.3)" : "#fff"); border-radius: 8px;">
+                        Next &raquo;
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
-</div>
+}

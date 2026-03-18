@@ -1,51 +1,301 @@
+@model IDMS.Modules.Master.Dto.Request.ReqLoginDto
 @{
     Layout = null;
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login - IDMS Analyst";
 }
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - IDMS.Web</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/IDMS.Web.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <div class="login-page">
-        <div class="card login-card">
-            <div class="card-body">
-                <h3 class="login-title mb-1">Welcome Back</h3>
-                <p class="login-subtitle mb-4">Sign in to continue to IDMS.</p>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
-                @if (ViewBag.Error != null)
-                {
-                    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+    <style>
+            :root {
+                --apple-blue: #0071e3;
+            }
+
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                width: 100vw;
+                font-family: 'Inter', sans-serif;
+                background: #050505;
+                overflow: hidden;
+            }
+
+            /* 3D Background Layer */
+            .bg-3d {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 1;
+            }
+
+            spline-viewer {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            /* Layout Utama */
+            .login-wrapper {
+                position: relative;
+                z-index: 10;
+                display: flex;
+                height: 100vh;
+                width: 100%;
+            }
+
+            .visual-panel {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 50px 80px;
+                pointer-events: none;
+            }
+
+            .brand-text h1 {
+                font-weight: 800;
+                font-size: 3rem;
+                letter-spacing: -2px;
+                color: #ffffff;
+                text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+                margin: 0;
+            }
+
+            /* ========================================== */
+            /* THE ULTIMATE PHYSICAL GLASS TWEAK          */
+            /* ========================================== */
+            .login-sidebar {
+                width: 480px;
+                position: relative;
+                overflow: hidden;
+                /* Supaya kilapan cahayanya gak keluar jalur */
+
+                /* Background transparan dengan sedikit rona putih di sudut */
+                background: linear-gradient(125deg,
+                        rgba(255, 255, 255, 0.1) 0%,
+                        rgba(255, 255, 255, 0.01) 40%,
+                        rgba(255, 255, 255, 0.0) 60%,
+                        rgba(255, 255, 255, 0.05) 100%);
+
+                /* Optik distorsi */
+                backdrop-filter: blur(50px) saturate(200%) brightness(115%);
+                -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(115%);
+
+                /* Trik Bevel: Sisi atas & kiri lebih terang karena pantulan lampu */
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                border-left: 1px solid rgba(255, 255, 255, 0.2);
+
+                /* Shadow berlapis untuk kedalaman 3D */
+                box-shadow:
+                    -30px 30px 60px rgba(0, 0, 0, 0.5),
+                    /* Bayangan luar */
+                    inset 1px 1px 3px rgba(255, 255, 255, 0.2),
+                    /* Pantulan dalam ujung kiri atas */
+                    inset -1px -1px 3px rgba(0, 0, 0, 0.2);
+                /* Gelap di ujung kanan bawah */
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 60px 70px;
+                animation: slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            /* Efek Kilapan Cahaya (Glare) yang melintasi kaca */
+            .login-sidebar::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -150%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
+                transform: skewX(-25deg);
+                animation: glassShine 7s infinite;
+                pointer-events: none;
+                /* Biar gak ganggu klik form */
+            }
+
+            @@keyframes glassShine {
+                0% {
+                    left: -150%;
                 }
 
-                <form asp-action="Login" method="post" asp-controller="Auth">
-                    @Html.AntiForgeryToken()
-                    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                15% {
+                    left: 200%;
+                }
 
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input id="username" name="username" class="form-control" autocomplete="username" required />
-                    </div>
+                100% {
+                    left: 200%;
+                }
+            }
 
-                    <div class="mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <input id="password" name="password" class="form-control" type="password" autocomplete="current-password" required />
-                    </div>
+            @@keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
 
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                </form>
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            /* Tipografi */
+            .login-title {
+                font-weight: 800;
+                font-size: 2.5rem;
+                color: #fff;
+                margin-bottom: 5px;
+                letter-spacing: -1px;
+                text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .login-subtitle {
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 45px;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+
+            .form-label {
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 8px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            /* Input Form Kaca Presisi */
+            .form-control {
+                background: rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                padding: 15px 20px;
+                color: #fff !important;
+                font-weight: 500;
+                box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .form-control::placeholder {
+                color: rgba(255, 255, 255, 0.3);
+            }
+
+            .form-control:focus {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.5);
+                box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), inset 0 2px 8px rgba(0, 0, 0, 0.1);
+                outline: none;
+            }
+
+            .btn-apple {
+                background: rgba(255, 255, 255, 0.9);
+                color: #000;
+                border: none;
+                border-radius: 16px;
+                padding: 16px;
+                font-weight: 700;
+                font-size: 1.05rem;
+                margin-top: 25px;
+                transition: 0.3s;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-apple:hover {
+                background: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .footer-copyright {
+                margin-top: auto;
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.4);
+                text-align: center;
+                font-weight: 500;
+            }
+
+            @@media (max-width: 992px) {
+                .visual-panel {
+                    display: none;
+                }
+
+                .login-sidebar {
+                    width: 100%;
+                    border-left: none;
+                }
+            }
+    </style>
+</head>
+
+<body>
+    <div class="bg-3d">
+        <script type="module" src="https://unpkg.com/@@splinetool/viewer@1.12.69/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/RuMjqn1WjhiFFi7J/scene.splinecode"></spline-viewer>
+    </div>
+
+    <div class="login-wrapper">
+        <div class="visual-panel">
+            <div class="brand-text">
+                <h1>IDMS.</h1>
             </div>
         </div>
+
+        <aside class="login-sidebar">
+            <h3 class="login-title">Welcome.</h3>
+            <p class="login-subtitle">City Management Analyst Portal</p>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger mb-4"
+                     style="background: rgba(255,59,48,0.15); border: 1px solid rgba(255,59,48,0.3); color: #ffcccc; border-radius: 14px; backdrop-filter: blur(10px);">
+                    <span class="me-2">⚠️</span> @ViewBag.Error
+                </div>
+            }
+
+            <form asp-action="Login" method="post" asp-controller="Auth">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
+                <div class="mb-4">
+                    <label class="form-label">Email Address</label>
+                    <input name="username" class="form-control" placeholder="analyst@@idms.com" required />
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Security Key</label>
+                    <input name="password" class="form-control" type="password" placeholder="••••••••" required />
+                </div>
+
+                <button type="submit" class="btn-apple w-100">Access Dashboard</button>
+            </form>
+
+            <div class="footer-copyright mt-auto pt-5">
+                ACC Career Technocenter &copy; 2026
+            </div>
+        </aside>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

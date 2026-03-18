@@ -1,255 +1,135 @@
-html {
-  font-size: 14px;
+/* ========================================== */
+/* GLOBAL DARK THEME                          */
+/* ========================================== */
+:root {
+    --apple-blue: #0071e3;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
+html { font-size: 14px; }
+@media (min-width: 768px) { html { font-size: 16px; } }
 
 body {
-  margin: 0;
-  background-color: #f4f6fb;
+    margin: 0; padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #050505;
+    color: var(--text-main);
+    overflow: hidden; /* Supaya layout utama gak bisa scroll, cuma kontennya aja */
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* ========================================== */
+/* 3D BACKGROUND LAYER                        */
+/* ========================================== */
+.global-3d-wrapper {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1; pointer-events: none;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+spline-viewer { width: 100%; height: 100%; display: block; }
+
+/* ========================================== */
+/* THE PHYSICAL GLASS RECIPE (Ultimate)       */
+/* ========================================== */
+.glass-panel {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        125deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.01) 40%, 
+        rgba(255, 255, 255, 0.0) 60%, 
+        rgba(255, 255, 255, 0.04) 100%
+    );
+    backdrop-filter: blur(50px) saturate(200%) brightness(115%);
+    -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(115%);
+    
+    /* Asymmetrical Bevel */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Deep Shadows */
+    box-shadow: 
+        -20px 20px 50px rgba(0, 0, 0, 0.5),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.2),
+        inset -1px -1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Animasi Kilap Cahaya (Glare) */
+.glass-panel::before {
+    content: ''; position: absolute; top: 0; left: -150%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: glassShine 10s infinite;
+    pointer-events: none;
+}
+
+@keyframes glassShine { 0% { left: -150%; } 15% { left: 200%; } 100% { left: 200%; } }
+
+/* ========================================== */
+/* LAYOUT STRUCTURE                           */
+/* ========================================== */
 .app-shell {
-  min-height: 100vh;
-  display: flex;
-  gap: 1.25rem;
-  padding: 1.25rem;
+    display: flex; gap: 1.5rem; padding: 1.5rem;
+    height: 100vh; position: relative; z-index: 10;
 }
 
 .app-sidebar {
-  width: 250px;
-  flex-shrink: 0;
-  border-radius: 1rem;
-  background: #ffffff;
-  border: 1px solid #e9ecf3;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  position: sticky;
-  top: 1.25rem;
-  max-height: calc(100vh - 2.5rem);
+    width: 280px; flex-shrink: 0;
+    border-radius: 28px;
+    display: flex; flex-direction: column;
+    padding: 2rem 1.5rem;
 }
 
-.app-sidebar-header {
-  padding: 0.5rem 0.5rem 1rem;
-  border-bottom: 1px solid #eef1f6;
-  margin-bottom: 0.75rem;
-}
-
-.app-brand {
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1f2937;
-}
-
-.app-brand:hover {
-  color: #1b6ec2;
-}
-
-.app-sidebar-subtitle {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.app-nav .nav-link {
-  color: #374151;
-  border-radius: 0.75rem;
-  padding: 0.65rem 0.85rem;
-  margin-bottom: 0.35rem;
-  font-weight: 500;
-}
-
-.app-nav .nav-link:hover {
-  background-color: #f3f6ff;
-  color: #1b6ec2;
-}
-
-.app-nav .nav-link.active {
-  background-color: #e9f1ff;
-  color: #1b6ec2;
-}
-
-.app-nav-logout {
-  margin-top: auto;
-  color: #b42318 !important;
-  background-color: #fff1f0;
-}
-
-.app-nav-logout:hover {
-  background-color: #ffe4e1 !important;
-}
-
-.app-main {
-  flex: 1;
-  min-width: 0;
-}
+.app-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 
 .app-main-content {
-  background: #ffffff;
-  border-radius: 1rem;
-  border: 1px solid #e9ecf3;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
-  padding: 1.5rem;
-  min-height: calc(100vh - 2.5rem);
+    flex: 1; border-radius: 28px; padding: 2.5rem;
+    overflow-y: auto;
 }
 
-.login-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  background: linear-gradient(140deg, #eef3ff 0%, #f7f9ff 45%, #f4f6fb 100%);
+/* ========================================== */
+/* UI ELEMENTS (Dark Mode / Glass Mod)        */
+/* ========================================== */
+.app-brand { font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: -1.5px; text-decoration: none; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.app-sidebar-subtitle { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
+
+.nav-link {
+    color: rgba(255,255,255,0.7) !important;
+    border-radius: 16px; padding: 12px 18px !important;
+    margin-bottom: 8px; font-weight: 500; transition: all 0.3s ease;
 }
 
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  border: 1px solid #e9ecf3;
-  border-radius: 1rem;
-  box-shadow: 0 12px 34px rgba(16, 24, 40, 0.1);
+.nav-link:hover { background: rgba(255, 255, 255, 0.1); color: #fff !important; transform: translateX(5px); }
+
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important; font-weight: 600;
+    box-shadow: inset 1px 1px 2px rgba(255,255,255,0.2), 0 4px 10px rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-left: 1px solid rgba(255,255,255,0.1);
 }
 
-.login-card .card-body {
-  padding: 1.5rem;
+.nav-divider { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; margin: 25px 15px 10px; }
+
+/* Input & Buttons di dalam Dashboard */
+.form-control { 
+    background: rgba(0, 0, 0, 0.2) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 16px !important; color: #fff !important;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.2) !important;
 }
+.form-control:focus { background: rgba(255, 255, 255, 0.05) !important; border-color: rgba(255, 255, 255, 0.4) !important; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), inset 0 2px 8px rgba(0,0,0,0.1) !important; }
 
-.login-title {
-  font-weight: 700;
-  color: #1f2937;
-}
+/* Table Styling untuk Dark Glass */
+.table { --bs-table-bg: transparent !important; color: #fff !important; }
+.table thead th { border-bottom: 1px solid rgba(255,255,255,0.1) !important; color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+.table td, .table th { border-color: rgba(255,255,255,0.05) !important; vertical-align: middle; }
 
-.login-subtitle {
-  color: #6b7280;
-}
-
-.master-brand-page .master-brand-card,
-.master-type-page .master-brand-card {
-  border-radius: 1rem;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
-}
-
-.master-brand-page .table thead th,
-.master-type-page .table thead th {
-  white-space: nowrap;
-}
-
-.master-brand-page .pagination .page-link,
-.master-type-page .pagination .page-link {
-  border-radius: 0.5rem;
-  margin-left: 0.25rem;
-}
-
-.master-brand-loading {
-  opacity: 0.6;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-.select2-container {
-  width: 100% !important;
-}
-
-.select2-container .select2-selection--single {
-  min-height: calc(2.25rem + 2px);
-  border: 1px solid #ced4da;
-  border-radius: 0.375rem;
-  padding: 0.375rem 2rem 0.375rem 0.75rem;
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  color: #212529;
-  line-height: 1.5rem;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-  color: #6c757d;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__clear {
-  position: absolute;
-  right: 1.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #6c757d;
-  margin-right: 0;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: 100%;
-  right: 0.6rem;
-  top: 0;
-}
-
-.select2-container--default.select2-container--focus .select2-selection--single,
-.select2-container--default.select2-container--open .select2-selection--single {
-  border-color: #86b7fe;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-.select2-dropdown {
-  border: 1px solid #ced4da;
-  border-radius: 0.375rem;
-  overflow: hidden;
-}
-
-.select2-search--dropdown .select2-search__field {
-  border: 1px solid #ced4da;
-  border-radius: 0.375rem;
-}
-
-.select2-results__option {
-  padding: 0.5rem 0.75rem;
-}
-
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-  background-color: #e9f1ff;
-  color: #1b6ec2;
-}
-
-@media (max-width: 991.98px) {
-  .app-shell {
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .app-sidebar {
-    width: 100%;
-    max-height: none;
-    position: static;
-  }
-
-  .app-main-content {
-    min-height: auto;
-  }
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }

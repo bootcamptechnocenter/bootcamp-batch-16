@@ -3,46 +3,78 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - IDMS.Web</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - IDMS Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/IDMS.Web.styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
-<body class="app-shell-body">
+
+<body>
+    <div class="global-3d-wrapper">
+        <script type="module" src="https://unpkg.com/@@splinetool/viewer@1.12.69/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/RuMjqn1WjhiFFi7J/scene.splinecode"></spline-viewer>
+    </div>
+
     @{
         var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
-        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
-        var isHomeActive = string.Equals(currentController, "Home", StringComparison.OrdinalIgnoreCase) && string.Equals(currentAction, "Index", StringComparison.OrdinalIgnoreCase);
+        var isHomeActive = string.Equals(currentController, "Home", StringComparison.OrdinalIgnoreCase);
         var isMasterBrandActive = string.Equals(currentController, "MasterBrand", StringComparison.OrdinalIgnoreCase);
         var isMasterTypeActive = string.Equals(currentController, "MasterType", StringComparison.OrdinalIgnoreCase);
+        var isMasterModelActive = string.Equals(currentController, "MasterModel", StringComparison.OrdinalIgnoreCase);
+        var isMasterStockActive = string.Equals(currentController, "MasterStock", StringComparison.OrdinalIgnoreCase);
     }
 
     <div class="app-shell">
-        <aside class="app-sidebar">
-            <div class="app-sidebar-header">
-                <a class="app-brand" asp-area="" asp-controller="Home" asp-action="Index">IDMS</a>
-                <p class="app-sidebar-subtitle mb-0">Dashboard</p>
+
+        <aside class="app-sidebar glass-panel">
+            <div class="text-center mb-4">
+                <a class="app-brand" asp-area="" asp-controller="Home" asp-action="Index">IDMS.</a>
+                <p class="app-sidebar-subtitle">Analyst Portal</p>
             </div>
 
             <nav class="nav flex-column app-nav">
-                <a class="nav-link @(isHomeActive ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="nav-link @(isMasterBrandActive ? "active" : "")" asp-controller="MasterBrand" asp-action="Index">Master Brand</a>
-                <a class="nav-link @(isMasterTypeActive ? "active" : "")" asp-controller="MasterType" asp-action="Index">Master Type</a>
+                <a class="nav-link @(isHomeActive ? "active" : "")" asp-controller="Home" asp-action="Index">
+                    <span class="me-3">🏠</span> Dashboard
+                </a>
+
+                <div class="nav-divider">Master Data</div>
+
+                <a class="nav-link @(isMasterBrandActive ? "active" : "")" asp-controller="MasterBrand"
+                       asp-action="Index">
+                    <span class="me-3">🏷️</span> Brand
+                </a>
+                <a class="nav-link @(isMasterTypeActive ? "active" : "")" asp-controller="MasterType"
+                       asp-action="Index">
+                    <span class="me-3">📦</span> Type
+                </a>
+                <a class="nav-link @(isMasterModelActive ? "active" : "")" asp-controller="MasterModel"
+                       asp-action="Index">
+                    <span class="me-3">🚗</span> Model
+                </a>
+                <a class="nav-link @(isMasterStockActive ? "active" : "")" asp-controller="MasterStock"
+                       asp-action="Index">
+                    <span class="me-3">📋</span> Stock
+                </a>
 
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <a class="nav-link app-nav-logout" asp-controller="Auth" asp-action="Logout">Logout</a>
+                    <a class="nav-link mt-auto" style="color: #ff453a !important; background: rgba(255, 69, 58, 0.1);"
+                           asp-controller="Auth" asp-action="Logout">
+                        <span class="me-3">🚪</span> Secure Logout
+                    </a>
                 }
             </nav>
         </aside>
 
         <main role="main" class="app-main">
-            <div class="app-main-content">
+            <div class="app-main-content glass-panel">
                 @RenderBody()
             </div>
         </main>
+
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -50,4 +82,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

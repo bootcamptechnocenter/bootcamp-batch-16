@@ -1,0 +1,71 @@
+@using IDMS.Modules.Master.Dto.Response
+@using IDMS.Shared.Entities
+@model PagedResult<ResMstModelDto>
+
+@{
+    var items = Model?.Items ?? Enumerable.Empty<ResMstModelDto>();
+    var currentPage = Model?.Pagination?.CurrentPage > 0 ? Model.Pagination.CurrentPage : 1;
+    var limit = Model?.Pagination?.Limit > 0 ? Model.Pagination.Limit : 10;
+}
+
+<div class="table-responsive" style="border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+    <table class="table align-middle mb-0"
+           style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.05);">
+        <thead style="background: rgba(255,255,255,0.05);">
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <th class="ps-4 py-3 border-0 text-muted small text-uppercase">No</th>
+                <th class="py-3 border-0 text-muted small text-uppercase">Vehicle Type</th>
+                <th class="py-3 border-0 text-muted small text-uppercase">Code</th>
+                <th class="py-3 border-0 text-muted small text-uppercase">Model Name</th>
+                <th class="py-3 border-0 text-muted small text-uppercase text-center">Year</th>
+                <th class="pe-4 py-3 border-0 text-muted small text-uppercase text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody style="color: rgba(255,255,255,0.8);">
+            @if (items.Any())
+            {
+                int no = ((currentPage - 1) * limit) + 1;
+                foreach (var mdl in items)
+                {
+                    <tr class="table-row-hover" style="border-bottom: 1px solid rgba(255,255,255,0.03); transition: all 0.2s;">
+                        <td class="ps-4" style="color: rgba(255,255,255,0.4);">@no</td>
+                        <td>
+                            <span class="badge"
+                                  style="background: rgba(255,255,255,0.1); color: #fff; border-radius: 8px; font-weight: 500;">@mdl.TypeName</span>
+                        </td>
+                        <td><span class="fw-bold text-info">@mdl.Code</span></td>
+                        <td class="text-white">@mdl.Name</td>
+                        <td class="text-center">@mdl.Year</td>
+                        <td class="pe-4 text-end">
+                            <div class="d-flex justify-content-end gap-2">
+                                <button onclick="loadEditModal(@mdl.Id)" class="btn btn-sm fw-bold"
+                                        style="background: rgba(255, 193, 7, 0.1); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.2); border-radius: 10px; padding: 6px 14px;">Edit</button>
+
+                                <form asp-action="Delete" asp-route-id="@mdl.Id" method="post" class="d-inline"
+                                      onsubmit="return confirm('Yakin ingin menghapus ini?');">
+                                    <button type="submit" class="btn btn-sm fw-bold"
+                                            style="background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid rgba(220, 53, 69, 0.2); border-radius: 10px; padding: 6px 14px;">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    no++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center py-5 text-muted">Data tidak ditemukan.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Efek hover pada baris tabel */
+    .table-row-hover:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+        transform: scale(1.002);
+    }
+</style>

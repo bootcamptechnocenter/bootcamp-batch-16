@@ -43,6 +43,9 @@ builder.Services.AddScoped<IMasterBrandService, MasterBrandService>();
 builder.Services.AddScoped<IMasterTypeService, MasterTypeService>();
 builder.Services.AddScoped<IAuthClientService, AuthClientService>();
 
+builder.Services.AddScoped<IMasterModelService, MasterModelService>();
+builder.Services.AddScoped<IMasterStockService, MasterStockService>();
+
 // builder.Services.AddDbContext<AppDbContext>(options =>
 //     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 

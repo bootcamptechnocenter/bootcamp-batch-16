@@ -7,15 +7,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IDMS.Infrastructure.Data
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            
+
         }
         public DbSet<MstBrands> MstBrands => Set<MstBrands>();
         public DbSet<MstUser> MstUsers => Set<MstUser>();
         public DbSet<MstTypes> MstTypes => Set<MstTypes>();
+        public DbSet<MstModels> MstModels => Set<MstModels>();
+        public DbSet<MstStocks> MstStocks => Set<MstStocks>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

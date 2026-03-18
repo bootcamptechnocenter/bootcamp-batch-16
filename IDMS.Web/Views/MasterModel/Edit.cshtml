@@ -1,0 +1,77 @@
+@model IDMS.Modules.Master.Dto.Request.ReqUpdateMstModelDto
+@{
+    Layout = null;
+}
+
+<form asp-action="Edit" asp-route-id="@ViewBag.ModelId" method="post" id="formEditModel">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-4">
+        <label asp-for="TypeId" class="form-label fw-bold small text-muted text-uppercase"
+               style="letter-spacing: 1px;">Vehicle Type</label>
+        <select asp-for="TypeId" class="form-select select2-dark-edit"
+                data-ajax-url="@Url.Action("TypeOptions", "MasterModel")"
+                style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+            @if (ViewBag.CurrentTypeName != null)
+            {
+                <option value="@Model.TypeId" selected>@ViewBag.CurrentTypeName</option>
+            }
+        </select>
+        <span asp-validation-for="TypeId" class="text-danger small"></span>
+    </div>
+
+    <div class="mb-4">
+        <label asp-for="Code" class="form-label fw-bold small text-muted text-uppercase"
+               style="letter-spacing: 1px;">Model Code</label>
+        <input asp-for="Code" class="form-control text-white" placeholder="Contoh: MDL-01" required
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px;" />
+        <span asp-validation-for="Code" class="text-danger small"></span>
+    </div>
+
+    <div class="mb-4">
+        <label asp-for="Name" class="form-label fw-bold small text-muted text-uppercase"
+               style="letter-spacing: 1px;">Model Name</label>
+        <input asp-for="Name" class="form-control text-white" placeholder="Nama Model..." required
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px;" />
+        <span asp-validation-for="Name" class="text-danger small"></span>
+    </div>
+
+    <div class="mb-5">
+        <label asp-for="Year" class="form-label fw-bold small text-muted text-uppercase"
+               style="letter-spacing: 1px;">Year</label>
+        <input asp-for="Year" type="number" class="form-control text-white" placeholder="2024" required
+               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px;" />
+        <span asp-validation-for="Year" class="text-danger small"></span>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="button" class="btn w-50 fw-semibold"
+                style="background: rgba(255,255,255,0.1); color: #fff; border-radius: 16px; padding: 14px;"
+                data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn w-50 fw-bold shadow-sm"
+                style="background: #fff; color: #000; border-radius: 16px; padding: 14px;">Update Data</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        // Inisialisasi Select2 khusus untuk modal Edit agar tidak konflik dengan Create
+        $('.select2-dark-edit').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#editBrandModal'), // Ganti ID ini sesuai dengan ID modal popup kamu
+            ajax: {
+                url: function () { return $(this).data('ajax-url'); },
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return { search: params.term, page: params.page || 1 };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return { results: data.items, pagination: { more: data.hasMore } };
+                },
+                cache: true
+            }
+        });
+    });
+</script>

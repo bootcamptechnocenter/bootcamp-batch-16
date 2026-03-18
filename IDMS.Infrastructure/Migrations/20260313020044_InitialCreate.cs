@@ -6,40 +6,42 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IDMS.Infrastructure.Migrations
 {
-    /// <inheritdoc />
     public partial class InitialCreate : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
-        {           
-
+        {
             migrationBuilder.CreateTable(
-                name: "mst_user",
+                name: "mst_stocks",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    password = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    full_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    DeletedBy = table.Column<string>(type: "text", nullable: true)
+                    model_id = table.Column<int>(type: "integer", nullable: false),
+                    price = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    qty = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    created_by = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    updated_at = table.Column<DateTime>(type: "timestamp", nullable: true),
+                    updated_by = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp", nullable: true),
+                    deleted_by = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_mst_user", x => x.id);
+                    table.PrimaryKey("mst_stocks_pkey", x => x.id);
+                    table.ForeignKey(
+                        name: "mst_stocks_model_id_fkey",
+                        column: x => x.model_id,
+                        principalTable: "mst_models",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "mst_user");
+            migrationBuilder.DropTable(name: "mst_stocks");
+
         }
     }
 }

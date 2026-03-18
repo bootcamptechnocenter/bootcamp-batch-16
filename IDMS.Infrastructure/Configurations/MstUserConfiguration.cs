@@ -36,31 +36,31 @@ namespace IDMS.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(e => e.CreatedBy)
-           .HasColumnName("created_by")
-           .HasColumnType("varchar(100)")
-           .HasMaxLength(100);
 
             builder.Property(e => e.CreatedAt)
-                .HasColumnName("created_at")
+                .HasColumnName("created_at") // Ini yang bikin error kalau tidak ada
                 .HasColumnType("timestamp");
 
-            builder.Property(e => e.UpdatedBy)
-                .HasColumnName("updated_by")
-                .HasColumnType("varchar(100)")
+            builder.Property(e => e.CreatedBy)
+                .HasColumnName("created_by")
                 .HasMaxLength(100);
 
             builder.Property(e => e.UpdatedAt)
                 .HasColumnName("updated_at")
                 .HasColumnType("timestamp");
 
+            builder.Property(e => e.UpdatedBy)
+                .HasColumnName("updated_by")
+                .HasMaxLength(100);
+
             builder.Property(e => e.DeletedAt)
-            .HasColumnName("deleted_at")
-            .HasColumnType("timestamp");
+                .HasColumnName("deleted_at")
+                .HasColumnType("timestamp");
 
             builder.Property(e => e.DeletedBy)
-            .HasColumnName("deleted_by")
-            .HasColumnType("varchar(100)");
+                .HasColumnName("deleted_by")
+                .HasMaxLength(100);
+
         }
     }
 }
