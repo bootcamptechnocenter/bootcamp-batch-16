@@ -1,0 +1,1072 @@
+================================================================================
+TRAINING ASP.NET CORE WEB API - MATERI PESERTA
+================================================================================
+
+
+HARI 1: HARI 1 - PERKENALAN .NET & C#
+--------------------------------------------------------------------------------
+# 📖 MATERI PESERTA — Hari 1: Perkenalan .NET & C#
+
+---
+
+## 📎 REFERENSI CEPAT
+
+- Semua tipe data: `bool`, `byte`, `int`, `long`, `float`, `double`, `decimal`, `char`, `string`, `object`
+- Nullable type: tambahkan `?` → `string?`, `int?`, `DateTime?`
+- String interpolation: `$"Hello {nama}"`
+- `var` = tipe diinferensikan compiler, tapi tetap strongly typed
+
+---
+
+
+---
+
+# 💻 Waktunya Praktik!
+
+## ✅ JAWABAN KUIS KILAT & TANTANGAN KODING (20 MENIT)
+
+> Bagian ini untuk pengajar. Gunakan saat review bersama setelah peserta mengerjakan.
+
+---
+
+### Bagian A — Jawaban Kuis Prediksi Output
+
+**Soal 1 — Integer Division**
+```
+int a = 7, b = 2;
+Console.WriteLine(a / b);           // Output: 3   (integer division, dibulatkan ke bawah)
+Console.WriteLine((double)a / b);   // Output: 3.5 (cast ke double dulu)
+```
+> 💡 Poin diskusi: `int / int` di C# **selalu menghasilkan int**. Untuk mendapat desimal, minimal satu operand harus `double` atau `decimal`.
+
+---
+
+**Soal 2 — Nullable Operator**
+```
+string? nama = null;
+Console.WriteLine(nama ?? "Tidak diketahui");  // Output: Tidak diketahui
+Console.WriteLine(nama?.Length);               // Output: (baris kosong)
+```
+> 💡 `??` = null-coalescing: ambil kanan jika kiri null. `?.` = null-conditional: hasilnya null jika objek null (tidak throw exception). `Console.WriteLine(null)` mencetak baris kosong.
+
+---
+
+**Soal 3 — Mana yang Error Compile**
+```
+int x = 3.14;       // ❌ ERROR: cannot implicitly convert 'double' to 'int'
+double y = 3.14;    // ✅ OK
+var z = 3.14;       // ✅ OK — z diinfer sebagai double
+decimal d = 3.14;   // ❌ ERROR: literal 3.14 adalah double, harus tulis 3.14m
+```
+> 💡 Perbaikan: `int x = (int)3.14;` atau `decimal d = 3.14m;`
+
+---
+
+**Soal 4 — Operator Precedence**
+```
+int hasil = 10 + 3 * 2 - 8 / 4;
+// Urutan: 3*2=6, 8/4=2, lalu 10+6-2 = 14
+Console.WriteLine(hasil);  // Output: 14
+```
+> 💡 Sama seperti matematika: `*` dan `/` dikerjakan sebelum `+` dan `-`.
+
+---
+
+**Soal 5 — TryParse vs Parse**
+```
+string input = "abc";
+
+// A — CRASH dengan FormatException
+int.Parse(input);
+
+// B — AMAN, return false, harga = 0
+bool ok = int.TryParse(input, out int harga);
+Console.WriteLine(ok);    // false
+Console.WriteLine(harga); // 0
+```
+> 💡 Aturan praktis: `Parse` untuk data yang **sudah pasti valid** (misal dari database). `TryParse` untuk **input user**.
+
+---
+
+### Bagian B — Jawaban Tantangan Koding
+
+**Tantangan 1 — Hitung Cicilan Kendaraan**
+```
+decimal hargaKendaraan = 350_000_000m;
+decimal persenDP       = 0.30m;
+int     tenor          = 36;
+decimal bungaPerBulan  = 0.005m;
+
+decimal dp            = hargaKendaraan * persenDP;
+decimal pokok         = hargaKendaraan - dp;
+decimal totalBunga    = pokok * bungaPerBulan * tenor;
+decimal cicilanPerBulan = (pokok + totalBunga) / tenor;
+
+Console.WriteLine($"Harga       : Rp {hargaKendaraan:N0}");
+Console.WriteLine($"DP (30%)    : Rp {dp:N0}");
+Console.WriteLine($"Pokok       : Rp {pokok:N0}");
+Console.WriteLine($"Bunga/bln   : Rp {pokok * bungaPerBulan:N0}");
+Console.WriteLine($"Cicilan/bln : Rp {cicilanPerBulan:N0}");
+```
+**Output:**
+```
+Harga       : Rp 350.000.000
+DP (30%)    : Rp 105.000.000
+Pokok       : Rp 245.000.000
+Bunga/bln   : Rp 1.225.000
+Cicilan/bln : Rp 8.027.778
+```
+> 💡 Tekankan: semua perhitungan uang pakai `decimal`, bukan `double`. Format `:N0` otomatis tambah titik ribuan.
+
+---
+
+**Tantangan 2 — Validasi Input Tahun**
+```
+Console.Write("Masukkan tahun pembuatan kendaraan: ");
+string input = Console.ReadLine() ?? "";
+
+if (!int.TryParse(input, out int tahun))
+{
+    Console.WriteLine("Input tidak valid!");
+}
+}
+else if (tahun < 1900 || tahun > 2026)
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+```
+> 💡 Poin diskusi: urutan cek — validasi format dulu, baru validasi range. Ini pola defensif yang akan sering dipakai di web API nanti (validasi input request).
+
+---
+
+**Bonus — Tantangan 3: Inisial Nama**
+```
+string namaLengkap = "Budi Santoso Wijaya";
+
+string[] bagianNama = namaLengkap.Split(' ');
+
+// Buat inisial
+string inisial = "";
+foreach (string kata in bagianNama)
+{
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+```
+**Output:**
+```
+Nama       : Budi Santoso Wijaya
+Inisial    : B.S.W.
+Jml Karakter: 16
+Huruf besar: BUDI SANTOSO WIJAYA
+```
+> 💡 Tantangan bonus ini menyentuh konsep array (`Split` menghasilkan `string[]`) dan `foreach` — konsep yang akan dibahas lebih dalam di hari 2. Kalau peserta belum sampai sini, tidak masalah.
+
+================================================================================
+
+HARI 2: HARI 2 - DASAR PROGRAMMING C#
+--------------------------------------------------------------------------------
+#  MATERI PESERTA  Hari 2: Dasar Programming C#
+
+---
+
+## 13.00  13.15 | REVIEW HARI 1 + QUICK QUIZ
+
+**Script pembuka:**
+> *"Siapa yang semalam coba-coba coding lagi? Ada yang ketemu masalah?"*
+
+**Quick Quiz  tunjukkan di layar satu per satu:**
+```
+Q1: Apa output dari: int a = 10; Console.WriteLine(a / 3);
+    Jawaban: 3   (integer division, sisa dibuang)
+
+Q2: Mana yang BENAR?
+    (a) decimal harga = 100.5;
+    (b) decimal harga = 100.5m;
+    Jawaban: b   (butuh suffix m)
+
+Q3: var nama = "Honda"   tipe nama itu apa?
+    Jawaban: string (compiler infer otomatis)
+
+Q4: Shortcut buka terminal di VS Code?
+    Jawaban: Ctrl + backtick (`)
+```
+
+> *"Kalau nomor 1 masih bingung  itu yang kita korek hari ini saat bahas iterasi. Nomor 4 wajib hafal, karena terminal adalah senjata utama kalian."*
+
+ **Tips:** Minta 2-3 peserta menjawab sebelum kamu reveal jawabannya.
+
+---
+
+## 13.15  13.45 | VS CODE DEEP DIVE
+
+### Demo Shortcut Penting
+
+> *"Hari ini kita banyak coding. Kita kenalan dulu dengan senjata kita  VS Code."*
+
+**Buka project LatihanHari1 dari kemarin. Demo satu per satu, minta semua ikuti:**
+
+```
+1. Ctrl + `           Buka terminal   PALING SERING DIPAKAI
+2. Ctrl + P           Cari file cepat (ketik nama file)
+3. Ctrl + Shift + P   Command palette (akses semua perintah)
+4. Ctrl + /           Comment/uncomment baris
+5. Alt + Shift + F    Format kode otomatis
+6. F12                Go to definition (lompat ke sumber)
+7. Ctrl + Z / Y       Undo / Redo
+8. Alt + /          Pindahkan baris ke atas/bawah
+```
+
+> *"F12 ini senjata rahasia  kalau bingung apa isi sebuah class atau method, klik  F12. Jangan langsung google dulu."*
+
+** AKTIVITAS (3 menit):**
+> *"Dalam 3 menit, semua coba: 1) Format kode dengan Alt+Shift+F. 2) Comment satu baris. 3) Pindahkan baris ke atas dengan Alt+. Go!"*
+
+*(Jalan berkeliling, bantu yang kesulitan)*
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Kenapa pakai VS Code bukan Notepad?" | Syntax highlighting, autocomplete IntelliSense, error detection real-time, debugger terintegrasi |
+| "Apa itu IntelliSense?" | Fitur autocomplete cerdas  VS Code 'mengerti' kode dan kasih saran sesuai konteks |
+
+---
+
+## 13.45  14.45 | OOP: CLASS, CONSTRUCTOR, GETTER/SETTER, NAMESPACE
+
+### Intro Konsep OOP
+
+> *"Bayangkan kita mau bikin sistem untuk dealer mobil seperti IDMS. Kita perlu menyimpan data apa saja?"*
+
+*(Tunggu jawaban: mobil, merek, stok, karyawan...)*
+
+> *"Setiap 'benda' itu kita representasikan sebagai **class**  cetakan/blueprint. Satu class bisa menghasilkan ribuan **object** yang berbeda-beda. Honda Jazz, Toyota Avanza  keduanya object dari class Kendaraan."*
+
+**Gambar di whiteboard:**
+```
+CLASS Kendaraan           OBJECT dari kelas ini
+(blueprint)               (benda nyata ber-data)
+
+Merek: ???               Merek: "Honda"
+Model: ???               Model: "Jazz"
+Tahun: ???               Tahun: 2023
+Aktif: ???               Aktif: true
+```
+
+---
+
+### Demo Live 1  Class + Object
+
+```
+dotnet new console -n LatihanHari2
+cd LatihanHari2
+code .
+```
+
+**Buat file `Kendaraan.cs` (klik kanan Explorer  New File):**
+```
+{
+    public class Kendaraan
+    {
+        // Properties  data yang dimiliki object
+        public string Merek   { get; set; } = string.Empty;
+        public string Model   { get; set; } = string.Empty;
+        public int    Tahun   { get; set; }
+        public bool   Aktif   { get; set; } = true;
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+}
+```
+
+**Program.cs:**
+```
+var k1 = new Kendaraan { Merek = "Honda",  Model = "Jazz",   Tahun = 2023 };
+var k2 = new Kendaraan { Merek = "Toyota", Model = "Avanza", Tahun = 2024, Aktif = false };
+
+Console.WriteLine(k1.Deskripsi());
+Console.WriteLine(k2.Deskripsi());
+```
+
+** TEBAK OUTPUT sebelum dijalankan:**
+> *"Siapa bisa tebak output-nya? Angkat tangan dulu sebelum saya tekan Enter."*
+
+---
+
+### Constructor
+
+> *"Constructor = 'ritual pembukaan'  kode yang otomatis dijalankan saat object dibuat dengan `new`."*
+
+```
+public class Kendaraan
+{
+    public string Merek { get; set; }
+    public int    Tahun { get; set; }
+
+    // Constructor BERPARAMETER (wajib isi saat new)
+    public Kendaraan(string merek, int tahun)
+    {
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+```
+
+> *"Kalau kita paksa buat object tanpa parameter setelah mendeklarasikan constructor berparameter  error! Kita bisa tambahkan constructor default juga:"*
+
+```
+public Kendaraan() : this("Unknown", 0) { }   // panggil constructor lain
+```
+
+** Pertanyaan ke peserta:**
+> *"Coba kalian pikirkan  di IDMS saat kita buat data Brand baru, apa yang perlu kita 'paksa' ada waktu pembuatan? (Jawaban: Code, Name, CreatedBy)"*
+
+---
+
+### Encapsulation (Getter/Setter + Private Field)
+
+> *"Kadang kita mau batasi akses ke data  misalnya saldo rekening tidak boleh diubah sembarangan dari luar."*
+
+```
+public class RekeningTabungan
+{
+    private decimal _saldo = 0;              // private  tidak bisa diakses dari luar
+
+    public decimal Saldo => _saldo;          // hanya bisa DIBACA, tidak bisa diubah
+
+    public string Setor(decimal jumlah)
+    {
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+}
+```
+
+**Hubungkan ke IDMS:**
+> *"Di IDMS coba buka `IDMS.Shared/Entities/MstBrand.cs`. Field `DeletedAt` bisa diubah  tapi hanya lewat method service, bukan langsung dari controller. Ini semangat encapsulation."*
+
+---
+
+### Namespace
+
+> *"Namespace = 'folder' untuk kode. Tanpa namespace, kalau dua tim buat class dengan nama yang sama  bentrok."*
+
+```
+namespace IDMS.Modules.Master.Dto.Request
+{
+    public class ReqMstBrandDto { ... }
+}
+
+namespace IDMS.Modules.Sales.Dto.Request
+{
+    public class ReqMstBrandDto { ... }   // OK  namespace berbeda
+}
+```
+
+> *"Lihat di IDMS  namespace sangat panjang seperti `IDMS.Modules.Master.Dto.Request`. Itu menggambarkan hierarki folder: project  subfolder. Ini cara developer navigate kode di project besar."*
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Apa bedanya `get; set;` dan `get; private set;`?" | `private set` = value hanya bisa diubah dari dalam class sendiri |
+| "Di IDMS, `MstBrand` warisi `BaseEntity`. Apa artinya?" | MstBrand otomatis punya semua field dari BaseEntity (Id, CreatedAt, dll) |
+
+---
+
+---
+
+# 💻 Waktunya Praktik!
+
+## 14.45  15.00 | MINI EXERCISE 1
+
+> *"12 menit mandiri. Tutup layar saya, buka VS Code kalian."*
+
+**Tampilkan di layar:**
+```
+MINI EXERCISE 1  Class Pegawai
+
+1. Buat class "Pegawai" dengan properties:
+    Id (int), Nama (string), GajiPokok (decimal), TunjanganPersen (decimal)
+
+2. Buat method "HitungGajiBersih()"
+    return GajiPokok * (1 + TunjanganPersen)
+
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+*(Jalan keliling saat peserta mengerjakan. Catat yang cepat dan yang kesulitan.)*
+
+**Setelah 12 menit:**
+> *"Waktu! Siapa yang berhasil? Satu orang demo-kan. Teman-teman yang lain, apakah output kalian sama?"*
+
+> **KUNCI JAWABAN — MINI EXERCISE 1**
+
+```
+
+public class Pegawai
+{
+    public int     Id              { get; set; }
+    public string  Nama            { get; set; } = "";
+    public decimal GajiPokok       { get; set; }
+    public decimal TunjanganPersen { get; set; }
+
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+}
+```
+
+**Output yang diharapkan:**
+```
+=====================
+SLIP GAJI - Budi
+Gaji Pokok :  5.000.000
+Tunjangan  :    500.000
+Total      :  5.500.000
+=====================
+```
+
+**Poin penting yang harus dicek saat demo:**
+- Ada 4 property: `Id`, `Nama`, `GajiPokok`, `TunjanganPersen`?
+- `HitungGajiBersih()` return `GajiPokok * (1 + TunjanganPersen)`?
+- `PrintSlipGaji()` menampilkan gaji pokok, tunjangan, dan total?
+- Sudah membuat 3 object dan memanggil `PrintSlipGaji()` masing-masing?
+
+---
+
+## 15.00  15.45 | SELECTION, ITERATION, TRY-CATCH
+
+### Selection  if/else, ternary, switch
+
+```
+// IF / ELSE IF / ELSE
+int stok = 7;
+if (stok > 10)
+    Console.WriteLine("Stok aman");
+else if (stok > 3)
+    Console.WriteLine("Stok cukup, siapkan reorder");
+else if (stok > 0)
+    Console.WriteLine(" Stok menipis!");
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+** TEBAK OUTPUT:**
+> *"Kalau stok = 2  apa yang dicetak if/else-nya? Dan switch expression-nya?"*
+
+---
+
+### Iteration
+
+```
+// FOREACH  paling sering di IDMS (loop semua item dari list/array)
+var brands = new List<string> { "Honda", "Toyota", "Suzuki", "Daihatsu" };
+foreach (var brand in brands)
+    Console.WriteLine($"  Merek: {brand}");
+
+// FOR  kalau butuh index
+for (int i = 0; i < brands.Count; i++)
+    Console.WriteLine($"  {i + 1}. {brands[i]}");
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+```
+
+** AKTIVITAS RELAY CODING (5 menit):**
+> *"Kita buat loop bareng. Saya mulai: `for (int i = 1;`  siapa lanjutkan? ... i <= 10; i++)  siapa selanjutnya? ... Console.WriteLine(i * i);  apa outputnya?"*
+
+---
+
+### Try-Catch
+
+> *"Error handling = sabuk pengaman. Program yang baik tidak crash  ia menangkap error dan memberi pesan yang berguna."*
+
+```
+try
+{
+    Console.Write("Masukkan angka: ");
+    string input = Console.ReadLine()!;
+    int    angka = int.Parse(input);              // FormatException kalau bukan angka
+    Console.WriteLine($"Dua kali: {angka * 2}");
+}
+}
+catch (FormatException)
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+}
+```
+
+**Demo langsung:**
+> *"Jalankan. Saya ketik 'seratus'. Lihat. Sekarang ketik 42. Lihat bedanya. Finally selalu jalan di kedua kasus."*
+
+**Sambungkan ke IDMS:**
+> *"Buka `IDMS.Web/Controllers/Auth/AuthController.cs`. Temukan try-catch. Pola ini persis yang kita pelajari  tapi untuk login."*
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Lebih baik catch spesifik atau `catch (Exception)` umum?" | Spesifik  tahu persis error apa, bisa kasih pesan yang tepat |
+| "Apa itu `finally`? Kapan dipakai?" | Selalu jalan, error atau tidak. Biasa untuk cleanup: tutup file, koneksi DB |
+
+---
+
+---
+
+# 💻 Waktunya Praktik!
+
+## 15.45  16.00 | MINI EXERCISE 2
+
+```
+MINI EXERCISE 2  10 menit
+
+Lanjutkan class Pegawai:
+1. Buat List berisi 4 Pegawai (dua IsAktif = true, dua = false)
+2. Loop semua, tampilkan nama + gaji + status aktif
+3. Hitung & tampilkan total gaji pegawai yang IsAktif = true
+4. Bungkus Program.cs dalam try-catch
+
+Contoh output:
+=== DAFTAR PEGAWAI ===
+Budi Santoso | IT | Rp 8.000.000 | AKTIF
+Siti Rahma   | HR | Rp 6.500.000 | AKTIF
+...
+
+Total gaji aktif: Rp 14.500.000
+```
+
+> **KUNCI JAWABAN — MINI EXERCISE 2**
+
+```
+var daftarPegawai = new List<Pegawai>
+{
+    new("E001", "Budi Santoso",  "IT",      8_000_000m) { IsAktif = true  },
+    new("E002", "Siti Rahma",    "HR",      6_500_000m) { IsAktif = true  },
+    new("E003", "Andi Wijaya",   "Finance", 7_200_000m) { IsAktif = false },
+    new("E004", "Dewi Lestari",  "Legal",   5_800_000m) { IsAktif = false },
+};
+
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+}
+}
+}
+}
+```
+
+**Output yang diharapkan:**
+```
+=== DAFTAR PEGAWAI ===
+Budi Santoso    | IT       | Rp 8.000.000 | AKTIF
+Siti Rahma      | HR       | Rp 6.500.000 | AKTIF
+Andi Wijaya     | Finance  | Rp 7.200.000 | NON-AKTIF
+Dewi Lestari    | Legal    | Rp 5.800.000 | NON-AKTIF
+
+Total gaji aktif: Rp 14.500.000
+```
+
+**Poin penting yang harus dicek:**
+- Loop `foreach` berjalan untuk semua 4 pegawai?
+- Kondisi `if (p.IsAktif)` sudah benar?
+- `try-catch` membungkus seluruh kode, bukan hanya satu baris?
+- Nilai `IsAktif` di-set saat inisialisasi object (object initializer `{ IsAktif = false }`)
+
+---
+
+## 16.00  16.20 | PUSH KE GIT
+
+```
+git config --global user.name "Nama Kalian"
+git config --global user.email "email@kalian.com"
+
+git init
+git status
+git add .
+git commit -m "Hari 2: OOP, class Kendaraan & Pegawai, loop, try-catch"
+
+git remote add origin https://github.com/username/latihan-training.git
+git branch -M main
+git push -u origin main
+```
+
+> *"Mantra harian GIT: add  commit  push. Hafalkan urutannya!"*
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Bedanya commit dan push?" | commit = snapshot lokal. push = kirim ke GitHub |
+| "Kenapa butuh pesan commit yang deskriptif?" | Biar tahu apa yang berubah di setiap versi tanpa buka kode |
+
+---
+
+## 16.20  16.30 | REVIEW + PREVIEW
+
+**Review cepat  tanya ke 3 peserta berbeda:**
+> *"[nama]  apa itu constructor? Kapan dijalankan?"*
+> *"[nama]  apa bedanya for dan foreach? Mana yang lebih sering di IDMS?"*
+> *"[nama]  apa itu finally di try-catch?"*
+
+**Preview hari 3:**
+> *"Besok: PostgreSQL dan SQL. Selama ini data kita hilang saat program tutup. Database menyimpannya permanen. Pastikan DBeaver sudah terinstall (dbeaver.io) dan PostgreSQL berjalan. Cek: buka DBeaver, bisa konek ke localhost?"*
+
+---
+
+##  REFERENSI CEPAT
+
+```
+// Constructor chaining
+public Kendaraan() : this("Unknown", 0) { }
+public Kendaraan(string merek, int tahun) { Merek = merek; Tahun = tahun; }
+
+// Expression-bodied property (read-only computed)
+public decimal GajiBersih => GajiPokok * 0.9m;
+
+// Switch expression
+string hasil = nilai switch { >= 90 => "A", >= 80 => "B", _ => "C" };
+
+// Null-conditional dan null-coalescing
+string nama = user?.NamaLengkap ?? "Tidak Diketahui";
+```
+
+================================================================================
+
+HARI 3: HARI 3 - POSTGRESQL DAN SQL
+--------------------------------------------------------------------------------
+#  MATERI PESERTA  Hari 3: PostgreSQL dengan DBeaver
+
+---
+
+## 13.00  13.15 | REVIEW HARI 2 + QUICK QUIZ
+
+**Script:**
+> *"Kita review kemarin. Ada yang semalam push ke GitHub?"*
+
+**Quick Quiz  4 pertanyaan, 2 menit:**
+```
+Q1: Apa itu constructor? Kapan dijalankan?
+     Kode yang auto-berjalan saat object dibuat dengan `new`
+
+Q2: Apa bedanya `private` dan `public`?
+     private: hanya bisa diakses dari dalam class. public: bisa dari mana saja
+
+Q3: Apa itu namespace?
+     "Folder" untuk kode, mencegah konflik nama class yang sama
+
+Q4: Perintah GIT untuk simpan snapshot?
+     git commit -m "pesan"
+```
+
+---
+
+## 13.15  13.45 | INTRO DBEAVER + SETUP KONEKSI
+
+**Script pembuka:**
+> *"Hari ini kita masuk ke database. Kemarin data kita hilang saat program tutup  itu karena disimpan di memori saja. Database menyimpannya secara permanen di disk."*
+
+**Analogi yang bagus:**
+> *"Kalau class C# itu seperti cetakan, database itu seperti lemari arsip  tempat kita menyimpan cetakan yang sudah diisi data secara permanen."*
+
+**Demo koneksi DBeaver  minta semua ikuti:**
+1. Buka DBeaver
+2. Klik icon **New Connection** (plug dengan +)
+3. Pilih **PostgreSQL**  Next
+4. Isi: Host = `localhost`, Port = `5432`, Database = `postgres`, Username = `postgres`, Password = (sesuai instalasi)
+5. Klik **Test Connection**  harus hijau
+
+> *"Kalau Test Connection sukses, klik Finish. Kalau error  kemungkinan PostgreSQL service tidak berjalan. Windows: cari Services  cari postgresql  klik Start."*
+
+**Buka SQL Editor:**
+> *"Klik kanan pada koneksi  SQL Editor, atau tekan Ctrl+] (atau Ctrl+Alt+E di beberapa versi).*
+
+**Verifikasi dengan query sederhana:**
+```
+SELECT version();    -- tampilkan versi PostgreSQL
+SELECT NOW();        -- tampilkan waktu server
+```
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Database itu sebenarnya apa, simpelnya?" | Tempat menyimpan data secara terstruktur dan permanen  bisa dicari/difilter dengan cepat |
+| "Kenapa tidak simpan di file Excel saja?" | DB lebih cepat untuk jutaan baris, ada constraint/relasi, bisa multi-user, ada backup |
+| "Apa bedanya PostgreSQL dan MySQL?" | Keduanya relasional. PostgreSQL lebih kuat untuk query kompleks. MySQL lebih ringan dan populer di web |
+
+---
+
+## 13.45  14.30 | CREATE TABLE + TIPE DATA SQL
+
+### Tipe Data SQL vs C#
+
+**Tunjukkan tabel perbandingan:**
+
+| SQL | C# | Catatan |
+|---|---|---|
+| `SERIAL` | auto-increment int | ID otomatis naik |
+| `BIGSERIAL` | auto-increment long | ID angka besar |
+| `VARCHAR(n)` | string | Teks maks n karakter |
+| `TEXT` | string | Teks tanpa batas |
+| `BOOLEAN` | bool | true / false |
+| `INTEGER` | int | Bilangan bulat |
+| `NUMERIC(p,s)` | decimal | Desimal presisi |
+| `TIMESTAMP` | DateTime | Tanggal + waktu |
+
+> *"Mirip dengan C# tapi namanya beda. `SERIAL` itu INTEGER yang auto-increment  tidak perlu isi manual."*
+
+---
+
+### Demo CREATE TABLE
+
+> *"Sekarang kita buat tabel yang mencerminkan struktur yang ada di IDMS. Perhatikan field audit di bagian bawah  ini pola standar IDMS."*
+
+```
+-- Hapus jika sudah ada (untuk demo ulang)
+DROP TABLE IF EXISTS mst_brands;
+
+-- Buat tabel brand
+CREATE TABLE mst_brands (
+    id          SERIAL PRIMARY KEY,
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+** TEBAK & DISKUSI:**
+> *"Perhatikan field `deleted_at`. Apa gunanya? Kenapa tidak hapus langsung dari tabel?"*
+
+*(Tunggu jawaban, lalu jelaskan soft delete)*
+
+> *"Ini yang disebut **soft delete**  data tidak benar-benar dihapus. Hanya ditandai kapan dihapus. Kalau `deleted_at` ada isinya berarti sudah 'dihapus'. Ini pola yang dipakai IDMS."*
+
+---
+
+### Demo CRUD
+
+```
+--  INSERT 
+INSERT INTO mst_brands (code, name, created_by)
+VALUES ('HON', 'Honda',   'admin'),
+       ('TOY', 'Toyota',  'admin'),
+       ('SUZ', 'Suzuki',  'admin'),
+       ('DAI', 'Daihatsu','admin');
+
+--  SELECT 
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+** MINI CHALLENGE (2 menit):**
+> *"Sekarang kalian coba sendiri. Tulis SELECT untuk tampilkan brand yang namanya mengandung huruf 'a' dan yang belum dihapus. 2 menit, go!"*
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Kenapa pakai soft delete?" | Audit trail terjaga, bisa di-recover, relasi tidak rusak, kebutuhan legal |
+| "Apa itu PRIMARY KEY?" | Kolom ID unik per baris  tidak boleh duplikat, tidak boleh null |
+| "Apa bedanya `ILIKE` dan `LIKE`?" | `ILIKE` = case-insensitive. `LIKE` = case-sensitive (persis huruf besar/kecil) |
+
+---
+
+---
+
+# 💻 Waktunya Praktik!
+
+## 15.00  15.15 | PENILAIAN 1
+
+> *"Kita test sebentar. Ini bukan ujian formal  saya ingin tahu seberapa jauh sudah dipahami. 12 menit mandiri."*
+
+**Soal (tampilkan di layar):**
+```
+PENILAIAN 1  Buat Tabel + CRUD
+
+1. Buat tabel mst_models dengan kolom:
+   - id (PK, serial)
+    - type_id (INTEGER, referensikan ke mst_types)
+   - code VARCHAR(10) NOT NULL
+   - name VARCHAR(100) NOT NULL
+    - year INTEGER NOT NULL
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+> *"Siapa yang selesai lebih cepat  coba tulis FOREIGN KEY constraint-nya juga."*
+
+> **KUNCI JAWABAN — PENILAIAN 1**
+
+```
+-- 1. Buat tabel mst_models
+CREATE TABLE mst_models (
+    id          SERIAL PRIMARY KEY,
+    type_id     INTEGER      NOT NULL REFERENCES mst_types(id),
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    year        INTEGER      NOT NULL,
+    is_active   BOOLEAN      NOT NULL DEFAULT TRUE,
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+**Poin penting yang harus dicek:**
+- `type_id` wajib FK ke `mst_types(id)`.
+- Kolom `year` bertipe `INTEGER` dan ikut di query hasil.
+- Query JOIN harus melewati `mst_types` lalu `mst_brands`.
+- Selalu filter data aktif dengan `deleted_at IS NULL` di semua tabel yang di-join.
+
+---
+
+## 15.15  15.50 | STORED PROCEDURE + VIEW
+
+### Stored Procedure
+
+> *"Stored procedure adalah 'program kecil' yang hidup di dalam database. Kita bisa taruh logika di sana dan panggil dengan satu perintah."*
+
+> *"Catatan: di IDMS dengan EF Core, kita jarang panggil stored procedure langsung. Tapi DBA kadang membuat procedure, dan kamu perlu memanggilnya."*
+
+**Demo  procedure dengan cek duplikat:**
+```
+CREATE OR REPLACE PROCEDURE insert_brand(
+    IN  p_code       VARCHAR,
+    IN  p_name       VARCHAR,
+    IN  p_created_by VARCHAR,
+    OUT out_stat     BOOLEAN,
+    OUT out_mess     TEXT
+)
+LANGUAGE plpgsql
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+** TEBAK HASILNYA:**
+> *"CALL kedua dengan kode 'HON'  apa yang akan terjadi? Sukses atau gagal?"*
+
+---
+
+### VIEW
+
+> *"View adalah 'query yang disimpan'. Setiap kali SELECT dari view, query di baliknya langsung dieksekusi. Berguna untuk menyederhanakan query panjang."*
+
+```
+CREATE OR REPLACE VIEW v_active_brands AS
+SELECT
+    id,
+    code,
+    name,
+    created_at::DATE AS created_date
+FROM   mst_brands
+WHERE  deleted_at IS NULL
+AND    is_active  = TRUE
+ORDER  BY name;
+
+-- Pakai view seperti tabel biasa
+SELECT * FROM v_active_brands;
+SELECT * FROM v_active_brands WHERE name ILIKE '%hon%';
+```
+
+** PERTANYAAN PANCINGAN:**
+| Pertanyaan | Jawaban |
+|---|---|
+| "Apa bedanya procedure dan function di SQL?" | Function harus return nilai, bisa pakai di SELECT. Procedure dipanggil dengan CALL |
+| "Kapan pakai stored procedure vs query di kode C#?" | SP: logika kompleks yang lebih efisien di DB, atau shared antar banyak aplikasi |
+
+---
+
+---
+
+# 💻 Waktunya Praktik!
+
+## 15.50  16.10 | PENILAIAN 2
+
+**Soal:**
+```
+PENILAIAN 2  Stored Procedure (15 menit)
+
+1. Buat stored procedure "insert_type" dengan:
+    - Parameter IN: p_brand_id INTEGER, p_code VARCHAR, p_name VARCHAR, p_created_by VARCHAR
+   - Parameter OUT: out_stat BOOLEAN, out_mess TEXT
+    - Validasi 1: brand_id harus ada di mst_brands (dan belum dihapus)
+    - Validasi 2: kombinasi code + brand_id tidak boleh duplikat (hanya data aktif)
+    - Jika validasi gagal: return out_stat = FALSE + out_mess yang sesuai
+    - Jika valid: INSERT ke mst_types, out_stat = TRUE, out_mess = 'Type berhasil ditambahkan'
+
+2. Uji dengan minimal 3 CALL:
+    - 1 data valid (berhasil)
+    - 1 data brand tidak ada (gagal)
+    - 1 data duplikat code+brand (gagal)
+```
+
+> **KUNCI JAWABAN — PENILAIAN 2**
+
+```
+-- 1. Procedure insert_type dengan validasi brand + duplikat code per brand
+CREATE OR REPLACE PROCEDURE insert_type(
+    IN  p_brand_id   INTEGER,
+    IN  p_code       VARCHAR,
+    IN  p_name       VARCHAR,
+    IN  p_created_by VARCHAR,
+    OUT out_stat     BOOLEAN,
+    OUT out_mess     TEXT
+    // ... (kode lengkap ada di presentasi-pengajar.html untuk dipraktikkan bersama pengajar) ...
+```
+
+**Poin penting yang harus dicek:**
+- Nama procedure dan parameter sesuai soal: `insert_type(p_brand_id, p_code, p_name, p_created_by, OUT stat, OUT mess)`.
+- Ada 2 validasi wajib: brand harus ada, kombinasi `brand_id + code` tidak duplikat.
+- Setelah validasi gagal, procedure harus `RETURN` agar INSERT tidak jalan.
+- INSERT mengisi audit field `created_at` dan `created_by`.
+
+---
+
+## 16.10  16.30 | PUSH KE GIT + REVIEW + PREVIEW
+
+> *"Simpan semua script SQL ke file .sql dan push ke GitHub."*
+
+```
+# Simpan script ke file
+# (Di DBeaver: klik kanan query  Save As  hari-03-script.sql)
+
+git add .
+git commit -m "Hari 3: CREATE TABLE, CRUD, procedure, view"
+git push
+```
+
+**Review cepat (tanya 3 peserta):**
+> *"[nama]  apa itu soft delete? Apa bedanya dengan hard delete?"*
+> *"[nama]  apa kegunaan VIEW di SQL?"*
+> *"[nama]  apa itu PRIMARY KEY?"*
+
+**Preview hari 4:**
+> *"Besok kita hubungkan C# dengan PostgreSQL. Tidak perlu lagi nulis SQL mentah  kita tulis class C# dan EF Core yang ubahkan ke SQL otomatis. Ini yang disebut ORM  Object-Relational Mapping."*
+
+---
+
+##  REFERENSI CEPAT
+
+```
+-- Constraint FK saat CREATE TABLE:
+brand_id INTEGER REFERENCES mst_brands(id)
+
+-- Atau tambahkan setelah CREATE:
+ALTER TABLE mst_types
+ADD CONSTRAINT fk_type_brand
+FOREIGN KEY (brand_id) REFERENCES mst_brands(id);
+
+-- Jalankan SELECT dengan JOIN:
+SELECT t.name AS type_name, b.name AS brand_name
+FROM   mst_types  t
+JOIN   mst_brands b ON t.brand_id = b.id
+WHERE  t.deleted_at IS NULL
+AND    b.deleted_at IS NULL;
+```
+
+================================================================================
+
+HARI 4: HARI 4 - WEB API DAN EF CORE
+--------------------------------------------------------------------------------
+# Hari 4   Web API + EF Core Migration
+
+> **Durasi:** 13.00  16.00 | **Warna:** Pink
+> **Target:** Peserta paham 4-project structure dan berhasil migrasi DB
+
+---
+
+================================================================================
+
+HARI 5: HARI 5 - CRUD MODULAR API
+--------------------------------------------------------------------------------
+# Hari 5   Service, Controller, JWT & API Key
+
+> **Durasi:** 13.00  16.00 | **Warna:** Orange
+> **Target:** Peserta berhasil test 5 endpoint CRUD `MstBrand` di Swagger + Exercise MstTypes
+
+---
+
+================================================================================
+
+HARI 6: HARI 6 - API QUALITY
+--------------------------------------------------------------------------------
+# Hari 6   ASP.NET Core MVC + CRUD
+
+> **Durasi:** 13.00  16.00 | **Warna:** Teal
+> **Target:** Peserta memahami MVC vs API dan berhasil CRUD MstBrands lewat halaman web
+
+---
+
+================================================================================
+
+HARI 7: HARI 7 - INTEGRASI DAN BACKGROUND JOB
+--------------------------------------------------------------------------------
+# Hari 7   Data Annotation, Ajax/jQuery & Template
+
+> **Durasi:** 13.00  16.00 | **Warna:** Purple
+> **Target:** Peserta memahami validasi proper, jQuery Ajax, dan bisa integrasi template
+
+---
+
+================================================================================
+
+HARI 8: HARI 8 - SECURITY DEEP DIVE API
+--------------------------------------------------------------------------------
+# Hari 8   Post Test + Login + JWT Integration
+
+> **Durasi:** 13.00  16.00 | **Warna:** Red
+> **Target:** Peserta lulus post test, implementasi login API + MVC dengan JWT
+
+---
+
+================================================================================
+
+HARI 9: HARI 9 - FINAL PROJECT API
+--------------------------------------------------------------------------------
+# MATERI PESERTA — Hari 9: Sprint Final Project
+
+---
+
+##  REFERENSI CEPAT UNTUK PESERTA (yang bisa dikasih kalau perlu)
+
+**Urutan langkah setup project:**
+1. `dotnet new sln` + `dotnet new webapi -n YourProject.Api` + `dotnet new classlib -n YourProject.Infrastructure` + `dotnet new classlib -n YourProject.Shared`
+2. `dotnet sln add` semua project
+3. `dotnet add reference` antar project
+4. Buat `BaseEntity` di `YourProject.Shared/Entities/`, entity di `YourProject.Shared/Domain/Entities/`, Configuration di `YourProject.Infrastructure/Configurations/`
+5. Buat `AppDbContext` di `YourProject.Infrastructure/Data/` (bukan di Api!)
+6. Setup `appsettings.json` (connection string, JWT settings, Security.ApiKey)
+7. Setup `Program.cs` (DbContext, auth, middleware)
+8. `dotnet ef migrations add Init --project YourProject.Infrastructure --startup-project YourProject.Api` + `dotnet ef database update --project YourProject.Infrastructure --startup-project YourProject.Api`
+9. Buat service interface + impl
+10. Buat controller
+11. Test via Swagger
+
+**File-file kunci di idms-web-api yang bisa dijadikan referensi:**
+- `IDMS.Api/Program.cs`  setup lengkap
+- `IDMS.Api/Middleware/ApiKeyMiddleware.cs`  copy dan sesuaikan
+- `IDMS.Modules.Api.Auth/Services/Auth/Impl/JwtServices.cs`  generate token
+- `IDMS.Modules.Api.Auth/Services/Auth/Impl/AuthServices.cs`  flow login
+- `IDMS.Modules.Api.Master/Services/Impl/MstBrandServices.cs`  pola service dengan pagination
+- `IDMS.Api/Common/ApiResponse.cs`  response wrapper
+- `IDMS.Api.Shared/Entities/PagedResult.cs`  pagination response
+
+---
+
+##  KRITERIA MINIMUM LULUS DEMO BESOK
+
+| Kriteria | Bobot |
+|---|---|
+| Auth: login return JWT + endpoint protected | 25% |
+| CRUD Tabel 1 lengkap + pagination | 30% |
+| Validasi DTO + response ApiResponse konsisten | 20% |
+| Soft delete berjalan + filter di query | 15% |
+| Bisa jelaskan pilihan arsitektur yang diambil | 10% |
+
+================================================================================
+
+HARI 10: HARI 10 - PRESENTASI API
+--------------------------------------------------------------------------------
+# MATERI PESERTA — Hari 10: Moderasi Presentasi & Penutupan
+
+---
+
+##  PERTANYAAN TANYA JAWAB  REFERENSI JAWABAN
+
+**"Kenapa kamu pisahkan interface dari implementasi?"**
+> Karena controller tidak perlu tahu cara service bekerja  hanya perlu tahu apa yang bisa dilakukan. Ini memudahkan testing (bisa mock interface) dan memungkinkan ganti implementasi tanpa ubah controller.
+
+**"Tunjukkan soft delete di kode kamu"**
+> Di service Delete: set `entity.DeletedAt = DateTime.UtcNow`. Di semua query: tambahkan `.Where(x => x.DeletedAt == null)`.
+
+**"Kenapa CreatedBy kamu ambil dari token, bukan dari body request?"**
+> Request body bisa dimanipulasi client. JWT sudah divalidasi server  kalau token valid, claim di dalamnya bisa dipercaya.
+
+**"Jelaskan middleware pipeline project kamu!"**
+> ExceptionHandler  Swagger  CORS  Authentication  ApiKeyMiddleware  Authorization  Controller/Hub
+
+================================================================================

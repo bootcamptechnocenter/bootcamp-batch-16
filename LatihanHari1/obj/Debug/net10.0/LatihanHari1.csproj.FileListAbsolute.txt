@@ -1,14 +1,29 @@
-D:\Training .NET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.exe
-D:\Training .NET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.deps.json
-D:\Training .NET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.runtimeconfig.json
-D:\Training .NET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.dll
-D:\Training .NET\LatihanHari1\bin\Debug\net10.0\LatihanHari1.pdb
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.GeneratedMSBuildEditorConfig.editorconfig
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.AssemblyInfoInputs.cache
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.AssemblyInfo.cs
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.csproj.CoreCompileInputs.cache
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.dll
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\refint\LatihanHari1.dll
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.pdb
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\LatihanHari1.genruntimeconfig.cache
-D:\Training .NET\LatihanHari1\obj\Debug\net10.0\ref\LatihanHari1.dll
+D:/Training .NET/LatihanHari1/bin/Debug/net10.0/LatihanHari1.exe
+D:/Training .NET/LatihanHari1/bin/Debug/net10.0/LatihanHari1.deps.json
+D:/Training .NET/LatihanHari1/bin/Debug/net10.0/LatihanHari1.runtimeconfig.json
+D:/Training .NET/LatihanHari1/bin/Debug/net10.0/LatihanHari1.dll
+D:/Training .NET/LatihanHari1/bin/Debug/net10.0/LatihanHari1.pdb
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.GeneratedMSBuildEditorConfig.editorconfig
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.AssemblyInfoInputs.cache
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.AssemblyInfo.cs
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.csproj.CoreCompileInputs.cache
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.dll
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/refint/LatihanHari1.dll
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.pdb
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/LatihanHari1.genruntimeconfig.cache
+D:/Training .NET/LatihanHari1/obj/Debug/net10.0/ref/LatihanHari1.dll
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/bin/Debug/net10.0/LatihanHari1
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/bin/Debug/net10.0/LatihanHari1.deps.json
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/bin/Debug/net10.0/LatihanHari1.runtimeconfig.json
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/bin/Debug/net10.0/LatihanHari1.dll
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/bin/Debug/net10.0/LatihanHari1.pdb
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.GeneratedMSBuildEditorConfig.editorconfig
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.AssemblyInfoInputs.cache
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.AssemblyInfo.cs
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.csproj.CoreCompileInputs.cache
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.sourcelink.json
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.dll
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/refint/LatihanHari1.dll
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.pdb
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/LatihanHari1.genruntimeconfig.cache
+/home/dimas/Documents/GitHub/bootcamp-batch-16/LatihanHari1/obj/Debug/net10.0/ref/LatihanHari1.dll

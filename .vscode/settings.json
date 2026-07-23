@@ -1,3 +1,7 @@
 {
-    "dotnet.defaultSolution": "LatihanHari4.sln"
+    "dotnet.defaultSolution": "LatihanHari4.sln",
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "csharp.backgroundAnalysis.filesExclude": [
+        "**/presentasi*.html"
+    ]
 }

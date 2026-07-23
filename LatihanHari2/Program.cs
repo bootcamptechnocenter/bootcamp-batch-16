@@ -1,6 +1,12 @@
 ﻿// //if statement
+using LatihanHari2.SuhuRuangan;
 
-// int nilai = 80;
+
+var suhu = new SuhuRuangan(0m);
+Console.WriteLine($"Suhu: {suhu.Celcius}°C, {suhu.Fahrenheit}°F, {suhu.Kelvin}K, Deskripsi: Suhu ruangan saat ini {suhu.Deskripsi()}");
+
+
+// int nilai = int.Parse(Console.ReadLine());
 
 // if (nilai > 100)
 // {
@@ -14,36 +20,36 @@
 // //switch statement
 // int score = 85;
 
-// string grade = score switch
+// string grade = int.TryParse(Console.ReadLine(), out int nilai) ? nilai switch
 // {
 //     >= 90 => "A",
 //     >= 80 => "B",
 //     >= 70 => "C",
 //     >= 60 => "D",
-//     _ => "F"
-// };
+//     _ => "E",
+// }: "Input tidak valid";
 
-// Console.WriteLine($"Nilai: {score}, Grade: {grade}");
-
-
-// //looping
-
-// //for loop
-// for (int i = 0; i < 10; i++)
-// {
-//     Console.WriteLine($"Perulangan ke-{i}");
-// }
+// Console.WriteLine($"Nilai: {nilai}, Grade: {grade}");
 
 
-// //foreach loop
-// var car = new List<string> { "Toyota", "Honda", "Ford" };
+// // //looping
+
+// // //for loop
+// // for (int i = 0; i < 10; i++)
+// // {
+// //     Console.WriteLine($"Perulangan ke-{i}");
+// // }
+
+
+// // //foreach loop
+// // var car = new List<string> { "Toyota", "Honda", "Ford" };
 
 // foreach (var item in car)
 // {
 //     Console.WriteLine($"Merek mobil: {item}");
 // }
 
-using LatihanHari2;
+// using LatihanHari2;
 
 // Animal cat = new Animal("Cat", "Fish", "Meow", false);
 
@@ -88,13 +94,12 @@ using LatihanHari2;
 //     Console.WriteLine($"Type of Identity: {identity.TypeOfIdentity()}");
 // }
 
-var rekening = new Rekening();
-rekening.Setor(1_000_000);
-Console.WriteLine($"Saldo setelah setor: {rekening.Saldo}");
-rekening.Tarik(250_000);
-Console.WriteLine($"Saldo setelah tarik: {rekening.Saldo}");
-rekening.Tarik(800_000); 
-
+// var rekening = new Rekening();
+// rekening.Setor(1_000_000);
+// Console.WriteLine($"Saldo setelah setor: {rekening.Saldo}");
+// rekening.Tarik(250_000);
+// Console.WriteLine($"Saldo setelah tarik: {rekening.Saldo}");
+// rekening.Tarik(800_000); 
 
 
 

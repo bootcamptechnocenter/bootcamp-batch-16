@@ -1,0 +1,1845 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training ASP.NET Core Web API - Materi Peserta</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>:root{--ac:#3b82f6;--ach:#93c5fd;--acl:#7dd3fc;--cc:#7dd3fc;--th:#451a0333;--bq:#1c1407;--bqt:#fcd34d}</style>
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap");
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",sans-serif;background:#0f172a;color:#f8fafc;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#progressBar{position:fixed;top:0;left:0;height:3px;transition:width .3s;z-index:999}
+#slideCounter{position:fixed;top:6px;right:1rem;font-size:.72rem;color:#64748b;z-index:999}
+#header{background:#1e293b;border-bottom:1px solid #334155;padding:.6rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-shrink:0;z-index:100;position:sticky;top:0}
+#dayBadge{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .65rem;border-radius:4px;border:1px solid var(--ac);color:var(--ac);white-space:nowrap}
+#slideTitle{font-size:.9rem;font-weight:600;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#content{flex:1;overflow-y:auto;padding:1.8rem 2.5rem;max-width:960px;width:100%;margin:0 auto;padding-bottom:4rem}
+.nav-area{position:fixed;bottom:0;left:0;right:0;padding:.6rem 1.5rem;background:#0f172a;border-top:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between}
+#content h1,#content h2,#content h3,#content h4{margin-top:1.2rem;margin-bottom:.5rem}
+#content h1{font-size:1.6rem;font-weight:700;color:#f8fafc;border-bottom:2px solid var(--ac);padding-bottom:.35rem;margin-top:.5rem}
+#content h2{font-size:1.2rem;font-weight:700;color:var(--ach);margin-top:1.6rem}
+#content h3{font-size:1rem;font-weight:600;color:var(--acl)}
+#content h4{font-size:.92rem;font-weight:600;color:#94a3b8}
+#content p{color:#cbd5e1;line-height:1.8;margin-bottom:.65rem}
+#content strong{color:#f8fafc}
+#content em{color:#94a3b8}
+#content code{font-family:"Fira Code",monospace;font-size:.81rem;background:#1e293b;color:var(--cc);padding:.1rem .35rem;border-radius:3px;white-space:nowrap}
+#content pre{background:#0d1f38;border-left:4px solid var(--ac);border-radius:6px;margin:.8rem 0;overflow-x:auto}
+#content pre code{background:none;color:#e2e8f0;padding:.9rem 1.1rem;display:block;font-size:.79rem;line-height:1.65;white-space:pre}
+#content ul,#content ol{color:#cbd5e1;padding-left:1.4rem;margin-bottom:.65rem}
+#content li{line-height:1.8;margin-bottom:.15rem}
+#content li > code{font-size:.79rem}
+#content table{border-collapse:collapse;width:100%;margin:.8rem 0;font-size:.84rem}
+#content th{background:var(--th);color:var(--ach);padding:.45rem .75rem;text-align:left;border:1px solid #334155;font-weight:600}
+#content td{padding:.4rem .75rem;border:1px solid #1e293b;color:#cbd5e1;vertical-align:top}
+#content tr:nth-child(even) td{background:#0f1c2e}
+#content blockquote{border-left:4px solid var(--ac);background:var(--bq);padding:.65rem .95rem;margin:.8rem 0;border-radius:0 6px 6px 0}
+#content blockquote p{color:var(--bqt);margin:0;font-style:italic}
+#content hr{border:none;border-top:1px solid #1e293b;margin:1rem 0}
+#content a{color:var(--ach);text-decoration:none}
+#content a:hover{text-decoration:underline}
+.nav-btn{background:rgba(0,0,0,.3);border:1px solid var(--ac);padding:.38rem 1rem;border-radius:9999px;cursor:pointer;transition:.2s;color:#f8fafc;font-size:.83rem}
+.nav-btn:hover{background:var(--ac);color:#0f172a}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
+.cover-wrap{padding:2rem 0}
+.cover-tag{display:inline-block;padding:.28rem .85rem;border-radius:9999px;font-size:.76rem;font-weight:600}
+#content::-webkit-scrollbar{width:5px}
+#content::-webkit-scrollbar-track{background:#0f172a}
+#content::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+
+</style>
+<style>
+#progressBar{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.watermark{position:fixed;top:.8rem;right:1.2rem;font-size:.62rem;font-weight:700;letter-spacing:.12em;color:#f59e0b;border:1px solid #f59e0b55;padding:.18rem .55rem;border-radius:4px;text-transform:uppercase;z-index:1000;pointer-events:none}
+</style>
+</head><body>
+
+
+<div id="progressBar"></div>
+<div id="slideCounter"></div>
+<div id="header">
+  <span id="dayBadge"></span>
+  <span id="slideTitle"></span>
+</div>
+<div id="content"></div>
+<div class="nav-area">
+  <button class="nav-btn" id="btnPrev">&#8592; Prev</button>
+  <span id="pageInfo" style="font-size:.75rem;color:#64748b"></span>
+  <button class="nav-btn" id="btnNext">Next &#8594;</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@4/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+
+marked.setOptions({gfm:true,breaks:true});
+marked.use({renderer:(function(){
+  var r=new marked.Renderer();
+  r.code=function(code,lang){
+    var h=(lang&&hljs.getLanguage(lang))
+      ?hljs.highlight(code,{language:lang}).value
+      :hljs.highlightAuto(code).value;
+    return "<pre><code class=hljs>"+h+"</code></pre>";
+  };
+  return r;
+})()});
+function run(titles,contents,coverFn){
+  var cur=0, tot=contents.length+1;
+  function go(i){
+    cur=i;
+    document.getElementById("progressBar").style.width=((i+1)/tot*100)+"%";
+    document.getElementById("slideCounter").textContent=(i+1)+" / "+tot;
+    document.getElementById("pageInfo").textContent=(i+1)+" / "+tot;
+    document.getElementById("btnPrev").disabled=(i===0);
+    document.getElementById("btnNext").disabled=(i===tot-1);
+    if(i===0){
+      document.getElementById("dayBadge").textContent="IDMS Training";
+      document.getElementById("slideTitle").textContent="";
+      document.getElementById("content").innerHTML=coverFn();
+    } else {
+      var n=i-1;
+      document.getElementById("dayBadge").textContent="Hari "+String(i).padStart(2,"0");
+      document.getElementById("slideTitle").textContent=titles[n]||"";
+      document.getElementById("content").innerHTML=marked.parse(contents[n]);
+      document.getElementById("content").scrollTop=0;
+      document.querySelectorAll("#content pre code").forEach(function(el){hljs.highlightElement(el);});
+    }
+  }
+  document.getElementById("btnPrev").addEventListener("click",function(){if(cur>0)go(cur-1);});
+  document.getElementById("btnNext").addEventListener("click",function(){if(cur<tot-1)go(cur+1);});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="PageDown"){if(cur<tot-1)go(cur+1);}
+    if(e.key==="ArrowLeft"||e.key==="PageUp"){if(cur>0)go(cur-1);}
+  });
+  go(0);
+}
+
+</script>
+<script>
+var T = [
+"Hari 1 - Perkenalan .NET & C#",
+"Hari 2 - Dasar Programming C#",
+"Hari 3 - PostgreSQL & SQL",
+"Hari 4 - ASP.NET Core Web API (Part 1)",
+"Hari 5 - ASP.NET Core Web API (Part 2)",
+"Hari 6 - ASP.NET Core MVC (Part 1)",
+"Hari 7 - ASP.NET Core MVC (Part 2)",
+"Hari 8 - JWT & Identity",
+"Hari 9 - Final Project & Presentasi (1)",
+"Hari 10 - Final Project & Presentasi (2)"
+];
+var C = [
+`# 📖 MATERI PESERTA — Hari 1: Perkenalan .NET & C#
+
+---
+
+## 🎯 Apa itu .NET?
+
+**.NET** adalah platform pengembangan dari Microsoft untuk membangun berbagai jenis aplikasi:
+- **Web API** — backend service (seperti project **IDMS** yang kita pelajari)
+- **Web MVC** — website dinamis
+- **Desktop** — aplikasi Windows
+- **Mobile** — aplikasi Android/iOS via MAUI
+
+> 💡 Analogi: .NET adalah **pabrik serbaguna**. C# adalah **bahasa instruksi** ke pekerja pabriknya.
+
+---
+
+## 🔧 Tools yang Dibutuhkan
+
+| Tool | Fungsi |
+|---|---|
+| **VS Code** | Text editor untuk menulis kode C# |
+| **.NET SDK 8.0** | Compiler & runtime |
+| **DBeaver** | GUI client PostgreSQL |
+| **PostgreSQL** | Database server |
+| **Git** | Version control |
+
+---
+
+## 📦 Struktur Project IDMS
+
+Project IDMS menggunakan arsitektur **4 layer**:
+
+| Layer | Project | Tanggung Jawab |
+|---|---|---|
+| **API** | \`IDMS\` | HTTP request, routing, controller |
+| **Infrastructure** | \`IDMS.Infrastructure\` | Database, configuration, migration |
+| **Modules** | \`IDMS.Modules.Master\` | Business logic, service, DTO |
+| **Shared** | \`IDMS.Shared\` | Entity, model (dipakai semua) |
+
+> \`IDMS.sln\` = file **solution** — "daftar isi" seluruh project.
+
+---
+
+## ✏️ Variable & Tipe Data di C#
+
+C# adalah bahasa **strongly typed** — setiap variabel harus punya tipe.
+
+| Tipe | C# | Contoh | Ukuran |
+|---|---|---|
+| Boolean | \`bool\` | \`true\`, \`false\` | 1 bit |
+| Integer | \`int\` | \`42\`, \`-10\` | 32 bit |
+| Long | \`long\` | \`9999999999L\` | 64 bit |
+| Desimal | \`decimal\` | \`250000000.50m\` | 128 bit |
+| Float | \`double\` | \`3.14\` | 64 bit |
+| Karakter | \`char\` | \`'A'\` | 16 bit |
+| Teks | \`string\` | \`"Honda"\` | reference |
+| Nullable | \`int?\`, \`string?\` | Boleh null | — |
+
+### Deklarasi Variable
+
+\`\`\`csharp
+string nama  = "Honda";
+int    tahun = 2024;
+decimal harga = 250_000_000.50m;   // suffix 'm' wajib untuk decimal
+bool   aktif = true;
+
+// var — tipe di-inferensi compiler (tetap strongly typed)
+var merek = "Toyota";   // merek bertipe string
+var umur  = 5;          // umur bertipe int
+\`\`\`
+
+---
+
+## 🔢 Operator
+
+### Aritmatika
+\`\`\`csharp
+int a = 10, b = 3;
+Console.WriteLine(a + b);   // 13
+Console.WriteLine(a - b);   // 7
+Console.WriteLine(a * b);   // 30
+Console.WriteLine(a / b);   // 3   ← integer division! sisa dibuang
+Console.WriteLine(a % b);   // 1   ← modulus (sisa bagi)
+\`\`\`
+
+> ⚠️ \`int / int\` selalu menghasilkan \`int\`. Gunakan \`(double)a / b\` untuk hasil desimal.
+
+### Perbandingan & Logika
+\`\`\`csharp
+bool hasil = (5 > 3);             // true
+bool cek   = (a == b);            // false
+bool logika = (a > 5 && b < 5);   // AND
+bool atau   = (a > 5 || b < 5);   // OR
+\`\`\`
+
+---
+
+## 🎯 String Interpolation
+
+\`\`\`csharp
+string nama = "Honda";
+int tahun = 2024;
+Console.WriteLine(\$"Merek: {nama}, Tahun: {tahun}");
+// Output: Merek: Honda, Tahun: 2024
+\`\`\`
+
+Format number:
+\`\`\`csharp
+decimal harga = 250000000;
+Console.WriteLine(\$"Harga: Rp {harga:N0}");  // Rp 250.000.000
+\`\`\`
+
+---
+
+## 📌 Nullable & Null Handling
+
+\`\`\`csharp
+string? nama = null;
+Console.WriteLine(nama ?? "Tidak Diketahui"); // "Tidak Diketahui"
+Console.WriteLine(nama?.Length);              // (tidak error)
+\`\`\`
+
+| Operator | Nama | Fungsi |
+|---|---|---|
+| \`??\` | Null-coalescing | Ambil kanan jika kiri null |
+| \`?.\` | Null-conditional | Akses member aman |
+
+---
+
+## 🔄 Parse vs TryParse
+
+\`\`\`csharp
+string input = "abc";
+int.Parse(input);                          // ❌ CRASH — FormatException
+bool ok = int.TryParse(input, out int h);  // ✅ AMAN — ok = false
+\`\`\`
+
+> Aturan: \`Parse\` untuk data **sudah pasti valid**. \`TryParse\` untuk **input user**.
+
+---
+
+## 📎 Referensi Cepat
+
+- Semua tipe: \`bool\`, \`byte\`, \`int\`, \`long\`, \`float\`, \`double\`, \`decimal\`, \`char\`, \`string\`, \`object\`
+- Nullable: tambahkan \`?\` → \`string?\`, \`int?\`, \`DateTime?\`
+- Suffix \`m\` untuk decimal, \`L\` untuk long
+`,
+`# 📖 MATERI PESERTA — Hari 2: Dasar Programming C#
+
+---
+
+## 🧱 Object-Oriented Programming (OOP)
+
+**Class** = cetakan/blueprint. **Object** = benda nyata hasil cetakan.
+
+\`\`\`
+CLASS Kendaraan           OBJECT dari kelas ini
+(blueprint)
+Merek: ???               Merek: "Honda"
+Model: ???               Model: "Jazz"
+Tahun: ???               Tahun: 2023
+Aktif: ???               Aktif: true
+\`\`\`
+
+---
+
+## 📦 Class & Object
+
+### Properties (Data)
+\`\`\`csharp
+public class Kendaraan
+{
+    public string Merek { get; set; } = string.Empty;
+    public string Model { get; set; } = string.Empty;
+    public int    Tahun { get; set; }
+    public bool   Aktif  { get; set; } = true;
+}
+\`\`\`
+
+### Method (Aksi)
+\`\`\`csharp
+public string Deskripsi()
+{
+    string status = Aktif ? "Tersedia" : "Terjual";
+    return \$"{Merek} {Model} ({Tahun}) — {status}";
+}
+\`\`\`
+
+### Membuat Object
+\`\`\`csharp
+var k1 = new Kendaraan { Merek = "Honda", Model = "Jazz", Tahun = 2023 };
+var k2 = new Kendaraan { Merek = "Toyota", Model = "Avanza", Tahun = 2024 };
+Console.WriteLine(k1.Deskripsi());
+// Output: Honda Jazz (2023) — Tersedia
+\`\`\`
+
+---
+
+## 🏗️ Constructor
+
+Constructor = method spesial yang **otomatis dipanggil** saat \`new\`.
+
+\`\`\`csharp
+public class Kendaraan
+{
+    public string Merek { get; set; }
+    public int    Tahun { get; set; }
+
+    // Constructor dengan parameter
+    public Kendaraan(string merek, int tahun)
+    {
+        Merek = merek;
+        Tahun = tahun;
+    }
+
+    // Constructor default memanggil constructor berparameter
+    public Kendaraan() : this("Unknown", 0) { }
+}
+
+var k = new Kendaraan("Honda", 2024);
+\`\`\`
+
+---
+
+## 🔒 Encapsulation (Getter/Setter)
+
+\`\`\`csharp
+public class RekeningTabungan
+{
+    private decimal _saldo = 0;        // private — tidak bisa diakses luar
+    public decimal Saldo => _saldo;    // read-only
+
+    public string Setor(decimal jumlah)
+    {
+        if (jumlah <= 0) return "❌ Jumlah harus > 0";
+        _saldo += jumlah;
+        return \$"✅ Setor {jumlah:N0}. Saldo: {_saldo:N0}";
+    }
+}
+\`\`\`
+
+| Modifier | Akses |
+|---|---|
+| \`public\` | Bisa dari mana saja |
+| \`private\` | Hanya dari dalam class sendiri |
+| \`get; set;\` | Baca & tulis |
+| \`get; private set;\` | Baca dari luar, tulis dari dalam |
+| \`get;\` | Read-only |
+
+---
+
+## 📁 Namespace
+
+Namespace = "folder" untuk kode. Mencegah konflik nama class.
+
+\`\`\`csharp
+namespace IDMS.Modules.Master.Dto.Request
+{
+    public class ReqMstBrandDto { ... }
+}
+
+namespace IDMS.Modules.Sales.Dto.Request
+{
+    public class ReqMstBrandDto { ... }  // OK — namespace berbeda
+}
+\`\`\`
+
+> Di IDMS, namespace mencerminkan struktur folder: \`IDMS.Modules.Master.Dto.Request\`
+
+---
+
+## 🔀 Selection (Percabangan)
+
+### if / else if / else
+\`\`\`csharp
+int stok = 7;
+if (stok > 10)
+    Console.WriteLine("Stok aman");
+else if (stok > 3)
+    Console.WriteLine("Stok cukup");
+else if (stok > 0)
+    Console.WriteLine("⚠️ Stok menipis!");
+else
+    Console.WriteLine("❌ STOK HABIS!");
+\`\`\`
+
+### Ternary & Switch Expression
+\`\`\`csharp
+string label = stok > 0 ? "Tersedia" : "Habis";
+
+string kategori = stok switch
+{
+    > 10 => "Banyak",
+    > 3  => "Cukup",
+    > 0  => "Sedikit",
+    _    => "Habis"
+};
+\`\`\`
+
+---
+
+## 🔁 Iteration (Looping)
+
+### foreach — paling sering dipakai
+\`\`\`csharp
+var brands = new List<string> { "Honda", "Toyota", "Suzuki", "Daihatsu" };
+foreach (var brand in brands)
+    Console.WriteLine(\$"  🚗 {brand}");
+\`\`\`
+
+### for — kalau butuh index
+\`\`\`csharp
+for (int i = 0; i < brands.Count; i++)
+    Console.WriteLine(\$"  {i + 1}. {brands[i]}");
+\`\`\`
+
+### while
+\`\`\`csharp
+int counter = 0;
+while (counter < 3)
+{
+    Console.WriteLine(\$"Loop ke-{counter + 1}");
+    counter++;
+}
+\`\`\`
+
+---
+
+## ⚠️ Try-Catch (Error Handling)
+
+\`\`\`csharp
+try
+{
+    Console.Write("Masukkan angka: ");
+    string input = Console.ReadLine()!;
+    int angka = int.Parse(input);
+    Console.WriteLine(\$"Dua kali: {angka * 2}");
+}
+catch (FormatException)
+{
+    Console.WriteLine("❌ Harus angka!");
+}
+catch (OverflowException)
+{
+    Console.WriteLine("❌ Angka terlalu besar!");
+}
+finally
+{
+    Console.WriteLine("--- Selesai ---");  // selalu dijalankan
+}
+\`\`\`
+
+| Blok | Kapan Dijalankan |
+|---|---|
+| \`try\` | Selalu (sampai ada error) |
+| \`catch\` | Hanya jika ada exception yang cocok |
+| \`finally\` | **Selalu** — error atau tidak |
+
+---
+
+## 🔀 Git Basics
+
+\`\`\`bash
+git init                      # inisialisasi repo lokal
+git add .                     # stage semua perubahan
+git commit -m "pesan"         # simpan snapshot
+git remote add origin <url>   # hubungkan ke GitHub
+git push -u origin main       # kirim ke GitHub
+\`\`\`
+
+> Mantra harian: **add → commit → push**
+
+---
+
+## 📎 Referensi Cepat
+\`\`\`csharp
+// Constructor chaining
+public X() : this("default", 0) { }
+
+// Expression-bodied property
+public decimal GajiBersih => GajiPokok * 0.9m;
+
+// Switch expression
+string hasil = nilai switch { >= 90 => "A", >= 80 => "B", _ => "C" };
+
+// Null handling
+string nama = user?.NamaLengkap ?? "Tidak Diketahui";
+\`\`\`
+`,
+`# 📖 MATERI PESERTA — Hari 3: PostgreSQL & SQL
+
+---
+
+## 🗄️ Apa itu Database?
+
+Database = **tempat menyimpan data secara terstruktur dan permanen**.
+
+> 💡 Kalau class C# adalah **cetakan**, database adalah **lemari arsip** — menyimpan hasil cetakan yang sudah diisi data.
+
+---
+
+## 🔗 Koneksi ke PostgreSQL via DBeaver
+
+1. Buka DBeaver
+2. Klik **New Connection** → pilih **PostgreSQL**
+3. Isi: Host \`localhost\`, Port \`5432\`, Database \`postgres\`, Username \`postgres\`
+4. Klik **Test Connection** → harus hijau ✅
+
+---
+
+## 📊 Tipe Data SQL vs C#
+
+| SQL | C# | Catatan |
+|---|---|---|
+| \`SERIAL\` | auto-increment int | ID naik otomatis |
+| \`BIGSERIAL\` | auto-increment long | ID besar |
+| \`VARCHAR(n)\` | \`string\` | Teks maks n karakter |
+| \`TEXT\` | \`string\` | Teks tanpa batas |
+| \`BOOLEAN\` | \`bool\` | true / false |
+| \`INTEGER\` | \`int\` | Bilangan bulat |
+| \`NUMERIC(p,s)\` | \`decimal\` | Desimal presisi |
+| \`TIMESTAMP\` | \`DateTime\` | Tanggal + waktu |
+
+---
+
+## 🏗️ CREATE TABLE
+
+Struktur tabel di IDMS menggunakan **soft delete pattern**:
+
+\`\`\`sql
+CREATE TABLE mst_brands (
+    id          SERIAL PRIMARY KEY,
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    is_active   BOOLEAN      NOT NULL DEFAULT TRUE,
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    created_by  VARCHAR(100),
+    updated_at  TIMESTAMP,
+    updated_by  VARCHAR(100),
+    deleted_at  TIMESTAMP,         -- NULL = belum dihapus (soft delete)
+    deleted_by  VARCHAR(100)
+);
+\`\`\`
+
+### Field Audit (Pola IDMS)
+- \`created_at\` / \`created_by\` — kapan & siapa yang buat
+- \`updated_at\` / \`updated_by\` — kapan & siapa yang edit
+- \`deleted_at\` / \`deleted_by\` — kapan & siapa yang hapus
+
+> 💡 **Soft delete**: data tidak benar-benar dihapus. Hanya \`deleted_at\` diisi timestamp. \`deleted_at IS NULL\` = masih aktif.
+
+---
+
+## 📝 CRUD Operations
+
+### INSERT
+\`\`\`sql
+INSERT INTO mst_brands (code, name, created_by)
+VALUES ('HON', 'Honda',   'admin'),
+       ('TOY', 'Toyota',  'admin'),
+       ('SUZ', 'Suzuki',  'admin');
+\`\`\`
+
+### SELECT (selalu filter soft delete)
+\`\`\`sql
+SELECT * FROM mst_brands WHERE deleted_at IS NULL;
+
+-- Pencarian (case-insensitive)
+SELECT * FROM mst_brands
+WHERE deleted_at IS NULL AND name ILIKE '%honda%';
+\`\`\`
+
+### UPDATE
+\`\`\`sql
+UPDATE mst_brands
+SET    name = 'Honda Motor', updated_at = NOW(), updated_by = 'admin'
+WHERE  id = 1;
+\`\`\`
+
+### SOFT DELETE
+\`\`\`sql
+UPDATE mst_brands
+SET    deleted_at = NOW(), deleted_by = 'admin', is_active = FALSE
+WHERE  id = 3;
+\`\`\`
+
+> ❗ **Tidak pernah**: \`DELETE FROM mst_brands WHERE id = 3;\` ← hard delete!
+
+---
+
+## 🔗 JOIN
+
+\`\`\`sql
+SELECT m.code AS model_code, m.name AS model_name,
+       t.name AS type_name, b.name AS brand_name
+FROM   mst_models m
+JOIN   mst_types  t ON m.type_id  = t.id
+JOIN   mst_brands b ON t.brand_id = b.id
+WHERE  m.deleted_at IS NULL
+AND    t.deleted_at IS NULL
+AND    b.deleted_at IS NULL
+ORDER  BY b.name, t.name;
+\`\`\`
+
+| JOIN Type | Hasil |
+|---|---|
+| \`INNER JOIN\` | Hanya yang match di kedua tabel |
+| \`LEFT JOIN\` | Semua dari kiri + yang match di kanan |
+
+---
+
+## 📦 Stored Procedure
+
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE insert_brand(
+    IN  p_code       VARCHAR,
+    IN  p_name       VARCHAR,
+    IN  p_created_by VARCHAR,
+    OUT out_stat     BOOLEAN,
+    OUT out_mess     TEXT
+)
+LANGUAGE plpgsql
+AS \$\$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM mst_brands
+        WHERE code = p_code AND deleted_at IS NULL
+    ) THEN
+        out_stat := FALSE;
+        out_mess := 'Kode sudah dipakai: ' || p_code;
+        RETURN;
+    END IF;
+
+    INSERT INTO mst_brands (code, name, created_by, created_at)
+    VALUES (p_code, p_name, p_created_by, NOW());
+
+    out_stat := TRUE;
+    out_mess := 'Brand berhasil ditambahkan';
+END;
+\$\$;
+
+-- Panggil:
+CALL insert_brand('MZD', 'Mazda', 'admin', NULL, NULL);
+\`\`\`
+
+> \`out_stat\` (boolean) + \`out_mess\` (text) = pola standar response procedure di IDMS.
+
+---
+
+## 👁️ VIEW
+
+\`\`\`sql
+CREATE OR REPLACE VIEW v_active_brands AS
+SELECT id, code, name, created_at::DATE AS created_date
+FROM   mst_brands
+WHERE  deleted_at IS NULL AND is_active = TRUE
+ORDER  BY name;
+
+SELECT * FROM v_active_brands;
+\`\`\`
+
+---
+
+## 📎 Referensi Cepat
+
+\`\`\`sql
+-- FK saat CREATE TABLE:
+brand_id INTEGER REFERENCES mst_brands(id)
+
+-- Filter soft delete (WAJIB):
+WHERE deleted_at IS NULL
+\`\`\`
+`,
+`# 📖 MATERI PESERTA — Hari 4: ASP.NET Core Web API (Part 1)
+
+---
+
+## 🏗️ Arsitektur 4 Project (Layered Architecture)
+
+\`\`\`
+HTTP Request
+     ↓
+┌─────────────────────┐
+│  IDMS (API Layer)   │  ← Controller + Program.cs + Middleware
+└────────┬────────────┘
+         ↓
+┌─────────────────────┐
+│  IDMS.Modules       │  ← Service + DTO + Business Logic
+└────────┬────────────┘
+         ↓
+┌─────────────────────┐
+│  IDMS.Infrastructure│  ← DbContext + Configuration + Migration
+└────────┬────────────┘
+         ↓
+┌─────────────────────┐
+│  IDMS.Shared        │  ← Entity + BaseEntity (dipakai semua)
+└─────────────────────┘
+\`\`\`
+
+---
+
+## 📁 Penjelasan File-File Project
+
+| File | Kegunaan |
+|---|---|
+| \`Program.cs\` | Startup & DI container — "pintu masuk" aplikasi |
+| \`appsettings.json\` | Konfigurasi: connection string, JWT key, API Key |
+| \`*.csproj\` | Konfigurasi project: target framework, NuGet, referensi |
+| \`*.sln\` | Solution file — "daftar isi" seluruh project |
+| \`Controllers/\` | Tempat endpoint API didefinisikan |
+| \`Common/ApiResponse.cs\` | Response wrapper |
+| \`Middleware/\` | Kode yang jalan di setiap request |
+| \`Data/AppDbContext.cs\` | "Jembatan" C# ke database via EF Core |
+| \`Configurations/\` | Mapping C# class → tabel & kolom database |
+| \`Migrations/\` | File auto-generated tracking perubahan database |
+| \`Services/\` | Business logic — interface + implementasi |
+| \`Dto/\` | Data Transfer Objects — request & response |
+| \`Entities/\` | Model database |
+
+---
+
+## 📦 Membuat Project dari Nol
+
+\`\`\`bash
+mkdir MyProject && cd MyProject
+dotnet new sln -n IDMS
+
+dotnet new webapi   -n IDMS --no-https
+dotnet new classlib -n IDMS.Infrastructure
+dotnet new classlib -n IDMS.Modules.Master
+dotnet new classlib -n IDMS.Shared
+
+dotnet sln add IDMS/IDMS.csproj
+dotnet sln add IDMS.Infrastructure/IDMS.Infrastructure.csproj
+dotnet sln add IDMS.Modules.Master/IDMS.Modules.Master.csproj
+dotnet sln add IDMS.Shared/IDMS.Shared.csproj
+
+# Add references
+dotnet add IDMS.Infrastructure/IDMS.Infrastructure.csproj reference IDMS.Shared/IDMS.Shared.csproj
+dotnet add IDMS.Modules.Master/IDMS.Modules.Master.csproj reference IDMS.Infrastructure/IDMS.Infrastructure.csproj
+dotnet add IDMS.Modules.Master/IDMS.Modules.Master.csproj reference IDMS.Shared/IDMS.Shared.csproj
+dotnet add IDMS/IDMS.csproj reference IDMS.Infrastructure/IDMS.Infrastructure.csproj
+dotnet add IDMS/IDMS.csproj reference IDMS.Modules.Master/IDMS.Modules.Master.csproj
+dotnet add IDMS/IDMS.csproj reference IDMS.Shared/IDMS.Shared.csproj
+\`\`\`
+
+---
+
+## 📚 NuGet Packages
+
+\`\`\`bash
+cd IDMS.Infrastructure
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+cd ..
+
+cd IDMS
+dotnet add package Swashbuckle.AspNetCore
+cd ..
+\`\`\`
+
+| Project | Package | Fungsi |
+|---|---|---|
+| Infrastructure | \`Npgsql.EntityFrameworkCore.PostgreSQL\` | Driver PostgreSQL |
+| Infrastructure | \`Microsoft.EntityFrameworkCore.Design\` | Tool migration |
+| Infrastructure | \`Microsoft.EntityFrameworkCore.Tools\` | EF Core CLI |
+| IDMS (API) | \`Swashbuckle.AspNetCore\` | Swagger UI |
+
+---
+
+## 🧬 Entity & BaseEntity
+
+\`\`\`csharp
+// IDMS.Shared/Entities/BaseEntity.cs
+public class BaseEntity
+{
+    public int       Id        { get; set; }
+    public DateTime  CreatedAt { get; set; } = DateTime.Now;
+    public string?   CreatedBy { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    public string?   UpdatedBy { get; set; }
+    public DateTime? DeletedAt { get; set; }
+    public string?   DeletedBy { get; set; }
+}
+\`\`\`
+
+\`\`\`csharp
+// IDMS.Shared/Domain/Entities/MstBrands.cs
+public class MstBrands : BaseEntity
+{
+    public string Code     { get; set; } = string.Empty;
+    public string Name     { get; set; } = string.Empty;
+    public bool   IsActive { get; set; } = true;
+}
+\`\`\`
+
+---
+
+## ⚙️ Entity Configuration (Fluent API)
+
+\`\`\`csharp
+// IDMS.Infrastructure/Configurations/MstBrandsConfiguration.cs
+public class MstBrandsConfiguration : IEntityTypeConfiguration<MstBrands>
+{
+    public void Configure(EntityTypeBuilder<MstBrands> builder)
+    {
+        builder.ToTable("mst_brands");
+        builder.HasKey(e => e.Id).HasName("pk_mst_brand");
+
+        builder.Property(e => e.Id)
+            .HasColumnName("id").UseSerialColumn();
+
+        builder.Property(e => e.Code)
+            .HasColumnName("code").HasColumnType("varchar(10)")
+            .IsRequired().HasMaxLength(10);
+
+        builder.Property(e => e.Name)
+            .HasColumnName("name").HasColumnType("varchar(100)")
+            .IsRequired().HasMaxLength(100);
+        // ... field audit: created_at, updated_at, deleted_at
+    }
+}
+\`\`\`
+
+| Method | Fungsi |
+|---|---|
+| \`ToTable("nama")\` | Nama tabel di DB |
+| \`HasColumnName("nama")\` | Nama kolom di DB |
+| \`HasColumnType("varchar(n)")\` | Tipe data SQL |
+| \`IsRequired()\` | NOT NULL |
+| \`UseSerialColumn()\` | Auto-increment (SERIAL) |
+
+---
+
+## 🗄️ AppDbContext
+
+\`\`\`csharp
+// IDMS.Infrastructure/Data/AppDbContext.cs
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+    public DbSet<MstBrands> MstBrands => Set<MstBrands>();
+    public DbSet<MstUser>   MstUsers  => Set<MstUser>();
+    public DbSet<MstTypes>  MstTypes  => Set<MstTypes>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        base.OnModelCreating(modelBuilder);
+    }
+}
+\`\`\`
+
+---
+
+## 🔧 appsettings.json
+
+\`\`\`json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=miniproject;Username=postgres;Password=admin123;Search Path=dev"
+  }
+}
+\`\`\`
+
+---
+
+## 🔄 Migration
+
+\`\`\`bash
+# Buat migration
+dotnet ef migrations add Init --project IDMS.Infrastructure --startup-project IDMS
+
+# Terapkan ke database
+dotnet ef database update --project IDMS.Infrastructure --startup-project IDMS
+\`\`\`
+
+> ⚠️ Pastikan schema \`dev\` sudah ada: \`CREATE SCHEMA dev;\`
+`,
+`# 📖 MATERI PESERTA — Hari 5: ASP.NET Core Web API (Part 2)
+
+---
+
+## 📝 DTO (Data Transfer Object)
+
+DTO = objek khusus transfer data antar layer. **Bukan entity!**
+
+### Request DTO
+\`\`\`csharp
+// Dto/Request/ReqCreateMstBrandDto.cs
+public class ReqCreateMstBrandDto
+{
+    public string Code      { get; set; } = string.Empty;
+    public string Name      { get; set; } = string.Empty;
+    public bool   IsActive  { get; set; } = true;
+    public string CreatedBy { get; set; } = string.Empty;
+}
+\`\`\`
+
+### Response DTO
+\`\`\`csharp
+// Dto/Response/ResMstBrandDto.cs
+public class ResMstBrandDto
+{
+    public int    Id   { get; set; }
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+}
+\`\`\`
+
+---
+
+## 🧩 Service Pattern
+
+### Interface (kontrak)
+\`\`\`csharp
+public interface IMstBrandService
+{
+    Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto);
+    Task<ResMstBrandDto> GetMstBrandById(int id);
+    Task CreateMstBrand(ReqCreateMstBrandDto dto);
+    Task<bool> UpdateMstBrand(ReqUpdateMstBrandDto dto, int id);
+    Task<bool> DeleteMstBrand(int id);
+}
+\`\`\`
+
+### Implementasi (dengan LINQ)
+\`\`\`csharp
+public class MstBrandService : IMstBrandService
+{
+    private readonly AppDbContext _context;
+
+    public async Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto)
+    {
+        var query = _context.MstBrands.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(dto.Search))
+        {
+            var search = dto.Search.ToLower();
+            query = query.Where(x =>
+                x.Code.ToLower().Contains(search) ||
+                x.Name.ToLower().Contains(search));
+        }
+
+        query = query.Where(x => x.DeletedAt == null); // ← soft delete filter
+
+        var totalCount = await query.CountAsync();
+        var items = await query
+            .OrderBy(x => x.Id)
+            .Skip((dto.Page - 1) * dto.Limit)
+            .Take(dto.Limit)
+            .Select(x => new ResMstBrandDto { Id = x.Id, Code = x.Code, Name = x.Name })
+            .ToListAsync();
+
+        return new PagedResult<ResMstBrandDto> { Items = items, Pagination = ... };
+    }
+
+    // Soft delete
+    public async Task<bool> DeleteMstBrand(int id)
+    {
+        var brand = await _context.MstBrands
+            .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+        if (brand == null) return false;
+
+        brand.DeletedAt = DateTime.Now;
+        brand.DeletedBy = "system";
+        await _context.SaveChangesAsync();
+        return true;
+    }
+}
+\`\`\`
+
+---
+
+## 🎮 Controller (API)
+
+\`\`\`csharp
+[ApiController]
+[Route("master/general")]
+[Authorize]
+public class MasterGeneralController : Controller
+{
+    private readonly IMstBrandService _service;
+
+    [HttpGet("brand")]
+    public async Task<ActionResult<ApiResponse<object>>> GetBrand([FromQuery] ReqBaseParamDto dto)
+    {
+        var result = await _service.GetMstBrand(dto);
+        return Ok(ApiResponse<object>.Success(result.Items, "success", result.Pagination));
+    }
+
+    [HttpGet("brand/{id}")]
+    public async Task<ActionResult<ApiResponse<object>>> GetBrandById(int id)
+    {
+        var result = await _service.GetMstBrandById(id);
+        return Ok(ApiResponse<object>.Success(result, result != null ? "success" : "not found"));
+    }
+
+    [HttpPost("brand")]
+    public async Task<ActionResult<ApiResponse<object>>> CreateBrand([FromBody] ReqCreateMstBrandDto dto)
+    {
+        await _service.CreateMstBrand(dto);
+        return Ok(ApiResponse<object>.Success(null, "brand created successfully"));
+    }
+
+    [HttpPut("brand/{id}")]
+    public async Task<ActionResult<ApiResponse<object>>> UpdateBrand(
+        [FromBody] ReqUpdateMstBrandDto dto, int id)
+    {
+        var result = await _service.UpdateMstBrand(dto, id);
+        return Ok(ApiResponse<object>.Success(null, result ? "updated" : "not found"));
+    }
+
+    [HttpDelete("brand/{id}")]
+    public async Task<ActionResult<ApiResponse<object>>> DeleteBrand(int id)
+    {
+        var result = await _service.DeleteMstBrand(id);
+        return Ok(ApiResponse<object>.Success(null, result ? "deleted" : "not found"));
+    }
+}
+\`\`\`
+
+---
+
+## 📦 ApiResponse Wrapper
+
+\`\`\`csharp
+public class ApiResponse<T>
+{
+    public bool        Status     { get; set; } = true;
+    public string      Message    { get; set; } = string.Empty;
+    public T?          Data       { get; set; }
+    public Pagination? Pagination { get; set; }
+
+    public static ApiResponse<T> Success(T data, string message, Pagination? p = null)
+    public static ApiResponse<T> Fail(string message = "Error")
+}
+\`\`\`
+
+Response sukses:
+\`\`\`json
+{ "status": true, "message": "success", "data": { ... }, "pagination": { ... } }
+\`\`\`
+
+---
+
+## 🚀 Program.cs — Setup JWT + API Key
+
+\`\`\`csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Database
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// JWT Auth
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => { /* ... */ });
+
+// DI
+builder.Services.AddScoped<IMstBrandService, MstBrandService>();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseMiddleware<ApiKeyMiddleware>();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
+\`\`\`
+
+---
+
+## 🔐 API Key Middleware
+
+\`\`\`csharp
+public class ApiKeyMiddleware
+{
+    private const string ApiKeyHeaderName = "X-Api-Key";
+
+    public async Task InvokeAsync(HttpContext context)
+    {
+        if (!context.Request.Headers.TryGetValue(ApiKeyHeaderName, out var key))
+        {
+            context.Response.StatusCode = 401;
+            return;
+        }
+        if (!_config["Security:ApiKey"].Equals(key))
+        {
+            context.Response.StatusCode = 401;
+            return;
+        }
+        await _next(context);
+    }
+}
+\`\`\`
+
+---
+
+## 📎 LINQ Quick Reference
+
+\`\`\`csharp
+query.Where(x => x.DeletedAt == null)              // filter soft delete
+query.Where(x => x.Name.ToLower().Contains(s))     // search
+query.OrderBy(x => x.Id).ThenBy(x => x.Name)       // sort
+query.Skip((page-1)*size).Take(size)               // pagination
+await query.CountAsync()                            // count
+query.Select(x => new Dto { ... })                  // projection
+await query.FirstOrDefaultAsync(x => x.Id == id)    // single
+\`\`\`
+`,
+`# 📖 MATERI PESERTA — Hari 6: ASP.NET Core MVC (Part 1)
+
+---
+
+## 🎭 Web API vs MVC
+
+| | Web API | MVC |
+|---|---|---|
+| **Output** | JSON/XML | HTML (halaman web) |
+| **Controller** | \`ApiController\` | \`Controller\` |
+| **Return** | \`IActionResult\` + data | \`IActionResult\` + View |
+| **Routing** | \`[Route("api/...")]\` | \`[Route("...")]\` |
+| **Testing** | Swagger / Postman | Browser |
+| **Dipanggil oleh** | Frontend app / mobile | Browser user langsung |
+
+---
+
+## 🏗️ Struktur Project MVC
+
+\`\`\`
+IDMS.Web/
+├── Controllers/      ← Menerima request, return View
+├── Views/            ← Template HTML (Razor .cshtml)
+├── Models/           ← ViewModel (data untuk ditampilkan)
+├── Services/         ← Panggil API backend
+└── wwwroot/          ← CSS, JS, gambar (static files)
+\`\`\`
+
+---
+
+## 📁 Penjelasan File-File MVC
+
+| File/Folder | Kegunaan |
+|---|---|
+| \`Controllers/\` | Menerima HTTP request, memproses, return View |
+| \`Views/\` | Template Razor (.cshtml) — gabungan HTML + C# |
+| \`Models/\` | ViewModel — data khusus untuk ditampilkan di View |
+| \`Services/\` | Logic untuk panggil API backend |
+| \`wwwroot/\` | Static files: CSS, JavaScript, images |
+| \`Program.cs\` | Startup aplikasi MVC |
+| \`_Layout.cshtml\` | Template layout (header, footer, sidebar) |
+
+---
+
+## 📝 LINQ CRUD di Service
+
+\`\`\`csharp
+public class MstBrandService : IMstBrandService
+{
+    private readonly AppDbContext _context;
+
+    public async Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto)
+    {
+        var query = _context.MstBrands.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(dto.Search))
+        {
+            var search = dto.Search.ToLower();
+            query = query.Where(x =>
+                x.Code.ToLower().Contains(search) ||
+                x.Name.ToLower().Contains(search));
+        }
+
+        query = query.Where(x => x.DeletedAt == null);
+
+        var totalCount = await query.CountAsync();
+        var items = await query
+            .OrderBy(x => x.Id)
+            .Skip((dto.Page - 1) * dto.Limit)
+            .Take(dto.Limit)
+            .Select(x => new ResMstBrandDto { Id = x.Id, Code = x.Code, Name = x.Name })
+            .ToListAsync();
+
+        return new PagedResult<ResMstBrandDto> { Items = items, Pagination = ... };
+    }
+
+    // CREATE
+    public async Task CreateMstBrand(ReqCreateMstBrandDto dto)
+    {
+        var brand = new MstBrands
+        {
+            Code = dto.Code, Name = dto.Name, IsActive = dto.IsActive,
+            CreatedAt = DateTime.Now, CreatedBy = dto.CreatedBy
+        };
+        _context.MstBrands.Add(brand);
+        await _context.SaveChangesAsync();
+    }
+
+    // SOFT DELETE
+    public async Task<bool> DeleteMstBrand(int id)
+    {
+        var brand = await _context.MstBrands
+            .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+        if (brand == null) return false;
+        brand.DeletedAt = DateTime.Now; brand.DeletedBy = "system";
+        await _context.SaveChangesAsync();
+        return true;
+    }
+}
+\`\`\`
+
+---
+
+## 🧩 Modular Programming
+
+IDMS menggunakan **Interface + Implementation** pattern:
+
+\`\`\`
+IMstBrandService  (interface — kontrak)
+        ↓
+MstBrandService   (implementation — isi)
+\`\`\`
+
+Controller hanya tahu interface:
+\`\`\`csharp
+public MasterGeneralController(IMstBrandService service)
+{
+    _service = service;  // bisa MstBrandService, atau mock untuk testing
+}
+\`\`\`
+
+Keuntungan:
+- Controller tidak terikat ke implementasi spesifik
+- Bisa ganti implementasi tanpa ubah controller
+- Mudah testing — bisa pakai mock
+
+---
+
+## ✅ Data Annotation & DTO Validasi
+
+\`\`\`csharp
+public class ReqCreateMstBrandDto
+{
+    [Required(ErrorMessage = "Code wajib diisi")]
+    [StringLength(10, ErrorMessage = "Code maksimal 10 karakter")]
+    public string Code { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Name wajib diisi")]
+    [StringLength(100)]
+    public string Name { get; set; } = string.Empty;
+
+    public bool   IsActive  { get; set; } = true;
+    public string CreatedBy { get; set; } = string.Empty;
+}
+\`\`\`
+
+| Annotation | Fungsi |
+|---|---|
+| \`[Required]\` | Wajib diisi |
+| \`[StringLength(n)]\` | Maksimal n karakter |
+| \`[Range(min, max)]\` | Rentang nilai |
+| \`[EmailAddress]\` | Format email valid |
+
+---
+
+## 📎 LINQ Quick Reference
+
+\`\`\`csharp
+query.Where(x => x.DeletedAt == null)              // filter
+query.Where(x => x.Name.ToLower().Contains(s))     // search
+query.OrderBy(x => x.Id).ThenBy(x => x.Name)       // sort
+query.Skip((page-1)*size).Take(size)               // pagination
+await query.CountAsync()                            // count
+query.Select(x => new Dto { ... })                  // projection
+await query.FirstOrDefaultAsync(x => x.Id == id)    // single
+\`\`\`
+`,
+`# 📖 MATERI PESERTA — Hari 7: ASP.NET Core MVC (Part 2)
+
+---
+
+## 🔄 Ajax & jQuery
+
+### GET Data
+\`\`\`javascript
+\$.ajax({
+    url: '/master/general/brand',
+    method: 'GET',
+    data: { page: 1, limit: 10, search: 'honda' },
+    headers: {
+        'X-Api-Key': 'your-key',
+        'Authorization': 'Bearer ' + token
+    },
+    success: function(response) {
+        console.log(response.data);
+    },
+    error: function(xhr) {
+        alert('Error: ' + xhr.status);
+    }
+});
+\`\`\`
+
+### POST Data
+\`\`\`javascript
+\$.ajax({
+    url: '/master/general/brand',
+    method: 'POST',
+    contentType: 'application/json',
+    headers: {
+        'X-Api-Key': 'your-key',
+        'Authorization': 'Bearer ' + token
+    },
+    data: JSON.stringify({
+        code: 'HON', name: 'Honda',
+        isActive: true, createdBy: 'admin'
+    }),
+    success: function(response) {
+        alert(response.message);
+    }
+});
+\`\`\`
+
+### PUT & DELETE
+\`\`\`javascript
+// PUT
+\$.ajax({
+    url: '/master/general/brand/' + id,
+    method: 'PUT',
+    contentType: 'application/json',
+    headers: { 'X-Api-Key': 'key', 'Authorization': 'Bearer ' + token },
+    data: JSON.stringify({ code: 'HON', name: 'Updated', isActive: true, updatedBy: 'admin' }),
+    success: function(r) { alert(r.message); }
+});
+
+// DELETE
+\$.ajax({
+    url: '/master/general/brand/' + id,
+    method: 'DELETE',
+    headers: { 'X-Api-Key': 'key', 'Authorization': 'Bearer ' + token },
+    success: function(r) { alert(r.message); loadData(); }
+});
+\`\`\`
+
+---
+
+## 🎨 Integrasi Template ke Web
+
+### Struktur Layout (_Layout.cshtml)
+\`\`\`html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] - IDMS</title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Navbar -->
+    </nav>
+    <div class="container">
+        @RenderBody()  <!-- Tempat konten halaman -->
+    </div>
+    <footer>
+        <!-- Footer -->
+    </footer>
+    <script src="~/lib/jquery/jquery.min.js"><\\/script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"><\\/script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+\`\`\`
+
+### View dengan Form
+\`\`\`html
+@model IDMS.Web.Models.BrandViewModel
+
+<div class="card">
+    <div class="card-header"><h3>Tambah Brand</h3></div>
+    <div class="card-body">
+        <form id="brandForm">
+            <div class="mb-3">
+                <label>Kode</label>
+                <input type="text" id="code" class="form-control" maxlength="10" required>
+            </div>
+            <div class="mb-3">
+                <label>Nama</label>
+                <input type="text" id="name" class="form-control" maxlength="100" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+\$('#brandForm').submit(function(e) {
+    e.preventDefault();
+    \$.ajax({
+        url: '/master/general/brand',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            code: \$('#code').val(),
+            name: \$('#name').val(),
+            isActive: true, createdBy: 'admin'
+        }),
+        success: function(resp) { alert(resp.message); },
+        error: function(xhr) { alert('Error: ' + xhr.responseJSON?.message); }
+    });
+});
+<\\/script>
+}
+\`\`\`
+
+---
+
+## 📊 Tabel Data dengan Ajax
+
+\`\`\`html
+<table class="table table-striped" id="brandTable">
+    <thead><tr><th>ID</th><th>Kode</th><th>Nama</th><th>Aksi</th></tr></thead>
+    <tbody></tbody>
+</table>
+<nav><ul class="pagination" id="pagination"></ul></nav>
+
+<script>
+function loadBrands(page = 1) {
+    \$.ajax({
+        url: '/master/general/brand',
+        data: { page: page, limit: 10 },
+        success: function(resp) {
+            var rows = '';
+            resp.data.forEach(function(b) {
+                rows += '<tr><td>' + b.id + '</td><td>' + b.code +
+                    '</td><td>' + b.name + '</td>' +
+                    '<td><button onclick="editBrand(' + b.id +
+                    ')">Edit</button> ' +
+                    '<button onclick="deleteBrand(' + b.id +
+                    ')">Hapus</button></td></tr>';
+            });
+            \$('#brandTable tbody').html(rows);
+        }
+    });
+}
+\$(document).ready(function() { loadBrands(); });
+<\\/script>
+\`\`\`
+
+---
+
+## 📝 Post Test — Referensi Soal
+
+1. **Apa perbedaan Web API dan MVC?** Web API return JSON, MVC return HTML/View.
+2. **Apa fungsi ViewModel di MVC?** Wadah data khusus untuk ditampilkan di View.
+3. **Apa itu Razor?** Template engine ASP.NET, gabungan HTML + C# di \`.cshtml\`.
+4. **Apa fungsi \`@RenderBody()\`?** Tempat konten halaman anak di-render dalam layout.
+5. **Bagaimana cara kirim data form dengan Ajax?** \`JSON.stringify()\` + \`\$.ajax()\` + \`contentType: 'application/json'\`.
+6. **Apa header wajib di setiap request?** \`X-Api-Key\` dan \`Authorization: Bearer <token>\`.
+7. **Sebutkan 4 HTTP methods REST!** GET, POST, PUT, DELETE.
+`,
+`# 📖 MATERI PESERTA — Hari 8: JWT & Identity
+
+---
+
+## 🔐 Authentication Flow
+
+\`\`\`
+User                    Server                   Database
+ │                        │                        │
+ │  POST /auth/login      │                        │
+ │  {email, password}     │                        │
+ │ ──────────────────────>│                        │
+ │                        │  SELECT user by email  │
+ │                        │ ──────────────────────>│
+ │                        │  return user row       │
+ │                        │ <──────────────────────│
+ │                        │  Verify password hash  │
+ │                        │  Generate JWT token    │
+ │                        │                        │
+ │  {token, email}        │                        │
+ │ <──────────────────────│                        │
+ │                        │                        │
+ │  GET /master/brand     │                        │
+ │  Authorization: Bearer │                        │
+ │ ──────────────────────>│  Validate JWT          │
+ │  {data}                │                        │
+ │ <──────────────────────│                        │
+\`\`\`
+
+---
+
+## 📝 Register — Membuat Halaman Login
+
+\`\`\`csharp
+[HttpPost("register")]
+public async Task<ActionResult<ApiResponse<object>>> Register([FromBody] ReqCreateUserDto dto)
+{
+    await _service.CreateUserAsync(dto);
+    return Ok(ApiResponse<object>.Success(null, "user created successfully"));
+}
+\`\`\`
+
+Password di-hash dengan **BCrypt**:
+\`\`\`csharp
+var encryptedPassword = BCrypt.Net.BCrypt.HashPassword(req.Password);
+var user = new MstUser
+{
+    Email    = req.Email,
+    Password = encryptedPassword,  // bukan plain text!
+    FullName = req.FullName
+};
+\`\`\`
+
+> ⚠️ **Tidak pernah menyimpan password dalam plain text!**
+
+---
+
+## 🔑 Login & Generate JWT
+
+\`\`\`csharp
+public async Task<ResLoginDto> Login(ReqLoginDto req)
+{
+    // 1. Cari user by email
+    var user = await _context.MstUsers.FirstOrDefaultAsync(u => u.Email == req.Email);
+
+    // 2. Verifikasi password dengan BCrypt
+    if (user == null || !BCrypt.Net.BCrypt.Verify(req.Password, user.Password))
+        throw new UnauthorizedAccessException("Invalid email or password.");
+
+    // 3. Generate token
+    var token = _jwtService.GenerateToken(user.Id.ToString(), user.Email, user.FullName);
+
+    return new ResLoginDto { Token = token, Email = user.Email };
+}
+\`\`\`
+
+---
+
+## 🎫 JWT Token Structure
+
+\`\`\`
+HEADER.PAYLOAD.SIGNATURE
+
+Header:   {"alg": "HS256", "typ": "JWT"}
+Payload:  {"nameid": "1", "email": "user@mail.com", "UserFullName": "Budi"}
+Signature: HMACSHA256(base64(header) + "." + base64(payload), secret)
+\`\`\`
+
+---
+
+## 🔨 Generate JWT Token
+
+\`\`\`csharp
+public string GenerateToken(string Id, string Email, string FullName)
+{
+    var claims = new[]
+    {
+        new Claim(ClaimTypes.NameIdentifier, Id),
+        new Claim(ClaimTypes.Email, Email),
+        new Claim("UserFullName", FullName)
+    };
+
+    var key = new SymmetricSecurityKey(
+        Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+
+    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+    var token = new JwtSecurityToken(
+        issuer: _configuration["Jwt:Issuer"],
+        audience: _configuration["Jwt:Audience"],
+        claims: claims,
+        expires: DateTime.Now.AddHours(8),
+        signingCredentials: creds
+    );
+
+    return new JwtSecurityTokenHandler().WriteToken(token);
+}
+\`\`\`
+
+---
+
+## 🔒 Protect Endpoint dengan [Authorize]
+
+\`\`\`csharp
+[ApiController]
+[Route("master/general")]
+[Authorize]    // ← Semua endpoint wajib login
+public class MasterGeneralController : Controller { }
+\`\`\`
+
+---
+
+## 🛡️ API Key + JWT (Dual Protection)
+
+| Lapis | Header | Dicek Oleh |
+|---|---|---|
+| API Key | \`X-Api-Key\` | \`ApiKeyMiddleware\` |
+| JWT | \`Authorization: Bearer <token>\` | ASP.NET Auth middleware |
+
+Request valid harus mengirim **keduanya**:
+\`\`\`http
+GET /master/general/brand
+X-Api-Key: your-api-key-here
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+\`\`\`
+
+---
+
+## 📦 Program.cs — Setup JWT
+
+\`\`\`csharp
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true, ValidateAudience = true,
+            ValidateLifetime = true, ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
+
+app.UseAuthentication();   // validasi JWT
+app.UseAuthorization();    // cek [Authorize]
+\`\`\`
+
+---
+
+## 🚨 Error Handling Global
+
+| Exception | HTTP Status |
+|---|---|
+| \`UnauthorizedAccessException\` | 401 Unauthorized |
+| \`ArgumentException\` | 400 Bad Request |
+| \`Exception\` (generic) | 500 Internal Server Error |
+
+---
+
+## 📎 Keamanan Checklist
+
+- [x] Password di-hash dengan BCrypt
+- [x] Token JWT punya expiry (8 jam)
+- [x] API Key required di setiap request
+- [x] Endpoint sensitive pakai \`[Authorize]\`
+- [x] Error tidak leak informasi sensitif
+
+---
+
+## 🎯 Final Project — Brief
+
+Buat aplikasi dengan arsitektur yang sama seperti IDMS. Tema bebas.
+
+### Kriteria Minimum
+| Kriteria | Bobot |
+|---|---|
+| Auth: login return JWT + endpoint protected | 25% |
+| CRUD Tabel 1 lengkap + pagination | 30% |
+| Validasi DTO + ApiResponse konsisten | 20% |
+| Soft delete + filter query | 15% |
+| Bisa jelaskan arsitektur | 10% |
+`,
+`# 📖 MATERI PESERTA — Hari 9: Final Project & Presentasi (1)
+
+---
+
+## 🎯 Final Project
+
+Buat aplikasi sendiri dengan arsitektur yang sama seperti IDMS, dengan tema bebas.
+
+---
+
+## 🗂️ Checklist Setup Project
+
+1. ☐ \`dotnet new sln\` + 4 project
+2. ☐ \`dotnet sln add\` semua project
+3. ☐ \`dotnet add reference\` antar project
+4. ☐ Install NuGet packages
+5. ☐ Buat \`BaseEntity\` di Shared
+6. ☐ Buat entity di \`Shared/Domain/Entities/\`
+7. ☐ Buat Configuration di \`Infrastructure/Configurations/\`
+8. ☐ Buat \`AppDbContext\` di \`Infrastructure/Data/\`
+9. ☐ Setup \`appsettings.json\` (connection string, JWT, API Key)
+10. ☐ Setup \`Program.cs\` (DbContext, auth, middleware, Swagger)
+11. ☐ \`dotnet ef migrations add Init\`
+12. ☐ \`dotnet ef database update\`
+13. ☐ Buat service interface + implementasi
+14. ☐ Buat DTO (request + response)
+15. ☐ Buat controller
+16. ☐ Test via Swagger
+
+---
+
+## 🔑 File Kunci di IDMS (Referensi)
+
+| File | Fungsi |
+|---|---|
+| \`IDMS/Program.cs\` | Setup lengkap (DB, auth, middleware) |
+| \`IDMS/Middleware/ApiKeyMiddleware.cs\` | Validasi API Key |
+| \`IDMS/Common/ApiResponse.cs\` | Response wrapper |
+| \`IDMS/Controllers/MasterGeneralController.cs\` | Contoh CRUD controller |
+| \`IDMS.Modules.Master/Services/Impl/MstBrandService.cs\` | Service + pagination |
+| \`IDMS.Modules.Master/Services/Impl/JwtServices.cs\` | Generate token |
+| \`IDMS.Modules.Master/Services/Impl/MstUserService.cs\` | Flow login |
+| \`IDMS.Infrastructure/Configurations/MstBrandsConfiguration.cs\` | Mapping entity |
+| \`IDMS.Infrastructure/Data/AppDbContext.cs\` | Database context |
+| \`IDMS.Shared/Entities/BaseEntity.cs\` | Base class entity |
+
+---
+
+## 📋 Kriteria Penilaian
+
+| Kriteria | Bobot | Cara Cek |
+|---|---|---|
+| Auth: login return JWT + endpoint protected | 25% | Register + login via Swagger, akses endpoint dengan token |
+| CRUD Tabel 1 lengkap + pagination | 30% | GET (paginated), GET by id, POST, PUT, DELETE |
+| Validasi DTO + ApiResponse konsisten | 20% | \`[Required]\`, response selalu \`ApiResponse<T>\` |
+| Soft delete + filter query | 15% | Tidak ada hard delete, semua query filter \`deleted_at IS NULL\` |
+| Bisa jelaskan arsitektur | 10% | Kenapa pisah interface/impl, kenapa 4 project, kenapa soft delete |
+
+---
+
+## ❓ Pertanyaan yang Mungkin Ditanyakan
+
+**"Kenapa pisahkan interface dari implementasi?"**
+> Controller tidak perlu tahu cara service bekerja. Memudahkan testing (mock) dan ganti implementasi.
+
+**"Tunjukkan soft delete di kode kamu!"**
+> Di service Delete: \`entity.DeletedAt = DateTime.Now\`. Query: \`.Where(x => x.DeletedAt == null)\`.
+
+**"Kenapa CreatedBy dari token, bukan body?"**
+> Body bisa dimanipulasi client. JWT sudah divalidasi server — claim bisa dipercaya.
+
+**"Jelaskan middleware pipeline!"**
+> Swagger → ApiKeyMiddleware → Authentication → Authorization → Controller
+`,
+`# 📖 MATERI PESERTA — Hari 10: Final Project & Presentasi (2)
+
+---
+
+## 🎤 Presentasi Final Project — Panduan
+
+### Format Presentasi (masing-masing ~10 menit)
+
+1. **Perkenalan Project** (1-2 mnt)
+   - Nama project & tema
+   - Kenapa pilih tema ini?
+
+2. **Demo Aplikasi** (5-6 mnt)
+   - Tunjukkan Swagger UI — Register, Login
+   - Demo CRUD: GET, POST, PUT, DELETE
+   - Tunjukkan soft delete (data masih ada, \`deleted_at\` terisi)
+   - Tampilkan response \`ApiResponse<T>\` yang konsisten
+
+3. **Bedah Arsitektur** (2-3 mnt)
+   - Tunjukkan struktur 4 project
+   - Jelaskan dependency flow
+   - Tunjukkan Entity → Configuration → Service → Controller
+
+4. **Q&A** (2-3 mnt)
+   - Siap menjawab pertanyaan dari pengajar & teman
+
+---
+
+## 📊 Kompetensi yang Dipelajari
+
+### Fundamental C#
+- Variable, Data Type, Operator
+- OOP, Constructor, Getter & Setter, Namespace
+- Looping, Selection, Exception Handling
+
+### Database
+- PostgreSQL, DBeaver, Table, Constraint
+- CRUD, View, Stored Procedure
+
+### Backend
+- ASP.NET Core Web API, Migration
+- JWT Authentication, API Key, DTO, LINQ
+
+### Frontend
+- ASP.NET Core MVC, Ajax, jQuery
+- Integrasi Template
+
+### Security
+- JWT, Identity, Login Authentication, BCrypt
+
+### Version Control
+- Git (add, commit, push)
+
+### Project
+- Exercise, Final Project, Presentasi, Post Test
+
+---
+
+## 🏁 SELAMAT! 🎉
+
+Anda telah menyelesaikan Bootcamp Technocenter ASP.NET Core Web API!
+`
+];
+run(T,C,function(){return `<div class="cover-wrap"><div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6;margin-bottom:.8rem">IDMS Training Program &mdash; Materi Peserta</div><h1 style="font-size:2.8rem;font-weight:800;line-height:1.15;margin-bottom:1rem">ASP.NET Core Web API<br><span style="color:#3b82f6">dari Nol</span></h1><p style="color:#94a3b8;font-size:.97rem;margin-bottom:1.5rem">C# &middot; PostgreSQL &middot; Web API &middot; EF Core &middot; MVC &middot; JWT &middot; Security<br>10 Hari. 1 Aplikasi Nyata: IDMS.</p><div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.5rem"><span class="cover-tag" style="background:#1d4ed8">Hari 1: Perkenalan</span><span class="cover-tag" style="background:#334155">Hari 2: C# & OOP</span><span class="cover-tag" style="background:#334155">Hari 3: PostgreSQL</span><span class="cover-tag" style="background:#334155">Hari 4: Web API Pt.1</span><span class="cover-tag" style="background:#334155">Hari 5: Web API Pt.2</span><span class="cover-tag" style="background:#334155">Hari 6: Web MVC Pt.1</span><span class="cover-tag" style="background:#334155">Hari 7: Web MVC Pt.2</span><span class="cover-tag" style="background:#334155">Hari 8: JWT & Identity</span><span class="cover-tag" style="background:#334155">Hari 9: Final Project 1</span><span class="cover-tag" style="background:#334155">Hari 10: Final Project 2</span></div><div style="background:#1e293b;border:1px solid #334155;border-radius:.6rem;padding:.9rem 1.2rem;max-width:420px"><p style="font-size:.82rem;color:#94a3b8">Gunakan <strong style="color:#f8fafc">Prev / Next</strong> atau keyboard <strong style="color:#f8fafc">&lt; &gt;</strong> untuk navigasi antar hari.</p></div></div>`;});
+</script>
+</body>
+</html>

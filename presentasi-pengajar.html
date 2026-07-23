@@ -1,0 +1,4426 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cheatsheet Pengajar - ASP.NET Core Web API Training</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>:root{--ac:#f59e0b;--ach:#fcd34d;--acl:#fde68a;--cc:#fde68a;--th:#451a0333;--bq:#1c1407;--bqt:#fcd34d}</style>
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap");
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",sans-serif;background:#0f172a;color:#f8fafc;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#progressBar{position:fixed;top:0;left:0;height:3px;transition:width .3s;z-index:999}
+#slideCounter{position:fixed;top:6px;right:1rem;font-size:.72rem;color:#64748b;z-index:999}
+#header{background:#1e293b;border-bottom:1px solid #334155;padding:.6rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-shrink:0;z-index:100;position:sticky;top:0}
+#dayBadge{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .65rem;border-radius:4px;border:1px solid var(--ac);color:var(--ac);white-space:nowrap}
+#slideTitle{font-size:.9rem;font-weight:600;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#content{flex:1;overflow-y:auto;padding:1.8rem 2.5rem;max-width:960px;width:100%;margin:0 auto;padding-bottom:4rem}
+.nav-area{position:fixed;bottom:0;left:0;right:0;padding:.6rem 1.5rem;background:#0f172a;border-top:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between}
+#content h1,#content h2,#content h3,#content h4{margin-top:1.2rem;margin-bottom:.5rem}
+#content h1{font-size:1.6rem;font-weight:700;color:#f8fafc;border-bottom:2px solid var(--ac);padding-bottom:.35rem;margin-top:.5rem}
+#content h2{font-size:1.2rem;font-weight:700;color:var(--ach);margin-top:1.6rem}
+#content h3{font-size:1rem;font-weight:600;color:var(--acl)}
+#content h4{font-size:.92rem;font-weight:600;color:#94a3b8}
+#content p{color:#cbd5e1;line-height:1.8;margin-bottom:.65rem}
+#content strong{color:#f8fafc}
+#content em{color:#94a3b8}
+#content code{font-family:"Fira Code",monospace;font-size:.81rem;background:#1e293b;color:var(--cc);padding:.1rem .35rem;border-radius:3px;white-space:nowrap}
+#content pre{background:#0d1f38;border-left:4px solid var(--ac);border-radius:6px;margin:.8rem 0;overflow-x:auto}
+#content pre code{background:none;color:#e2e8f0;padding:.9rem 1.1rem;display:block;font-size:.79rem;line-height:1.65;white-space:pre}
+#content ul,#content ol{color:#cbd5e1;padding-left:1.4rem;margin-bottom:.65rem}
+#content li{line-height:1.8;margin-bottom:.15rem}
+#content li > code{font-size:.79rem}
+#content table{border-collapse:collapse;width:100%;margin:.8rem 0;font-size:.84rem}
+#content th{background:var(--th);color:var(--ach);padding:.45rem .75rem;text-align:left;border:1px solid #334155;font-weight:600}
+#content td{padding:.4rem .75rem;border:1px solid #1e293b;color:#cbd5e1;vertical-align:top}
+#content tr:nth-child(even) td{background:#0f1c2e}
+#content blockquote{border-left:4px solid var(--ac);background:var(--bq);padding:.65rem .95rem;margin:.8rem 0;border-radius:0 6px 6px 0}
+#content blockquote p{color:var(--bqt);margin:0;font-style:italic}
+#content hr{border:none;border-top:1px solid #1e293b;margin:1rem 0}
+#content a{color:var(--ach);text-decoration:none}
+#content a:hover{text-decoration:underline}
+.nav-btn{background:rgba(0,0,0,.3);border:1px solid var(--ac);padding:.38rem 1rem;border-radius:9999px;cursor:pointer;transition:.2s;color:#f8fafc;font-size:.83rem}
+.nav-btn:hover{background:var(--ac);color:#0f172a}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
+.cover-wrap{padding:2rem 0}
+.cover-tag{display:inline-block;padding:.28rem .85rem;border-radius:9999px;font-size:.76rem;font-weight:600}
+#content::-webkit-scrollbar{width:5px}
+#content::-webkit-scrollbar-track{background:#0f172a}
+#content::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+
+</style>
+<style>
+#progressBar{background:linear-gradient(90deg,#f59e0b,#fb923c)}
+.watermark{position:fixed;top:.8rem;right:1.2rem;font-size:.62rem;font-weight:700;letter-spacing:.12em;color:#f59e0b;border:1px solid #f59e0b55;padding:.18rem .55rem;border-radius:4px;text-transform:uppercase;z-index:1000;pointer-events:none}
+</style>
+</head><body>
+
+<div class="watermark">Khusus Pengajar</div>
+<div id="progressBar"></div>
+<div id="slideCounter"></div>
+<div id="header">
+  <span id="dayBadge"></span>
+  <span id="slideTitle"></span>
+</div>
+<div id="content"></div>
+<div class="nav-area">
+  <button class="nav-btn" id="btnPrev">&#8592; Prev</button>
+  <span id="pageInfo" style="font-size:.75rem;color:#64748b"></span>
+  <button class="nav-btn" id="btnNext">Next &#8594;</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@4/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+
+marked.setOptions({gfm:true,breaks:true});
+marked.use({renderer:(function(){
+  var r=new marked.Renderer();
+  r.code=function(code,lang){
+    var h=(lang&&hljs.getLanguage(lang))
+      ?hljs.highlight(code,{language:lang}).value
+      :hljs.highlightAuto(code).value;
+    return "<pre><code class=hljs>"+h+"</code></pre>";
+  };
+  return r;
+})()});
+function run(titles,contents,coverFn){
+  var cur=0, tot=contents.length+1;
+  function go(i){
+    cur=i;
+    document.getElementById("progressBar").style.width=((i+1)/tot*100)+"%";
+    document.getElementById("slideCounter").textContent=(i+1)+" / "+tot;
+    document.getElementById("pageInfo").textContent=(i+1)+" / "+tot;
+    document.getElementById("btnPrev").disabled=(i===0);
+    document.getElementById("btnNext").disabled=(i===tot-1);
+    if(i===0){
+      document.getElementById("dayBadge").textContent="IDMS Training";
+      document.getElementById("slideTitle").textContent="";
+      document.getElementById("content").innerHTML=coverFn();
+    } else {
+      var n=i-1;
+      document.getElementById("dayBadge").textContent="Hari "+String(i).padStart(2,"0");
+      document.getElementById("slideTitle").textContent=titles[n]||"";
+      document.getElementById("content").innerHTML=marked.parse(contents[n]);
+      document.getElementById("content").scrollTop=0;
+      document.querySelectorAll("#content pre code").forEach(function(el){hljs.highlightElement(el);});
+    }
+  }
+  document.getElementById("btnPrev").addEventListener("click",function(){if(cur>0)go(cur-1);});
+  document.getElementById("btnNext").addEventListener("click",function(){if(cur<tot-1)go(cur+1);});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="PageDown"){if(cur<tot-1)go(cur+1);}
+    if(e.key==="ArrowLeft"||e.key==="PageUp"){if(cur>0)go(cur-1);}
+  });
+  go(0);
+}
+
+</script>
+<script>
+var T = [
+"Hari 1 - Perkenalan | Script Pengajar",
+"Hari 2 - OOP, Selection, Iteration & Error Handling | Script Pengajar",
+"Hari 3 - PostgreSQL & SQL | Script Pengajar",
+"Hari 4 - ASP.NET Core Web API Pt.1 | Script Pengajar",
+"Hari 5 - ASP.NET Core Web API Pt.2 | Script Pengajar",
+"Hari 6 - ASP.NET Core MVC Pt.1 | Script Pengajar",
+"Hari 7 - ASP.NET Core MVC Pt.2 | Script Pengajar",
+"Hari 8 - JWT & Identity | Script Pengajar",
+"Hari 9 - Final Project Presentasi 1 | Moderasi",
+"Hari 10 - Final Project Presentasi 2 | Moderasi"
+];
+var C = [
+`# 📋 CHEATSHEET PENGAJAR — Hari 1: Perkenalan .NET & C#
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar. Jangan dibagikan ke peserta.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Sesi |
+|---|---|---|
+| 13.00–13.20 | 20 mnt | Perkenalan Pemateri, Peserta & Peraturan Kelas |
+| 13.20–13.35 | 15 mnt | Pretest |
+| 13.35–14.15 | 40 mnt | Recall Install VS Code, DBeaver, ASP.NET |
+| 14.15–14.35 | 20 mnt | Perkenalan .NET + Variable, Tipe Data, Operator |
+| 14.35–14.50 | 15 mnt | Live Coding Dasar |
+| 14.50–15.15 | 25 mnt | 📚 Latihan: Variable, Tipe Data, Operator |
+| 15.15–15.30 | 15 mnt | 🧊 Ice Breaker: Tebak Output Edisi Dealer |
+| 15.30–15.50 | 20 mnt | 🎯 Tantangan 1: Status Stok Dealer |
+| 15.50–16.10 | 20 mnt | 🎯 Tantangan 2: Kalkulator Kredit OTR |
+| 16.10–16.25 | 15 mnt | 🏆 FINAL PROJECT: Dealer Console |
+| 16.25–16.30 | 5 mnt | Review + Bridge |
+
+---
+
+## 13.00 | PEMBUKAAN
+
+> *"Selamat siang semua! Perkenalan dulu — nama, background, satu kata tentang ekspektasi kalian."*
+
+**Peraturan Kelas:** Tepat waktu, aktif bertanya, saling bantu.
+
+---
+
+## 13.20 | PRETEST
+
+> *"Ini bukan ujian. 5 pertanyaan, jawab jujur biar saya tahu titik awal."*
+
+---
+
+## 13.35 | VERIFIKASI TOOLS
+
+\`\`\`bash
+dotnet --version     # harus 8.0.x
+\`\`\`
+
+---
+
+## 14.15 | PENGENALAN .NET (20 mnt — ringkas)
+
+> *"Analogi: .NET adalah pabrik serbaguna. C# adalah bahasa instruksi ke pekerja pabrik."*
+
+**Demo struktur IDMS:** Buka \`IDMS.sln\`, tunjukkan 4 project, buka \`MstBrands.cs\`.
+
+**❓ PANCINGAN:**
+| Tanya | Jawab |
+|---|---|
+| ".NET Framework cuma jalan di mana?" | Hanya Windows |
+| "Beda \`.sln\` dan \`.csproj\`?" | \`.sln\` = daftar project, \`.csproj\` = konfigurasi satu project |
+
+**Slide: Tabel Tipe Data C#**
+| Tipe | C# | Contoh IDMS | Range |
+|---|---|---|---|
+| Integer | \`int\` | \`int stok = 12;\` | ±2.1 milyar |
+| Long | \`long\` | \`long totalUnit = 50000;\` | ±9 quintillion |
+| Decimal | \`decimal\` | \`decimal harga = 350_000_000m;\` | 28-29 digit presisi |
+| Boolean | \`bool\` | \`bool isActive = true;\` | true/false |
+| String | \`string\` | \`string code = "HON";\` | Unicode |
+| DateTime | \`DateTime\` | \`DateTime createdAt = DateTime.Now;\` | 0001–9999 |
+| Char | \`char\` | \`char grade = 'A';\` | Single Unicode |
+
+**Slide: Operator C#**
+| Kategori | Operator | Contoh IDMS |
+|---|---|---|
+| Aritmatika | \`+ - * / %\` | \`harga * 1.11m\` (PPN) |
+| Perbandingan | \`== != < > <= >=\` | \`stok > 10\` |
+| Logika | \`&& \\|\\| !\` | \`isActive && stok > 0\` |
+| Assignment | \`= += -= *= /=\` | \`total += harga;\` |
+| Ternary | \`? :\` | \`stok > 0 ? "Ready" : "Habis"\` |
+| Null-coalescing | \`?? ??=\` | \`name ?? "UNKNOWN"\` |
+
+---
+
+## 14.35 | LIVE CODING DASAR (15 mnt — langsung esensi)
+
+\`\`\`bash
+dotnet new console -n LatihanHari1 && cd LatihanHari1 && code .
+\`\`\`
+
+\`\`\`csharp
+// 1. SEMUA tipe data IDMS
+string kode = "HON";                       // varchar(10)
+string nama = "Honda";                     // varchar(100)
+int stok = 12;                             // integer
+long totalTerjual = 1_500_000_000L;        // bigint
+decimal harga = 250_000_000.50m;           // numeric(18,2)
+bool aktif = true;                         // boolean
+DateTime dibuat = DateTime.Now;            // timestamp
+char kategori = 'A';                       // char
+
+// 2. String interpolation + format
+Console.WriteLine($"Kode: {kode} | Nama: {nama, -10} | Harga: Rp {harga:N0}");
+
+// 3. Operator aritmatika
+decimal ppn = harga * 0.11m;               // PPN 11%
+decimal total = harga + ppn;
+int sisa = stok % 3;                       // modulus
+
+// 4. Operator perbandingan + logika
+bool bisaDibeli = stok > 0 && aktif;
+Console.WriteLine($"Bisa dibeli: {bisaDibeli}");
+
+// 5. Integer division TRAP!
+int a = 7, b = 2;
+Console.WriteLine(a / b);           // 3 — HATI-HATI!
+Console.WriteLine((double)a / b);   // 3.5
+
+// 6. Null handling
+string? brandCadangan = null;
+Console.WriteLine(brandCadangan ?? "UNKNOWN");
+brandCadangan ??= "DEFAULT";        // assign kalau null
+
+// 7. TryParse — validasi input
+string input = "abc";
+bool ok = int.TryParse(input, out int hasil); // false, tidak crash
+\`\`\`
+
+> ⚡ **Langsung ke latihan! Jangan berlama-lama di teori.**
+
+---
+
+## 14.50 | 📚 LATIHAN: Variable, Tipe Data & Operator (25 mnt)
+
+> *"Kerjakan berurutan. Kalau stuck, tanya teman sebelah dulu baru tanya saya."*
+
+---
+
+### Soal 1 — Deklarasi Variable (3 mnt)
+
+Buat variable dengan tipe data yang tepat untuk data IDMS berikut:
+| Data | Nilai | Pilih tipe? |
+|---|---|---|
+| Kode brand | \`"TOY"\` | ? |
+| Nama brand | \`"Toyota"\` | ? |
+| Tahun produksi | \`2024\` | ? |
+| Harga OTR | \`275_500_000\` | ? |
+| Status aktif | \`true\` | ? |
+| Jumlah unit nasional | \`1500000\` | ? |
+| Tanggal input | sekarang | ? |
+
+---
+
+### Soal 2 — Operator Aritmatika (5 mnt)
+
+\`\`\`csharp
+// Isi nilai x, y, z setelah setiap baris:
+decimal harga = 300_000_000m;
+decimal diskon = harga * 15 / 100;       // x = ?
+decimal setelahDiskon = harga - diskon;   // y = ?
+decimal ppn = setelahDiskon * 0.11m;     // z = ?
+decimal final = setelahDiskon + ppn;     // final = ?
+
+int stok = 17;
+int sisa = stok % 5;                     // sisa = ?
+int hasilBagi = stok / 5;                // hasilBagi = ? (integer!)
+double hasilBagiDouble = stok / 5.0;     // hasilBagiDouble = ?
+\`\`\`
+
+---
+
+### Soal 3 — Operator Perbandingan & Logika (5 mnt)
+
+\`\`\`csharp
+int stok = 8;
+bool aktif = true;
+decimal harga = 250_000_000m;
+
+// Tentukan TRUE atau FALSE:
+bool a = stok > 10;                        // ?
+bool b = stok > 0 && aktif;                // ?
+bool c = stok < 5 || harga > 300_000_000m; // ?
+bool d = !aktif;                           // ?
+bool e = stok >= 8 && stok <= 20;          // ?
+bool f = harga != 0 && (stok > 10 || aktif); // ?
+\`\`\`
+
+---
+
+### Soal 4 — Operator Khusus (5 mnt)
+
+\`\`\`csharp
+// Ternary
+int stok = 3;
+string status = stok > 0 ? "Tersedia" : "Habis";   // status = ?
+
+// Null-coalescing
+string? brand = null;
+string display = brand ?? "Tanpa Merek";             // display = ?
+brand ??= "Default Brand";                           // brand sekarang = ?
+
+// String interpolation + alignment + format
+string kode = "HON"; string nama = "Honda"; decimal h = 350_000_000m;
+Console.WriteLine($"| {kode,-5} | {nama,-10} | Rp {h,15:N0} |");
+// Output: ?
+\`\`\`
+
+---
+
+### Soal 5 — Mini Kasus: Diskon & PPN (7 mnt)
+
+> *"Buat program hitung harga final kendaraan dari harga OTR."*
+
+**Aturan:**
+- Diskon: 5% jika harga > 500jt, 3% jika 300jt–500jt, 1% jika < 300jt
+- PPN: 11% dari harga setelah diskon
+- Biaya admin: flat Rp 750.000
+- Tampilkan rincian lengkap
+
+\`\`\`csharp
+// Contoh input: 450_000_000
+// === RINCIAN HARGA ===
+// Harga OTR       : Rp 450.000.000
+// Diskon (3%)     : Rp  13.500.000
+// Setelah Diskon  : Rp 436.500.000
+// PPN (11%)       : Rp  48.015.000
+// Biaya Admin     : Rp     750.000
+// TOTAL           : Rp 485.265.000
+\`\`\`
+
+---
+
+### ✅ KUNCI LATIHAN
+
+**Soal 1:** \`string, string, int, decimal, bool, long, DateTime\`
+
+**Soal 2:**
+\`\`\`csharp
+// x = 45.000.000 (300jt * 15/100)
+// y = 255.000.000
+// z = 28.050.000  (255jt * 0.11)
+// final = 283.050.000
+// sisa = 2  (17 % 5)
+// hasilBagi = 3  (INTEGER division!)
+// hasilBagiDouble = 3.4
+\`\`\`
+
+**Soal 3:** \`a: false, b: true, c: false, d: false, e: true, f: true\`
+
+**Soal 4:**
+\`\`\`csharp
+// status = "Tersedia"
+// display = "Tanpa Merek"
+// brand = "Default Brand"
+// Output: | HON   | Honda      | Rp     350.000.000 |
+\`\`\`
+
+**Soal 5:**
+\`\`\`csharp
+Console.Write("Harga OTR: ");
+if (!decimal.TryParse(Console.ReadLine(), out decimal otr) || otr <= 0)
+{ Console.WriteLine("❌ Tidak valid!"); return; }
+
+decimal diskonPersen = otr > 500_000_000m ? 0.05m : otr >= 300_000_000m ? 0.03m : 0.01m;
+decimal diskon = otr * diskonPersen;
+decimal setelahDiskon = otr - diskon;
+decimal ppn = setelahDiskon * 0.11m;
+const decimal admin = 750_000m;
+decimal total = setelahDiskon + ppn + admin;
+
+Console.WriteLine("=== RINCIAN HARGA ===");
+Console.WriteLine($"Harga OTR       : Rp {otr,15:N0}");
+Console.WriteLine($"Diskon ({diskonPersen*100}%)     : Rp {diskon,15:N0}");
+Console.WriteLine($"Setelah Diskon  : Rp {setelahDiskon,15:N0}");
+Console.WriteLine($"PPN (11%)       : Rp {ppn,15:N0}");
+Console.WriteLine($"Biaya Admin     : Rp {admin,15:N0}");
+Console.WriteLine($"TOTAL           : Rp {total,15:N0}");
+\`\`\`
+
+---
+
+## 15.15 | 🧊 ICE BREAKER: Tebak Output — Edisi Dealer (15 mnt)
+
+> *"Saya tunjukkan kode, kalian tebak outputnya. Jangan run dulu!"*
+
+\`\`\`csharp
+// Tebak 1 — Integer division di diskon
+int otr = 275_000_000;
+int disc = otr * 5 / 100;
+Console.WriteLine(disc);      // ?
+
+// Tebak 2 — Null coalescing brand
+string? brandName = null;
+Console.WriteLine($"Brand: {brandName ?? "UNKNOWN"}");  // ?
+
+// Tebak 3 — Prefix vs postfix di stok (TRICKY!)
+int stok = 3;
+Console.WriteLine(stok--);    // ?
+Console.WriteLine(--stok);    // ?
+
+// Tebak 4 — Format number
+decimal unitPrice = 350_500_000m;
+Console.WriteLine($"Rp {unitPrice:N0}");  // ?
+
+// Tebak 5 — String + int (jebakan umum!)
+Console.WriteLine("Harga: " + 250 + 50);     // ?
+Console.WriteLine("Harga: " + (250 + 50));   // ?
+\`\`\`
+
+**Kunci:**
+| Tebak | Output | Pelajaran |
+|---|---|---|
+| 1 | 13750000 | Integer division, hati-hati urutan |
+| 2 | Brand: UNKNOWN | Null coalescing \`??\` |
+| 3 | 3 lalu 1 | \`--x\` vs \`x--\` |
+| 4 | Rp 350.500.000 | Format \`N0\` |
+| 5 | Harga: 25050 vs Harga: 300 | Concatenation vs arithmetic |
+
+---
+
+## 15.30 | 🎯 TANTANGAN 1: Status Stok Dealer (20 mnt)
+
+> *"Kalian backend engineer IDMS. Buat program cek stok & kasih status."*
+
+**Aturan bisnis IDMS:**
+| Stok | Status | Ikon |
+|---|---|---|
+| > 10 | **Aman** | 🟢 |
+| 6–10 | **Cukup** | 🟡 |
+| 1–5 | **Menipis** | 🟠 |
+| 0 | **Habis** | 🔴 |
+
+**Input:** kode brand (string), nama brand (string), stok (int)  
+**Validasi:** stok tidak boleh negatif, nama brand tidak boleh kosong
+
+\`\`\`csharp
+// Contoh output:
+// =========== STATUS STOK DEALER ===========
+// [HON] Honda         : 🟡 Cukup (8 unit)
+// [TOY] Toyota        : 🟢 Aman (15 unit)
+// [SUZ] Suzuki        : 🔴 Habis (0 unit)
+// [MZD]               : ❌ Nama brand tidak boleh kosong!
+// [DAI] Daihatsu      : ❌ Stok tidak boleh negatif!
+// ==========================================
+\`\`\`
+
+---
+
+### ✅ KUNCI TANTANGAN 1
+
+\`\`\`csharp
+Console.Write("Kode Brand  : "); string kode = (Console.ReadLine() ?? "").Trim();
+Console.Write("Nama Brand  : "); string nama = (Console.ReadLine() ?? "").Trim();
+Console.Write("Stok        : ");
+if (!int.TryParse(Console.ReadLine(), out int stok)) stok = -1;
+
+if (string.IsNullOrEmpty(nama))
+    Console.WriteLine($"[{kode}] ❌ Nama brand tidak boleh kosong!");
+else if (stok < 0)
+    Console.WriteLine($"[{kode}] {nama} : ❌ Stok tidak boleh negatif!");
+else
+{
+    string status = stok switch
+    {
+        > 10 => "🟢 Aman",
+        >= 6 => "🟡 Cukup",
+        >= 1 => "🟠 Menipis",
+        _     => "🔴 Habis"
+    };
+    Console.WriteLine($"[{kode}] {nama} : {status} ({stok} unit)");
+}
+\`\`\`
+
+---
+
+## 15.50 | 🎯 TANTANGAN 2: Kalkulator Kredit OTR (20 mnt)
+
+> *"Di IDMS, tiap kendaraan punya harga OTR. Customer bisa kredit. Hitung cicilannya!"*
+
+**Aturan bisnis:**
+| Komponen | Aturan |
+|---|---|
+| DP Minimum | 25% dari OTR jika OTR > 300jt, else 20% |
+| Bunga per Tahun | 6% flat |
+| Tenor Maksimal | 5 tahun (60 bulan) |
+
+**Input:** harga OTR (decimal), DP user (decimal), tenor tahun (int)  
+**Validasi:** DP ≥ DP minimum, tenor 1-5 tahun, semua input harus angka
+
+\`\`\`csharp
+// Contoh output:
+// =========== SIMULASI KREDIT IDMS ===========
+// Harga OTR           : Rp 350.000.000
+// DP Minimum (25%)    : Rp  87.500.000
+// DP Anda             : Rp 100.000.000
+// Sisa Pokok          : Rp 250.000.000
+// Bunga 6% x 3 thn    : Rp  45.000.000
+// Total Tagihan       : Rp 295.000.000
+// Cicilan per Bulan   : Rp   8.194.444
+// =============================================
+\`\`\`
+
+---
+
+### ✅ KUNCI TANTANGAN 2
+
+\`\`\`csharp
+Console.Write("Harga OTR    : ");
+if (!decimal.TryParse(Console.ReadLine(), out decimal otr) || otr <= 0)
+{ Console.WriteLine("❌ Harga tidak valid!"); return; }
+
+Console.Write("DP Anda      : ");
+if (!decimal.TryParse(Console.ReadLine(), out decimal dpUser) || dpUser < 0)
+{ Console.WriteLine("❌ DP tidak valid!"); return; }
+
+Console.Write("Tenor (thn)  : ");
+if (!int.TryParse(Console.ReadLine(), out int tenor) || tenor < 1 || tenor > 5)
+{ Console.WriteLine("❌ Tenor harus 1-5 tahun!"); return; }
+
+decimal dpMin = otr > 300_000_000m ? otr * 0.25m : otr * 0.20m;
+if (dpUser < dpMin)
+{ Console.WriteLine($"❌ DP minimum: Rp {dpMin:N0}"); return; }
+
+decimal pokok = otr - dpUser;
+decimal bungaTotal = pokok * 0.06m * tenor;
+decimal totalTagihan = pokok + bungaTotal;
+int bulan = tenor * 12;
+decimal cicilan = totalTagihan / bulan;
+
+Console.WriteLine("=========== SIMULASI KREDIT IDMS ===========");
+Console.WriteLine($"Harga OTR           : Rp {otr,15:N0}");
+Console.WriteLine($"DP Minimum ({((otr > 300_000_000m) ? 25 : 20)}%)    : Rp {dpMin,15:N0}");
+Console.WriteLine($"DP Anda             : Rp {dpUser,15:N0}");
+Console.WriteLine($"Sisa Pokok          : Rp {pokok,15:N0}");
+Console.WriteLine($"Bunga 6% x {tenor} thn    : Rp {bungaTotal,15:N0}");
+Console.WriteLine($"Total Tagihan       : Rp {totalTagihan,15:N0}");
+Console.WriteLine($"Cicilan per Bulan   : Rp {cicilan,15:N0}");
+Console.WriteLine("=============================================");
+\`\`\`
+
+---
+
+## 16.10 | 🏆 FINAL PROJECT: Dealer Console (15 mnt)
+
+> *"Gabungkan semua yang sudah dipelajari hari ini ke dalam 1 program!"*
+
+Buat program **console dealer kendaraan** dengan ketentuan:
+
+### Spesifikasi
+
+Program menerima **3 data kendaraan** (input via \`Console.ReadLine()\`), lalu menampilkan **laporan lengkap**.
+
+### Data per kendaraan:
+1. Kode Brand (3 huruf, uppercase, divalidasi)
+2. Nama Brand
+3. Model
+4. Tahun produksi (1900–2026)
+5. Harga OTR (harus > 0)
+6. Stok unit (0–999)
+
+### Output yang harus ditampilkan:
+
+\`\`\`
+╔══════════════════════════════════════════════════════════╗
+║              🚗 DEALER CONSOLE — LAPORAN 🚗             ║
+╠══════════════════════════════════════════════════════════╣
+║ Kode  Nama         Model          Tahun  Harga OTR       Stok ║
+╠══════════════════════════════════════════════════════════╣
+║ HON   Honda        Brio           2024   Rp 225.000.000   12 ║
+║ TOY   Toyota       Avanza         2024   Rp 275.000.000    7 ║
+║ SUZ   Suzuki       Ertiga         2023   Rp 265.000.000    3 ║
+╠══════════════════════════════════════════════════════════╣
+║ TOTAL                               Rp 765.000.000   22 ║
+║ RATA-RATA                           Rp 255.000.000    7 ║
+║ HARGA TERMAHAL     : Toyota Avanza — Rp 275.000.000      ║
+║ HARGA TERMURAH     : Honda Brio — Rp 225.000.000         ║
+║ STOK TERBANYAK     : Honda Brio (12 unit)                ║
+║ STOK TERSEDIKIT    : Suzuki Ertiga (3 unit)              ║
+╚══════════════════════════════════════════════════════════╝
+\`\`\`
+
+### Rules:
+- Gunakan **semua tipe data** yang tepat (\`string\`, \`int\`, \`decimal\`, \`DateTime\`)
+- Gunakan **operator aritmatika** untuk total, rata-rata
+- Gunakan **operator perbandingan + ternary** untuk menentukan termahal/termurah
+- Gunakan **string interpolation + alignment** untuk format tabel
+- Tampilkan **timestamp** laporan dibuat
+
+---
+
+### ✅ KUNCI FINAL PROJECT
+
+\`\`\`csharp
+// === INPUT 3 KENDARAAN ===
+string[] kode = new string[3], nama = new string[3], model = new string[3];
+int[] tahun = new int[3], stok = new int[3];
+decimal[] harga = new decimal[3];
+
+for (int i = 0; i < 3; i++)
+{
+    Console.WriteLine($"\\n=== Kendaraan {i + 1} ===");
+    Console.Write("Kode Brand  : ");
+    kode[i] = (Console.ReadLine() ?? "").Trim().ToUpper();
+    if (kode[i].Length != 3) { Console.WriteLine("❌ Kode harus 3 huruf!"); i--; continue; }
+
+    Console.Write("Nama Brand  : ");
+    nama[i] = (Console.ReadLine() ?? "").Trim();
+    if (string.IsNullOrEmpty(nama[i])) { Console.WriteLine("❌ Nama tidak boleh kosong!"); i--; continue; }
+
+    Console.Write("Model       : ");
+    model[i] = (Console.ReadLine() ?? "").Trim();
+    if (string.IsNullOrEmpty(model[i])) { Console.WriteLine("❌ Model tidak boleh kosong!"); i--; continue; }
+
+    Console.Write("Tahun       : ");
+    if (!int.TryParse(Console.ReadLine(), out tahun[i]) || tahun[i] < 1900 || tahun[i] > 2026)
+    { Console.WriteLine("❌ Tahun 1900-2026!"); i--; continue; }
+
+    Console.Write("Harga OTR   : ");
+    if (!decimal.TryParse(Console.ReadLine(), out harga[i]) || harga[i] <= 0)
+    { Console.WriteLine("❌ Harga harus > 0!"); i--; continue; }
+
+    Console.Write("Stok        : ");
+    if (!int.TryParse(Console.ReadLine(), out stok[i]) || stok[i] < 0 || stok[i] > 999)
+    { Console.WriteLine("❌ Stok 0-999!"); i--; continue; }
+}
+
+// === HITUNG ===
+decimal totalHarga = 0; int totalStok = 0;
+decimal hargaMax = decimal.MinValue, hargaMin = decimal.MaxValue;
+int stokMax = int.MinValue, stokMin = int.MaxValue;
+int idxHargaMax = 0, idxHargaMin = 0, idxStokMax = 0, idxStokMin = 0;
+
+for (int i = 0; i < 3; i++)
+{
+    totalHarga += harga[i];
+    totalStok += stok[i];
+
+    if (harga[i] > hargaMax) { hargaMax = harga[i]; idxHargaMax = i; }
+    if (harga[i] < hargaMin) { hargaMin = harga[i]; idxHargaMin = i; }
+    if (stok[i] > stokMax)   { stokMax = stok[i];   idxStokMax = i; }
+    if (stok[i] < stokMin)   { stokMin = stok[i];   idxStokMin = i; }
+}
+
+decimal rataHarga = totalHarga / 3;
+decimal rataStok = totalStok / 3m;
+
+// === OUTPUT ===
+Console.WriteLine("╔══════════════════════════════════════════════════════════╗");
+Console.WriteLine("║              🚗 DEALER CONSOLE — LAPORAN 🚗             ║");
+Console.WriteLine("╠══════════════════════════════════════════════════════════╣");
+Console.WriteLine("║ Kode  Nama         Model          Tahun  Harga OTR       Stok ║");
+Console.WriteLine("╠══════════════════════════════════════════════════════════╣");
+for (int i = 0; i < 3; i++)
+    Console.WriteLine($"║ {kode[i],-4}  {nama[i],-12} {model[i],-14} {tahun[i],-5}  Rp {harga[i],12:N0}  {stok[i],4} ║");
+Console.WriteLine("╠══════════════════════════════════════════════════════════╣");
+Console.WriteLine($"║ TOTAL                               Rp {totalHarga,12:N0}  {totalStok,4} ║");
+Console.WriteLine($"║ RATA-RATA                           Rp {rataHarga,12:N0}    {rataStok,4:F0} ║");
+Console.WriteLine($"║ HARGA TERMAHAL     : {nama[idxHargaMax]} {model[idxHargaMax]} — Rp {hargaMax:N0}      ║");
+Console.WriteLine($"║ HARGA TERMURAH     : {nama[idxHargaMin]} {model[idxHargaMin]} — Rp {hargaMin:N0}         ║");
+Console.WriteLine($"║ STOK TERBANYAK     : {nama[idxStokMax]} {model[idxStokMax]} ({stokMax} unit)                ║");
+Console.WriteLine($"║ STOK TERSEDIKIT    : {nama[idxStokMin]} {model[idxStokMin]} ({stokMin} unit)              ║");
+Console.WriteLine("╚══════════════════════════════════════════════════════════╝");
+Console.WriteLine($"\\n📅 Laporan dibuat: {DateTime.Now:dd MMM yyyy HH:mm}");
+\`\`\`
+
+---
+
+## 🚨 ANTISIPASI UMUM
+
+| Masalah | Solusi |
+|---|---|
+| \`dotnet --version\` error | Install ulang SDK |
+| VS Code tidak bisa run C# | Install C# Dev Kit |
+| Peserta selesai duluan | Suruh bantu temannya (peer teaching) |
+| Integer division salah | Ingatkan casting atau pakai \`m\` / \`.0\` |
+| Bingung \`decimal\` vs \`double\` | Uang = \`decimal\`, sains = \`double\` |
+| Final project terlalu sulit | Boleh input 2 kendaraan saja, simplify |
+| Waktu habis sebelum final project | Jadi PR, review awal Hari 2 |
+
+---
+
+## ✅ JAWABAN TANTANGAN CADANGAN (PR / Kejar Tayang)
+
+### Generate Kode Brand
+\`\`\`csharp
+Console.Write("Nama Brand: ");
+string nama = (Console.ReadLine() ?? "").Trim();
+if (nama.Length == 0) { Console.WriteLine("❌ Nama tidak boleh kosong!"); return; }
+
+string vokal = "aiueoAIUEO ";
+string konsonan = "";
+int max = nama.Length > 10 ? 10 : nama.Length;
+for (int i = 0; i < max; i++)
+    if (!vokal.Contains(nama[i])) konsonan += nama[i];
+
+string kode = konsonan.Length >= 3
+    ? konsonan.Substring(0, 3).ToUpper()
+    : konsonan.ToUpper().PadRight(3, 'X');
+Console.WriteLine($"Kode Brand: {kode}");
+\`\`\`
+
+### Validasi Tahun Kendaraan
+\`\`\`csharp
+Console.Write("Masukkan tahun: ");
+if (!int.TryParse(Console.ReadLine(), out int t))
+    Console.WriteLine("Input tidak valid!");
+else if (t < 1900 || t > 2026)
+    Console.WriteLine("Tahun di luar rentang!");
+else
+    Console.WriteLine($"Umur kendaraan: {2026 - t} tahun");
+\`\`\`
+
+---
+
+## 🔗 BRIDGE KE HARI 2
+
+> *"Lihat? Yang kalian coding di final project tadi — input data, hitung, tampilkan laporan — itu cikal bakal OOP dan backend. Besok kita akan bungkus semua data ini ke dalam Class, atur aksesnya dengan Encapsulation, dan tambahkan logika dengan Selection & Looping."*
+
+| Materi Hari 1 | → Jadi apa di Hari 2 |
+|---|---|
+| Variable + Tipe Data | → Property di Class, Constructor |
+| Operator | → Method kalkulasi |
+| Console.ReadLine / WriteLine | → Method di Class |
+| Validasi manual | → Getter/Setter + Encapsulation |
+| Final Project console | → Object + Collection + Iteration |
+`,
+
+`# 📋 CHEATSHEET PENGAJAR — Hari 2: OOP, Selection, Iteration, Error Handling
+> Durasi: 13.15 – 16.45 | ⚠️ Khusus pengajar. Jangan dibagikan ke peserta.
+
+---
+
+## ⏱ TIMELINE (TOTAL: 3 jam 30 menit)
+
+| Waktu | Durasi | Sesi | Mode |
+|---|---|---|---|
+| 13.15–13.30 | 15 mnt | Review Hari 1 (kuis cepat) + Setup | Interaktif |
+| 13.30–14.00 | 30 mnt | OOP: Class, Object, Property, Method | Live Coding |
+| 14.00–14.20 | 20 mnt | Constructor: Default, Overloading, Chaining | Live Coding |
+| 14.20–14.45 | 25 mnt | Getter/Setter & Encapsulation | Live Coding |
+| 14.45–15.00 | 15 mnt | 📚 Latihan 1: OOP + Constructor + Getter/Setter | Mandiri |
+| 15.00–15.15 | 15 mnt | Namespace & File Organization | Live Coding |
+| 15.15–15.30 | 15 mnt | ☕ Break | - |
+| 15.30–15.55 | 25 mnt | Selection: if/else, ternary, switch, switch expression | Live Coding |
+| 15.55–16.10 | 15 mnt | Jump Statement: break, continue, return, goto | Live Coding |
+| 16.10–16.25 | 15 mnt | 📚 Latihan 2: Selection + Jump | Mandiri |
+| 16.25–16.45 | 20 mnt | Iteration: for, foreach, while, do-while, nested loop | Live Coding + Latihan |
+| 16.45–17.00 | 15 mnt | Error Handling & Try-Catch | Live Coding |
+| 17.00–17.15 | 15 mnt | 📚 Latihan 3: Iteration + Error Handling | Mandiri |
+| 17.15–17.30 | 15 mnt | Push ke Git + Review | Demo + Ikuti |
+
+> ⚠️ If time runs short: skip Latihan 3 and combine into review. Priority: all live coding + at least Latihan 1 & 2.
+
+---
+
+## 🔧 ANTI DEAD AIR TOOLKIT
+
+- **"Tebak outputnya"** — tunjukkan kode, tebak sebelum run
+- **"Fix bug ini"** — tunjukkan error, perbaiki bersama
+- **"Buddy check"** — 2 orang saling cek kode
+- **"Race!"** — siapa paling cepat selesai = bonus poin
+
+---
+
+## 13.15 | REVIEW HARI 1 (15 mnt) — Kuis Cepat
+
+> *"Sebelum kita mulai, saya kasih 5 pertanyaan. Jawab di kertas / chat, jangan buka catatan!"*
+
+**Kuis (tulis di papan / slide):**
+
+1. Apa output: \`Console.WriteLine(7 / 2);\`
+2. Apa output: \`Console.WriteLine(7 / 2.0);\`
+3. Tipe data yang tepat untuk harga OTR kendaraan?
+4. Apa perbedaan \`??\` dan \`??=\`?
+5. Apa output: \`string? x = null; Console.WriteLine(x ?? "DEFAULT");\`
+
+**Kunci:** \`3\`, \`3.5\`, \`decimal\`, \`?? = fallback, ??= = assign kalau null\`, \`DEFAULT\`
+
+> *"Oke, sekarang kita masuk materi baru. Ini fondasi buat seluruh training ke depan."*
+
+---
+
+## SETUP PROJECT
+
+\`\`\`bash
+dotnet new console -n LatihanHari2 && cd LatihanHari2 && code .
+\`\`\`
+
+---
+
+## 13.30 | OOP: CLASS & OBJECT (30 mnt)
+
+### ① Kenapa Butuh Class?
+
+> *"Kemarin kalian simpan data di variable terpisah — kode, nama, stok. Bayangkan kalau ada 50 kendaraan. Chaos! Class = wadah yang bungkus data + behavior jadi satu unit."*
+
+### ② Class Pertama: MstBrand
+
+\`\`\`csharp
+// MstBrand.cs (nanti dipisah ke file sendiri)
+namespace LatihanHari2;
+
+public class MstBrand
+{
+    // PROPERTIES (data)
+    public int Id { get; set; }
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public bool IsActive { get; set; } = true;
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    // METHOD (behavior)
+    public string GetDisplayText()
+    {
+        string status = IsActive ? "✅ Aktif" : "❌ Non-aktif";
+        return $"[{Code}] {Name} — {status}";
+    }
+}
+\`\`\`
+
+### ③ Cara Pakai
+
+\`\`\`csharp
+// Program.cs
+using LatihanHari2;
+
+var brand1 = new MstBrand();
+brand1.Id = 1;
+brand1.Code = "HON";
+brand1.Name = "Honda";
+Console.WriteLine(brand1.GetDisplayText());
+
+// Object initializer (LEBIH SINGKAT!)
+var brand2 = new MstBrand
+{
+    Id = 2,
+    Code = "TOY",
+    Name = "Toyota"
+};
+Console.WriteLine(brand2.GetDisplayText());
+\`\`\`
+
+### ④ Multiple Objects — Array & List
+
+\`\`\`csharp
+// Array (fixed size)
+MstBrand[] brands = new MstBrand[3];
+brands[0] = new MstBrand { Id = 1, Code = "HON", Name = "Honda" };
+brands[1] = new MstBrand { Id = 2, Code = "TOY", Name = "Toyota" };
+brands[2] = new MstBrand { Id = 3, Code = "SUZ", Name = "Suzuki", IsActive = false };
+
+// List (dynamic — LEBIH SERING DIPAKAI!)
+var brandList = new List<MstBrand>
+{
+    new MstBrand { Id = 1, Code = "HON", Name = "Honda" },
+    new MstBrand { Id = 2, Code = "TOY", Name = "Toyota" },
+    new MstBrand { Id = 3, Code = "SUZ", Name = "Suzuki", IsActive = false }
+};
+
+foreach (var b in brandList)
+    Console.WriteLine(b.GetDisplayText());
+\`\`\`
+
+### ⑤ Class dengan Method yang Return Nilai
+
+\`\`\`csharp
+public class Kendaraan
+{
+    public string Merek { get; set; } = string.Empty;
+    public string Model { get; set; } = string.Empty;
+    public int Tahun { get; set; }
+    public decimal HargaOtr { get; set; }
+    public int Stok { get; set; }
+    public bool Aktif { get; set; } = true;
+
+    public int UmurKendaraan()
+    {
+        return DateTime.Now.Year - Tahun;
+    }
+
+    public string StatusStok()
+    {
+        if (!Aktif) return "⛔ Non-aktif";
+        if (Stok > 10) return "🟢 Aman";
+        if (Stok >= 6) return "🟡 Cukup";
+        if (Stok >= 1) return "🟠 Menipis";
+        return "🔴 Habis";
+    }
+
+    public decimal HargaDenganPpn()
+    {
+        return HargaOtr * 1.11m;  // PPN 11%
+    }
+
+    public void PrintSummary()
+    {
+        Console.WriteLine($"═══ {Merek} {Model} ({Tahun}) ═══");
+        Console.WriteLine($"  Harga OTR  : Rp {HargaOtr:N0}");
+        Console.WriteLine($"  + PPN 11%  : Rp {HargaDenganPpn():N0}");
+        Console.WriteLine($"  Stok       : {Stok} unit — {StatusStok()}");
+        Console.WriteLine($"  Umur       : {UmurKendaraan()} tahun");
+        Console.WriteLine();
+    }
+}
+\`\`\`
+
+> *"Lihat — data (properties) dan logic (methods) jadi satu. Itulah OOP. Di IDMS nanti, class = Entity, behavior-nya dipisah ke Service."*
+
+---
+
+### 🧊 ICE BREAKER: Tebak Output OOP (5 mnt)
+
+> *"Tebak output sebelum run. Jangan cheat!"*
+
+\`\`\`csharp
+class Mobil
+{
+    public string Warna { get; set; } = "Putih";
+    public int Kecepatan { get; set; } = 0;
+
+    public void Gas() => Kecepatan += 10;
+    public void Rem() => Kecepatan = Kecepatan > 10 ? Kecepatan - 10 : 0;
+    public string Info() => $"Mobil {Warna} — {Kecepatan} km/jam";
+}
+
+var m1 = new Mobil();
+var m2 = new Mobil { Warna = "Merah" };
+m1.Gas(); m1.Gas(); m1.Gas();
+m2.Gas(); m2.Rem();
+Console.WriteLine(m1.Info());      // ?
+Console.WriteLine(m2.Info());      // ?
+m1.Warna = "Hitam";
+Console.WriteLine(m1.Info());      // ?
+\`\`\`
+
+**Kunci:** \`Mobil Putih — 30 km/jam\`, \`Mobil Merah — 0 km/jam\`, \`Mobil Hitam — 30 km/jam\`
+
+---
+
+## 14.00 | CONSTRUCTOR (20 mnt)
+
+### ① Default Constructor vs Parameterized
+
+\`\`\`csharp
+public class MstBrand
+{
+    public int Id { get; set; }
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public bool IsActive { get; set; } = true;
+    public DateTime CreatedAt { get; set; }
+
+    // 1. Parameterized constructor
+    public MstBrand(int id, string code, string name, bool isActive = true)
+    {
+        Id = id;
+        Code = code;
+        Name = name;
+        IsActive = isActive;
+        CreatedAt = DateTime.Now;
+        Console.WriteLine($"[LOG] Brand {code} dibuat pada {CreatedAt:HH:mm:ss}");
+    }
+
+    // 2. Default constructor — chain ke parameterized
+    public MstBrand() : this(0, "UNKNOWN", "Unknown Brand", true) { }
+}
+
+// Pemakaian:
+var b1 = new MstBrand();  // pakai default
+var b2 = new MstBrand(1, "HON", "Honda");
+var b3 = new MstBrand(2, "TOY", "Toyota", false);
+\`\`\`
+
+### ② Constructor Chaining dengan : this()
+
+\`\`\`csharp
+public class Kendaraan
+{
+    public string Merek { get; set; }
+    public string Model { get; set; }
+    public int Tahun { get; set; }
+    public decimal Harga { get; set; }
+
+    // Constructor lengkap
+    public Kendaraan(string merek, string model, int tahun, decimal harga)
+    {
+        Merek = merek;
+        Model = model;
+        Tahun = tahun;
+        Harga = harga;
+    }
+
+    // Chaining: panggil constructor utama dengan default
+    public Kendaraan(string merek, string model) : this(merek, model, DateTime.Now.Year, 0) { }
+    public Kendaraan(string merek) : this(merek, "Unknown") { }
+}
+
+var k1 = new Kendaraan("Honda", "Brio", 2024, 225_000_000m);
+var k2 = new Kendaraan("Toyota", "Avanza");  // tahun=2026, harga=0
+var k3 = new Kendaraan("Suzuki");  // model="Unknown", tahun=2026, harga=0
+\`\`\`
+
+### ③ Private Constructor (Singleton Pattern — pengenalan)
+
+\`\`\`csharp
+public class AppSettings
+{
+    private static AppSettings? _instance;
+    private AppSettings() { }  // tidak bisa di-new dari luar
+
+    public static AppSettings Instance => _instance ??= new AppSettings();
+
+    public string AppName { get; set; } = "IDMS";
+    public string Version { get; set; } = "1.0.0";
+}
+
+var settings = AppSettings.Instance;
+Console.WriteLine(settings.AppName);  // IDMS
+\`\`\`
+
+> *"Di IDMS, constructor dipakai saat dependency injection — \`MstBrandService(AppDbContext context)\`. Nanti di Hari 4-5."*
+
+---
+
+## 14.20 | GETTER/SETTER & ENCAPSULATION (25 mnt)
+
+### ① Kenapa Butuh Getter/Setter?
+
+> *"Kalau property langsung public, siapa saja bisa ubah seenaknya. Bagaimana kalau stok di-set minus? Atau harga negatif? Getter/Setter = pagar."*
+
+### ② Auto-Property vs Full Property
+
+\`\`\`csharp
+public class Product
+{
+    // Auto-property — compiler bikin backing field
+    public string Name { get; set; } = string.Empty;
+
+    // Full property — manual backing field
+    private decimal _price;
+    public decimal Price
+    {
+        get => _price;
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException("Harga tidak boleh negatif!");
+            _price = value;
+        }
+    }
+
+    // Read-only property (hanya get)
+    public string DisplayName => $"[{Code}] {Name} — Rp {Price:N0}";
+
+    // Init-only (C# 9+) — hanya bisa di-set saat konstruksi
+    public string Code { get; init; } = string.Empty;
+}
+\`\`\`
+
+### ③ Contoh Lengkap: RekeningBank (Encapsulation)
+
+\`\`\`csharp
+public class RekeningBank
+{
+    private string _noRekening;
+    private string _namaNasabah;
+    private decimal _saldo;
+    private List<string> _mutasi = new();
+
+    // Constructor
+    public RekeningBank(string noRekening, string namaNasabah, decimal saldoAwal = 0)
+    {
+        _noRekening = noRekening;
+        _namaNasabah = namaNasabah;
+        _saldo = saldoAwal;
+        _mutasi.Add($"Saldo awal: {saldoAwal:N0}");
+    }
+
+    // Getter (read-only dari luar)
+    public string NoRekening => _noRekening;
+    public string NamaNasabah => _namaNasabah;
+    public decimal Saldo => _saldo;
+    public IReadOnlyList<string> Mutasi => _mutasi.AsReadOnly();
+
+    // Setter dengan validasi
+    public void Setor(decimal jumlah)
+    {
+        if (jumlah <= 0)
+        {
+            Console.WriteLine("❌ Jumlah setor harus > 0");
+            return;
+        }
+        _saldo += jumlah;
+        _mutasi.Add($"Setor: +{jumlah:N0}");
+        Console.WriteLine($"✅ Setor {jumlah:N0} berhasil. Saldo: {_saldo:N0}");
+    }
+
+    public bool Tarik(decimal jumlah)
+    {
+        if (jumlah <= 0)
+        {
+            Console.WriteLine("❌ Jumlah tarik harus > 0");
+            return false;
+        }
+        if (jumlah > _saldo)
+        {
+            Console.WriteLine($"❌ Saldo tidak cukup! Saldo: {_saldo:N0}");
+            return false;
+        }
+        _saldo -= jumlah;
+        _mutasi.Add($"Tarik: -{jumlah:N0}");
+        Console.WriteLine($"✅ Tarik {jumlah:N0} berhasil. Saldo: {_saldo:N0}");
+        return true;
+    }
+
+    public void Transfer(RekeningBank tujuan, decimal jumlah)
+    {
+        if (Tarik(jumlah))
+        {
+            tujuan.Setor(jumlah);
+            _mutasi.Add($"Transfer ke {tujuan.NoRekening}: -{jumlah:N0}");
+            tujuan._mutasi.Add($"Terima dari {_noRekening}: +{jumlah:N0}");
+            Console.WriteLine($"✅ Transfer Rp {jumlah:N0} ke {tujuan.NamaNasabah} berhasil");
+        }
+    }
+
+    public void CetakMutasi()
+    {
+        Console.WriteLine($"\\n═══ Mutasi {_noRekening} ({_namaNasabah}) ═══");
+        foreach (var m in _mutasi)
+            Console.WriteLine($"  {m}");
+        Console.WriteLine($"  Saldo akhir: Rp {_saldo:N0}");
+    }
+}
+
+// PEMAKAIAN:
+var r1 = new RekeningBank("001", "Budi", 1_000_000m);
+var r2 = new RekeningBank("002", "Siti", 500_000m);
+
+r1.Setor(200_000m);
+r1.Tarik(50_000m);
+r1.Transfer(r2, 300_000m);
+r1.CetakMutasi();
+r2.CetakMutasi();
+\`\`\`
+
+### ④ Access Modifier Cheat Sheet
+
+| Modifier | Akses dari |
+|---|---|
+| \`public\` | Mana saja |
+| \`private\` | Class itu sendiri |
+| \`protected\` | Class itu + turunannya (inheritance) |
+| \`internal\` | Assembly / project yang sama |
+| \`protected internal\` | Class turunan ATAU assembly sama |
+| \`private protected\` | Class turunan DALAM assembly sama |
+
+> *"Di IDMS, \`MstBrands.DeletedAt\` bisa di-set dari mana saja karena public. Tapi best practice: set deleted_at hanya di service layer (DeleteMstBrand). Itu prinsip encapsulation."*
+
+---
+
+## 14.45 | 📚 LATIHAN 1: OOP + Constructor + Getter/Setter (15 mnt)
+
+> *"Kerjakan berurutan. Kalau stuck > 3 menit, tanya teman sebelah."*
+
+### Soal 1 — Class Karyawan (5 mnt)
+
+Buat class \`Karyawan\` dengan:
+- Properties: \`Id\` (int), \`Nama\` (string), \`Jabatan\` (string), \`GajiPokok\` (decimal), \`TunjanganPersen\` (decimal)
+- Constructor parameterized (semua field)
+- Method \`HitungGajiTotal()\` yang return \`GajiPokok * (1 + TunjanganPersen)\`
+- Method \`PrintInfo()\` yang tampilkan semua info
+
+### Soal 2 — Encapsulation Suhu (5 mnt)
+
+Buat class \`SuhuRuangan\` dengan:
+- Private field \`_celcius\` (decimal)
+- Constructor yang terima celcius
+- Property \`Celcius\` dengan validasi: tidak boleh < -273.15 (absolute zero)
+- Read-only property \`Fahrenheit\` → \`(C × 9/5) + 32\`
+- Read-only property \`Kelvin\` → \`C + 273.15\`
+- Method \`Deskripsi()\` → "Dingin" (<20), "Normal" (20-26), "Panas" (>26)
+
+### Soal 3 — Constructor Chaining (5 mnt)
+
+Buat class \`AplikasiKredit\` dengan:
+- Properties: \`NoAplikasi\`, \`NamaCustomer\`, \`HargaOtr\`, \`DpPersen\`, \`TenorBulan\`
+- Constructor 1: semua parameter
+- Constructor 2: tanpa DpPersen (default 20%)
+- Constructor 3: tanpa DpPersen dan TenorBulan (default 20%, 36 bulan)
+- Method \`HitungCicilan()\` → \`(HargaOtr * (1 - DpPersen) * 1.06) / TenorBulan\` (bunga 6% flat/tahun)
+
+---
+
+### ✅ KUNCI LATIHAN 1
+
+**Soal 1: Class Karyawan**
+\`\`\`csharp
+public class Karyawan
+{
+    public int Id { get; set; }
+    public string Nama { get; set; } = string.Empty;
+    public string Jabatan { get; set; } = string.Empty;
+    public decimal GajiPokok { get; set; }
+    public decimal TunjanganPersen { get; set; }
+
+    public Karyawan(int id, string nama, string jabatan, decimal gajiPokok, decimal tunjanganPersen)
+    {
+        Id = id; Nama = nama; Jabatan = jabatan;
+        GajiPokok = gajiPokok; TunjanganPersen = tunjanganPersen;
+    }
+
+    public decimal HitungGajiTotal() => GajiPokok * (1 + TunjanganPersen);
+
+    public void PrintInfo()
+    {
+        Console.WriteLine($"═══ {Nama} ({Jabatan}) ═══");
+        Console.WriteLine($"  ID           : {Id}");
+        Console.WriteLine($"  Gaji Pokok   : Rp {GajiPokok:N0}");
+        Console.WriteLine($"  Tunjangan    : {TunjanganPersen * 100}%");
+        Console.WriteLine($"  Gaji Total   : Rp {HitungGajiTotal():N0}");
+    }
+}
+
+var k1 = new Karyawan(1, "Budi", "Manager", 12_000_000m, 0.30m);
+k1.PrintInfo();  // Gaji Total: Rp 15.600.000
+\`\`\`
+
+**Soal 2: Encapsulation Suhu**
+\`\`\`csharp
+public class SuhuRuangan
+{
+    private decimal _celcius;
+
+    public SuhuRuangan(decimal celcius)
+    {
+        Celcius = celcius;  // pakai setter yang ada validasi
+    }
+
+    public decimal Celcius
+    {
+        get => _celcius;
+        set
+        {
+            if (value < -273.15m)
+                throw new ArgumentException("Suhu di bawah absolute zero (-273.15°C)!");
+            _celcius = value;
+        }
+    }
+
+    public decimal Fahrenheit => (_celcius * 9m / 5m) + 32m;
+    public decimal Kelvin => _celcius + 273.15m;
+
+    public string Deskripsi()
+    {
+        if (_celcius < 20) return "❄️ Dingin";
+        if (_celcius <= 26) return "😊 Normal";
+        return "🔥 Panas";
+    }
+}
+
+var s = new SuhuRuangan(25);
+Console.WriteLine($"{s.Celcius}°C = {s.Fahrenheit}°F = {s.Kelvin}K → {s.Deskripsi()}");
+// 25°C = 77.0°F = 298.15K → 😊 Normal
+\`\`\`
+
+**Soal 3: Constructor Chaining**
+\`\`\`csharp
+public class AplikasiKredit
+{
+    public string NoAplikasi { get; set; } = string.Empty;
+    public string NamaCustomer { get; set; } = string.Empty;
+    public decimal HargaOtr { get; set; }
+    public decimal DpPersen { get; set; }
+    public int TenorBulan { get; set; }
+
+    public AplikasiKredit(string no, string nama, decimal otr, decimal dp, int tenor)
+    {
+        NoAplikasi = no; NamaCustomer = nama;
+        HargaOtr = otr; DpPersen = dp; TenorBulan = tenor;
+    }
+
+    public AplikasiKredit(string no, string nama, decimal otr, decimal dp)
+        : this(no, nama, otr, dp, 36) { }
+
+    public AplikasiKredit(string no, string nama, decimal otr)
+        : this(no, nama, otr, 0.20m) { }
+
+    public decimal HitungCicilan()
+    {
+        decimal pokok = HargaOtr * (1 - DpPersen);
+        decimal totalBunga = pokok * 0.06m;  // 6% flat/tahun (disini total, bukan per tahun)
+        return (pokok + totalBunga) / TenorBulan;
+    }
+}
+
+var app1 = new AplikasiKredit("APP-001", "Budi", 350_000_000m);
+Console.WriteLine($"Cicilan: Rp {app1.HitungCicilan():N0} / bulan");
+// DP 20%, 36 bulan → Cicilan: Rp 8.166.666
+\`\`\`
+
+---
+
+## 15.00 | NAMESPACE (15 mnt)
+
+### ① Apa itu Namespace?
+
+> *"Namespace = folder untuk kode. Mencegah nama class bentrok. Di Java = package, di Python = module."*
+
+\`\`\`csharp
+// File: LatihanHari2/Models/Kendaraan.cs
+namespace LatihanHari2.Models;
+
+public class Kendaraan
+{
+    public string Merek { get; set; } = string.Empty;
+    // ...
+}
+\`\`\`
+
+\`\`\`csharp
+// File: LatihanHari2/Services/KendaraanService.cs
+namespace LatihanHari2.Services;
+
+using LatihanHari2.Models;  // import namespace lain
+
+public class KendaraanService
+{
+    public Kendaraan GetById(int id)
+    {
+        return new Kendaraan { Merek = "Honda" };
+    }
+}
+\`\`\`
+
+### ② Struktur Namespace di IDMS
+
+\`\`\`
+IDMS.Shared/
+  └── Entities/         → namespace IDMS.Shared.Entities
+  └── Domain/Entities/  → namespace IDMS.Shared.Domain.Entities
+IDMS.Infrastructure/
+  └── Data/             → namespace IDMS.Infrastructure.Data
+  └── Configurations/   → namespace IDMS.Infrastructure.Configurations
+IDMS.Modules.Master/
+  └── Services/         → namespace IDMS.Modules.Master.Services
+  └── Services/Impl/    → namespace IDMS.Modules.Master.Services.Impl
+  └── Dto/Request/      → namespace IDMS.Modules.Master.Dto.Request
+  └── Dto/Response/     → namespace IDMS.Modules.Master.Dto.Response
+\`\`\`
+
+### ③ Using Statement & Alias
+
+\`\`\`csharp
+using System;
+using System.Collections.Generic;
+using IDMS.Shared.Domain.Entities;         // import entity
+
+// Alias — kalau ada nama class yang sama dari namespace berbeda
+using BrandEntity = IDMS.Shared.Domain.Entities.MstBrands;
+using BrandDto = IDMS.Modules.Master.Dto.Response.ResMstBrandDto;
+
+var entity = new BrandEntity();
+var dto = new BrandDto();
+\`\`\`
+
+### ④ Latihan Cepat Namespace (3 mnt)
+
+> *"Buat 3 file di project LatihanHari2:"*
+
+\`\`\`
+LatihanHari2/
+├── Models/
+│   └── Product.cs          → namespace LatihanHari2.Models
+├── Services/
+│   └── ProductService.cs   → namespace LatihanHari2.Services
+└── Program.cs              → using both namespaces
+\`\`\`
+
+\`\`\`csharp
+// Models/Product.cs
+namespace LatihanHari2.Models;
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public decimal Price { get; set; }
+}
+\`\`\`
+
+\`\`\`csharp
+// Services/ProductService.cs
+namespace LatihanHari2.Services;
+using LatihanHari2.Models;
+
+public class ProductService
+{
+    private List<Product> _products = new();
+
+    public void Add(Product p) => _products.Add(p);
+
+    public void PrintAll()
+    {
+        foreach (var p in _products)
+            Console.WriteLine($"[{p.Id}] {p.Name} — Rp {p.Price:N0}");
+    }
+}
+\`\`\`
+
+\`\`\`csharp
+// Program.cs
+using LatihanHari2.Models;
+using LatihanHari2.Services;
+
+var service = new ProductService();
+service.Add(new Product { Id = 1, Name = "Laptop", Price = 15_000_000m });
+service.Add(new Product { Id = 2, Name = "Mouse", Price = 250_000m });
+service.PrintAll();
+\`\`\`
+
+---
+
+## ☕ 15.15–15.30 | BREAK
+
+---
+
+## 15.30 | SELECTION: if/else, Ternary, Switch (25 mnt)
+
+### ① if / else if / else
+
+\`\`\`csharp
+int stok = 7;
+
+if (stok > 10)
+{
+    Console.WriteLine("🟢 Stok aman");
+}
+else if (stok > 3)
+{
+    Console.WriteLine("🟡 Stok cukup");
+}
+else if (stok > 0)
+{
+    Console.WriteLine("🟠 Stok menipis!");
+}
+else
+{
+    Console.WriteLine("🔴 Stok HABIS!");
+}
+\`\`\`
+
+### ② Ternary Operator (inline if)
+
+\`\`\`csharp
+// Satu baris — cocok untuk assignment sederhana
+string label = stok > 0 ? "Tersedia" : "Habis";
+string grade = stok > 10 ? "A" : stok > 5 ? "B" : stok > 0 ? "C" : "D";
+decimal diskon = harga > 500_000_000 ? 0.05m : 0.03m;
+\`\`\`
+
+### ③ Switch Statement (Classic)
+
+\`\`\`csharp
+string kodeBrand = "HON";
+
+switch (kodeBrand)
+{
+    case "HON":
+        Console.WriteLine("Honda");
+        break;
+    case "TOY":
+        Console.WriteLine("Toyota");
+        break;
+    case "SUZ":
+    case "DAI":
+        Console.WriteLine("Suzuki atau Daihatsu");  // fall-through!
+        break;
+    default:
+        Console.WriteLine("Brand tidak dikenal");
+        break;
+}
+\`\`\`
+
+### ④ Switch Expression (C# 8+) — LEBIH CLEAN
+
+\`\`\`csharp
+// Pattern matching dengan switch expression
+string namaBrand = kodeBrand switch
+{
+    "HON" => "Honda",
+    "TOY" => "Toyota",
+    "SUZ" => "Suzuki",
+    "DAI" => "Daihatsu",
+    "MTS" => "Mitsubishi",
+    _ => "Unknown"  // default
+};
+
+// Switch expression dengan range/pattern
+string kategoriStok = stok switch
+{
+    > 10 => "Banyak",
+    >= 6 => "Cukup",
+    >= 1 => "Sedikit",
+    0 => "Habis",
+    _ => "Invalid"  // negatif
+};
+\`\`\`
+
+### ⑤ Pattern Matching (Advanced, pengenalan)
+
+\`\`\`csharp
+object data = 42;
+
+string result = data switch
+{
+    int n when n > 100 => "Angka besar",
+    int n when n > 0 => "Angka positif kecil",
+    int => "Angka nol atau negatif",
+    string s => $"String: {s}",
+    null => "Null!",
+    _ => "Tipe lain"
+};
+Console.WriteLine(result);  // "Angka positif kecil"
+\`\`\`
+
+### ⑥ Nested if — Business Logic IDMS
+
+\`\`\`csharp
+// Simulasi approve kredit
+decimal gaji = 8_000_000m;
+decimal cicilan = 5_000_000m;
+int usia = 25;
+bool punyaRumah = false;
+
+if (usia < 21 || usia > 55)
+{
+    Console.WriteLine("❌ Usia tidak memenuhi syarat (21-55)");
+}
+else if (gaji < 5_000_000m)
+{
+    Console.WriteLine("❌ Gaji minimum Rp 5.000.000");
+}
+else if (cicilan > gaji * 0.4m)
+{
+    // Cicilan max 40% dari gaji
+    Console.WriteLine($"❌ Cicilan terlalu besar! Max 40% = Rp {gaji * 0.4m:N0}");
+}
+else
+{
+    string bonus = punyaRumah ? " + bonus kepemilikan rumah" : "";
+    Console.WriteLine($"✅ Kredit DISETUJUI{bonus}");
+}
+\`\`\`
+
+---
+
+## 15.55 | JUMP STATEMENT (15 mnt)
+
+### ① break — Keluar dari loop
+
+\`\`\`csharp
+// Cari brand pertama yang stoknya habis
+string[] brands = { "Honda", "Toyota", "Suzuki", "Daihatsu" };
+int[] stok = { 5, 0, 8, 3 };
+
+for (int i = 0; i < brands.Length; i++)
+{
+    if (stok[i] == 0)
+    {
+        Console.WriteLine($"⚠️ {brands[i]} HABIS! (index {i})");
+        break;  // STOP, tidak perlu cek sisa
+    }
+}
+\`\`\`
+
+### ② continue — Skip iterasi saat ini
+
+\`\`\`csharp
+// Print hanya brand aktif
+string[] names = { "Honda", "Toyota", "Suzuki", "Daihatsu" };
+bool[] aktif = { true, false, true, true };
+
+for (int i = 0; i < names.Length; i++)
+{
+    if (!aktif[i]) continue;  // SKIP yang non-aktif
+    Console.WriteLine($"✅ {names[i]}");
+}
+// Output: Honda, Suzuki, Daihatsu (Toyota di-skip)
+\`\`\`
+
+### ③ return — Keluar dari method
+
+\`\`\`csharp
+public decimal HitungDiskon(decimal harga, string tipeCustomer)
+{
+    if (harga <= 0) return 0;  // early return — guard clause
+
+    decimal diskon = tipeCustomer switch
+    {
+        "VIP" => 0.15m,
+        "Member" => 0.10m,
+        "Regular" => 0.05m,
+        _ => 0m
+    };
+
+    return harga * diskon;
+}
+
+Console.WriteLine($"Diskon: Rp {HitungDiskon(350_000_000m, "VIP"):N0}");
+\`\`\`
+
+### ④ goto — (PENGENALAN, jarang dipakai)
+
+\`\`\`csharp
+// ⚠️ goto dianggap ANTI-PATTERN di production code
+// Tapi di legacy code / Oracle-style mungkin ketemu
+for (int i = 0; i < 10; i++)
+{
+    if (i == 5) goto selesai;
+    Console.Write(i + " ");  // 0 1 2 3 4
+}
+selesai:
+Console.WriteLine("\\n→ Langsung ke label 'selesai'");
+\`\`\`
+
+> *"Di C# modern: hindari goto. Pakai break/continue/return yang lebih readable."*
+
+---
+
+## 16.10 | 📚 LATIHAN 2: Selection + Jump (15 mnt)
+
+### Soal 1 — Kalkulator Grade (5 mnt)
+
+Buat program yang menerima nilai (0-100) dan output grade:
+| Nilai | Grade |
+|---|---|
+| 90–100 | A (Excellent) |
+| 80–89 | B (Good) |
+| 70–79 | C (Cukup) |
+| 60–69 | D (Kurang) |
+| 0–59 | E (Gagal) |
+
+Tambahkan validasi: nilai harus 0-100.
+
+### Soal 2 — Kalkulator Cicilan dengan Switch (5 mnt)
+
+Buat program yang minta input: harga OTR, tenor (1-5 tahun). Gunakan switch untuk tentukan bunga:
+| Tenor | Bunga/tahun |
+|---|---|
+| 1 tahun | 4% |
+| 2 tahun | 5% |
+| 3 tahun | 6% |
+| 4 tahun | 7% |
+| 5 tahun | 8% |
+
+Output: cicilan per bulan = \`(OTR × (1 + bunga × tenor)) / (tenor × 12)\`
+
+### Soal 3 — Simulasi Antrian Dealer (Jump Statement) (5 mnt)
+
+Buat loop yang simulasikan pemanggilan antrian (A001-A020). Rules:
+- Lewati (continue) antrian kelipatan 7
+- Berhenti (break) ketika menemukan antrian "VIP" (A013)
+- Tampilkan semua antrian yang dipanggil
+
+---
+
+### ✅ KUNCI LATIHAN 2
+
+**Soal 1: Grade**
+\`\`\`csharp
+Console.Write("Nilai (0-100): ");
+if (!int.TryParse(Console.ReadLine(), out int nilai) || nilai < 0 || nilai > 100)
+{
+    Console.WriteLine("❌ Nilai harus 0-100!");
+}
+else
+{
+    string grade = nilai switch
+    {
+        >= 90 => "A (Excellent)",
+        >= 80 => "B (Good)",
+        >= 70 => "C (Cukup)",
+        >= 60 => "D (Kurang)",
+        _ => "E (Gagal)"
+    };
+    Console.WriteLine($"Nilai {nilai} → Grade {grade}");
+}
+\`\`\`
+
+**Soal 2: Cicilan**
+\`\`\`csharp
+Console.Write("Harga OTR: ");
+decimal otr = decimal.Parse(Console.ReadLine()!);
+Console.Write("Tenor (1-5 tahun): ");
+int tenor = int.Parse(Console.ReadLine()!);
+
+decimal bungaPerTahun = tenor switch
+{
+    1 => 0.04m,
+    2 => 0.05m,
+    3 => 0.06m,
+    4 => 0.07m,
+    5 => 0.08m,
+    _ => throw new ArgumentException("Tenor harus 1-5 tahun!")
+};
+
+decimal total = otr * (1 + bungaPerTahun * tenor);
+int bulan = tenor * 12;
+decimal cicilan = total / bulan;
+
+Console.WriteLine($"Cicilan/bulan: Rp {cicilan:N0} (bunga {bungaPerTahun*100}%/thn × {tenor} thn)");
+\`\`\`
+
+**Soal 3: Antrian Dealer**
+\`\`\`csharp
+for (int i = 1; i <= 20; i++)
+{
+    string noAntrian = $"A{i:D3}";  // A001, A002, ...
+
+    if (i % 7 == 0)
+    {
+        Console.WriteLine($"  ⏭️ {noAntrian} — dilewati");
+        continue;
+    }
+
+    if (i == 13)
+    {
+        Console.WriteLine($"  🌟 {noAntrian} — VIP! Antrian berhenti.");
+        break;
+    }
+
+    Console.WriteLine($"  📢 {noAntrian} — dipanggil");
+}
+// Output: A001-A006, skip A007, A008-A012, break di A013
+\`\`\`
+
+---
+
+## 16.25 | ITERATION — Deep Dive (20 mnt)
+
+> *"Iteration adalah jantung backend. Dari menampilkan list brand sampai query database, semua pakai loop."*
+
+### ① for — Loop dengan Index
+
+\`\`\`csharp
+string[] brands = { "Honda", "Toyota", "Suzuki", "Daihatsu", "Mitsubishi" };
+
+// Forward
+for (int i = 0; i < brands.Length; i++)
+    Console.WriteLine($"{i + 1}. {brands[i]}");
+
+// Backward
+for (int i = brands.Length - 1; i >= 0; i--)
+    Console.WriteLine($"{i + 1}. {brands[i]}");
+
+// Step 2
+for (int i = 0; i < brands.Length; i += 2)
+    Console.WriteLine(brands[i]);  // Honda, Suzuki, Mitsubishi
+\`\`\`
+
+### ② foreach — Loop Collection (PALING SERING DI IDMS!)
+
+\`\`\`csharp
+var brands = new List<string> { "Honda", "Toyota", "Suzuki", "Daihatsu" };
+
+foreach (var brand in brands)
+    Console.WriteLine($"🚗 {brand}");
+
+// ❌ JANGAN ubah collection saat foreach!
+// foreach(var b in brands) { if(b=="Honda") brands.Remove(b); }  // 💥 InvalidOperationException
+\`\`\`
+
+### ③ while — Cek Dulu Baru Eksekusi
+
+\`\`\`csharp
+int stok = 5;
+while (stok > 0)
+{
+    Console.WriteLine($"Stok tersisa: {stok}");
+    stok--;  // ⚠️ JANGAN LUPA — infinite loop kalau lupa!
+}
+Console.WriteLine("Habis!");
+\`\`\`
+
+### ④ do-while — Eksekusi Dulu
+
+\`\`\`csharp
+string input;
+do
+{
+    Console.Write("Masukkan kode (ketik 'exit'): ");
+    input = Console.ReadLine() ?? "";
+    if (input != "exit")
+        Console.WriteLine($"  → Brand: {input}");
+} while (input != "exit");
+\`\`\`
+
+### ⑤ Nested Loop — Tabel
+
+\`\`\`csharp
+string[] kode = { "HON", "TOY", "SUZ" };
+string[] nama = { "Honda", "Toyota", "Suzuki" };
+int[] stok  = { 12, 7, 3 };
+
+Console.WriteLine("┌──────┬────────────┬──────┐");
+Console.WriteLine("│ Kode │ Nama       │ Stok │");
+Console.WriteLine("├──────┼────────────┼──────┤");
+for (int i = 0; i < kode.Length; i++)
+    Console.WriteLine($"│ {kode[i],-4} │ {nama[i],-10} │ {stok[i],4} │");
+Console.WriteLine("└──────┴────────────┴──────┘");
+\`\`\`
+
+### ⑥ break + continue dalam Loop
+
+\`\`\`csharp
+for (int i = 1; i <= 10; i++)
+{
+    if (i == 5) continue;  // SKIP 5
+    if (i == 8) break;     // STOP di 8
+    Console.Write(i + " ");
+}
+// Output: 1 2 3 4 6 7
+\`\`\`
+
+---
+
+## ⚡ ITERATION CHEATSHEET
+
+| Loop | Kapan Pakai | Ada Index? |
+|---|---|---|
+| \`for\` | Butuh index, step tertentu, backward | ✅ \`i\` |
+| \`foreach\` | Collection, gak butuh index (70% kasus) | ❌ |
+| \`while\` | Jumlah iterasi tidak diketahui | Manual |
+| \`do-while\` | Harus jalan minimal 1x (menu, validasi) | Manual |
+
+---
+
+## 16.45 | ERROR HANDLING & TRY-CATCH (15 mnt)
+
+### ① Kenapa Butuh Error Handling?
+
+> *"Program tanpa error handling = mobil tanpa rem. Satu input salah, crash total. Di IDMS, \`RequestMiddleware\` adalah rem global-nya."*
+
+### ② Struktur Try-Catch-Finally
+
+\`\`\`csharp
+try
+{
+    Console.Write("Masukkan angka: ");
+    int angka = int.Parse(Console.ReadLine()!);
+    Console.WriteLine($"Hasil: {angka * 2}");
+}
+catch (FormatException)
+{
+    Console.WriteLine("❌ Input harus berupa angka!");
+}
+catch (OverflowException)
+{
+    Console.WriteLine("❌ Angka terlalu besar!");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"❌ Error: {ex.Message}");
+}
+finally
+{
+    Console.WriteLine("--- Selesai ---");  // SELALU dijalankan
+}
+\`\`\`
+
+### ③ Throw Exception — Validasi Manual
+
+\`\`\`csharp
+public decimal HitungCicilan(decimal otr, decimal dp, int tenor)
+{
+    if (otr <= 0)
+        throw new ArgumentException("Harga OTR harus > 0");
+    if (dp < 0 || dp > otr)
+        throw new ArgumentException("DP tidak valid (0 - OTR)");
+    if (tenor < 1 || tenor > 5)
+        throw new ArgumentException("Tenor harus 1-5 tahun");
+
+    decimal pokok = otr - dp;
+    decimal bunga = pokok * 0.06m * tenor;
+    return (pokok + bunga) / (tenor * 12);
+}
+
+// Panggil dengan try-catch:
+try
+{
+    decimal cicilan = HitungCicilan(350_000_000m, 100_000_000m, 3);
+    Console.WriteLine($"Cicilan: Rp {cicilan:N0}");
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"❌ {ex.Message}");
+}
+\`\`\`
+
+### ④ TryParse — Pattern yang Lebih Aman
+
+\`\`\`csharp
+// ❌ Cara LAMA (bisa throw exception):
+// int angka = int.Parse(input);
+
+// ✅ Cara BARU (aman, return bool):
+Console.Write("Masukkan angka: ");
+string? input = Console.ReadLine();
+
+if (int.TryParse(input, out int angka))
+{
+    Console.WriteLine($"Berhasil: {angka}");
+}
+else
+{
+    Console.WriteLine("❌ Bukan angka yang valid");
+}
+
+// Pola yang sama untuk tipe lain:
+decimal.TryParse(input, out decimal harga);
+DateTime.TryParse(input, out DateTime tanggal);
+bool.TryParse(input, out bool isActive);
+\`\`\`
+
+### ⑤ Custom Exception (Pengenalan)
+
+\`\`\`csharp
+public class StokHabisException : Exception
+{
+    public string BrandName { get; }
+    public StokHabisException(string brand)
+        : base($"Stok {brand} habis!")
+    {
+        BrandName = brand;
+    }
+}
+
+// Pakai:
+public void PesanKendaraan(string brand, int jumlah)
+{
+    if (jumlah <= 0)
+        throw new StokHabisException(brand);
+    Console.WriteLine($"Berhasil pesan {jumlah} unit {brand}");
+}
+
+try
+{
+    PesanKendaraan("Honda", 0);
+}
+catch (StokHabisException ex)
+{
+    Console.WriteLine($"⚠️ {ex.Message} (Brand: {ex.BrandName})");
+}
+\`\`\`
+
+> *"Di Hari 4-5, error handling ini jadi \`RequestMiddleware\` dan \`ApiResponse.Fail()\` di IDMS."*
+
+---
+
+## 17.00 | 📚 LATIHAN 3: Iteration + Error Handling (15 mnt)
+
+### Soal 1 — Bintang Piramid (5 mnt)
+
+Buat output piramid bintang (height dari input user):
+\`\`\`
+    *
+   ***
+  *****
+ *******
+*********
+\`\`\`
+(Tinggi 5)
+
+### Soal 2 — Menu Kalkulator OTR dengan Error Handling (10 mnt)
+
+Buat menu yang berulang sampai user pilih keluar:
+\`\`\`
+═══ KALKULATOR OTR ═══
+1. Hitung PPN (11%)
+2. Hitung Diskon (berdasarkan harga)
+3. Hitung Cicilan
+4. Keluar
+Pilih:
+\`\`\`
+- Gunakan \`do-while\` untuk looping menu
+- Pakai \`TryParse\` untuk semua input angka
+- Pakai \`try-catch\` di setiap perhitungan
+
+---
+
+### ✅ KUNCI LATIHAN 3
+
+**Soal 1: Piramid**
+\`\`\`csharp
+Console.Write("Tinggi piramid: ");
+int tinggi = int.Parse(Console.ReadLine()!);
+
+for (int i = 1; i <= tinggi; i++)
+{
+    // Spasi kiri
+    for (int j = 0; j < tinggi - i; j++)
+        Console.Write(" ");
+    // Bintang
+    for (int j = 0; j < (2 * i - 1); j++)
+        Console.Write("*");
+    Console.WriteLine();
+}
+\`\`\`
+
+**Soal 2: Menu Kalkulator**
+\`\`\`csharp
+string pilihan;
+do
+{
+    Console.WriteLine("\\n═══ KALKULATOR OTR ═══");
+    Console.WriteLine("1. Hitung PPN (11%)");
+    Console.WriteLine("2. Hitung Diskon");
+    Console.WriteLine("3. Hitung Cicilan");
+    Console.WriteLine("4. Keluar");
+    Console.Write("Pilih: ");
+    pilihan = Console.ReadLine() ?? "";
+
+    try
+    {
+        switch (pilihan)
+        {
+            case "1":
+                Console.Write("Harga OTR: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal h1)) break;
+                Console.WriteLine($"PPN 11%: Rp {h1 * 0.11m:N0}");
+                Console.WriteLine($"Harga + PPN: Rp {h1 * 1.11m:N0}");
+                break;
+            case "2":
+                Console.Write("Harga OTR: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal h2)) break;
+                decimal dp = h2 switch {
+                    > 500_000_000m => 0.05m,
+                    >= 300_000_000m => 0.03m,
+                    _ => 0.01m
+                };
+                Console.WriteLine($"Diskon {dp*100}%: Rp {h2 * dp:N0}");
+                Console.WriteLine($"Setelah diskon: Rp {h2 - h2 * dp:N0}");
+                break;
+            case "3":
+                Console.Write("Harga OTR: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal otr)) break;
+                Console.Write("DP: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal dpUser)) break;
+                Console.Write("Tenor (tahun): ");
+                if (!int.TryParse(Console.ReadLine(), out int tenor) || tenor < 1 || tenor > 5)
+                {
+                    Console.WriteLine("❌ Tenor harus 1-5!"); break;
+                }
+                decimal pokok = otr - dpUser;
+                decimal bunga = pokok * 0.06m * tenor;
+                Console.WriteLine($"Cicilan/bulan: Rp {(pokok + bunga) / (tenor * 12):N0}");
+                break;
+            case "4":
+                Console.WriteLine("Bye!"); break;
+            default:
+                Console.WriteLine("❌ Pilihan tidak valid!"); break;
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"❌ Error: {ex.Message}");
+    }
+} while (pilihan != "4");
+\`\`\`
+
+---
+
+## 17.15 | PUSH KE GIT (15 mnt)
+
+### Setup Awal (sekali saja)
+
+\`\`\`bash
+git config --global user.name "Nama Anda"
+git config --global user.email "email@mail.com"
+\`\`\`
+
+### Push Project Hari Ini
+
+\`\`\`bash
+# Di folder LatihanHari2
+git init
+git add .
+git commit -m "Hari 2: OOP, Constructor, Getter/Setter, Selection, Iteration, Error Handling"
+
+# Buat repo di GitHub dulu (manual), lalu:
+git remote add origin https://github.com/username/latihan-training.git
+git branch -M main
+git push -u origin main
+\`\`\`
+
+### Mantra Git
+
+> **add → commit → push**
+>
+> 1. \`git add .\` — tandai file yang mau disimpan
+> 2. \`git commit -m "pesan"\` — simpan snapshot
+> 3. \`git push\` — upload ke GitHub
+
+### Bonus: Commit per Latihan
+
+\`\`\`bash
+git add .
+git commit -m "feat: Latihan 1 - OOP Class"
+git add .
+git commit -m "feat: Latihan 2 - Selection & Jump"
+git add .
+git commit -m "feat: Latihan 3 - Iteration & Error Handling"
+git push
+\`\`\`
+
+### 🚨 TROUBLESHOOTING GIT
+
+| Error | Solusi |
+|---|---|
+| \`fatal: not a git repository\` | Jalankan \`git init\` dulu |
+| \`remote origin already exists\` | \`git remote remove origin\` lalu add lagi |
+| \`error: failed to push — divergent branches\` | \`git pull --rebase origin main\` lalu push |
+| \`Permission denied\` | Cek credential / pakai Personal Access Token |
+| \`nothing to commit\` | Belum ada perubahan sejak commit terakhir |
+
+---
+
+## 🚨 ANTISIPASI UMUM HARI 2
+
+| Masalah | Solusi |
+|---|---|
+| Peserta bingung class vs object | Analogi: class = blueprint, object = rumah |
+| Bingung get/set vs auto-property | Tunjukkan: auto-property = shortcut |
+| Constructor overload bikin bingung | Gambar: class bisa punya banyak "pintu masuk" |
+| Namespace bentrok | Tunjukkan cara pakai alias |
+| Nested loop bikin pusing | Mulai dari loop luar, baru dalam |
+| break vs continue tertukar | break = STOP semua, continue = SKIP ini saja |
+| Exception message panjang | Fokus di \`ex.Message\`, abaikan stack trace |
+
+---
+
+## 🔗 BRIDGE KE HARI 3
+
+> *"Hari ini kalian sudah bisa bikin class, atur data dengan encapsulation, kontrol alur dengan if/switch/loop, dan jaga program biar gak crash. Besok? Kita mulai PostgreSQL — data di class ini akan disimpan ke database!"*
+
+| Materi Hari 2 | → Jadi apa di Hari 3+ |
+|---|---|
+| Class + Property | → Table di PostgreSQL + Entity di EF Core |
+| Constructor | → Dependency Injection di \`Program.cs\` |
+| Getter/Setter | → Data Annotation / Validasi di DTO |
+| Selection (if/switch) | → Business logic di Service layer |
+| Iteration (foreach) | → Query database + pagination |
+| Try-Catch | → \`RequestMiddleware\` + \`ApiResponse.Fail\` |
+| Namespace | → Project structure: Infrastructure, Modules, Shared |
+| Git Push | → Daily workflow selama training |
+
+---
+
+## 📋 CHECKLIST MATERI HARI 2
+
+- [ ] OOP: Class, Object, Property, Method
+- [ ] Constructor: Default, Parameterized, Chaining
+- [ ] Getter/Setter: Auto-property, Full property, Access modifier
+- [ ] Encapsulation: Private field, Validation, Read-only property
+- [ ] Namespace: Organization, Using, Alias
+- [ ] Selection: if/else, Ternary, Switch, Switch Expression
+- [ ] Jump: break, continue, return
+- [ ] Iteration: for, foreach, while, do-while, nested, break/continue
+- [ ] Error Handling: Try-Catch, Finally, Throw, TryParse, Custom Exception
+- [ ] Git: init, add, commit, push
+- [ ] 3 Latihan Mandiri (masing-masing 15 menit)
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 3: PostgreSQL & SQL
+> Durasi: 13.15 – 16.45 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE (TOTAL: 3 jam 30 menit)
+
+| Waktu | Durasi | Sesi | Mode |
+|---|---|---|---|
+| 13.15–13.30 | 15 mnt | Review Hari 2 + Bridge ke Database | Interaktif |
+| 13.30–13.50 | 20 mnt | Perkenalan DBeaver + Create Connection | Demo |
+| 13.50–14.10 | 20 mnt | Import Database: Schema, Database, Role | Demo |
+| 14.10–14.50 | 40 mnt | CREATE TABLE: Tipe Data, Constraint, Praktek | Live Coding |
+| 14.50–15.15 | 25 mnt | 📚 Latihan 1: Create Table sendiri | Mandiri |
+| 15.15–15.30 | 15 mnt | ☕ Break | - |
+| 15.30–16.05 | 35 mnt | CRUD PostgreSQL: SELECT, INSERT, UPDATE, DELETE + Soft Delete | Live Coding |
+| 16.05–16.20 | 15 mnt | 📚 Latihan 2: CRUD + Join Query | Mandiri |
+| 16.20–16.45 | 25 mnt | Stored Procedure (out_stat, out_mess) + VIEW | Live Coding |
+| 16.45–17.00 | 15 mnt | 📚 Latihan 3: Stored Procedure + VIEW | Mandiri |
+| 17.00–17.15 | 15 mnt | Push ke Git + Review | Demo + Ikuti |
+
+> ⚠️ Jika waktu terbatas: Latihan 3 bisa digabung dengan review. Prioritas: semua live coding + Latihan 1 & 2 selesai.
+
+---
+
+## 🔧 ANTI DEAD AIR TOOLKIT
+
+- **"Coba tebak — ini query error dimana?"** — Tampilkan SQL error, minta peserta debug
+- **"Tabel ini field-nya apa aja?"** — Minta peserta sebutkan kolom sebelum lihat
+- **"Race!"** — Siapa paling cepat selesai query = bonus poin
+- **"Kenapa pakai soft delete?"** — Diskusikan data integrity vs hard delete
+- **"Coba hubungkan dengan class C# kemarin!"** — Kolom = property, tabel = class
+
+---
+
+## 13.15 | REVIEW HARI 2 + BRIDGE (15 mnt)
+
+> *"Kemarin kita buat class MstBrand, MstTypes, Karyawan, RekeningBank. Semua data cuma di memory. Kalau program mati, data hilang! Hari ini kita simpan data di database — PostgreSQL."*
+
+**Bridging:**
+| Class C# Hari 2 | → Database Hari 3 |
+|---|---|
+| \`class MstBrand { property Code, Name }\` | → \`TABLE mst_brands (code, name)\` |
+| \`List<MstBrand>\` | → \`SELECT * FROM mst_brands\` |
+| \`Add()\`, \`Remove()\` | → \`INSERT\`, \`DELETE\` |
+| \`FirstOrDefault(x => x.Id == id)\` | → \`WHERE id = 1\` |
+| \`foreach\` loop | → \`SELECT\` result set |
+
+**Pancingan:**
+> *"Di IDMS, semua data brand, type, user itu disimpan di PostgreSQL. Nanti dari C# kita akses pakai EF Core — tapi hari ini kita belajar SQL langsung dulu biar paham dasarnya."*
+
+---
+
+## 13.30 | PENGENALAN DBEAVER (20 mnt)
+
+### ① Apa itu DBeaver?
+
+> *"DBeaver = database client. Mirip SSMS (SQL Server) atau Toad (Oracle). Biar kita bisa lihat data, query, manage database tanpa coding."*
+
+### ② Download & Install
+
+\`\`\`bash
+# Sudah diinstall minggu lalu — verifikasi
+dbeaver --version  # atau cek di Start Menu
+\`\`\`
+
+### ③ Create Connection ke PostgreSQL
+
+1. Buka DBeaver → **Database** → **New Database Connection**
+2. Pilih **PostgreSQL**
+3. Isi koneksi:
+   - Host: \`localhost\`
+   - Port: \`5432\`
+   - Database: (kosongkan dulu)
+   - Username: \`postgres\`
+   - Password: \`postgres\`
+4. Klik **Test Connection** → harus hijau ✅
+5. Klik **Finish**
+
+### ④ Create Database & Schema
+
+\`\`\`sql
+-- Langsung di DBeaver (SQL Editor) atau via terminal:
+CREATE DATABASE idms_training;
+\`\`\`
+
+\`\`\`bash
+# Via terminal:
+PGPASSWORD=postgres psql -U postgres -d postgres -c "CREATE DATABASE idms_training;"
+PGPASSWORD=postgres psql -U postgres -d idms_training -c "CREATE SCHEMA dev;"
+\`\`\`
+
+> *"Schema = folder di dalam database. Di IDMS, kita pakai schema 'dev' untuk development. Nanti production bisa 'prod'."*
+
+### ⑤ Navigasi DBeaver
+
+| Fitur | Lokasi | Fungsi |
+|---|---|---|
+| Database Navigator | Panel kiri | Lihat semua database, schema, tabel |
+| SQL Editor | Klik kanan DB → SQL Editor | Tulis query |
+| Results | Panel bawah | Lihat hasil query |
+| ER Diagram | Klik kanan tabel → View Diagram | Visual relasi tabel |
+
+---
+
+## 13.50 | IMPORT DATABASE (20 mnt)
+
+### ① Persiapan Role/User
+
+\`\`\`sql
+-- Buat user khusus IDMS (optional, untuk production)
+CREATE ROLE idms_user WITH LOGIN PASSWORD 'idms123';
+GRANT CONNECT ON DATABASE idms_training TO idms_user;
+GRANT USAGE ON SCHEMA dev TO idms_user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA dev TO idms_user;
+\`\`\`
+
+### ② Set Search Path
+
+\`\`\`sql
+-- Set default schema biar gak perlu tulis "dev." setiap kali
+ALTER DATABASE idms_training SET search_path TO dev, public;
+\`\`\`
+
+### ③ Koneksi Ulang di DBeaver
+
+1. Klik kanan koneksi → **Edit Connection**
+2. **PostgreSQL** → **Database**: \`idms_training\`
+3. Test Connection ✅
+4. Di panel kiri: expand \`idms_training\` → \`Schemas\` → \`dev\`
+
+### ④ Persiapan Awal (Run di DBeaver)
+
+\`\`\`sql
+-- SET search path biar gak perlu tulis dev.nama_tabel
+SET search_path TO dev;
+
+-- CEK: schema sudah kebuat?
+SELECT current_schema();  -- harus 'dev'
+\`\`\`
+
+---
+
+## 14.10 | CREATE TABLE — DEEP DIVE (40 mnt)
+
+### ① Tipe Data PostgreSQL — Yang Paling Sering Dipakai
+
+| Tipe Data | Contoh | Analogi C# | Notes |
+|---|---|---|---|
+| \`SERIAL\` | \`id SERIAL\` | \`int\` + auto-increment | Primary key otomatis |
+| \`INTEGER\` | \`stok INTEGER\` | \`int\` | ±2.1 milyar |
+| \`BIGINT\` | \`total_unit BIGINT\` | \`long\` | ±9 quintillion |
+| \`NUMERIC(18,2)\` | \`harga NUMERIC(18,2)\` | \`decimal\` | 18 digit, 2 desimal = uang |
+| \`VARCHAR(n)\` | \`code VARCHAR(10)\` | \`string\` | Max n karakter |
+| \`TEXT\` | \`keterangan TEXT\` | \`string\` | Tanpa batas |
+| \`BOOLEAN\` | \`is_active BOOLEAN\` | \`bool\` | TRUE / FALSE |
+| \`DATE\` | \`tgl_lahir DATE\` | \`DateOnly\` | Hanya tanggal |
+| \`TIMESTAMP\` | \`created_at TIMESTAMP\` | \`DateTime\` | Tanggal + jam |
+| \`JSONB\` | \`attributes JSONB\` | — | JSON (jarang, khusus kasus) |
+
+> **Penting:** Di IDMS, \`NUMERIC\` dipakai untuk harga OTR, DP, cicilan. Jangan pakai \`FLOAT\` atau \`DOUBLE\` untuk uang — presisi bisa meleset!
+
+### ② Constraint — Aturan di Tabel
+
+| Constraint | Fungsi | Contoh |
+|---|---|---|
+| \`PRIMARY KEY\` | Unik + not null, identitas baris | \`id SERIAL PRIMARY KEY\` |
+| \`NOT NULL\` | Wajib diisi | \`code VARCHAR(10) NOT NULL\` |
+| \`UNIQUE\` | Tidak boleh duplikat | \`code VARCHAR(10) UNIQUE\` |
+| \`DEFAULT\` | Nilai default | \`is_active BOOLEAN DEFAULT TRUE\` |
+| \`CHECK\` | Validasi nilai | \`CHECK (stok >= 0)\` |
+| \`REFERENCES\` (FK) | Relasi ke tabel lain | \`brand_id INTEGER REFERENCES mst_brands(id)\` |
+
+### ③ CREATE TABLE — MstBrands (Langsung dari IDMS!)
+
+\`\`\`sql
+-- SET search_path first
+SET search_path TO dev;
+
+-- Tabel Brand (sesuai entity MstBrands di IDMS)
+CREATE TABLE mst_brands (
+    id          SERIAL PRIMARY KEY,
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    is_active   BOOLEAN      NOT NULL DEFAULT TRUE,
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    created_by  VARCHAR(100),
+    updated_at  TIMESTAMP,
+    updated_by  VARCHAR(100),
+    deleted_at  TIMESTAMP,
+    deleted_by  VARCHAR(100)
+);
+
+-- Tabel Type (FK ke brand — 1 brand punya banyak type)
+CREATE TABLE mst_types (
+    id          SERIAL PRIMARY KEY,
+    brand_id    INTEGER      NOT NULL REFERENCES mst_brands(id),
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    year        INTEGER      NOT NULL CHECK (year >= 1900 AND year <= 2026),
+    is_active   BOOLEAN      NOT NULL DEFAULT TRUE,
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    created_by  VARCHAR(100),
+    updated_at  TIMESTAMP,
+    updated_by  VARCHAR(100),
+    deleted_at  TIMESTAMP,
+    deleted_by  VARCHAR(100)
+);
+
+-- Tabel User (autentikasi)
+CREATE TABLE mst_user (
+    id          SERIAL PRIMARY KEY,
+    email       VARCHAR(50)  NOT NULL UNIQUE,
+    password    VARCHAR(255) NOT NULL,
+    full_name   VARCHAR(100) NOT NULL,
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    created_by  VARCHAR(100),
+    updated_at  TIMESTAMP,
+    updated_by  VARCHAR(100),
+    deleted_at  TIMESTAMP,
+    deleted_by  VARCHAR(100)
+);
+\`\`\`
+
+### ④ Verifikasi Tabel
+
+\`\`\`sql
+-- Cek struktur tabel
+\d mst_brands
+\d mst_types
+\d mst_user
+
+-- Atau di DBeaver: klik tabel → Columns
+\`\`\`
+
+### ⑤ Relasi Antar Tabel (ERD)
+
+\`\`\`mermaid
+erDiagram
+    mst_brands ||--o{ mst_types : "satu brand memiliki banyak type"
+    mst_brands {
+        int id PK
+        varchar code
+        varchar name
+        boolean is_active
+        timestamp created_at
+    }
+    mst_types {
+        int id PK
+        int brand_id FK
+        varchar code
+        varchar name
+        int year
+        boolean is_active
+        timestamp created_at
+    }
+    mst_user {
+        int id PK
+        varchar email
+        varchar password
+        varchar full_name
+        timestamp created_at
+    }
+\`\`\`
+
+> *"Ini yang nanti jadi Entity di EF Core: \`MstBrands\`, \`MstTypes\`, \`MstUser\`. Structure-nya persis sama!"*
+
+---
+
+## 14.50 | 📚 LATIHAN 1: CREATE TABLE (25 mnt)
+
+> *"Kerjakan berurutan. Kalau stuck, tanya teman dulu baru tanya saya."*
+
+### Soal 1 — Buat Tabel Baru: mst_models (8 mnt)
+
+Buat tabel \`mst_models\` dengan field IDMS:
+| Field | Tipe | Constraint |
+|---|---|---|
+| id | SERIAL | PRIMARY KEY |
+| type_id | INTEGER | NOT NULL, REFERENCES mst_types(id) |
+| code | VARCHAR(10) | NOT NULL |
+| name | VARCHAR(100) | NOT NULL |
+| year | INTEGER | NOT NULL, CHECK 1900-2026 |
+| price | NUMERIC(18,2) | NOT NULL, DEFAULT 0 |
+| stock | INTEGER | NOT NULL, DEFAULT 0, CHECK >= 0 |
+| is_active | BOOLEAN | DEFAULT TRUE |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| created_by | VARCHAR(100) | |
+| updated_at | TIMESTAMP | |
+| updated_by | VARCHAR(100) | |
+| deleted_at | TIMESTAMP | |
+| deleted_by | VARCHAR(100) | |
+
+### Soal 2 — Buat Tabel: mst_customer (8 mnt)
+
+Buat tabel \`mst_customer\`:
+| Field | Tipe | Constraint |
+|---|---|---|
+| id | SERIAL | PK |
+| nik | VARCHAR(16) | NOT NULL, UNIQUE |
+| full_name | VARCHAR(100) | NOT NULL |
+| birth_date | DATE | |
+| phone | VARCHAR(15) | |
+| email | VARCHAR(50) | |
+| address | TEXT | |
+| is_active | BOOLEAN | DEFAULT TRUE |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| deleted_at | TIMESTAMP | |
+
+### Soal 3 — Buat Tabel: trn_applications (9 mnt)
+
+Buat tabel transaksi aplikasi kredit:
+| Field | Tipe | Constraint |
+|---|---|---|
+| id | SERIAL | PK |
+| application_no | VARCHAR(20) | NOT NULL, UNIQUE |
+| customer_id | INTEGER | NOT NULL, REFERENCES mst_customer(id) |
+| model_id | INTEGER | NOT NULL, REFERENCES mst_models(id) |
+| otr_price | NUMERIC(18,2) | NOT NULL |
+| dp_amount | NUMERIC(18,2) | NOT NULL |
+| tenor_month | INTEGER | NOT NULL, CHECK 12-60 |
+| interest_rate | NUMERIC(5,2) | DEFAULT 6.00 |
+| status | VARCHAR(20) | DEFAULT 'DRAFT', CHECK IN ('DRAFT','SUBMITTED','APPROVED','REJECTED') |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| created_by | VARCHAR(100) | |
+
+---
+
+### ✅ KUNCI LATIHAN 1
+
+**Soal 1: mst_models**
+\`\`\`sql
+CREATE TABLE mst_models (
+    id          SERIAL PRIMARY KEY,
+    type_id     INTEGER      NOT NULL REFERENCES mst_types(id),
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    year        INTEGER      NOT NULL CHECK (year >= 1900 AND year <= 2026),
+    price       NUMERIC(18,2) NOT NULL DEFAULT 0,
+    stock       INTEGER      NOT NULL DEFAULT 0 CHECK (stock >= 0),
+    is_active   BOOLEAN      DEFAULT TRUE,
+    created_at  TIMESTAMP    DEFAULT NOW(),
+    created_by  VARCHAR(100),
+    updated_at  TIMESTAMP,
+    updated_by  VARCHAR(100),
+    deleted_at  TIMESTAMP,
+    deleted_by  VARCHAR(100)
+);
+\`\`\`
+
+**Soal 2: mst_customer**
+\`\`\`sql
+CREATE TABLE mst_customer (
+    id          SERIAL PRIMARY KEY,
+    nik         VARCHAR(16)  NOT NULL UNIQUE,
+    full_name   VARCHAR(100) NOT NULL,
+    birth_date  DATE,
+    phone       VARCHAR(15),
+    email       VARCHAR(50),
+    address     TEXT,
+    is_active   BOOLEAN      DEFAULT TRUE,
+    created_at  TIMESTAMP    DEFAULT NOW(),
+    deleted_at  TIMESTAMP
+);
+\`\`\`
+
+**Soal 3: trn_applications**
+\`\`\`sql
+CREATE TABLE trn_applications (
+    id              SERIAL PRIMARY KEY,
+    application_no  VARCHAR(20)  NOT NULL UNIQUE,
+    customer_id     INTEGER      NOT NULL REFERENCES mst_customer(id),
+    model_id        INTEGER      NOT NULL REFERENCES mst_models(id),
+    otr_price       NUMERIC(18,2) NOT NULL,
+    dp_amount       NUMERIC(18,2) NOT NULL,
+    tenor_month     INTEGER      NOT NULL CHECK (tenor_month >= 12 AND tenor_month <= 60),
+    interest_rate   NUMERIC(5,2)  DEFAULT 6.00,
+    status          VARCHAR(20)  DEFAULT 'DRAFT' CHECK (status IN ('DRAFT','SUBMITTED','APPROVED','REJECTED')),
+    created_at      TIMESTAMP    DEFAULT NOW(),
+    created_by      VARCHAR(100)
+);
+\`\`\`
+
+---
+
+## ☕ 15.15–15.30 | BREAK
+
+---
+
+## 15.30 | CRUD POSTGRESQL — DEEP DIVE (35 mnt)
+
+### ① INSERT — Menambahkan Data
+
+\`\`\`sql
+-- Single insert
+INSERT INTO mst_brands (code, name, created_by)
+VALUES ('HON', 'Honda', 'admin');
+
+-- Multiple insert (lebih efisien!)
+INSERT INTO mst_brands (code, name, created_by) VALUES
+('TOY', 'Toyota', 'admin'),
+('SUZ', 'Suzuki', 'admin'),
+('DAI', 'Daihatsu', 'admin'),
+('MTS', 'Mitsubishi', 'admin');
+
+-- INSERT dengan RETURNING (ambil id yang baru)
+INSERT INTO mst_brands (code, name, created_by)
+VALUES ('BMW', 'BMW Indonesia', 'admin')
+RETURNING id;
+
+-- INSERT ke tabel relasi
+INSERT INTO mst_types (brand_id, code, name, year, created_by) VALUES
+(1, 'BRIO', 'Honda Brio', 2024, 'admin'),
+(1, 'CRV', 'Honda CR-V', 2024, 'admin'),
+(2, 'AVANZA', 'Toyota Avanza', 2024, 'admin');
+
+-- INSERT ke customer
+INSERT INTO mst_customer (nik, full_name, birth_date, phone, email, address) VALUES
+('3201010101950001', 'Budi Santoso', '1995-01-01', '08123456789', 'budi@email.com', 'Jl. Merdeka No. 1'),
+('3201010101960002', 'Siti Rahayu', '1996-05-15', '08198765432', 'siti@email.com', 'Jl. Sudirman No. 5');
+\`\`\`
+
+### ② SELECT — Membaca Data
+
+\`\`\`sql
+-- SELECT semua kolom
+SELECT * FROM mst_brands;
+
+-- SELECT kolom tertentu
+SELECT id, code, name FROM mst_brands;
+
+-- WHERE clause
+SELECT * FROM mst_brands WHERE is_active = TRUE;
+SELECT * FROM mst_brands WHERE deleted_at IS NULL;
+
+-- LIKE / ILIKE (case insensitive)
+SELECT * FROM mst_brands WHERE name ILIKE '%honda%';
+SELECT * FROM mst_brands WHERE code LIKE 'H%';
+
+-- ORDER BY
+SELECT * FROM mst_brands ORDER BY name ASC;
+SELECT * FROM mst_brands ORDER BY created_at DESC;
+
+-- LIMIT & OFFSET (pagination!)
+SELECT * FROM mst_brands WHERE deleted_at IS NULL
+ORDER BY id
+LIMIT 2 OFFSET 0;  -- Halaman 1: 2 data pertama
+
+SELECT * FROM mst_brands WHERE deleted_at IS NULL
+ORDER BY id
+LIMIT 2 OFFSET 2;  -- Halaman 2: 2 data berikutnya
+
+-- COUNT
+SELECT COUNT(*) FROM mst_brands WHERE deleted_at IS NULL;
+
+-- JOIN — GABUNG TABEL!
+SELECT
+    b.code AS brand_code,
+    b.name AS brand_name,
+    t.code AS type_code,
+    t.name AS type_name,
+    t.year
+FROM mst_types t
+JOIN mst_brands b ON t.brand_id = b.id
+WHERE t.deleted_at IS NULL AND b.deleted_at IS NULL
+ORDER BY b.name, t.name;
+
+-- LEFT JOIN — ambil brand meski tidak punya type
+SELECT b.name, t.name AS type_name
+FROM mst_brands b
+LEFT JOIN mst_types t ON t.brand_id = b.id AND t.deleted_at IS NULL
+WHERE b.deleted_at IS NULL;
+\`\`\`
+
+### ③ UPDATE — Mengubah Data
+
+\`\`\`sql
+-- Update single field
+UPDATE mst_brands
+SET name = 'Honda Motor', updated_at = NOW(), updated_by = 'admin'
+WHERE id = 1;
+
+-- Update multiple records
+UPDATE mst_brands
+SET is_active = FALSE, updated_at = NOW(), updated_by = 'system'
+WHERE id IN (3, 4);
+\`\`\`
+
+### ④ DELETE — Hapus Data (Soft Delete = STANDARD IDMS!)
+
+\`\`\`sql
+-- ❌ HARD DELETE — JANGAN PAKAI INI DI IDMS!
+-- DELETE FROM mst_brands WHERE id = 3;  -- Data hilang permanen!
+
+-- ✅ SOFT DELETE — STANDAR IDMS! Data tetap ada tapi dianggap "dihapus"
+UPDATE mst_brands
+SET deleted_at = NOW(), deleted_by = 'admin', is_active = FALSE
+WHERE id = 3;
+
+-- CEK: data masih ada, tapi deleted_at terisi
+SELECT * FROM mst_brands WHERE id = 3;
+SELECT * FROM mst_brands WHERE deleted_at IS NULL;  -- Hanya data aktif
+\`\`\`
+
+### ⑤ CRUD Lengkap — Satu Flow
+
+\`\`\`sql
+-- 1. CREATE
+INSERT INTO mst_brands (code, name, created_by) VALUES ('HYU', 'Hyundai', 'admin');
+
+-- 2. READ
+SELECT * FROM mst_brands WHERE code = 'HYU' AND deleted_at IS NULL;
+
+-- 3. UPDATE
+UPDATE mst_brands SET name = 'Hyundai Motor', updated_at = NOW() WHERE code = 'HYU';
+
+-- 4. DELETE (soft)
+UPDATE mst_brands SET deleted_at = NOW(), deleted_by = 'admin' WHERE code = 'HYU';
+\`\`\`
+
+### ⑥ Query Penting IDMS — Soft Delete Pattern
+
+> *"SETIAP query di IDMS harus filter deleted_at IS NULL. Ini aturan mutlak!"*
+
+\`\`\`sql
+-- ✅ BENAR — selalu filter soft delete
+SELECT * FROM mst_brands WHERE deleted_at IS NULL;
+SELECT * FROM mst_types WHERE deleted_at IS NULL;
+SELECT * FROM mst_user WHERE deleted_at IS NULL;
+
+-- ❌ SALAH — tanpa filter, bisa ambil data yang sudah "dihapus"
+SELECT * FROM mst_brands;  -- bisa include data terhapus!
+\`\`\`
+
+---
+
+## 16.05 | 📚 LATIHAN 2: CRUD + JOIN (15 mnt)
+
+### Soal 1 — INSERT Data (3 mnt)
+
+\`\`\`sql
+-- INSERT 2 brand baru:
+-- 1. 'WUL' - 'Wuling Motors' - by 'admin'
+-- 2. 'CIT' - 'Citroen' - by 'admin'
+
+-- INSERT 3 type untuk brand 'HON' (id=1):
+-- 1. 'BRV' - 'Honda BR-V' - 2024
+-- 2. 'HRV' - 'Honda HR-V' - 2024
+-- 3. 'CIVIC' - 'Honda Civic' - 2023
+
+-- INSERT 1 customer baru:
+-- NIK: '3201010101970003', Nama: 'Ahmad Hidayat', Tgl: 1997-08-20
+-- No: '08234567890', Email: 'ahmad@email.com'
+\`\`\`
+
+### Soal 2 — SELECT Query (5 mnt)
+
+\`\`\`sql
+-- 1. Tampilkan SEMUA brand yang aktif, urut A-Z
+-- 2. Cari brand dengan nama mengandung 'motor' (case insensitive)
+-- 3. Tampilkan type beserta brand name-nya, urut berdasarkan brand name
+-- 4. Hitung jumlah type per brand (GROUP BY + COUNT)
+-- 5. Tampilkan halaman 1 dari brand, 3 data per halaman (LIMIT + OFFSET)
+\`\`\`
+
+### Soal 3 — UPDATE & DELETE (3 mnt)
+
+\`\`\`sql
+-- 1. Update nama brand 'WUL' menjadi 'Wuling Motors Indonesia'
+-- 2. Soft delete brand 'CIT'
+-- 3. Update stock semua model Honda menjadi 50
+\`\`\`
+
+### Soal 4 — Advanced Query (4 mnt)
+
+\`\`\`sql
+-- 1. Tampilkan aplikasi kredit dengan nama customer, model, brand
+--    (JOIN trn_applications → mst_customer → mst_models → mst_types → mst_brands)
+-- 2. Tampilkan brand yang memiliki type mobil tahun 2024
+-- 3. Tampilkan total OTR per status aplikasi (GROUP BY status)
+\`\`\`
+
+---
+
+### ✅ KUNCI LATIHAN 2
+
+**Soal 1: INSERT**
+\`\`\`sql
+INSERT INTO mst_brands (code, name, created_by) VALUES
+('WUL', 'Wuling Motors', 'admin'),
+('CIT', 'Citroen', 'admin');
+
+INSERT INTO mst_types (brand_id, code, name, year, created_by) VALUES
+(1, 'BRV', 'Honda BR-V', 2024, 'admin'),
+(1, 'HRV', 'Honda HR-V', 2024, 'admin'),
+(1, 'CIVIC', 'Honda Civic', 2023, 'admin');
+
+INSERT INTO mst_customer (nik, full_name, birth_date, phone, email)
+VALUES ('3201010101970003', 'Ahmad Hidayat', '1997-08-20', '08234567890', 'ahmad@email.com');
+\`\`\`
+
+**Soal 2: SELECT**
+\`\`\`sql
+-- 1. Brand aktif A-Z
+SELECT * FROM mst_brands WHERE deleted_at IS NULL AND is_active = TRUE ORDER BY name;
+
+-- 2. Cari 'motor'
+SELECT * FROM mst_brands WHERE name ILIKE '%motor%' AND deleted_at IS NULL;
+
+-- 3. Type + brand name
+SELECT t.code, t.name, t.year, b.name AS brand_name
+FROM mst_types t
+JOIN mst_brands b ON t.brand_id = b.id
+WHERE t.deleted_at IS NULL AND b.deleted_at IS NULL
+ORDER BY b.name;
+
+-- 4. COUNT per brand
+SELECT b.name, COUNT(t.id) AS total_type
+FROM mst_brands b
+LEFT JOIN mst_types t ON t.brand_id = b.id AND t.deleted_at IS NULL
+WHERE b.deleted_at IS NULL
+GROUP BY b.id, b.name
+ORDER BY b.name;
+
+-- 5. Pagination (halaman 1, 3 data)
+SELECT * FROM mst_brands WHERE deleted_at IS NULL ORDER BY id LIMIT 3 OFFSET 0;
+\`\`\`
+
+**Soal 3: UPDATE & DELETE**
+\`\`\`sql
+UPDATE mst_brands SET name = 'Wuling Motors Indonesia', updated_at = NOW() WHERE code = 'WUL';
+UPDATE mst_brands SET deleted_at = NOW(), deleted_by = 'admin', is_active = FALSE WHERE code = 'CIT';
+UPDATE mst_models SET stock = 50, updated_at = NOW() WHERE type_id IN (SELECT id FROM mst_types WHERE brand_id = 1);
+\`\`\`
+
+**Soal 4: Advanced**
+\`\`\`sql
+-- 1. Aplikasi kredit + customer + model + brand
+SELECT
+    a.application_no,
+    c.full_name AS customer_name,
+    b.name AS brand_name,
+    t.name AS type_name,
+    m.name AS model_name,
+    a.otr_price,
+    a.status
+FROM trn_applications a
+JOIN mst_customer c ON a.customer_id = c.id
+JOIN mst_models m ON a.model_id = m.id
+JOIN mst_types t ON m.type_id = t.id
+JOIN mst_brands b ON t.brand_id = b.id
+WHERE a.deleted_at IS NULL;
+
+-- 2. Brand dengan type tahun 2024
+SELECT DISTINCT b.name
+FROM mst_brands b
+JOIN mst_types t ON t.brand_id = b.id
+WHERE t.year = 2024 AND t.deleted_at IS NULL AND b.deleted_at IS NULL;
+
+-- 3. Total OTR per status
+SELECT status, COUNT(*) AS total_apps, SUM(otr_price) AS total_otr
+FROM trn_applications
+GROUP BY status;
+\`\`\`
+
+---
+
+## 16.20 | STORED PROCEDURE + VIEW (25 mnt)
+
+### ① Kenapa Perlu Stored Procedure?
+
+> *"Di IDMS, SP dipakai untuk operasi yang kompleks dan reusable. Bayangkan kalau tiap aplikasi harus nulis ulang query yang sama — repot! SP = function di database, bisa dipanggil dari C# nanti."*
+
+### ② Stored Procedure: INSERT Brand dengan Validasi
+
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE insert_brand(
+    IN p_code VARCHAR,
+    IN p_name VARCHAR,
+    IN p_created_by VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Validasi: code sudah dipakai?
+    IF EXISTS (SELECT 1 FROM mst_brands WHERE code = p_code AND deleted_at IS NULL) THEN
+        out_stat := FALSE;
+        out_mess := 'Kode sudah dipakai: ' || p_code;
+        RETURN;
+    END IF;
+
+    -- Validasi: nama tidak boleh kosong
+    IF p_name IS NULL OR TRIM(p_name) = '' THEN
+        out_stat := FALSE;
+        out_mess := 'Nama brand tidak boleh kosong';
+        RETURN;
+    END IF;
+
+    -- Insert
+    INSERT INTO mst_brands (code, name, created_by, created_at)
+    VALUES (p_code, p_name, p_created_by, NOW());
+
+    out_stat := TRUE;
+    out_mess := 'Brand berhasil ditambahkan';
+END;
+$$;
+\`\`\`
+
+### ③ Cara Panggil Stored Procedure
+
+\`\`\`sql
+-- CALL dengan output parameter (isi NULL untuk OUT)
+CALL insert_brand('MZD', 'Mazda', 'admin', NULL, NULL);
+
+-- Cek hasilnya
+SELECT * FROM mst_brands WHERE code = 'MZD' AND deleted_at IS NULL;
+
+-- Coba insert duplikat (harus gagal!)
+CALL insert_brand('MZD', 'Mazda Motor', 'admin', NULL, NULL);
+-- Output: out_stat = false, out_mess = 'Kode sudah dipakai: MZD'
+\`\`\`
+
+### ④ Stored Procedure: UPDATE dengan Validasi
+
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE update_brand(
+    IN p_id INTEGER,
+    IN p_code VARCHAR,
+    IN p_name VARCHAR,
+    IN p_updated_by VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Validasi: brand exists?
+    IF NOT EXISTS (SELECT 1 FROM mst_brands WHERE id = p_id AND deleted_at IS NULL) THEN
+        out_stat := FALSE;
+        out_mess := 'Brand tidak ditemukan';
+        RETURN;
+    END IF;
+
+    -- Validasi: code duplikat (kecuali dirinya sendiri)
+    IF EXISTS (SELECT 1 FROM mst_brands WHERE code = p_code AND id != p_id AND deleted_at IS NULL) THEN
+        out_stat := FALSE;
+        out_mess := 'Kode sudah dipakai brand lain: ' || p_code;
+        RETURN;
+    END IF;
+
+    -- Update
+    UPDATE mst_brands
+    SET code = p_code, name = p_name, updated_at = NOW(), updated_by = p_updated_by
+    WHERE id = p_id AND deleted_at IS NULL;
+
+    out_stat := TRUE;
+    out_mess := 'Brand berhasil diupdate';
+END;
+$$;
+
+-- Panggil
+CALL update_brand(1, 'HON', 'Honda Motor Indonesia', 'admin', NULL, NULL);
+\`\`\`
+
+### ⑤ Stored Procedure: SOFT DELETE
+
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE delete_brand(
+    IN p_id INTEGER,
+    IN p_deleted_by VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM mst_brands WHERE id = p_id AND deleted_at IS NULL) THEN
+        out_stat := FALSE;
+        out_mess := 'Brand tidak ditemukan atau sudah dihapus';
+        RETURN;
+    END IF;
+
+    -- Soft delete: isi deleted_at, jangan HAPUS baris!
+    UPDATE mst_brands
+    SET deleted_at = NOW(), deleted_by = p_deleted_by, is_active = FALSE
+    WHERE id = p_id AND deleted_at IS NULL;
+
+    out_stat := TRUE;
+    out_mess := 'Brand berhasil dihapus';
+END;
+$$;
+
+CALL delete_brand(5, 'admin', NULL, NULL);
+\`\`\`
+
+### ⑥ Stored Procedure: SELECT dengan Pagination
+
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE get_brands_paginated(
+    IN p_page INTEGER,
+    IN p_limit INTEGER,
+    IN p_search VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_offset INTEGER;
+    v_total INTEGER;
+BEGIN
+    v_offset := (p_page - 1) * p_limit;
+
+    -- Hitung total
+    SELECT COUNT(*) INTO v_total
+    FROM mst_brands
+    WHERE deleted_at IS NULL
+      AND (p_search IS NULL OR name ILIKE '%' || p_search || '%');
+
+    -- Return data sebagai result set
+    CREATE TEMP TABLE temp_result AS
+    SELECT id, code, name, is_active, created_at
+    FROM mst_brands
+    WHERE deleted_at IS NULL
+      AND (p_search IS NULL OR name ILIKE '%' || p_search || '%')
+    ORDER BY id
+    LIMIT p_limit OFFSET v_offset;
+
+    out_stat := TRUE;
+    out_mess := 'Total: ' || v_total || ' data';
+END;
+$$;
+
+-- Panggil (tapi temp_result cuma visible di session ini)
+CALL get_brands_paginated(1, 3, NULL, NULL, NULL);
+SELECT * FROM temp_result;
+\`\`\`
+
+### ⑦ CREATE VIEW
+
+> *"View = query yang disimpan. Bisa dipakai seperti tabel biasa. Cocok untuk laporan yang dipakai berulang."*
+
+\`\`\`sql
+-- View: Brand aktif
+CREATE OR REPLACE VIEW v_active_brands AS
+SELECT
+    id,
+    code,
+    name,
+    is_active,
+    created_at::DATE AS created_date
+FROM mst_brands
+WHERE deleted_at IS NULL AND is_active = TRUE
+ORDER BY name;
+
+-- Query dari view (seperti tabel biasa!)
+SELECT * FROM v_active_brands;
+SELECT * FROM v_active_brands WHERE name ILIKE '%honda%';
+
+-- View: Type dengan Brand Name
+CREATE OR REPLACE VIEW v_type_with_brand AS
+SELECT
+    t.id,
+    t.code AS type_code,
+    t.name AS type_name,
+    t.year,
+    b.code AS brand_code,
+    b.name AS brand_name
+FROM mst_types t
+JOIN mst_brands b ON t.brand_id = b.id
+WHERE t.deleted_at IS NULL AND b.deleted_at IS NULL;
+
+SELECT * FROM v_type_with_brand;
+SELECT * FROM v_type_with_brand WHERE brand_name = 'Honda';
+
+-- View: Summary Brand (COUNT type)
+CREATE OR REPLACE VIEW v_brand_summary AS
+SELECT
+    b.id,
+    b.code,
+    b.name,
+    COUNT(t.id) AS total_types,
+    MAX(t.year) AS latest_year
+FROM mst_brands b
+LEFT JOIN mst_types t ON t.brand_id = b.id AND t.deleted_at IS NULL
+WHERE b.deleted_at IS NULL
+GROUP BY b.id, b.code, b.name
+ORDER BY b.name;
+
+SELECT * FROM v_brand_summary;
+\`\`\`
+
+### ⑧ Stored Procedure dengan View
+
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE get_active_brands_by_search(
+    IN p_search VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    CREATE TEMP TABLE temp_search_result AS
+    SELECT * FROM v_active_brands
+    WHERE (p_search IS NULL OR name ILIKE '%' || p_search || '%');
+
+    out_stat := TRUE;
+    out_mess := 'Data ditemukan';
+END;
+$$;
+
+CALL get_active_brands_by_search('honda', NULL, NULL);
+SELECT * FROM temp_search_result;
+\`\`\`
+
+---
+
+## 16.45 | 📚 LATIHAN 3: STORED PROCEDURE + VIEW (15 mnt)
+
+### Soal 1 — SP Insert Type (5 mnt)
+
+Buat stored procedure \`insert_type\` dengan parameter:
+- \`IN p_brand_id INTEGER\`, \`IN p_code VARCHAR\`, \`IN p_name VARCHAR\`, \`IN p_year INTEGER\`, \`IN p_created_by VARCHAR\`
+- \`OUT out_stat BOOLEAN\`, \`OUT out_mess TEXT\`
+
+Validasi:
+1. Brand harus ada (not deleted)
+2. Code type tidak boleh duplikat dalam 1 brand
+3. Year harus >= 1900 dan <= 2026
+
+### Soal 2 — View Aplikasi Kredit (5 mnt)
+
+Buat view \`v_application_detail\` yang menampilkan:
+- \`application_no\`, \`customer_name\`, \`brand_name\`, \`type_name\`, \`model_name\`
+- \`otr_price\`, \`dp_amount\`, \`tenor_month\`, \`installment\` (cicilan per bulan)
+- \`status\`
+
+### Soal 3 — SP dengan View (5 mnt)
+
+Buat SP \`get_applications_by_status\` dengan parameter \`IN p_status VARCHAR\` dan \`OUT out_stat BOOLEAN, OUT out_mess TEXT\` yang menggunakan view dari soal 2 dan filter berdasarkan status.
+
+---
+
+### ✅ KUNCI LATIHAN 3
+
+**Soal 1: SP Insert Type**
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE insert_type(
+    IN p_brand_id INTEGER,
+    IN p_code VARCHAR,
+    IN p_name VARCHAR,
+    IN p_year INTEGER,
+    IN p_created_by VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Validasi brand exists
+    IF NOT EXISTS (SELECT 1 FROM mst_brands WHERE id = p_brand_id AND deleted_at IS NULL) THEN
+        out_stat := FALSE;
+        out_mess := 'Brand tidak ditemukan';
+        RETURN;
+    END IF;
+
+    -- Validasi duplikat code
+    IF EXISTS (SELECT 1 FROM mst_types WHERE brand_id = p_brand_id AND code = p_code AND deleted_at IS NULL) THEN
+        out_stat := FALSE;
+        out_mess := 'Kode type sudah dipakai di brand ini';
+        RETURN;
+    END IF;
+
+    -- Validasi year
+    IF p_year < 1900 OR p_year > 2026 THEN
+        out_stat := FALSE;
+        out_mess := 'Tahun harus antara 1900-2026';
+        RETURN;
+    END IF;
+
+    INSERT INTO mst_types (brand_id, code, name, year, created_by, created_at)
+    VALUES (p_brand_id, p_code, p_name, p_year, p_created_by, NOW());
+
+    out_stat := TRUE;
+    out_mess := 'Type berhasil ditambahkan';
+END;
+$$;
+
+-- Test
+CALL insert_type(1, 'JAZZ', 'Honda Jazz', 2024, 'admin', NULL, NULL);
+CALL insert_type(999, 'TEST', 'Test', 2024, 'admin', NULL, NULL);
+-- Harus gagal: Brand tidak ditemukan
+\`\`\`
+
+**Soal 2: View Aplikasi Kredit**
+\`\`\`sql
+CREATE OR REPLACE VIEW v_application_detail AS
+SELECT
+    a.application_no,
+    c.full_name AS customer_name,
+    b.name AS brand_name,
+    t.name AS type_name,
+    m.name AS model_name,
+    a.otr_price,
+    a.dp_amount,
+    a.tenor_month,
+    ((a.otr_price - a.dp_amount) * (1 + (a.interest_rate / 100) * (a.tenor_month / 12.0))) / a.tenor_month AS installment,
+    a.status
+FROM trn_applications a
+JOIN mst_customer c ON a.customer_id = c.id
+JOIN mst_models m ON a.model_id = m.id
+JOIN mst_types t ON m.type_id = t.id
+JOIN mst_brands b ON t.brand_id = b.id
+WHERE a.deleted_at IS NULL;
+
+SELECT * FROM v_application_detail;
+SELECT * FROM v_application_detail WHERE status = 'APPROVED';
+\`\`\`
+
+**Soal 3: SP dengan View**
+\`\`\`sql
+CREATE OR REPLACE PROCEDURE get_applications_by_status(
+    IN p_status VARCHAR,
+    OUT out_stat BOOLEAN,
+    OUT out_mess TEXT
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    CREATE TEMP TABLE temp_app_result AS
+    SELECT * FROM v_application_detail
+    WHERE (p_status IS NULL OR status = p_status);
+
+    GET DIAGNOSTICS v_count = ROW_COUNT;
+    out_stat := TRUE;
+    out_mess := 'Ditemukan ' || v_count || ' aplikasi';
+END;
+$$;
+
+CALL get_applications_by_status('DRAFT', NULL, NULL);
+SELECT * FROM temp_app_result;
+\`\`\`
+
+---
+
+## 17.00 | PUSH KE GIT (15 mnt)
+
+### Persiapan — Buat File SQL
+
+\`\`\`bash
+# Buat file SQL untuk semua script hari ini
+mkdir -p sql-scripts
+cat > sql-scripts/01-create-tables.sql << 'EOF'
+-- =============================================
+-- IDMS Training - Create Tables
+-- =============================================
+SET search_path TO dev;
+
+CREATE TABLE mst_brands (
+    id          SERIAL PRIMARY KEY,
+    code        VARCHAR(10)  NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    is_active   BOOLEAN      NOT NULL DEFAULT TRUE,
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    created_by  VARCHAR(100),
+    updated_at  TIMESTAMP,
+    updated_by  VARCHAR(100),
+    deleted_at  TIMESTAMP,
+    deleted_by  VARCHAR(100)
+);
+-- ... lanjutkan semua tabel
+EOF
+
+cat > sql-scripts/02-crud.sql << 'EOF'
+-- =============================================
+-- IDMS Training - CRUD Queries
+-- =============================================
+SET search_path TO dev;
+
+-- INSERT
+INSERT INTO mst_brands (code, name, created_by) VALUES ...
+-- SELECT, UPDATE, DELETE
+EOF
+
+cat > sql-scripts/03-stored-procedures.sql << 'EOF'
+-- =============================================
+-- IDMS Training - Stored Procedures & Views
+-- =============================================
+SET search_path TO dev;
+
+-- SP insert_brand, update_brand, delete_brand
+-- Views: v_active_brands, v_type_with_brand
+EOF
+\`\`\`
+
+### Push ke GitHub
+
+\`\`\`bash
+# Di folder project utama (bootcamp-batch-16)
+git status  # cek file yang berubah
+git add sql-scripts/
+git add LatihanHari3/  # kalau ada
+git add .
+
+git commit -m "Hari 3: PostgreSQL - DDL, CRUD, Stored Procedure, View"
+
+# Push ke GitHub
+git push origin main
+\`\`\`
+
+### Git Cheatsheet Cepat
+
+\`\`\`bash
+# Cek status
+git status
+
+# Stage file tertentu
+git add sql-scripts/01-create-tables.sql
+
+# Commit dengan pesan
+git commit -m "feat: create tables mst_brands, mst_types, mst_user"
+
+# Push
+git push
+
+# Pull (kalau ada perubahan dari teman)
+git pull origin main
+\`\`\`
+
+---
+
+## 🚨 TROUBLESHOOTING UMUM
+
+| Masalah | Solusi |
+|---|---|
+| \`psql: could not connect to server\` | Cek PostgreSQL running: \`systemctl status postgresql\` |
+| \`FATAL: password authentication failed\` | Reset password: \`ALTER USER postgres PASSWORD 'postgres';\` |
+| \`schema "dev" does not exist\` | \`CREATE SCHEMA dev;\` |
+| \`relation "mst_brands" does not exist\` | Cek \`search_path\` atau pakai \`dev.mst_brands\` |
+| \`ERROR: duplicate key violates unique constraint\` | Kode/email sudah ada di database |
+| \`ERROR: insert or update violates foreign key\` | Referensi ke id yang tidak ada |
+| \`CALL tidak ditemukan\` | PostgreSQL versi 11+ required. Cek: \`SELECT version();\` |
+| Hasil SP tidak keluar | OUT parameter harus diisi NULL saat CALL |
+| View error "column ambigous" | Pakai alias tabel: \`b.name\`, \`t.name\` |
+| DBeaver lemot | Limit result: Preferences → Data Editor → Fetch Size |
+| Peserta lupa syntax SQL | Arahkan ke file \`sql-scripts/\` yang sudah dibuat |
+
+---
+
+## 🔗 BRIDGE KE HARI 4
+
+> *"Hari ini kita belajar SQL langsung di PostgreSQL. Besok kita akan lihat bagaimana C# ngomong sama database ini — tanpa SQL manual! EF Core yang akan generate SQL-nya untuk kita."*
+
+| Materi Hari 3 | → Jadi apa di Hari 4+ |
+|---|---|
+| \`CREATE TABLE mst_brands\` | → \`class MstBrands : BaseEntity\` di IDMS.Shared |
+| \`SERIAL PRIMARY KEY, NOT NULL, DEFAULT\` | → \`EntityTypeBuilder\` configuration |
+| Data Column: \`code VARCHAR(10)\` | → \`Property(e => e.Code).HasColumnType("varchar(10)")\` |
+| \`INSERT INTO ... VALUES\` | → \`_context.MstBrands.Add(brand)\` |
+| \`SELECT ... WHERE deleted_at IS NULL\` | → \`query.Where(x => x.DeletedAt == null)\` |
+| \`JOIN mst_brands ON ...\` | → \`Include(x => x.Brand)\` atau navigasi property |
+| Stored Procedure \`out_stat, out_mess\` | → \`try-catch\` + \`ApiResponse<T>\` |
+| View \`v_active_brands\` | → \`.Select(x => new ResMstBrandDto { ... })\` |
+
+---
+
+## 📋 CHECKLIST MATERI HARI 3
+
+- [ ] DBeaver: Install, koneksi ke PostgreSQL
+- [ ] Create Database + Schema
+- [ ] CREATE TABLE: Tipe Data (SERIAL, VARCHAR, NUMERIC, BOOLEAN, TIMESTAMP)
+- [ ] CREATE TABLE: Constraint (PK, FK, NOT NULL, DEFAULT, CHECK, UNIQUE)
+- [ ] CREATE TABLE: mst_brands, mst_types, mst_user (sesuai IDMS)
+- [ ] INSERT: Single, Multiple, RETURNING
+- [ ] SELECT: WHERE, ILIKE, ORDER BY, LIMIT/OFFSET, COUNT, JOIN
+- [ ] UPDATE: Single field, multiple records
+- [ ] DELETE: Soft Delete pattern (deleted_at, bukan hard delete)
+- [ ] Stored Procedure: INSERT, UPDATE, DELETE dengan out_stat, out_mess
+- [ ] VIEW: v_active_brands, v_type_with_brand, v_brand_summary
+- [ ] 3 Latihan Mandiri (masing-masing 15-25 menit)
+- [ ] Git: add, commit, push
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 4: ASP.NET Core Web API (Part 1)
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–13.30 | 30 mnt | Perkenalan file-file project dan kegunaan |
+| 13.30–14.30 | 60 mnt | DEMO: Buat solution + 4 project + referensi |
+| 14.30–15.30 | 60 mnt | DEMO: Entity, Configuration, AppDbContext |
+| 15.30–16.30 | 60 mnt | DEMO: appsettings + Migration + Peserta Ikuti |
+
+---
+
+## 13.00 | PERKENALAN STRUKTUR PROJECT
+
+> *"Kemarin SQL manual. Hari ini EF Core yang urus SQL-nya."*
+
+Buka IDMS di VS Code, tunjukkan:
+- \`Program.cs\`, \`appsettings.json\`, \`Controllers/\`, \`Common/ApiResponse.cs\`
+- \`Middleware/\`, \`Data/AppDbContext.cs\`, \`Configurations/\`, \`Services/\`, \`Dto/\`, \`Entities/\`
+
+---
+
+## 13.30 | BUAT 4 PROJECT
+
+\`\`\`bash
+mkdir LatihIDMS && cd LatihIDMS
+dotnet new sln -n IDMS
+dotnet new webapi -n IDMS --no-https
+dotnet new classlib -n IDMS.Infrastructure
+dotnet new classlib -n IDMS.Modules.Master
+dotnet new classlib -n IDMS.Shared
+
+dotnet sln add IDMS/IDMS.csproj
+dotnet sln add IDMS.Infrastructure/IDMS.Infrastructure.csproj
+dotnet sln add IDMS.Modules.Master/IDMS.Modules.Master.csproj
+dotnet sln add IDMS.Shared/IDMS.Shared.csproj
+
+# References
+dotnet add IDMS.Infrastructure/IDMS.Infrastructure.csproj reference IDMS.Shared/IDMS.Shared.csproj
+dotnet add IDMS.Modules.Master/IDMS.Modules.Master.csproj reference IDMS.Infrastructure/IDMS.Infrastructure.csproj
+dotnet add IDMS.Modules.Master/IDMS.Modules.Master.csproj reference IDMS.Shared/IDMS.Shared.csproj
+dotnet add IDMS/IDMS.csproj reference IDMS.Infrastructure/IDMS.Infrastructure.csproj
+dotnet add IDMS/IDMS.csproj reference IDMS.Modules.Master/IDMS.Modules.Master.csproj
+dotnet add IDMS/IDMS.csproj reference IDMS.Shared/IDMS.Shared.csproj
+
+# Hapus file default
+rm IDMS/WeatherForecast.cs IDMS/Controllers/WeatherForecastController.cs
+rm IDMS.Infrastructure/Class1.cs IDMS.Modules.Master/Class1.cs IDMS.Shared/Class1.cs
+\`\`\`
+
+---
+
+## 14.30 | NUGET + ENTITY
+
+\`\`\`bash
+cd IDMS.Infrastructure
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+cd ..
+cd IDMS
+dotnet add package Swashbuckle.AspNetCore
+cd ..
+\`\`\`
+
+### BaseEntity (Shared)
+\`\`\`csharp
+// IDMS.Shared/Entities/BaseEntity.cs
+namespace IDMS.Shared.Entities;
+public class BaseEntity
+{
+    public int Id { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public string? CreatedBy { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    public string? UpdatedBy { get; set; }
+    public DateTime? DeletedAt { get; set; }
+    public string? DeletedBy { get; set; }
+}
+\`\`\`
+
+### MstBrands Entity
+\`\`\`csharp
+// IDMS.Shared/Domain/Entities/MstBrands.cs
+using IDMS.Shared.Entities;
+namespace IDMS.Shared.Domain.Entities;
+public class MstBrands : BaseEntity
+{
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public bool IsActive { get; set; } = true;
+}
+\`\`\`
+
+---
+
+## MstBrandsConfiguration (FULL CODE dari IDMS)
+
+\`\`\`csharp
+// IDMS.Infrastructure/Configurations/MstBrandsConfiguration.cs
+using IDMS.Shared.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace IDMS.Infrastructure.Configurations;
+public class MstBrandsConfiguration : IEntityTypeConfiguration<MstBrands>
+{
+    public void Configure(EntityTypeBuilder<MstBrands> builder)
+    {
+        builder.ToTable("mst_brands");
+        builder.HasKey(e => e.Id).HasName("pk_mst_brand");
+        builder.Property(e => e.Id).HasColumnName("id").UseSerialColumn();
+        builder.Property(e => e.Code).HasColumnName("code").HasColumnType("varchar(10)").IsRequired().HasMaxLength(10);
+        builder.Property(e => e.Name).HasColumnName("name").HasColumnType("varchar(100)").IsRequired().HasMaxLength(100);
+        builder.Property(e => e.IsActive).HasColumnName("is_active").HasColumnType("boolean").HasDefaultValue(true).IsRequired();
+        builder.Property(e => e.CreatedBy).HasColumnName("created_by").HasColumnType("varchar(100)").HasMaxLength(100);
+        builder.Property(e => e.CreatedAt).HasColumnName("created_at").HasColumnType("timestamp");
+        builder.Property(e => e.UpdatedBy).HasColumnName("updated_by").HasColumnType("varchar(100)").HasMaxLength(100);
+        builder.Property(e => e.UpdatedAt).HasColumnName("updated_at").HasColumnType("timestamp");
+        builder.Property(e => e.DeletedAt).HasColumnName("deleted_at").HasColumnType("timestamp");
+        builder.Property(e => e.DeletedBy).HasColumnName("deleted_by").HasColumnType("varchar(100)");
+    }
+}
+\`\`\`
+
+### AppDbContext (FULL CODE dari IDMS)
+\`\`\`csharp
+// IDMS.Infrastructure/Data/AppDbContext.cs
+using IDMS.Shared.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace IDMS.Infrastructure.Data;
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+    public DbSet<MstBrands> MstBrands => Set<MstBrands>();
+    public DbSet<MstUser> MstUsers => Set<MstUser>();
+    public DbSet<MstTypes> MstTypes => Set<MstTypes>();
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        base.OnModelCreating(modelBuilder);
+    }
+}
+\`\`\`
+
+---
+
+## 15.30 | APPSETTINGS + MIGRATION
+
+\`\`\`json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=miniproject;Username=postgres;Password=admin123;Search Path=dev"
+  }
+}
+\`\`\`
+
+\`\`\`bash
+dotnet ef migrations add Init --project IDMS.Infrastructure --startup-project IDMS
+dotnet ef database update --project IDMS.Infrastructure --startup-project IDMS
+\`\`\`
+
+---
+
+## 🚨 TROUBLESHOOTING
+
+| Error | Solusi |
+|---|---|
+| \`connection refused port 5432\` | Start PostgreSQL |
+| \`schema "dev" does not exist\` | \`CREATE SCHEMA dev;\` |
+| \`dotnet ef not found\` | \`dotnet tool install --global dotnet-ef\` |
+| \`No DbContext was found\` | Pastikan \`--startup-project IDMS\` |
+
+---
+
+## 🔗 BRIDGE KE HARI 5
+
+> *"Hari ini kita sudah setup 4 project, Entity, DbContext, Migration, dan EF Core. Besok kita lanjut ke Service Layer, DTO, Controller, ApiResponse, JWT, dan API Key — intinya bagaimana client bisa komunikasi dengan database kita via REST API."*
+
+| Materi Hari 4 | → Jadi apa di Hari 5 |
+|---|---|
+| Entity + Configuration | → DTO (Data Transfer Object) |
+| DbContext | → Service Layer (Business Logic) |
+| Migration (EF Core) | → Controller (REST API endpoint) |
+| Swagger UI | → ApiResponse<T> wrapper |
+| PostgreSQL Connection | → JWT Auth + API Key Middleware |
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 5: ASP.NET Core Web API (Part 2)
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–13.20 | 20 mnt | Review Hari 4 |
+| 13.20–14.15 | 55 mnt | DEMO: Service + DTO + Controller |
+| 14.15–15.00 | 45 mnt | DEMO: ApiResponse + Setup JWT & API Key |
+| 15.00–16.00 | 60 mnt | EXERCISE: Buat CRUD MstTypes |
+| 16.00–16.30 | 30 mnt | Review Exercise |
+
+---
+
+## 13.20 | SERVICE (FULL CODE dari IDMS)
+
+### DTO
+\`\`\`csharp
+// Dto/Request/ReqCreateMstBrandDto.cs
+namespace IDMS.Modules.Master.Dto.Request;
+public class ReqCreateMstBrandDto
+{
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public bool IsActive { get; set; } = true;
+    public string CreatedBy { get; set; } = string.Empty;
+}
+
+// Dto/Request/ReqBaseParamDto.cs
+public class ReqBaseParamDto
+{
+    public int Page { get; set; } = 1;
+    public int Limit { get; set; } = 10;
+    public string Search { get; set; } = string.Empty;
+}
+
+// Dto/Response/ResMstBrandDto.cs
+namespace IDMS.Modules.Master.Dto.Response;
+public class ResMstBrandDto
+{
+    public int Id { get; set; }
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+}
+\`\`\`
+
+### Interface
+\`\`\`csharp
+// Services/IMstBrandService.cs
+public interface IMstBrandService
+{
+    Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto);
+    Task<ResMstBrandDto> GetMstBrandById(int id);
+    Task CreateMstBrand(ReqCreateMstBrandDto dto);
+    Task<bool> UpdateMstBrand(ReqUpdateMstBrandDto dto, int id);
+    Task<bool> DeleteMstBrand(int id);
+}
+\`\`\`
+
+### MstBrandService (FULL CODE dari IDMS)
+\`\`\`csharp
+// Services/Impl/MstBrandService.cs
+public class MstBrandService : IMstBrandService
+{
+    private readonly AppDbContext _context;
+    public MstBrandService(AppDbContext context) => _context = context;
+
+    public async Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto)
+    {
+        var query = _context.MstBrands.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(dto.Search))
+        {
+            var search = dto.Search.ToLower();
+            query = query.Where(x =>
+                (x.Code != null && x.Code.ToLower().Contains(search)) ||
+                (x.Name != null && x.Name.ToLower().Contains(search)));
+        }
+        query = query.Where(x => x.DeletedAt == null);
+        var totalCount = await query.CountAsync();
+        var page = dto.Page > 0 ? dto.Page : 1;
+        var pageSize = dto.Limit > 0 ? dto.Limit : 10;
+        var skip = (page - 1) * pageSize;
+        var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+        var items = await query.OrderBy(x => x.Id).Skip(skip).Take(pageSize)
+            .Select(x => new ResMstBrandDto { Id = x.Id, Code = x.Code, Name = x.Name })
+            .ToListAsync();
+        return new PagedResult<ResMstBrandDto>
+        {
+            Items = items,
+            Pagination = new Pagination { TotalItems = totalCount, CurrentPage = page, Limit = pageSize, TotalPages = totalPages }
+        };
+    }
+
+    public async Task<ResMstBrandDto?> GetMstBrandById(int id) =>
+        await _context.MstBrands.Where(x => x.Id == id && x.DeletedAt == null)
+            .Select(x => new ResMstBrandDto { Id = x.Id, Code = x.Code, Name = x.Name }).FirstOrDefaultAsync();
+
+    public async Task CreateMstBrand(ReqCreateMstBrandDto dto)
+    {
+        var brand = new MstBrands { Code = dto.Code, Name = dto.Name, IsActive = dto.IsActive, CreatedAt = DateTime.Now, CreatedBy = dto.CreatedBy };
+        _context.MstBrands.Add(brand); await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> UpdateMstBrand(ReqUpdateMstBrandDto dto, int id)
+    {
+        var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+        if (brand == null) return false;
+        brand.Code = dto.Code; brand.Name = dto.Name; brand.IsActive = dto.IsActive;
+        brand.UpdatedAt = DateTime.Now; brand.UpdatedBy = dto.UpdatedBy;
+        await _context.SaveChangesAsync(); return true;
+    }
+
+    public async Task<bool> DeleteMstBrand(int id)
+    {
+        var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+        if (brand == null) return false;
+        brand.DeletedAt = DateTime.Now; brand.DeletedBy = "system";
+        await _context.SaveChangesAsync(); return true;
+    }
+}
+\`\`\`
+
+---
+
+## 14.15 | ApiResponse + SETUP JWT & API KEY
+
+### ApiResponse.cs (FULL CODE dari IDMS)
+\`\`\`csharp
+// IDMS/Common/ApiResponse.cs
+namespace IDMS.Common;
+public class ApiResponse<T>
+{
+    public bool Status { get; set; } = true;
+    public string Message { get; set; } = string.Empty;
+    public T? Data { get; set; }
+    public Pagination? Pagination { get; set; }
+
+    public static ApiResponse<T> Success(T data, string message = "Ok", Pagination? pagination = null) =>
+        new() { Status = true, Message = message, Data = data, Pagination = pagination };
+    public static ApiResponse<T> Fail(string message = "Error") =>
+        new() { Status = false, Message = message, Data = default, Pagination = null };
+}
+\`\`\`
+
+### appsettings.json
+\`\`\`json
+{
+  "ConnectionStrings": { "DefaultConnection": "Host=localhost;Port=5432;Database=miniproject;Username=postgres;Password=admin123;Search Path=dev" },
+  "Jwt": { "Key": "this-is-a-very-long-secret-key-at-least-32-chars", "Issuer": "IDMS", "Audience": "IDMS-Client" },
+  "Security": { "ApiKey": "your-api-key-here-12345" }
+}
+\`\`\`
+
+### Program.cs — JWT + API Key
+\`\`\`csharp
+using System.Text;
+using IDMS.Infrastructure.Data;
+using IDMS.Middleware;
+using IDMS.Modules.Master.Services;
+using IDMS.Modules.Master.Services.Impl;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true, ValidateAudience = true, ValidateLifetime = true, ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"], ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
+
+builder.Services.AddScoped<IMstBrandService, MstBrandService>();
+builder.Services.AddScoped<IMstTypeService, MstTypeService>();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+app.UseSwagger(); app.UseSwaggerUI();
+app.UseMiddleware<ApiKeyMiddleware>();
+app.UseAuthentication(); app.UseAuthorization();
+app.MapControllers();
+app.Run();
+\`\`\`
+
+### ApiKeyMiddleware (FULL CODE dari IDMS)
+\`\`\`csharp
+// IDMS/Middleware/ApiKeyMiddleware.cs
+namespace IDMS.Middleware;
+public class ApiKeyMiddleware
+{
+    private readonly RequestDelegate _next;
+    private readonly IConfiguration _config;
+    private const string ApiKeyHeaderName = "X-Api-Key";
+    public ApiKeyMiddleware(RequestDelegate next, IConfiguration config) { _next = next; _config = config; }
+    public async Task InvokeAsync(HttpContext context)
+    {
+        if (!context.Request.Headers.TryGetValue(ApiKeyHeaderName, out var extractedApiKey))
+        {
+            context.Items["ErrorMessage"] = "Missing API Key";
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return;
+        }
+        var configuredApiKey = _config["Security:ApiKey"];
+        if (string.IsNullOrWhiteSpace(configuredApiKey) || !configuredApiKey.Equals(extractedApiKey))
+        {
+            context.Items["ErrorMessage"] = "Invalid API Key";
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return;
+        }
+        await _next(context);
+    }
+}
+\`\`\`
+
+---
+
+## 15.00 | EXERCISE — Buat CRUD MstTypes
+
+Peserta buat sendiri: entity, configuration, DTOs, service, controller. Ikuti pola MstBrands.
+
+---
+
+## 🔗 BRIDGE KE HARI 6
+
+> *"Hari ini kita sudah punya Web API lengkap dengan Service, Controller, JWT, dan API Key. Besok kita masuk ke ASP.NET Core MVC — bedanya, output kita bukan JSON lagi, tapi HTML yang di-render dengan Razor View!"*
+
+| Materi Hari 5 | → Jadi apa di Hari 6 |
+|---|---|
+| Web API Controller | → MVC Controller (return View) |
+| ApiResponse\<T\> (JSON) | → ViewModel + Razor (.cshtml) |
+| Swagger UI | → Browser langsung |
+| JWT Token (Header) | → Session / Cookie auth |
+| API Client (Postman) | → Website dengan UI |
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 6: ASP.NET Core MVC (Part 1)
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–13.20 | 20 mnt | Perkenalan file-file project MVC + kegunaan |
+| 13.20–14.15 | 55 mnt | DEMO: Create Web MVC |
+| 14.15–15.00 | 45 mnt | DEMO: LINQ CRUD |
+| 15.00–16.00 | 60 mnt | DEMO: Modular Programming + Data Annotation & DTO |
+| 16.00–16.30 | 30 mnt | Exercise |
+
+---
+
+## 13.00 | STRUKTUR PROJECT MVC
+
+\`\`\`
+IDMS.Web/
+├── Controllers/   ← Menerima request, return View
+├── Views/         ← Template Razor (.cshtml)
+├── Models/        ← ViewModel
+├── Services/      ← Panggil API backend
+└── wwwroot/       ← CSS, JS, gambar
+\`\`\`
+
+---
+
+## 13.20 | CREATE WEB MVC
+
+\`\`\`bash
+dotnet new mvc -n IDMS.Web --no-https
+cd IDMS.Web
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+\`\`\`
+
+---
+
+## 14.15 | LINQ CRUD (FULL CODE dari IDMS)
+
+\`\`\`csharp
+public async Task<PagedResult<ResMstBrandDto>> GetMstBrand(ReqBaseParamDto dto)
+{
+    var query = _context.MstBrands.AsQueryable();
+
+    if (!string.IsNullOrWhiteSpace(dto.Search))
+    {
+        var search = dto.Search.ToLower();
+        query = query.Where(x =>
+            (x.Code != null && x.Code.ToLower().Contains(search)) ||
+            (x.Name != null && x.Name.ToLower().Contains(search)));
+    }
+
+    query = query.Where(x => x.DeletedAt == null);
+
+    var totalCount = await query.CountAsync();
+    var page = dto.Page > 0 ? dto.Page : 1;
+    var pageSize = dto.Limit > 0 ? dto.Limit : 10;
+    var skip = (page - 1) * pageSize;
+    var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+    var items = await query.OrderBy(x => x.Id).Skip(skip).Take(pageSize)
+        .Select(x => new ResMstBrandDto { Id = x.Id, Code = x.Code, Name = x.Name })
+        .ToListAsync();
+
+    return new PagedResult<ResMstBrandDto>
+    {
+        Items = items,
+        Pagination = new Pagination { TotalItems = totalCount, CurrentPage = page, Limit = pageSize, TotalPages = totalPages }
+    };
+}
+
+// Soft Delete
+public async Task<bool> DeleteMstBrand(int id)
+{
+    var brand = await _context.MstBrands.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
+    if (brand == null) return false;
+    brand.DeletedAt = DateTime.Now; brand.DeletedBy = "system";
+    await _context.SaveChangesAsync(); return true;
+}
+\`\`\`
+
+---
+
+## 15.00 | MODULAR PROGRAMMING + DATA ANNOTATION
+
+\`\`\`csharp
+// Interface + Implementation
+public interface IMstBrandService { ... }
+builder.Services.AddScoped<IMstBrandService, MstBrandService>();
+
+// Controller pakai interface
+public HomeController(IMstBrandService service) => _service = service;
+
+// Data Annotation
+public class ReqCreateMstBrandDto
+{
+    [Required(ErrorMessage = "Code wajib diisi")]
+    [StringLength(10, ErrorMessage = "Code maksimal 10 karakter")]
+    public string Code { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Name wajib diisi")]
+    [StringLength(100)]
+    public string Name { get; set; } = string.Empty;
+}
+\`\`\`
+
+| Annotation | Fungsi |
+|---|---|
+| \`[Required]\` | Wajib |
+| \`[StringLength(n)]\` | Max n karakter |
+| \`[Range(min,max)]\` | Rentang |
+| \`[EmailAddress]\` | Format email |
+
+---
+
+## 🔗 BRIDGE KE HARI 7
+
+> *"Hari ini kita sudah bisa bikin MVC dengan CRUD, LINQ, dan View. Besok kita akan bikin frontend yang lebih interaktif pakai AJAX & jQuery, dan integrasi template biar tampilan lebih profesional!"*
+
+| Materi Hari 6 | → Jadi apa di Hari 7 |
+|---|---|
+| MVC Controller + View | → AJAX + jQuery (async request) |
+| LINQ Query | → API call dari JavaScript |
+| Data Annotation | → Validasi client-side |
+| CRUD Razor Pages | → Modal + SweetAlert + Datatable |
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 7: ASP.NET Core MVC (Part 2)
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–13.15 | 15 mnt | Review Hari 6 |
+| 13.15–14.30 | 75 mnt | DEMO: Ajax & jQuery |
+| 14.30–16.00 | 90 mnt | DEMO: Integrate Template to Web |
+| 16.00–16.30 | 30 mnt | Post Test |
+
+---
+
+## 13.15 | AJAX & JQUERY
+
+### GET
+\`\`\`javascript
+\$.ajax({
+    url: '/master/general/brand',
+    method: 'GET',
+    data: { page: 1, limit: 10, search: 'honda' },
+    headers: { 'X-Api-Key': 'key', 'Authorization': 'Bearer ' + token },
+    success: function(r) { console.log(r.data); },
+    error: function(x) { alert('Error: ' + x.status); }
+});
+\`\`\`
+
+### POST
+\`\`\`javascript
+\$.ajax({
+    url: '/master/general/brand',
+    method: 'POST',
+    contentType: 'application/json',
+    headers: { 'X-Api-Key': 'key', 'Authorization': 'Bearer ' + token },
+    data: JSON.stringify({ code: 'HON', name: 'Honda', isActive: true, createdBy: 'admin' }),
+    success: function(r) { alert(r.message); }
+});
+\`\`\`
+
+### PUT & DELETE
+\`\`\`javascript
+// PUT
+\$.ajax({
+    url: '/master/general/brand/' + id, method: 'PUT', contentType: 'application/json',
+    headers: { 'X-Api-Key': 'key', 'Authorization': 'Bearer ' + token },
+    data: JSON.stringify({ code: 'HON', name: 'Updated', isActive: true, updatedBy: 'admin' }),
+    success: function(r) { alert(r.message); }
+});
+
+// DELETE
+\$.ajax({
+    url: '/master/general/brand/' + id, method: 'DELETE',
+    headers: { 'X-Api-Key': 'key', 'Authorization': 'Bearer ' + token },
+    success: function(r) { alert(r.message); loadData(); }
+});
+\`\`\`
+
+### Tabel Data
+\`\`\`javascript
+function loadBrands(page) {
+    page = page || 1;
+    \$.ajax({
+        url: '/master/general/brand', data: { page: page, limit: 10 },
+        success: function(r) {
+            var rows = '';
+            r.data.forEach(function(b) {
+                rows += '<tr><td>'+b.id+'</td><td>'+b.code+'</td><td>'+b.name+'</td>'+
+                    '<td><button onclick="edit('+b.id+')">Edit</button> '+
+                    '<button onclick="del('+b.id+')">Hapus</button></td></tr>';
+            });
+            \$('#brandTable tbody').html(rows);
+        }
+    });
+}
+\`\`\`
+
+---
+
+## 14.30 | INTEGRATE TEMPLATE TO WEB
+
+### _Layout.cshtml
+\`\`\`html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] - IDMS</title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">IDMS</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/Brand">Brand</a>
+                <a class="nav-link" href="/Type">Type</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">@RenderBody()</div>
+    <script src="~/lib/jquery/jquery.min.js"><\\/script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"><\\/script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+\`\`\`
+
+### Brand/Index.cshtml (Tabel + Pagination)
+\`\`\`html
+<div class="d-flex justify-content-between mb-3">
+    <h2>Daftar Brand</h2>
+    <a href="/Brand/Create" class="btn btn-primary">+ Tambah</a>
+</div>
+<div class="mb-3">
+    <input type="text" id="searchBox" class="form-control" placeholder="Cari brand...">
+</div>
+<table class="table table-striped">
+    <thead><tr><th>ID</th><th>Kode</th><th>Nama</th><th>Aksi</th></tr></thead>
+    <tbody id="brandBody"></tbody>
+</table>
+<nav><ul class="pagination" id="pagination"></ul></nav>
+
+@section Scripts {
+<script>
+\$(document).ready(function() { loadBrands(); });
+\$('#searchBox').on('keyup', function() { loadBrands(1); });
+<\\/script>
+}
+\`\`\`
+
+---
+
+## 16.00 | POST TEST
+
+1. **Web API vs MVC?** API return JSON, MVC return HTML/View.
+2. **Fungsi ViewModel?** Wadah data khusus View.
+3. **Apa itu Razor?** Template engine, HTML + C# di \`.cshtml\`.
+4. **\`@RenderBody()\`?** Tempat konten halaman anak.
+5. **Kirim form Ajax?** \`JSON.stringify()\` + \`\$.ajax()\` + \`contentType\`.
+6. **Header wajib?** \`X-Api-Key\` + \`Authorization: Bearer <token>\`.
+7. **4 HTTP methods REST?** GET, POST, PUT, DELETE.
+
+---
+
+## 🔗 BRIDGE KE HARI 8
+
+> *"Hari ini kita sudah belajar AJAX, jQuery, dan integrasi template. Besok kita akan amankan aplikasi kita dengan JWT Authentication & Identity — login, register, dan proteksi endpoint!"*
+
+| Materi Hari 7 | → Jadi apa di Hari 8 |
+|---|---|
+| AJAX GET/POST | → Auth header (Bearer token) |
+| Client-side rendering | → Protected routes |
+| Form submit | → Register + Login flow |
+| Template integration | → Role-based UI |
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 8: JWT & Identity
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–13.15 | 15 mnt | Review Hari 7 + Konsep Auth |
+| 13.15–14.00 | 45 mnt | DEMO: Membuat halaman Login (Register + BCrypt) |
+| 14.00–15.00 | 60 mnt | DEMO: Integrate JWT Token to Project |
+| 15.00–16.00 | 60 mnt | Penjelasan Final Project + Pengerjaan |
+| 16.00–16.30 | 30 mnt | Pendampingan |
+
+---
+
+## 13.15 | REGISTER + BCRYPT
+
+### MstUser Entity
+\`\`\`csharp
+public class MstUser : BaseEntity
+{
+    public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;  // Hashed!
+    public string FullName { get; set; } = string.Empty;
+}
+\`\`\`
+
+### MstUserService — CreateUserAsync (FULL CODE dari IDMS)
+\`\`\`csharp
+public class MstUserService : IMstUserService
+{
+    private readonly AppDbContext _context;
+    private readonly IJwtService _jwtService;
+
+    public async Task<bool> CreateUserAsync(ReqCreateUserDto req)
+    {
+        bool isEmailExist = await _context.MstUsers.AnyAsync(u => u.Email == req.Email);
+        if (isEmailExist) throw new ArgumentException("Email already exists.");
+
+        var encryptedPassword = BCrypt.Net.BCrypt.HashPassword(req.Password); // HASH!
+
+        var user = new MstUser
+        {
+            Email = req.Email, Password = encryptedPassword, FullName = req.FullName
+        };
+        _context.MstUsers.Add(user);
+        return await _context.SaveChangesAsync() > 0;
+    }
+}
+\`\`\`
+
+> ⚠️ Install: \`dotnet add package BCrypt.Net-Next\`
+
+---
+
+## 14.00 | LOGIN + JWT TOKEN
+
+### Login (FULL CODE dari IDMS)
+\`\`\`csharp
+public async Task<ResLoginDto> Login(ReqLoginDto req)
+{
+    var user = await _context.MstUsers.FirstOrDefaultAsync(u => u.Email == req.Email);
+    if (user == null || !BCrypt.Net.BCrypt.Verify(req.Password, user.Password))
+        throw new UnauthorizedAccessException("Invalid email or password.");
+
+    var token = _jwtService.GenerateToken(user.Id.ToString(), user.Email, user.FullName);
+    return new ResLoginDto { Token = token, Email = user.Email };
+}
+\`\`\`
+
+### JwtServices (FULL CODE dari IDMS)
+\`\`\`csharp
+public class JwtServices : IJwtService
+{
+    private readonly IConfiguration _configuration;
+
+    public string GenerateToken(string Id, string Email, string FullName)
+    {
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, Id),
+            new Claim(ClaimTypes.Email, Email),
+            new Claim("UserFullName", FullName)
+        };
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var token = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"], audience: _configuration["Jwt:Audience"],
+            claims: claims, expires: DateTime.Now.AddHours(8), signingCredentials: creds);
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+}
+\`\`\`
+
+### MasterUserController (FULL CODE dari IDMS)
+\`\`\`csharp
+[ApiController]
+[Route("auth")]
+public class MasterUserController : Controller
+{
+    private readonly IMstUserService _service;
+
+    [HttpPost("register")]
+    public async Task<ActionResult<ApiResponse<object>>> Register([FromBody] ReqCreateUserDto dto)
+    {
+        await _service.CreateUserAsync(dto);
+        return Ok(ApiResponse<object>.Success(null, "user created successfully"));
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<ApiResponse<object>>> Login([FromBody] ReqLoginDto dto)
+    {
+        var result = await _service.Login(dto);
+        return Ok(ApiResponse<object>.Success(result, "login successful"));
+    }
+}
+\`\`\`
+
+---
+
+## TESTING
+
+\`\`\`http
+POST /auth/register
+X-Api-Key: your-api-key-here-12345
+{"email":"user@test.com","password":"Test123!","fullName":"User Test"}
+
+POST /auth/login
+X-Api-Key: your-api-key-here-12345
+{"email":"user@test.com","password":"Test123!"}
+→ {"status":true,"data":{"token":"eyJ...","email":"user@test.com"}}
+
+GET /master/general/brand?page=1&limit=10
+X-Api-Key: your-api-key-here-12345
+Authorization: Bearer eyJ...
+\`\`\`
+
+---
+
+## 15.00 | FINAL PROJECT
+
+| Kriteria | Bobot |
+|---|---|
+| Auth: login + JWT + protected endpoint | 25% |
+| CRUD lengkap + pagination | 30% |
+| Validasi DTO + ApiResponse konsisten | 20% |
+| Soft delete + filter query | 15% |
+| Bisa jelaskan arsitektur | 10% |
+
+---
+
+## 📎 RequestMiddleware (ringkasan)
+
+\`\`\`csharp
+// Global error handler
+try { await _next(context); }
+catch (UnauthorizedAccessException ex) {
+    context.Response.StatusCode = 401;
+    await WriteJson(ApiResponse<string>.Fail(ex.Message));
+}
+catch (ArgumentException ex) {
+    context.Response.StatusCode = 400;
+    await WriteJson(ApiResponse<string>.Fail(ex.Message));
+}
+catch (Exception ex) {
+    context.Response.StatusCode = 500;
+    await WriteJson(ApiResponse<string>.Fail(ex.Message));
+}
+\`\`\`
+
+---
+
+## 🔗 BRIDGE KE HARI 9 & 10
+
+> *"Hari ini kita sudah belajar JWT, BCrypt, Login, Register, dan RequestMiddleware. Sekarang kalian siap untuk Final Project — menggabungkan SEMUA materi dari Hari 1 sampai Hari 8 menjadi satu aplikasi Web API yang utuh!"*
+
+| Materi Hari 8 | → Jadi apa di Final Project |
+|---|---|
+| Register + Login | → Auth endpoint dengan validasi |
+| JWT Token | → Protect semua endpoint CRUD |
+| BCrypt Password | → Hashing password user |
+| MstUser Entity | → Hanya admin yang bisa manage user |
+| RequestMiddleware | → Global error handler + logging |
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 9: Final Project Presentasi (1)
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–13.10 | 10 mnt | Briefing Presentasi |
+| 13.10–16.00 | 170 mnt | Presentasi Final Project (~10 mnt/peserta) |
+| 16.00–16.30 | 30 mnt | Feedback + Wrap-up |
+
+---
+
+## 📋 KRITERIA PENILAIAN
+
+| Kriteria | Bobot | Cara Cek |
+|---|---|---|
+| Auth: login + JWT + endpoint protected | 25% | Register + login via Swagger, akses protected endpoint |
+| CRUD lengkap + pagination | 30% | GET (paginated), GET by id, POST, PUT, DELETE |
+| Validasi DTO + ApiResponse | 20% | \`[Required]\`, response selalu \`ApiResponse<T>\` |
+| Soft delete + filter | 15% | Tidak ada hard delete, query filter \`deleted_at IS NULL\` |
+| Bisa jelaskan arsitektur | 10% | Kenapa pisah interface/impl, 4 project, soft delete |
+
+---
+
+## 🔑 FILE REFERENSI (IDMS asli)
+
+| File | Fungsi |
+|---|---|
+| \`IDMS/Program.cs\` | Setup lengkap |
+| \`IDMS/Middleware/ApiKeyMiddleware.cs\` | Validasi X-Api-Key |
+| \`IDMS/Common/ApiResponse.cs\` | Response wrapper |
+| \`IDMS/Controllers/MasterGeneralController.cs\` | CRUD controller |
+| \`IDMS.Modules.Master/Services/Impl/MstBrandService.cs\` | Service + pagination |
+| \`IDMS.Modules.Master/Services/Impl/JwtServices.cs\` | Generate token |
+| \`IDMS.Modules.Master/Services/Impl/MstUserService.cs\` | Login flow |
+| \`IDMS.Infrastructure/Configurations/MstBrandsConfiguration.cs\` | Mapping entity |
+| \`IDMS.Infrastructure/Data/AppDbContext.cs\` | DbContext |
+| \`IDMS.Shared/Entities/BaseEntity.cs\` | Base class |
+
+---
+
+## 🚨 ANTISIPASI MASALAH
+
+| Masalah | Solusi |
+|---|---|
+| Lupa urutan setup | Tunjuk checklist |
+| Migration error | Cek connection string, schema \`dev\` |
+| Token invalid | Cek JWT key min 32 karakter |
+| Swagger tidak muncul | Cek \`app.UseSwagger()\` + \`app.UseSwaggerUI()\` |
+
+---
+
+## ❓ PERTANYAAN WAJIB KE PESERTA
+
+1. **"Kenapa pisahkan interface dan implementasi?"** → Testing, decoupling.
+2. **"Tunjukkan soft delete!"** → \`entity.DeletedAt = DateTime.Now\`.
+3. **"Kenapa CreatedBy dari token?"** → Body bisa dimanipulasi.
+4. **"Jelaskan middleware pipeline!"** → Swagger → ApiKey → Auth → Controller.
+5. **"Apa itu DTO?"** → Objek khusus transfer data antar layer.
+
+---
+
+## 🔗 BRIDGE KE HARI 10
+
+> *"Hari ini presentasi gelombang 1. Besok kita lanjut ke gelombang 2, Post Test, dan Penutupan. Pastikan kalian sudah siap dengan presentasi dan bisa menjawab pertanyaan tentang arsitektur IDMS!"*
+
+| Materi Hari 9 | → Jadi apa di Hari 10 |
+|---|---|
+| Presentasi Final Project | → Presentasi lanjutan |
+| Kriteria penilaian | → Post Test + Review |
+| Demo aplikasi | → Tanya jawab + Feedback |
+`,
+`# 📋 CHEATSHEET PENGAJAR — Hari 10: Final Project Presentasi (2)
+> Durasi: 13.00 – 16.30 | ⚠️ Khusus pengajar.
+
+---
+
+## ⏱ TIMELINE
+
+| Waktu | Durasi | Aktivitas |
+|---|---|---|
+| 13.00–16.00 | 180 mnt | Presentasi Final Project (lanjutan) |
+| 16.00–16.30 | 30 mnt | Post Test + Penutupan |
+
+---
+
+## 📝 POST TEST (contoh soal)
+
+1. Apa perbedaan \`[ApiController]\` dan \`Controller\` di MVC?
+2. Tuliskan query SQL untuk soft delete brand id 5!
+3. Apa fungsi \`[Authorize]\` attribute?
+4. Sebutkan 3 HTTP methods di REST API!
+5. Apa kegunaan \`ApiResponse<T>\` wrapper?
+
+**Kunci:**
+1. ApiController = JSON, Controller MVC = View (HTML)
+2. \`UPDATE mst_brands SET deleted_at=NOW(), deleted_by='admin', is_active=FALSE WHERE id=5;\`
+3. Melindungi endpoint — hanya bisa diakses dengan JWT valid
+4. GET, POST, PUT, DELETE
+5. Standarisasi format: \`{ status, message, data, pagination }\`
+
+---
+
+## 🏁 PENUTUPAN
+
+> *"Selamat! Kalian sudah menyelesaikan Bootcamp ASP.NET Core Web API!"*
+
+---
+
+## 📊 KOMPETENSI YANG SUDAH DIPELAJARI
+
+| Kategori | Skill |
+|---|---|
+| **C# Fundamental** | Variable, Data Type, Operator, OOP, Constructor, Getter/Setter, Namespace, Looping, Selection, Exception Handling |
+| **Database** | PostgreSQL, DBeaver, Table, Constraint, CRUD, View, Stored Procedure |
+| **Backend** | ASP.NET Core Web API, Migration, JWT Authentication, API Key, DTO, LINQ |
+| **Frontend** | ASP.NET Core MVC, Ajax, jQuery, Integrasi Template |
+| **Security** | JWT, BCrypt, Login Authentication |
+| **Version Control** | Git (init, add, commit, push) |
+| **Project** | Exercise, Final Project, Presentasi, Post Test |
+`
+];
+run(T,C,function(){return `<div class="cover-wrap"><div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f59e0b;margin-bottom:.8rem">Khusus Pengajar &mdash; Jangan Dibagikan</div><h1 style="font-size:2.8rem;font-weight:800;line-height:1.15;margin-bottom:1rem">Cheatsheet Pengajar<br><span style="color:#f59e0b">ASP.NET Core Web API</span></h1><p style="color:#94a3b8;font-size:.97rem;margin-bottom:1.5rem">Script Verbal &middot; Kode Lengkap &middot; Jawaban Latihan &middot; Troubleshooting<br>10 Hari. Berdasarkan Project IDMS.</p><div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.5rem"><span class="cover-tag" style="background:#b45309">Hari 1: Perkenalan</span><span class="cover-tag" style="background:#334155">Hari 2: C# & OOP</span><span class="cover-tag" style="background:#334155">Hari 3: PostgreSQL</span><span class="cover-tag" style="background:#334155">Hari 4: Web API Pt.1</span><span class="cover-tag" style="background:#334155">Hari 5: Web API Pt.2</span><span class="cover-tag" style="background:#334155">Hari 6: Web MVC Pt.1</span><span class="cover-tag" style="background:#334155">Hari 7: Web MVC Pt.2</span><span class="cover-tag" style="background:#334155">Hari 8: JWT & Identity</span><span class="cover-tag" style="background:#334155">Hari 9: Final Project 1</span><span class="cover-tag" style="background:#334155">Hari 10: Final Project 2</span></div><div style="background:#1e293b;border:1px solid #334155;border-radius:.6rem;padding:.9rem 1.2rem;max-width:420px"><p style="font-size:.82rem;color:#94a3b8">Gunakan <strong style="color:#f8fafc">Prev / Next</strong> atau keyboard <strong style="color:#f8fafc">&lt; &gt;</strong> untuk navigasi antar hari.</p></div></div>`;});
+</script>
+</body>
+</html>
